@@ -1,6 +1,7 @@
-import { supabase } from "@/lib/supabase-client";
-import { useEffect } from "react";
-import { Pressable, SafeAreaView, Text, View } from "react-native";
+import { useEffect } from 'react';
+import { Pressable, SafeAreaView, Text, View } from 'react-native';
+
+import { supabase } from '@/lib/supabase-client';
 
 export default function Page() {
   useEffect(() => {
@@ -9,7 +10,7 @@ export default function Page() {
         // router.replace("/(tabs)/home/");
         console.log(session);
       } else {
-        console.log("no user");
+        console.log('no user');
       }
     });
 
@@ -18,7 +19,7 @@ export default function Page() {
         // router.replace("/(tabs)/home/");
         console.log(session);
       } else {
-        console.log("no user");
+        console.log('no user');
         // router.replace("/(auth)/login");
       }
     });

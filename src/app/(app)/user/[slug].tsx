@@ -1,5 +1,5 @@
-import { useLocalSearchParams } from "expo-router";
-import { Text } from "react-native";
+import { useLocalSearchParams } from 'expo-router';
+import { Text } from 'react-native';
 
 export default function Page() {
   const { slug } = useLocalSearchParams();

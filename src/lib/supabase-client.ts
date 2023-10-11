@@ -1,7 +1,7 @@
-import "react-native-url-polyfill/auto";
-import * as SecureStore from "expo-secure-store";
-import { createClient } from "@supabase/supabase-js";
-import { SUPABASE_URL, SUPABASE_API_KEY } from "@env";
+import 'react-native-url-polyfill/auto';
+import { SUPABASE_URL, SUPABASE_API_KEY } from '@env';
+import { createClient } from '@supabase/supabase-js';
+import * as SecureStore from 'expo-secure-store';
 
 const ExpoSecureStoreAdapter = {
   getItem: (key: string) => {
