@@ -5,10 +5,10 @@
   "scripts": {
     "start": "expo start",
     "ts:check": "tsc",
-    "android:dev": "NODE_ENV=development expo start --android",
-    "android": "NODE_ENV=production expo start --android",
-    "ios:dev": "NODE_ENV=development expo start --ios",
-    "ios": "NODE_ENV=production expo start --ios",
+    "android:dev": "APP_ENV=dev expo start --android",
+    "android": "APP_ENV=prd expo start --android",
+    "ios:dev": "APP_ENV=dev expo start --ios",
+    "ios": "APP_ENV=prd expo start --ios",
     "web": "expo start --web"
   },
   "dependencies": {
