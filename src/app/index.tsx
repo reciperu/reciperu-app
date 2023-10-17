@@ -1,5 +1,5 @@
+import { router } from 'expo-router';
 import { useEffect } from 'react';
-import { Pressable, SafeAreaView, Text, View } from 'react-native';
 
 import { supabase } from '@/lib/supabase-client';
 
@@ -7,8 +7,7 @@ export default function Page() {
   useEffect(() => {
     supabase.auth.getSession().then(({ data: { session } }) => {
       if (session) {
-        // router.replace("/(tabs)/home/");
-        console.log(session);
+        router.replace('/(tabs)/home/');
       } else {
         console.log('no user');
       }
@@ -16,19 +15,11 @@ export default function Page() {
 
     supabase.auth.onAuthStateChange((_event, session) => {
       if (session) {
-        // router.replace("/(tabs)/home/");
-        console.log(session);
+        router.replace('/(tabs)/home/');
       } else {
         console.log('no user');
-        // router.replace("/(auth)/login");
+        router.replace('/(auth)/login');
       }
     });
   }, []);
-  return (
-    <View>
-      <SafeAreaView>
-        <Text>aaa</Text>
-      </SafeAreaView>
-    </View>
-  );
 }
