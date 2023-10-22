@@ -5,7 +5,9 @@
     "typeRoots": ["./src/types"],
     "baseUrl": ".",
     "paths": {
-      "@/*": ["src/*"]
+      "@/*": ["src/*"],
+      "assets/*": ["assets/*"],
+      "@firebase/auth": ["./node_modules/@firebase/auth/dist/index.rn.d.ts"],
     }
   }
 }
