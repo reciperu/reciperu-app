@@ -2,6 +2,7 @@ import { Tabs } from 'expo-router';
 import { Dimensions, TouchableHighlight, View } from 'react-native';
 
 import { Text } from '@/components/ui/Text';
+import { AppIcon } from '@/components/ui/icons';
 import { Constants } from '@/constants';
 import { useAuthContext } from '@/context/authProvider';
 
@@ -13,11 +14,12 @@ export default function TabLayout() {
       <Tabs
         screenOptions={{
           // headerShown: false,
-          // tabBarStyle: {
-          //   backgroundColor: colors.$background2,
-          //   borderTopWidth: 0,
-          // },
+          tabBarStyle: {
+            borderTopWidth: 0,
+          },
+          tabBarInactiveTintColor: Constants.colors.primitive.gray[600],
           tabBarActiveTintColor: Constants.colors.primitive.pink[400],
+          tabBarLabelStyle: { fontFamily: 'LINE-bold', fontSize: 10 },
         }}>
         <Tabs.Screen
           name="home"
@@ -27,6 +29,15 @@ export default function TabLayout() {
               <TouchableHighlight onPress={() => authContext.signOut()}>
                 <Text style={{ color: 'red' }}>サインアウト</Text>
               </TouchableHighlight>
+            ),
+            tabBarIcon: ({ color, focused }) => (
+              <AppIcon
+                width={28}
+                height={28}
+                name="home"
+                color={color}
+                variant={focused ? 'filled' : 'outline'}
+              />
             ),
           }}
         />
@@ -39,6 +50,15 @@ export default function TabLayout() {
                 <Text style={{ color: 'red' }}>サインアウト</Text>
               </TouchableHighlight>
             ),
+            tabBarIcon: ({ color, focused }) => (
+              <AppIcon
+                width={28}
+                height={28}
+                name="recipe"
+                color={color}
+                variant={focused ? 'filled' : 'outline'}
+              />
+            ),
           }}
         />
         <Tabs.Screen
@@ -49,6 +69,15 @@ export default function TabLayout() {
               <TouchableHighlight onPress={() => authContext.signOut()}>
                 <Text style={{ color: 'red' }}>サインアウト</Text>
               </TouchableHighlight>
+            ),
+            tabBarIcon: ({ color, focused }) => (
+              <AppIcon
+                width={22}
+                height={22}
+                name="calendar"
+                color={color}
+                variant={focused ? 'filled' : 'outline'}
+              />
             ),
           }}
         />
