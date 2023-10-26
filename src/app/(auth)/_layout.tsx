@@ -1,4 +1,4 @@
-import { Slot, Stack } from 'expo-router';
+import { Stack } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
 import { Dimensions, View } from 'react-native';
 
@@ -7,7 +7,7 @@ export default function AuthLayout() {
   return (
     <>
       <StatusBar style="dark" />
-      <View style={{minHeight: windowHeight}}>
+      <View style={{ minHeight: windowHeight }}>
         <Stack />
       </View>
     </>

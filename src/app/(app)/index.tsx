@@ -1,5 +1,5 @@
-import { Slot } from 'expo-router';
+import { Redirect } from 'expo-router';
 
 export default function AppPage() {
-  return <Slot />;
+  return <Redirect href="/(tabs)/home" />;
 }

@@ -1,19 +1,12 @@
-import { useAuthContext } from '@/context/authProvider';
-// import { getIdToken } from 'firebase/auth';
 import { useEffect } from 'react';
-import { SafeAreaView, Text } from 'react-native';
+import { SafeAreaView, Text, View } from 'react-native';
+
+import { useAuthContext } from '@/context/authProvider';
 import secureStoreService, { StoreKeyEnum } from '@/lib/secureStore';
+import { Container } from '@/components/ui/Container';
 
 export default function HomePage() {
   const authContext = useAuthContext();
-  //   useEffect(() => {
-  //     (async () => {
-  //         if (authContext.user) {
-  //             const token = await getIdToken(authContext.user)
-  //             console.log(`token: ${token}`)
-  //         }
-  //     })()
-  //   }, [])
   useEffect(() => {
     (async () => {
       const token = await secureStoreService.getValueFor(StoreKeyEnum.TOKEN);
@@ -21,8 +14,10 @@ export default function HomePage() {
     })();
   }, []);
   return (
-    <SafeAreaView>
-      <Text>Home</Text>
-    </SafeAreaView>
+   <Container>
+     <View style={{flex: 1}}>
+       <Text>Home</Text>
+     </View>
+   </Container>
   );
 }

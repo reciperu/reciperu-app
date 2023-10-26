@@ -1,9 +1,9 @@
 import React, { memo, useMemo } from 'react';
-import { Text as RNText } from 'react-native';
+import { Text as RNText, StyleProp, TextStyle } from 'react-native';
 
 interface Props {
   children: string;
-  style?: any;
+  style?: StyleProp<TextStyle>;
   fw?: 'light' | 'regular' | 'bold' | 'extra-bold';
 }
 
