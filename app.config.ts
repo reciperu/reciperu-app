@@ -5,15 +5,16 @@ export default ({ config }: ConfigContext): ExpoConfig => {
     ...config,
     name: config.name || 'レシピル',
     slug: config.slug || 'reciperu-app',
-    icon: process.env.APP_ENV === 'production' ? './assets/prd/icon.png' : './assets/dev/icon.png',
+    icon:
+      process.env.NODE_ENV === 'development' ? './assets/dev/icon.png' : './assets/prd/icon.png',
     android: {
       ...config.android,
       adaptiveIcon: {
         ...config.android?.adaptiveIcon,
         foregroundImage:
-          process.env.APP_ENV === 'production'
-            ? './assets/prd/adaptive-icon.png'
-            : './assets/dev/adaptive-icon.png',
+          process.env.NODE_ENV === 'development'
+            ? './assets/dev/adaptive-icon.png'
+            : './assets/prd/adaptive-icon.png',
       },
     },
   };
