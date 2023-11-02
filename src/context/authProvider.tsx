@@ -51,7 +51,6 @@ const useAuthProvider = () => {
     const userInfo = await GoogleSignin.signInSilently();
 
     if (userInfo && userInfo.idToken) {
-      // TODO: トークンは保存する必要があるか確認する
       secureStoreService.save(StoreKeyEnum.TOKEN, userInfo?.idToken);
       await handleCredentialResponse(userInfo.idToken);
     }
