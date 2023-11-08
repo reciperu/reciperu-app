@@ -26,7 +26,17 @@
       },
       "googleServicesFile": "./google-services.json"
     },
-    "plugins": ["expo-router", "@react-native-google-signin/google-signin"],
+    "plugins": [
+      "expo-router",
+      "@react-native-google-signin/google-signin",
+      [
+        "expo-image-picker",
+        {
+          "photosPermission": "$(PRODUCT_NAME)があなたの写真にアクセスすることを許可してください。",
+          "cameraPermission": "$(PRODUCT_NAME)がカメラにアクセスすることを許可してください。"
+        }
+      ]
+    ],
     "experiments": {
       "tsconfigPaths": true
     }

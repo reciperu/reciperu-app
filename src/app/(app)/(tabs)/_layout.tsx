@@ -1,14 +1,38 @@
-import { Tabs } from 'expo-router';
-import { Dimensions, TouchableHighlight, View } from 'react-native';
+import { Redirect, Tabs } from 'expo-router';
+import { useEffect } from 'react';
+import { Alert, Dimensions, TouchableHighlight, View } from 'react-native';
 
+import { PageWholeLoader } from '@/components/ui/PageWholeLoader';
 import { Text } from '@/components/ui/Text';
 import { AppIcon } from '@/components/ui/icons';
 import { Constants } from '@/constants';
 import { useAuthContext } from '@/context/authProvider';
+import { useFetchUserCheck } from '@/features/users/apis/getUserCheck';
+import { UserStatus } from '@/features/users/types';
 
 export default function TabLayout() {
   const authContext = useAuthContext();
   const windowHeight = Dimensions.get('window').height;
+  const { data, isLoading, error, mutate } = useFetchUserCheck();
+  useEffect(() => {
+    if (error) {
+      Alert.alert('エラー', 'エラーが発生しました。', [
+        { text: 'もう一度試す', onPress: () => mutate() },
+      ]);
+    }
+  }, [error]);
+  // 取得中
+  if (isLoading) {
+    return <PageWholeLoader />;
+  }
+  // オンボーディングにリダイレクト
+  if (data?.activeStatus === UserStatus.ONBOARDING) {
+    return <Redirect href="/(onboarding)" />;
+  }
+  // エラーの場合
+  if (error) {
+    return <></>;
+  }
   return (
     <View style={{ minHeight: windowHeight }}>
       <Tabs

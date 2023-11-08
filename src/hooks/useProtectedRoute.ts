@@ -3,9 +3,9 @@ import { User } from 'firebase/auth';
 import { useEffect } from 'react';
 
 export const useProtectedRoute = (user: User | null) => {
-    const segments = useSegments();
-    const router = useRouter();
-    const rootNavigation = useRootNavigation();
+  const segments = useSegments();
+  const router = useRouter();
+  const rootNavigation = useRootNavigation();
   useEffect(() => {
     if (!rootNavigation?.isReady()) return;
     const inAuthGroup = segments[0] === '(auth)' || segments[0] === '(aux)';

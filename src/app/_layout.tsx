@@ -6,6 +6,7 @@ import { AppState, AppStateStatus, View } from 'react-native';
 import { SWRConfig } from 'swr';
 
 import { AuthProvider } from '@/context/authProvider';
+import { client } from '@/lib/axios';
 
 SplashScreen.preventAutoHideAsync();
 
@@ -30,6 +31,14 @@ export default function RootLayout() {
     <AuthProvider>
       <SWRConfig
         value={{
+          refreshInterval: 0,
+          fetcher: (url) => {
+            return client(url).then((res) => res.data);
+          },
+          onErrorRetry: (error, key, config, revalidate, { retryCount }) => {
+            // リトライを行わない
+            console.error(error);
+          },
           provider: () => new Map(),
           isVisible: () => {
             return true;

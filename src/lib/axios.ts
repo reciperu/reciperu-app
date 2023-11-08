@@ -1,3 +1,4 @@
+import { EXPO_PUBLIC_API_URL } from '@env';
 import { GoogleSignin } from '@react-native-google-signin/google-signin';
 import Axios from 'axios';
 import { router } from 'expo-router';
@@ -8,7 +9,7 @@ import secureStoreService, { StoreKeyEnum } from '@/lib/secureStore';
 
 const config = {
   timeout: API_TIMEOUT,
-  baseURL: process.env.NEXT_PUBLIC_API_URL,
+  baseURL: EXPO_PUBLIC_API_URL,
   paramsSerializer: {
     encode: parse as any,
     serialize: (params: Record<string, any>) => qs.stringify(params, { arrayFormat: 'brackets' }),
