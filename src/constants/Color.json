@@ -1,1 +1,3175 @@
-{"id":"VariableCollectionId:2108:2118","name":"Color","modes":{"2108:1":"Value"},"variableIds":["VariableID:2109:2109","VariableID:2109:2153","VariableID:2109:2154","VariableID:2109:2155","VariableID:2109:2156","VariableID:2109:2157","VariableID:2109:2158","VariableID:2109:2159","VariableID:2109:2160","VariableID:2109:2161","VariableID:2109:2162","VariableID:2109:2163","VariableID:2109:2164","VariableID:2109:2165","VariableID:2109:2166","VariableID:2109:2167","VariableID:2109:2168","VariableID:2109:2169","VariableID:2109:2170","VariableID:2109:2171","VariableID:2109:2172","VariableID:2109:2173","VariableID:2109:2174","VariableID:2109:2175","VariableID:2109:2176","VariableID:2109:2177","VariableID:2109:2178","VariableID:2109:2179","VariableID:2109:2180","VariableID:2109:2181","VariableID:2109:2182","VariableID:2109:2183","VariableID:2109:2184","VariableID:2109:2185","VariableID:2109:2186","VariableID:2109:2187","VariableID:2109:2188","VariableID:2109:2189","VariableID:2109:2190","VariableID:2109:2191","VariableID:2109:2192","VariableID:2109:2193","VariableID:2109:2194","VariableID:2109:2195","VariableID:2109:2196","VariableID:2109:2197","VariableID:2109:2198","VariableID:2109:2199","VariableID:2109:2200","VariableID:2109:2201","VariableID:2109:2202","VariableID:2109:2203","VariableID:2109:2204","VariableID:2109:2205","VariableID:2109:2206","VariableID:2109:2207","VariableID:2109:2208","VariableID:2109:2209","VariableID:2109:2210","VariableID:2109:2211","VariableID:2109:2212","VariableID:2109:2213","VariableID:2109:2214","VariableID:2109:2215","VariableID:2109:2216","VariableID:2109:2217","VariableID:2109:2218","VariableID:2109:2219","VariableID:2109:2220","VariableID:2109:2221","VariableID:2109:2222","VariableID:2109:2223","VariableID:2109:2224","VariableID:2109:2225","VariableID:2109:2226","VariableID:2109:2227","VariableID:2109:2228","VariableID:2109:2229","VariableID:2109:2230","VariableID:2109:2231","VariableID:2109:2232","VariableID:2109:2233","VariableID:2109:2234","VariableID:2109:2235","VariableID:2109:2236","VariableID:2109:2237","VariableID:2109:2238","VariableID:2109:2239","VariableID:2109:2240","VariableID:2109:2241","VariableID:2109:2242","VariableID:2109:2243","VariableID:2109:2244","VariableID:2109:2245","VariableID:2109:2246","VariableID:2109:2247","VariableID:2109:2248","VariableID:2109:2249","VariableID:2109:2250","VariableID:2109:2251","VariableID:2109:2252","VariableID:2109:2253","VariableID:2109:2254","VariableID:2109:2255","VariableID:2109:2256","VariableID:2109:2257","VariableID:2109:2258","VariableID:2109:2259","VariableID:2109:2260","VariableID:2109:2261","VariableID:2109:2262","VariableID:2109:2263","VariableID:2109:2264","VariableID:2109:2265","VariableID:2109:2266","VariableID:2109:2267","VariableID:2109:2268","VariableID:2109:2269","VariableID:2109:2270","VariableID:2109:2271","VariableID:2109:2272","VariableID:2109:2273"],"variables":[{"id":"VariableID:2109:2109","name":"primitive/orange/50","description":"","type":"COLOR","valuesByMode":{"2108:1":{"r":1,"g":0.9803921580314636,"b":0.9411764740943909,"a":1}},"resolvedValuesByMode":{"2108:1":{"resolvedValue":{"r":1,"g":0.9803921580314636,"b":0.9411764740943909,"a":1},"alias":null}},"scopes":["ALL_SCOPES"],"hiddenFromPublishing":false,"codeSyntax":{}},{"id":"VariableID:2109:2153","name":"primitive/orange/100","description":"","type":"COLOR","valuesByMode":{"2108:1":{"r":0.9960784316062927,"g":0.9215686321258545,"b":0.7960784435272217,"a":1}},"resolvedValuesByMode":{"2108:1":{"resolvedValue":{"r":0.9960784316062927,"g":0.9215686321258545,"b":0.7960784435272217,"a":1},"alias":null}},"scopes":["ALL_SCOPES"],"hiddenFromPublishing":false,"codeSyntax":{}},{"id":"VariableID:2109:2154","name":"primitive/orange/200","description":"","type":"COLOR","valuesByMode":{"2108:1":{"r":0.9843137264251709,"g":0.8274509906768799,"b":0.5529412031173706,"a":1}},"resolvedValuesByMode":{"2108:1":{"resolvedValue":{"r":0.9843137264251709,"g":0.8274509906768799,"b":0.5529412031173706,"a":1},"alias":null}},"scopes":["ALL_SCOPES"],"hiddenFromPublishing":false,"codeSyntax":{}},{"id":"VariableID:2109:2155","name":"primitive/orange/300","description":"","type":"COLOR","valuesByMode":{"2108:1":{"r":0.9647058844566345,"g":0.6784313917160034,"b":0.3333333432674408,"a":1}},"resolvedValuesByMode":{"2108:1":{"resolvedValue":{"r":0.9647058844566345,"g":0.6784313917160034,"b":0.3333333432674408,"a":1},"alias":null}},"scopes":["ALL_SCOPES"],"hiddenFromPublishing":false,"codeSyntax":{}},{"id":"VariableID:2109:2156","name":"primitive/orange/400","description":"","type":"COLOR","valuesByMode":{"2108:1":{"r":0.929411768913269,"g":0.5372549295425415,"b":0.21176470816135406,"a":1}},"resolvedValuesByMode":{"2108:1":{"resolvedValue":{"r":0.929411768913269,"g":0.5372549295425415,"b":0.21176470816135406,"a":1},"alias":null}},"scopes":["ALL_SCOPES"],"hiddenFromPublishing":false,"codeSyntax":{}},{"id":"VariableID:2109:2157","name":"primitive/orange/500","description":"","type":"COLOR","valuesByMode":{"2108:1":{"r":0.8666666746139526,"g":0.41960784792900085,"b":0.125490203499794,"a":1}},"resolvedValuesByMode":{"2108:1":{"resolvedValue":{"r":0.8666666746139526,"g":0.41960784792900085,"b":0.125490203499794,"a":1},"alias":null}},"scopes":["ALL_SCOPES"],"hiddenFromPublishing":false,"codeSyntax":{}},{"id":"VariableID:2109:2158","name":"primitive/orange/600","description":"","type":"COLOR","valuesByMode":{"2108:1":{"r":0.7529411911964417,"g":0.33725491166114807,"b":0.12941177189350128,"a":1}},"resolvedValuesByMode":{"2108:1":{"resolvedValue":{"r":0.7529411911964417,"g":0.33725491166114807,"b":0.12941177189350128,"a":1},"alias":null}},"scopes":["ALL_SCOPES"],"hiddenFromPublishing":false,"codeSyntax":{}},{"id":"VariableID:2109:2159","name":"primitive/orange/700","description":"","type":"COLOR","valuesByMode":{"2108:1":{"r":0.6117647290229797,"g":0.25882354378700256,"b":0.12941177189350128,"a":1}},"resolvedValuesByMode":{"2108:1":{"resolvedValue":{"r":0.6117647290229797,"g":0.25882354378700256,"b":0.12941177189350128,"a":1},"alias":null}},"scopes":["ALL_SCOPES"],"hiddenFromPublishing":false,"codeSyntax":{}},{"id":"VariableID:2109:2160","name":"primitive/orange/800","description":"","type":"COLOR","valuesByMode":{"2108:1":{"r":0.48235294222831726,"g":0.20392157137393951,"b":0.11764705926179886,"a":1}},"resolvedValuesByMode":{"2108:1":{"resolvedValue":{"r":0.48235294222831726,"g":0.20392157137393951,"b":0.11764705926179886,"a":1},"alias":null}},"scopes":["ALL_SCOPES"],"hiddenFromPublishing":false,"codeSyntax":{}},{"id":"VariableID:2109:2161","name":"primitive/orange/900","description":"","type":"COLOR","valuesByMode":{"2108:1":{"r":0.3960784375667572,"g":0.16862745583057404,"b":0.09803921729326248,"a":1}},"resolvedValuesByMode":{"2108:1":{"resolvedValue":{"r":0.3960784375667572,"g":0.16862745583057404,"b":0.09803921729326248,"a":1},"alias":null}},"scopes":["ALL_SCOPES"],"hiddenFromPublishing":false,"codeSyntax":{}},{"id":"VariableID:2109:2162","name":"primitive/white alpha/50","description":"","type":"COLOR","valuesByMode":{"2108:1":{"r":1,"g":1,"b":1,"a":0.03999999910593033}},"resolvedValuesByMode":{"2108:1":{"resolvedValue":{"r":1,"g":1,"b":1,"a":0.03999999910593033},"alias":null}},"scopes":["ALL_SCOPES"],"hiddenFromPublishing":false,"codeSyntax":{}},{"id":"VariableID:2109:2163","name":"primitive/white alpha/100","description":"","type":"COLOR","valuesByMode":{"2108:1":{"r":1,"g":1,"b":1,"a":0.05999999865889549}},"resolvedValuesByMode":{"2108:1":{"resolvedValue":{"r":1,"g":1,"b":1,"a":0.05999999865889549},"alias":null}},"scopes":["ALL_SCOPES"],"hiddenFromPublishing":false,"codeSyntax":{}},{"id":"VariableID:2109:2164","name":"primitive/white alpha/200","description":"","type":"COLOR","valuesByMode":{"2108:1":{"r":1,"g":1,"b":1,"a":0.07999999821186066}},"resolvedValuesByMode":{"2108:1":{"resolvedValue":{"r":1,"g":1,"b":1,"a":0.07999999821186066},"alias":null}},"scopes":["ALL_SCOPES"],"hiddenFromPublishing":false,"codeSyntax":{}},{"id":"VariableID:2109:2165","name":"primitive/white alpha/300","description":"","type":"COLOR","valuesByMode":{"2108:1":{"r":1,"g":1,"b":1,"a":0.1599999964237213}},"resolvedValuesByMode":{"2108:1":{"resolvedValue":{"r":1,"g":1,"b":1,"a":0.1599999964237213},"alias":null}},"scopes":["ALL_SCOPES"],"hiddenFromPublishing":false,"codeSyntax":{}},{"id":"VariableID:2109:2166","name":"primitive/white alpha/400","description":"","type":"COLOR","valuesByMode":{"2108:1":{"r":1,"g":1,"b":1,"a":0.23999999463558197}},"resolvedValuesByMode":{"2108:1":{"resolvedValue":{"r":1,"g":1,"b":1,"a":0.23999999463558197},"alias":null}},"scopes":["ALL_SCOPES"],"hiddenFromPublishing":false,"codeSyntax":{}},{"id":"VariableID:2109:2167","name":"primitive/white alpha/500","description":"","type":"COLOR","valuesByMode":{"2108:1":{"r":1,"g":1,"b":1,"a":0.36000001430511475}},"resolvedValuesByMode":{"2108:1":{"resolvedValue":{"r":1,"g":1,"b":1,"a":0.36000001430511475},"alias":null}},"scopes":["ALL_SCOPES"],"hiddenFromPublishing":false,"codeSyntax":{}},{"id":"VariableID:2109:2168","name":"primitive/white alpha/600","description":"","type":"COLOR","valuesByMode":{"2108:1":{"r":1,"g":1,"b":1,"a":0.47999998927116394}},"resolvedValuesByMode":{"2108:1":{"resolvedValue":{"r":1,"g":1,"b":1,"a":0.47999998927116394},"alias":null}},"scopes":["ALL_SCOPES"],"hiddenFromPublishing":false,"codeSyntax":{}},{"id":"VariableID:2109:2169","name":"primitive/white alpha/700","description":"","type":"COLOR","valuesByMode":{"2108:1":{"r":1,"g":1,"b":1,"a":0.6399999856948853}},"resolvedValuesByMode":{"2108:1":{"resolvedValue":{"r":1,"g":1,"b":1,"a":0.6399999856948853},"alias":null}},"scopes":["ALL_SCOPES"],"hiddenFromPublishing":false,"codeSyntax":{}},{"id":"VariableID:2109:2170","name":"primitive/white alpha/800","description":"","type":"COLOR","valuesByMode":{"2108:1":{"r":1,"g":1,"b":1,"a":0.800000011920929}},"resolvedValuesByMode":{"2108:1":{"resolvedValue":{"r":1,"g":1,"b":1,"a":0.800000011920929},"alias":null}},"scopes":["ALL_SCOPES"],"hiddenFromPublishing":false,"codeSyntax":{}},{"id":"VariableID:2109:2171","name":"primitive/white alpha/900","description":"","type":"COLOR","valuesByMode":{"2108:1":{"r":1,"g":1,"b":1,"a":0.9200000166893005}},"resolvedValuesByMode":{"2108:1":{"resolvedValue":{"r":1,"g":1,"b":1,"a":0.9200000166893005},"alias":null}},"scopes":["ALL_SCOPES"],"hiddenFromPublishing":false,"codeSyntax":{}},{"id":"VariableID:2109:2172","name":"primitive/black alpha/50","description":"","type":"COLOR","valuesByMode":{"2108:1":{"r":0,"g":0,"b":0,"a":0.03999999910593033}},"resolvedValuesByMode":{"2108:1":{"resolvedValue":{"r":0,"g":0,"b":0,"a":0.03999999910593033},"alias":null}},"scopes":["ALL_SCOPES"],"hiddenFromPublishing":false,"codeSyntax":{}},{"id":"VariableID:2109:2173","name":"primitive/black alpha/100","description":"","type":"COLOR","valuesByMode":{"2108:1":{"r":0,"g":0,"b":0,"a":0.05999999865889549}},"resolvedValuesByMode":{"2108:1":{"resolvedValue":{"r":0,"g":0,"b":0,"a":0.05999999865889549},"alias":null}},"scopes":["ALL_SCOPES"],"hiddenFromPublishing":false,"codeSyntax":{}},{"id":"VariableID:2109:2174","name":"primitive/black alpha/200","description":"","type":"COLOR","valuesByMode":{"2108:1":{"r":0,"g":0,"b":0,"a":0.07999999821186066}},"resolvedValuesByMode":{"2108:1":{"resolvedValue":{"r":0,"g":0,"b":0,"a":0.07999999821186066},"alias":null}},"scopes":["ALL_SCOPES"],"hiddenFromPublishing":false,"codeSyntax":{}},{"id":"VariableID:2109:2175","name":"primitive/black alpha/300","description":"","type":"COLOR","valuesByMode":{"2108:1":{"r":0,"g":0,"b":0,"a":0.1599999964237213}},"resolvedValuesByMode":{"2108:1":{"resolvedValue":{"r":0,"g":0,"b":0,"a":0.1599999964237213},"alias":null}},"scopes":["ALL_SCOPES"],"hiddenFromPublishing":false,"codeSyntax":{}},{"id":"VariableID:2109:2176","name":"primitive/black alpha/400","description":"","type":"COLOR","valuesByMode":{"2108:1":{"r":0,"g":0,"b":0,"a":0.23999999463558197}},"resolvedValuesByMode":{"2108:1":{"resolvedValue":{"r":0,"g":0,"b":0,"a":0.23999999463558197},"alias":null}},"scopes":["ALL_SCOPES"],"hiddenFromPublishing":false,"codeSyntax":{}},{"id":"VariableID:2109:2177","name":"primitive/black alpha/500","description":"","type":"COLOR","valuesByMode":{"2108:1":{"r":0,"g":0,"b":0,"a":0.36000001430511475}},"resolvedValuesByMode":{"2108:1":{"resolvedValue":{"r":0,"g":0,"b":0,"a":0.36000001430511475},"alias":null}},"scopes":["ALL_SCOPES"],"hiddenFromPublishing":false,"codeSyntax":{}},{"id":"VariableID:2109:2178","name":"primitive/black alpha/600","description":"","type":"COLOR","valuesByMode":{"2108:1":{"r":0,"g":0,"b":0,"a":0.47999998927116394}},"resolvedValuesByMode":{"2108:1":{"resolvedValue":{"r":0,"g":0,"b":0,"a":0.47999998927116394},"alias":null}},"scopes":["ALL_SCOPES"],"hiddenFromPublishing":false,"codeSyntax":{}},{"id":"VariableID:2109:2179","name":"primitive/black alpha/700","description":"","type":"COLOR","valuesByMode":{"2108:1":{"r":0,"g":0,"b":0,"a":0.6399999856948853}},"resolvedValuesByMode":{"2108:1":{"resolvedValue":{"r":0,"g":0,"b":0,"a":0.6399999856948853},"alias":null}},"scopes":["ALL_SCOPES"],"hiddenFromPublishing":false,"codeSyntax":{}},{"id":"VariableID:2109:2180","name":"primitive/black alpha/800","description":"","type":"COLOR","valuesByMode":{"2108:1":{"r":0,"g":0,"b":0,"a":0.800000011920929}},"resolvedValuesByMode":{"2108:1":{"resolvedValue":{"r":0,"g":0,"b":0,"a":0.800000011920929},"alias":null}},"scopes":["ALL_SCOPES"],"hiddenFromPublishing":false,"codeSyntax":{}},{"id":"VariableID:2109:2181","name":"primitive/black alpha/900","description":"","type":"COLOR","valuesByMode":{"2108:1":{"r":0,"g":0,"b":0,"a":0.9200000166893005}},"resolvedValuesByMode":{"2108:1":{"resolvedValue":{"r":0,"g":0,"b":0,"a":0.9200000166893005},"alias":null}},"scopes":["ALL_SCOPES"],"hiddenFromPublishing":false,"codeSyntax":{}},{"id":"VariableID:2109:2182","name":"primitive/gray/50","description":"","type":"COLOR","valuesByMode":{"2108:1":{"r":0.9686274528503418,"g":0.9803921580314636,"b":0.9882352948188782,"a":1}},"resolvedValuesByMode":{"2108:1":{"resolvedValue":{"r":0.9686274528503418,"g":0.9803921580314636,"b":0.9882352948188782,"a":1},"alias":null}},"scopes":["ALL_SCOPES"],"hiddenFromPublishing":false,"codeSyntax":{}},{"id":"VariableID:2109:2183","name":"primitive/gray/100","description":"","type":"COLOR","valuesByMode":{"2108:1":{"r":0.929411768913269,"g":0.9490196108818054,"b":0.9686274528503418,"a":1}},"resolvedValuesByMode":{"2108:1":{"resolvedValue":{"r":0.929411768913269,"g":0.9490196108818054,"b":0.9686274528503418,"a":1},"alias":null}},"scopes":["ALL_SCOPES"],"hiddenFromPublishing":false,"codeSyntax":{}},{"id":"VariableID:2109:2184","name":"primitive/gray/200","description":"","type":"COLOR","valuesByMode":{"2108:1":{"r":0.886274516582489,"g":0.9098039269447327,"b":0.9411764740943909,"a":1}},"resolvedValuesByMode":{"2108:1":{"resolvedValue":{"r":0.886274516582489,"g":0.9098039269447327,"b":0.9411764740943909,"a":1},"alias":null}},"scopes":["ALL_SCOPES"],"hiddenFromPublishing":false,"codeSyntax":{}},{"id":"VariableID:2109:2185","name":"primitive/gray/300","description":"","type":"COLOR","valuesByMode":{"2108:1":{"r":0.7960784435272217,"g":0.8352941274642944,"b":0.8784313797950745,"a":1}},"resolvedValuesByMode":{"2108:1":{"resolvedValue":{"r":0.7960784435272217,"g":0.8352941274642944,"b":0.8784313797950745,"a":1},"alias":null}},"scopes":["ALL_SCOPES"],"hiddenFromPublishing":false,"codeSyntax":{}},{"id":"VariableID:2109:2186","name":"primitive/gray/400","description":"","type":"COLOR","valuesByMode":{"2108:1":{"r":0.6274510025978088,"g":0.6823529601097107,"b":0.7529411911964417,"a":1}},"resolvedValuesByMode":{"2108:1":{"resolvedValue":{"r":0.6274510025978088,"g":0.6823529601097107,"b":0.7529411911964417,"a":1},"alias":null}},"scopes":["ALL_SCOPES"],"hiddenFromPublishing":false,"codeSyntax":{}},{"id":"VariableID:2109:2187","name":"primitive/gray/500","description":"","type":"COLOR","valuesByMode":{"2108:1":{"r":0.4431372582912445,"g":0.501960813999176,"b":0.5882353186607361,"a":1}},"resolvedValuesByMode":{"2108:1":{"resolvedValue":{"r":0.4431372582912445,"g":0.501960813999176,"b":0.5882353186607361,"a":1},"alias":null}},"scopes":["ALL_SCOPES"],"hiddenFromPublishing":false,"codeSyntax":{}},{"id":"VariableID:2109:2188","name":"primitive/gray/600","description":"","type":"COLOR","valuesByMode":{"2108:1":{"r":0.29019609093666077,"g":0.3333333432674408,"b":0.40784314274787903,"a":1}},"resolvedValuesByMode":{"2108:1":{"resolvedValue":{"r":0.29019609093666077,"g":0.3333333432674408,"b":0.40784314274787903,"a":1},"alias":null}},"scopes":["ALL_SCOPES"],"hiddenFromPublishing":false,"codeSyntax":{}},{"id":"VariableID:2109:2189","name":"primitive/gray/700","description":"","type":"COLOR","valuesByMode":{"2108:1":{"r":0.1764705926179886,"g":0.21568627655506134,"b":0.2823529541492462,"a":1}},"resolvedValuesByMode":{"2108:1":{"resolvedValue":{"r":0.1764705926179886,"g":0.21568627655506134,"b":0.2823529541492462,"a":1},"alias":null}},"scopes":["ALL_SCOPES"],"hiddenFromPublishing":false,"codeSyntax":{}},{"id":"VariableID:2109:2190","name":"primitive/gray/800","description":"","type":"COLOR","valuesByMode":{"2108:1":{"r":0.10196078568696976,"g":0.125490203499794,"b":0.1725490242242813,"a":1}},"resolvedValuesByMode":{"2108:1":{"resolvedValue":{"r":0.10196078568696976,"g":0.125490203499794,"b":0.1725490242242813,"a":1},"alias":null}},"scopes":["ALL_SCOPES"],"hiddenFromPublishing":false,"codeSyntax":{}},{"id":"VariableID:2109:2191","name":"primitive/gray/900","description":"","type":"COLOR","valuesByMode":{"2108:1":{"r":0.09019608050584793,"g":0.09803921729326248,"b":0.13725490868091583,"a":1}},"resolvedValuesByMode":{"2108:1":{"resolvedValue":{"r":0.09019608050584793,"g":0.09803921729326248,"b":0.13725490868091583,"a":1},"alias":null}},"scopes":["ALL_SCOPES"],"hiddenFromPublishing":false,"codeSyntax":{}},{"id":"VariableID:2109:2192","name":"primitive/red/50","description":"","type":"COLOR","valuesByMode":{"2108:1":{"r":1,"g":0.9607843160629272,"b":0.9607843160629272,"a":1}},"resolvedValuesByMode":{"2108:1":{"resolvedValue":{"r":1,"g":0.9607843160629272,"b":0.9607843160629272,"a":1},"alias":null}},"scopes":["ALL_SCOPES"],"hiddenFromPublishing":false,"codeSyntax":{}},{"id":"VariableID:2109:2193","name":"primitive/red/100","description":"","type":"COLOR","valuesByMode":{"2108:1":{"r":0.9960784316062927,"g":0.843137264251709,"b":0.843137264251709,"a":1}},"resolvedValuesByMode":{"2108:1":{"resolvedValue":{"r":0.9960784316062927,"g":0.843137264251709,"b":0.843137264251709,"a":1},"alias":null}},"scopes":["ALL_SCOPES"],"hiddenFromPublishing":false,"codeSyntax":{}},{"id":"VariableID:2109:2194","name":"primitive/red/200","description":"","type":"COLOR","valuesByMode":{"2108:1":{"r":0.9960784316062927,"g":0.6980392336845398,"b":0.6980392336845398,"a":1}},"resolvedValuesByMode":{"2108:1":{"resolvedValue":{"r":0.9960784316062927,"g":0.6980392336845398,"b":0.6980392336845398,"a":1},"alias":null}},"scopes":["ALL_SCOPES"],"hiddenFromPublishing":false,"codeSyntax":{}},{"id":"VariableID:2109:2195","name":"primitive/red/300","description":"","type":"COLOR","valuesByMode":{"2108:1":{"r":0.9882352948188782,"g":0.5058823823928833,"b":0.5058823823928833,"a":1}},"resolvedValuesByMode":{"2108:1":{"resolvedValue":{"r":0.9882352948188782,"g":0.5058823823928833,"b":0.5058823823928833,"a":1},"alias":null}},"scopes":["ALL_SCOPES"],"hiddenFromPublishing":false,"codeSyntax":{}},{"id":"VariableID:2109:2196","name":"primitive/red/400","description":"","type":"COLOR","valuesByMode":{"2108:1":{"r":0.9607843160629272,"g":0.3960784375667572,"b":0.3960784375667572,"a":1}},"resolvedValuesByMode":{"2108:1":{"resolvedValue":{"r":0.9607843160629272,"g":0.3960784375667572,"b":0.3960784375667572,"a":1},"alias":null}},"scopes":["ALL_SCOPES"],"hiddenFromPublishing":false,"codeSyntax":{}},{"id":"VariableID:2109:2197","name":"primitive/red/500","description":"","type":"COLOR","valuesByMode":{"2108:1":{"r":0.8980392217636108,"g":0.24313725531101227,"b":0.24313725531101227,"a":1}},"resolvedValuesByMode":{"2108:1":{"resolvedValue":{"r":0.8980392217636108,"g":0.24313725531101227,"b":0.24313725531101227,"a":1},"alias":null}},"scopes":["ALL_SCOPES"],"hiddenFromPublishing":false,"codeSyntax":{}},{"id":"VariableID:2109:2198","name":"primitive/red/600","description":"","type":"COLOR","valuesByMode":{"2108:1":{"r":0.772549033164978,"g":0.1882352977991104,"b":0.1882352977991104,"a":1}},"resolvedValuesByMode":{"2108:1":{"resolvedValue":{"r":0.772549033164978,"g":0.1882352977991104,"b":0.1882352977991104,"a":1},"alias":null}},"scopes":["ALL_SCOPES"],"hiddenFromPublishing":false,"codeSyntax":{}},{"id":"VariableID:2109:2199","name":"primitive/red/700","description":"","type":"COLOR","valuesByMode":{"2108:1":{"r":0.6078431606292725,"g":0.1725490242242813,"b":0.1725490242242813,"a":1}},"resolvedValuesByMode":{"2108:1":{"resolvedValue":{"r":0.6078431606292725,"g":0.1725490242242813,"b":0.1725490242242813,"a":1},"alias":null}},"scopes":["ALL_SCOPES"],"hiddenFromPublishing":false,"codeSyntax":{}},{"id":"VariableID:2109:2200","name":"primitive/red/800","description":"","type":"COLOR","valuesByMode":{"2108:1":{"r":0.5098039507865906,"g":0.15294118225574493,"b":0.15294118225574493,"a":1}},"resolvedValuesByMode":{"2108:1":{"resolvedValue":{"r":0.5098039507865906,"g":0.15294118225574493,"b":0.15294118225574493,"a":1},"alias":null}},"scopes":["ALL_SCOPES"],"hiddenFromPublishing":false,"codeSyntax":{}},{"id":"VariableID:2109:2201","name":"primitive/red/900","description":"","type":"COLOR","valuesByMode":{"2108:1":{"r":0.38823530077934265,"g":0.09019608050584793,"b":0.10588235408067703,"a":1}},"resolvedValuesByMode":{"2108:1":{"resolvedValue":{"r":0.38823530077934265,"g":0.09019608050584793,"b":0.10588235408067703,"a":1},"alias":null}},"scopes":["ALL_SCOPES"],"hiddenFromPublishing":false,"codeSyntax":{}},{"id":"VariableID:2109:2202","name":"primitive/yellow/50","description":"","type":"COLOR","valuesByMode":{"2108:1":{"r":1,"g":1,"b":0.9411764740943909,"a":1}},"resolvedValuesByMode":{"2108:1":{"resolvedValue":{"r":1,"g":1,"b":0.9411764740943909,"a":1},"alias":null}},"scopes":["ALL_SCOPES"],"hiddenFromPublishing":false,"codeSyntax":{}},{"id":"VariableID:2109:2203","name":"primitive/yellow/100","description":"","type":"COLOR","valuesByMode":{"2108:1":{"r":0.9960784316062927,"g":0.9882352948188782,"b":0.7490196228027344,"a":1}},"resolvedValuesByMode":{"2108:1":{"resolvedValue":{"r":0.9960784316062927,"g":0.9882352948188782,"b":0.7490196228027344,"a":1},"alias":null}},"scopes":["ALL_SCOPES"],"hiddenFromPublishing":false,"codeSyntax":{}},{"id":"VariableID:2109:2204","name":"primitive/yellow/200","description":"","type":"COLOR","valuesByMode":{"2108:1":{"r":0.9803921580314636,"g":0.9411764740943909,"b":0.5372549295425415,"a":1}},"resolvedValuesByMode":{"2108:1":{"resolvedValue":{"r":0.9803921580314636,"g":0.9411764740943909,"b":0.5372549295425415,"a":1},"alias":null}},"scopes":["ALL_SCOPES"],"hiddenFromPublishing":false,"codeSyntax":{}},{"id":"VariableID:2109:2205","name":"primitive/yellow/300","description":"","type":"COLOR","valuesByMode":{"2108:1":{"r":0.9647058844566345,"g":0.8784313797950745,"b":0.3686274588108063,"a":1}},"resolvedValuesByMode":{"2108:1":{"resolvedValue":{"r":0.9647058844566345,"g":0.8784313797950745,"b":0.3686274588108063,"a":1},"alias":null}},"scopes":["ALL_SCOPES"],"hiddenFromPublishing":false,"codeSyntax":{}},{"id":"VariableID:2109:2206","name":"primitive/yellow/400","description":"","type":"COLOR","valuesByMode":{"2108:1":{"r":0.9254902005195618,"g":0.7882353067398071,"b":0.29411765933036804,"a":1}},"resolvedValuesByMode":{"2108:1":{"resolvedValue":{"r":0.9254902005195618,"g":0.7882353067398071,"b":0.29411765933036804,"a":1},"alias":null}},"scopes":["ALL_SCOPES"],"hiddenFromPublishing":false,"codeSyntax":{}},{"id":"VariableID:2109:2207","name":"primitive/yellow/500","description":"","type":"COLOR","valuesByMode":{"2108:1":{"r":0.8392156958580017,"g":0.6196078658103943,"b":0.18039216101169586,"a":1}},"resolvedValuesByMode":{"2108:1":{"resolvedValue":{"r":0.8392156958580017,"g":0.6196078658103943,"b":0.18039216101169586,"a":1},"alias":null}},"scopes":["ALL_SCOPES"],"hiddenFromPublishing":false,"codeSyntax":{}},{"id":"VariableID:2109:2208","name":"primitive/yellow/600","description":"","type":"COLOR","valuesByMode":{"2108:1":{"r":0.7176470756530762,"g":0.4745098054409027,"b":0.12156862765550613,"a":1}},"resolvedValuesByMode":{"2108:1":{"resolvedValue":{"r":0.7176470756530762,"g":0.4745098054409027,"b":0.12156862765550613,"a":1},"alias":null}},"scopes":["ALL_SCOPES"],"hiddenFromPublishing":false,"codeSyntax":{}},{"id":"VariableID:2109:2209","name":"primitive/yellow/700","description":"","type":"COLOR","valuesByMode":{"2108:1":{"r":0.5921568870544434,"g":0.3529411852359772,"b":0.08627451211214066,"a":1}},"resolvedValuesByMode":{"2108:1":{"resolvedValue":{"r":0.5921568870544434,"g":0.3529411852359772,"b":0.08627451211214066,"a":1},"alias":null}},"scopes":["ALL_SCOPES"],"hiddenFromPublishing":false,"codeSyntax":{}},{"id":"VariableID:2109:2210","name":"primitive/yellow/800","description":"","type":"COLOR","valuesByMode":{"2108:1":{"r":0.45490196347236633,"g":0.25882354378700256,"b":0.062745101749897,"a":1}},"resolvedValuesByMode":{"2108:1":{"resolvedValue":{"r":0.45490196347236633,"g":0.25882354378700256,"b":0.062745101749897,"a":1},"alias":null}},"scopes":["ALL_SCOPES"],"hiddenFromPublishing":false,"codeSyntax":{}},{"id":"VariableID:2109:2211","name":"primitive/yellow/900","description":"","type":"COLOR","valuesByMode":{"2108:1":{"r":0.37254902720451355,"g":0.21568627655506134,"b":0.054901961237192154,"a":1}},"resolvedValuesByMode":{"2108:1":{"resolvedValue":{"r":0.37254902720451355,"g":0.21568627655506134,"b":0.054901961237192154,"a":1},"alias":null}},"scopes":["ALL_SCOPES"],"hiddenFromPublishing":false,"codeSyntax":{}},{"id":"VariableID:2109:2212","name":"primitive/black","description":"","type":"COLOR","valuesByMode":{"2108:1":{"r":0,"g":0,"b":0,"a":1}},"resolvedValuesByMode":{"2108:1":{"resolvedValue":{"r":0,"g":0,"b":0,"a":1},"alias":null}},"scopes":["ALL_SCOPES"],"hiddenFromPublishing":false,"codeSyntax":{}},{"id":"VariableID:2109:2213","name":"primitive/white","description":"","type":"COLOR","valuesByMode":{"2108:1":{"r":1,"g":1,"b":1,"a":1}},"resolvedValuesByMode":{"2108:1":{"resolvedValue":{"r":1,"g":1,"b":1,"a":1},"alias":null}},"scopes":["ALL_SCOPES"],"hiddenFromPublishing":false,"codeSyntax":{}},{"id":"VariableID:2109:2214","name":"primitive/green/50","description":"","type":"COLOR","valuesByMode":{"2108:1":{"r":0.9411764740943909,"g":1,"b":0.95686274766922,"a":1}},"resolvedValuesByMode":{"2108:1":{"resolvedValue":{"r":0.9411764740943909,"g":1,"b":0.95686274766922,"a":1},"alias":null}},"scopes":["ALL_SCOPES"],"hiddenFromPublishing":false,"codeSyntax":{}},{"id":"VariableID:2109:2215","name":"primitive/green/100","description":"","type":"COLOR","valuesByMode":{"2108:1":{"r":0.7764706015586853,"g":0.9647058844566345,"b":0.8352941274642944,"a":1}},"resolvedValuesByMode":{"2108:1":{"resolvedValue":{"r":0.7764706015586853,"g":0.9647058844566345,"b":0.8352941274642944,"a":1},"alias":null}},"scopes":["ALL_SCOPES"],"hiddenFromPublishing":false,"codeSyntax":{}},{"id":"VariableID:2109:2216","name":"primitive/green/200","description":"","type":"COLOR","valuesByMode":{"2108:1":{"r":0.6039215922355652,"g":0.9019607901573181,"b":0.7058823704719543,"a":1}},"resolvedValuesByMode":{"2108:1":{"resolvedValue":{"r":0.6039215922355652,"g":0.9019607901573181,"b":0.7058823704719543,"a":1},"alias":null}},"scopes":["ALL_SCOPES"],"hiddenFromPublishing":false,"codeSyntax":{}},{"id":"VariableID:2109:2217","name":"primitive/green/300","description":"","type":"COLOR","valuesByMode":{"2108:1":{"r":0.40784314274787903,"g":0.8274509906768799,"b":0.5686274766921997,"a":1}},"resolvedValuesByMode":{"2108:1":{"resolvedValue":{"r":0.40784314274787903,"g":0.8274509906768799,"b":0.5686274766921997,"a":1},"alias":null}},"scopes":["ALL_SCOPES"],"hiddenFromPublishing":false,"codeSyntax":{}},{"id":"VariableID:2109:2218","name":"primitive/green/400","description":"","type":"COLOR","valuesByMode":{"2108:1":{"r":0.2823529541492462,"g":0.7333333492279053,"b":0.47058823704719543,"a":1}},"resolvedValuesByMode":{"2108:1":{"resolvedValue":{"r":0.2823529541492462,"g":0.7333333492279053,"b":0.47058823704719543,"a":1},"alias":null}},"scopes":["ALL_SCOPES"],"hiddenFromPublishing":false,"codeSyntax":{}},{"id":"VariableID:2109:2219","name":"primitive/green/500","description":"","type":"COLOR","valuesByMode":{"2108:1":{"r":0.21960784494876862,"g":0.6313725709915161,"b":0.4117647111415863,"a":1}},"resolvedValuesByMode":{"2108:1":{"resolvedValue":{"r":0.21960784494876862,"g":0.6313725709915161,"b":0.4117647111415863,"a":1},"alias":null}},"scopes":["ALL_SCOPES"],"hiddenFromPublishing":false,"codeSyntax":{}},{"id":"VariableID:2109:2220","name":"primitive/green/600","description":"","type":"COLOR","valuesByMode":{"2108:1":{"r":0.14509804546833038,"g":0.5215686559677124,"b":0.3529411852359772,"a":1}},"resolvedValuesByMode":{"2108:1":{"resolvedValue":{"r":0.14509804546833038,"g":0.5215686559677124,"b":0.3529411852359772,"a":1},"alias":null}},"scopes":["ALL_SCOPES"],"hiddenFromPublishing":false,"codeSyntax":{}},{"id":"VariableID:2109:2221","name":"primitive/green/700","description":"","type":"COLOR","valuesByMode":{"2108:1":{"r":0.15294118225574493,"g":0.40392157435417175,"b":0.2862745225429535,"a":1}},"resolvedValuesByMode":{"2108:1":{"resolvedValue":{"r":0.15294118225574493,"g":0.40392157435417175,"b":0.2862745225429535,"a":1},"alias":null}},"scopes":["ALL_SCOPES"],"hiddenFromPublishing":false,"codeSyntax":{}},{"id":"VariableID:2109:2222","name":"primitive/green/800","description":"","type":"COLOR","valuesByMode":{"2108:1":{"r":0.13333334028720856,"g":0.3294117748737335,"b":0.239215686917305,"a":1}},"resolvedValuesByMode":{"2108:1":{"resolvedValue":{"r":0.13333334028720856,"g":0.3294117748737335,"b":0.239215686917305,"a":1},"alias":null}},"scopes":["ALL_SCOPES"],"hiddenFromPublishing":false,"codeSyntax":{}},{"id":"VariableID:2109:2223","name":"primitive/green/900","description":"","type":"COLOR","valuesByMode":{"2108:1":{"r":0.10980392247438431,"g":0.2705882489681244,"b":0.19607843458652496,"a":1}},"resolvedValuesByMode":{"2108:1":{"resolvedValue":{"r":0.10980392247438431,"g":0.2705882489681244,"b":0.19607843458652496,"a":1},"alias":null}},"scopes":["ALL_SCOPES"],"hiddenFromPublishing":false,"codeSyntax":{}},{"id":"VariableID:2109:2224","name":"primitive/teal/50","description":"","type":"COLOR","valuesByMode":{"2108:1":{"r":0.9019607901573181,"g":1,"b":0.9803921580314636,"a":1}},"resolvedValuesByMode":{"2108:1":{"resolvedValue":{"r":0.9019607901573181,"g":1,"b":0.9803921580314636,"a":1},"alias":null}},"scopes":["ALL_SCOPES"],"hiddenFromPublishing":false,"codeSyntax":{}},{"id":"VariableID:2109:2225","name":"primitive/teal/100","description":"","type":"COLOR","valuesByMode":{"2108:1":{"r":0.6980392336845398,"g":0.9607843160629272,"b":0.9176470637321472,"a":1}},"resolvedValuesByMode":{"2108:1":{"resolvedValue":{"r":0.6980392336845398,"g":0.9607843160629272,"b":0.9176470637321472,"a":1},"alias":null}},"scopes":["ALL_SCOPES"],"hiddenFromPublishing":false,"codeSyntax":{}},{"id":"VariableID:2109:2226","name":"primitive/teal/200","description":"","type":"COLOR","valuesByMode":{"2108:1":{"r":0.5058823823928833,"g":0.9019607901573181,"b":0.8509804010391235,"a":1}},"resolvedValuesByMode":{"2108:1":{"resolvedValue":{"r":0.5058823823928833,"g":0.9019607901573181,"b":0.8509804010391235,"a":1},"alias":null}},"scopes":["ALL_SCOPES"],"hiddenFromPublishing":false,"codeSyntax":{}},{"id":"VariableID:2109:2227","name":"primitive/teal/300","description":"","type":"COLOR","valuesByMode":{"2108:1":{"r":0.30980393290519714,"g":0.8196078538894653,"b":0.772549033164978,"a":1}},"resolvedValuesByMode":{"2108:1":{"resolvedValue":{"r":0.30980393290519714,"g":0.8196078538894653,"b":0.772549033164978,"a":1},"alias":null}},"scopes":["ALL_SCOPES"],"hiddenFromPublishing":false,"codeSyntax":{}},{"id":"VariableID:2109:2228","name":"primitive/teal/400","description":"","type":"COLOR","valuesByMode":{"2108:1":{"r":0.21960784494876862,"g":0.6980392336845398,"b":0.6745098233222961,"a":1}},"resolvedValuesByMode":{"2108:1":{"resolvedValue":{"r":0.21960784494876862,"g":0.6980392336845398,"b":0.6745098233222961,"a":1},"alias":null}},"scopes":["ALL_SCOPES"],"hiddenFromPublishing":false,"codeSyntax":{}},{"id":"VariableID:2109:2229","name":"primitive/teal/500","description":"","type":"COLOR","valuesByMode":{"2108:1":{"r":0.1921568661928177,"g":0.5921568870544434,"b":0.5843137502670288,"a":1}},"resolvedValuesByMode":{"2108:1":{"resolvedValue":{"r":0.1921568661928177,"g":0.5921568870544434,"b":0.5843137502670288,"a":1},"alias":null}},"scopes":["ALL_SCOPES"],"hiddenFromPublishing":false,"codeSyntax":{}},{"id":"VariableID:2109:2230","name":"primitive/teal/600","description":"","type":"COLOR","valuesByMode":{"2108:1":{"r":0.1725490242242813,"g":0.47843137383461,"b":0.48235294222831726,"a":1}},"resolvedValuesByMode":{"2108:1":{"resolvedValue":{"r":0.1725490242242813,"g":0.47843137383461,"b":0.48235294222831726,"a":1},"alias":null}},"scopes":["ALL_SCOPES"],"hiddenFromPublishing":false,"codeSyntax":{}},{"id":"VariableID:2109:2231","name":"primitive/teal/700","description":"","type":"COLOR","valuesByMode":{"2108:1":{"r":0.1568627506494522,"g":0.3686274588108063,"b":0.3803921639919281,"a":1}},"resolvedValuesByMode":{"2108:1":{"resolvedValue":{"r":0.1568627506494522,"g":0.3686274588108063,"b":0.3803921639919281,"a":1},"alias":null}},"scopes":["ALL_SCOPES"],"hiddenFromPublishing":false,"codeSyntax":{}},{"id":"VariableID:2109:2232","name":"primitive/teal/800","description":"","type":"COLOR","valuesByMode":{"2108:1":{"r":0.13725490868091583,"g":0.30588236451148987,"b":0.32156863808631897,"a":1}},"resolvedValuesByMode":{"2108:1":{"resolvedValue":{"r":0.13725490868091583,"g":0.30588236451148987,"b":0.32156863808631897,"a":1},"alias":null}},"scopes":["ALL_SCOPES"],"hiddenFromPublishing":false,"codeSyntax":{}},{"id":"VariableID:2109:2233","name":"primitive/teal/900","description":"","type":"COLOR","valuesByMode":{"2108:1":{"r":0.11372549086809158,"g":0.250980406999588,"b":0.2666666805744171,"a":1}},"resolvedValuesByMode":{"2108:1":{"resolvedValue":{"r":0.11372549086809158,"g":0.250980406999588,"b":0.2666666805744171,"a":1},"alias":null}},"scopes":["ALL_SCOPES"],"hiddenFromPublishing":false,"codeSyntax":{}},{"id":"VariableID:2109:2234","name":"primitive/blue/50","description":"","type":"COLOR","valuesByMode":{"2108:1":{"r":0.9215686321258545,"g":0.9725490212440491,"b":1,"a":1}},"resolvedValuesByMode":{"2108:1":{"resolvedValue":{"r":0.9215686321258545,"g":0.9725490212440491,"b":1,"a":1},"alias":null}},"scopes":["ALL_SCOPES"],"hiddenFromPublishing":false,"codeSyntax":{}},{"id":"VariableID:2109:2235","name":"primitive/blue/100","description":"","type":"COLOR","valuesByMode":{"2108:1":{"r":0.7450980544090271,"g":0.8901960849761963,"b":0.9725490212440491,"a":1}},"resolvedValuesByMode":{"2108:1":{"resolvedValue":{"r":0.7450980544090271,"g":0.8901960849761963,"b":0.9725490212440491,"a":1},"alias":null}},"scopes":["ALL_SCOPES"],"hiddenFromPublishing":false,"codeSyntax":{}},{"id":"VariableID:2109:2236","name":"primitive/blue/200","description":"","type":"COLOR","valuesByMode":{"2108:1":{"r":0.5647059082984924,"g":0.8039215803146362,"b":0.95686274766922,"a":1}},"resolvedValuesByMode":{"2108:1":{"resolvedValue":{"r":0.5647059082984924,"g":0.8039215803146362,"b":0.95686274766922,"a":1},"alias":null}},"scopes":["ALL_SCOPES"],"hiddenFromPublishing":false,"codeSyntax":{}},{"id":"VariableID:2109:2237","name":"primitive/blue/300","description":"","type":"COLOR","valuesByMode":{"2108:1":{"r":0.38823530077934265,"g":0.7019608020782471,"b":0.929411768913269,"a":1}},"resolvedValuesByMode":{"2108:1":{"resolvedValue":{"r":0.38823530077934265,"g":0.7019608020782471,"b":0.929411768913269,"a":1},"alias":null}},"scopes":["ALL_SCOPES"],"hiddenFromPublishing":false,"codeSyntax":{}},{"id":"VariableID:2109:2238","name":"primitive/blue/400","description":"","type":"COLOR","valuesByMode":{"2108:1":{"r":0.25882354378700256,"g":0.6000000238418579,"b":0.8823529481887817,"a":1}},"resolvedValuesByMode":{"2108:1":{"resolvedValue":{"r":0.25882354378700256,"g":0.6000000238418579,"b":0.8823529481887817,"a":1},"alias":null}},"scopes":["ALL_SCOPES"],"hiddenFromPublishing":false,"codeSyntax":{}},{"id":"VariableID:2109:2239","name":"primitive/blue/500","description":"","type":"COLOR","valuesByMode":{"2108:1":{"r":0.1921568661928177,"g":0.5098039507865906,"b":0.8078431487083435,"a":1}},"resolvedValuesByMode":{"2108:1":{"resolvedValue":{"r":0.1921568661928177,"g":0.5098039507865906,"b":0.8078431487083435,"a":1},"alias":null}},"scopes":["ALL_SCOPES"],"hiddenFromPublishing":false,"codeSyntax":{}},{"id":"VariableID:2109:2240","name":"primitive/blue/600","description":"","type":"COLOR","valuesByMode":{"2108:1":{"r":0.16862745583057404,"g":0.42352941632270813,"b":0.6901960968971252,"a":1}},"resolvedValuesByMode":{"2108:1":{"resolvedValue":{"r":0.16862745583057404,"g":0.42352941632270813,"b":0.6901960968971252,"a":1},"alias":null}},"scopes":["ALL_SCOPES"],"hiddenFromPublishing":false,"codeSyntax":{}},{"id":"VariableID:2109:2241","name":"primitive/blue/700","description":"","type":"COLOR","valuesByMode":{"2108:1":{"r":0.1725490242242813,"g":0.32156863808631897,"b":0.5098039507865906,"a":1}},"resolvedValuesByMode":{"2108:1":{"resolvedValue":{"r":0.1725490242242813,"g":0.32156863808631897,"b":0.5098039507865906,"a":1},"alias":null}},"scopes":["ALL_SCOPES"],"hiddenFromPublishing":false,"codeSyntax":{}},{"id":"VariableID:2109:2242","name":"primitive/blue/800","description":"","type":"COLOR","valuesByMode":{"2108:1":{"r":0.16470588743686676,"g":0.26274511218070984,"b":0.3960784375667572,"a":1}},"resolvedValuesByMode":{"2108:1":{"resolvedValue":{"r":0.16470588743686676,"g":0.26274511218070984,"b":0.3960784375667572,"a":1},"alias":null}},"scopes":["ALL_SCOPES"],"hiddenFromPublishing":false,"codeSyntax":{}},{"id":"VariableID:2109:2243","name":"primitive/blue/900","description":"","type":"COLOR","valuesByMode":{"2108:1":{"r":0.10196078568696976,"g":0.21176470816135406,"b":0.364705890417099,"a":1}},"resolvedValuesByMode":{"2108:1":{"resolvedValue":{"r":0.10196078568696976,"g":0.21176470816135406,"b":0.364705890417099,"a":1},"alias":null}},"scopes":["ALL_SCOPES"],"hiddenFromPublishing":false,"codeSyntax":{}},{"id":"VariableID:2109:2244","name":"primitive/cyan/50","description":"","type":"COLOR","valuesByMode":{"2108:1":{"r":0.929411768913269,"g":0.9921568632125854,"b":0.9921568632125854,"a":1}},"resolvedValuesByMode":{"2108:1":{"resolvedValue":{"r":0.929411768913269,"g":0.9921568632125854,"b":0.9921568632125854,"a":1},"alias":null}},"scopes":["ALL_SCOPES"],"hiddenFromPublishing":false,"codeSyntax":{}},{"id":"VariableID:2109:2245","name":"primitive/cyan/100","description":"","type":"COLOR","valuesByMode":{"2108:1":{"r":0.7686274647712708,"g":0.9450980424880981,"b":0.9764705896377563,"a":1}},"resolvedValuesByMode":{"2108:1":{"resolvedValue":{"r":0.7686274647712708,"g":0.9450980424880981,"b":0.9764705896377563,"a":1},"alias":null}},"scopes":["ALL_SCOPES"],"hiddenFromPublishing":false,"codeSyntax":{}},{"id":"VariableID:2109:2246","name":"primitive/cyan/200","description":"","type":"COLOR","valuesByMode":{"2108:1":{"r":0.615686297416687,"g":0.9254902005195618,"b":0.9764705896377563,"a":1}},"resolvedValuesByMode":{"2108:1":{"resolvedValue":{"r":0.615686297416687,"g":0.9254902005195618,"b":0.9764705896377563,"a":1},"alias":null}},"scopes":["ALL_SCOPES"],"hiddenFromPublishing":false,"codeSyntax":{}},{"id":"VariableID:2109:2247","name":"primitive/cyan/300","description":"","type":"COLOR","valuesByMode":{"2108:1":{"r":0.4627451002597809,"g":0.8941176533699036,"b":0.9686274528503418,"a":1}},"resolvedValuesByMode":{"2108:1":{"resolvedValue":{"r":0.4627451002597809,"g":0.8941176533699036,"b":0.9686274528503418,"a":1},"alias":null}},"scopes":["ALL_SCOPES"],"hiddenFromPublishing":false,"codeSyntax":{}},{"id":"VariableID:2109:2248","name":"primitive/cyan/400","description":"","type":"COLOR","valuesByMode":{"2108:1":{"r":0.04313725605607033,"g":0.772549033164978,"b":0.9176470637321472,"a":1}},"resolvedValuesByMode":{"2108:1":{"resolvedValue":{"r":0.04313725605607033,"g":0.772549033164978,"b":0.9176470637321472,"a":1},"alias":null}},"scopes":["ALL_SCOPES"],"hiddenFromPublishing":false,"codeSyntax":{}},{"id":"VariableID:2109:2249","name":"primitive/cyan/500","description":"","type":"COLOR","valuesByMode":{"2108:1":{"r":0,"g":0.7098039388656616,"b":0.8470588326454163,"a":1}},"resolvedValuesByMode":{"2108:1":{"resolvedValue":{"r":0,"g":0.7098039388656616,"b":0.8470588326454163,"a":1},"alias":null}},"scopes":["ALL_SCOPES"],"hiddenFromPublishing":false,"codeSyntax":{}},{"id":"VariableID:2109:2250","name":"primitive/cyan/600","description":"","type":"COLOR","valuesByMode":{"2108:1":{"r":0,"g":0.6392157077789307,"b":0.7686274647712708,"a":1}},"resolvedValuesByMode":{"2108:1":{"resolvedValue":{"r":0,"g":0.6392157077789307,"b":0.7686274647712708,"a":1},"alias":null}},"scopes":["ALL_SCOPES"],"hiddenFromPublishing":false,"codeSyntax":{}},{"id":"VariableID:2109:2251","name":"primitive/cyan/700","description":"","type":"COLOR","valuesByMode":{"2108:1":{"r":0.03529411926865578,"g":0.529411792755127,"b":0.6274510025978088,"a":1}},"resolvedValuesByMode":{"2108:1":{"resolvedValue":{"r":0.03529411926865578,"g":0.529411792755127,"b":0.6274510025978088,"a":1},"alias":null}},"scopes":["ALL_SCOPES"],"hiddenFromPublishing":false,"codeSyntax":{}},{"id":"VariableID:2109:2252","name":"primitive/cyan/800","description":"","type":"COLOR","valuesByMode":{"2108:1":{"r":0.0313725508749485,"g":0.43529412150382996,"b":0.5137255191802979,"a":1}},"resolvedValuesByMode":{"2108:1":{"resolvedValue":{"r":0.0313725508749485,"g":0.43529412150382996,"b":0.5137255191802979,"a":1},"alias":null}},"scopes":["ALL_SCOPES"],"hiddenFromPublishing":false,"codeSyntax":{}},{"id":"VariableID:2109:2253","name":"primitive/cyan/900","description":"","type":"COLOR","valuesByMode":{"2108:1":{"r":0.0235294122248888,"g":0.33725491166114807,"b":0.4000000059604645,"a":1}},"resolvedValuesByMode":{"2108:1":{"resolvedValue":{"r":0.0235294122248888,"g":0.33725491166114807,"b":0.4000000059604645,"a":1},"alias":null}},"scopes":["ALL_SCOPES"],"hiddenFromPublishing":false,"codeSyntax":{}},{"id":"VariableID:2109:2254","name":"primitive/purple/50","description":"","type":"COLOR","valuesByMode":{"2108:1":{"r":0.9803921580314636,"g":0.9607843160629272,"b":1,"a":1}},"resolvedValuesByMode":{"2108:1":{"resolvedValue":{"r":0.9803921580314636,"g":0.9607843160629272,"b":1,"a":1},"alias":null}},"scopes":["ALL_SCOPES"],"hiddenFromPublishing":false,"codeSyntax":{}},{"id":"VariableID:2109:2255","name":"primitive/purple/100","description":"","type":"COLOR","valuesByMode":{"2108:1":{"r":0.9137254953384399,"g":0.8470588326454163,"b":0.9921568632125854,"a":1}},"resolvedValuesByMode":{"2108:1":{"resolvedValue":{"r":0.9137254953384399,"g":0.8470588326454163,"b":0.9921568632125854,"a":1},"alias":null}},"scopes":["ALL_SCOPES"],"hiddenFromPublishing":false,"codeSyntax":{}},{"id":"VariableID:2109:2256","name":"primitive/purple/200","description":"","type":"COLOR","valuesByMode":{"2108:1":{"r":0.8392156958580017,"g":0.7372549176216125,"b":0.9803921580314636,"a":1}},"resolvedValuesByMode":{"2108:1":{"resolvedValue":{"r":0.8392156958580017,"g":0.7372549176216125,"b":0.9803921580314636,"a":1},"alias":null}},"scopes":["ALL_SCOPES"],"hiddenFromPublishing":false,"codeSyntax":{}},{"id":"VariableID:2109:2257","name":"primitive/purple/300","description":"","type":"COLOR","valuesByMode":{"2108:1":{"r":0.7176470756530762,"g":0.5803921818733215,"b":0.95686274766922,"a":1}},"resolvedValuesByMode":{"2108:1":{"resolvedValue":{"r":0.7176470756530762,"g":0.5803921818733215,"b":0.95686274766922,"a":1},"alias":null}},"scopes":["ALL_SCOPES"],"hiddenFromPublishing":false,"codeSyntax":{}},{"id":"VariableID:2109:2258","name":"primitive/purple/400","description":"","type":"COLOR","valuesByMode":{"2108:1":{"r":0.6235294342041016,"g":0.47843137383461,"b":0.9176470637321472,"a":1}},"resolvedValuesByMode":{"2108:1":{"resolvedValue":{"r":0.6235294342041016,"g":0.47843137383461,"b":0.9176470637321472,"a":1},"alias":null}},"scopes":["ALL_SCOPES"],"hiddenFromPublishing":false,"codeSyntax":{}},{"id":"VariableID:2109:2259","name":"primitive/purple/500","description":"","type":"COLOR","valuesByMode":{"2108:1":{"r":0.501960813999176,"g":0.3529411852359772,"b":0.8352941274642944,"a":1}},"resolvedValuesByMode":{"2108:1":{"resolvedValue":{"r":0.501960813999176,"g":0.3529411852359772,"b":0.8352941274642944,"a":1},"alias":null}},"scopes":["ALL_SCOPES"],"hiddenFromPublishing":false,"codeSyntax":{}},{"id":"VariableID:2109:2260","name":"primitive/purple/600","description":"","type":"COLOR","valuesByMode":{"2108:1":{"r":0.41960784792900085,"g":0.27450981736183167,"b":0.7568627595901489,"a":1}},"resolvedValuesByMode":{"2108:1":{"resolvedValue":{"r":0.41960784792900085,"g":0.27450981736183167,"b":0.7568627595901489,"a":1},"alias":null}},"scopes":["ALL_SCOPES"],"hiddenFromPublishing":false,"codeSyntax":{}},{"id":"VariableID:2109:2261","name":"primitive/purple/700","description":"","type":"COLOR","valuesByMode":{"2108:1":{"r":0.3333333432674408,"g":0.23529411852359772,"b":0.6039215922355652,"a":1}},"resolvedValuesByMode":{"2108:1":{"resolvedValue":{"r":0.3333333432674408,"g":0.23529411852359772,"b":0.6039215922355652,"a":1},"alias":null}},"scopes":["ALL_SCOPES"],"hiddenFromPublishing":false,"codeSyntax":{}},{"id":"VariableID:2109:2262","name":"primitive/purple/800","description":"","type":"COLOR","valuesByMode":{"2108:1":{"r":0.2666666805744171,"g":0.20000000298023224,"b":0.47843137383461,"a":1}},"resolvedValuesByMode":{"2108:1":{"resolvedValue":{"r":0.2666666805744171,"g":0.20000000298023224,"b":0.47843137383461,"a":1},"alias":null}},"scopes":["ALL_SCOPES"],"hiddenFromPublishing":false,"codeSyntax":{}},{"id":"VariableID:2109:2263","name":"primitive/purple/900","description":"","type":"COLOR","valuesByMode":{"2108:1":{"r":0.19607843458652496,"g":0.14901961386203766,"b":0.3490196168422699,"a":1}},"resolvedValuesByMode":{"2108:1":{"resolvedValue":{"r":0.19607843458652496,"g":0.14901961386203766,"b":0.3490196168422699,"a":1},"alias":null}},"scopes":["ALL_SCOPES"],"hiddenFromPublishing":false,"codeSyntax":{}},{"id":"VariableID:2109:2264","name":"primitive/pink/50","description":"","type":"COLOR","valuesByMode":{"2108:1":{"r":1,"g":0.9607843160629272,"b":0.9686274528503418,"a":1}},"resolvedValuesByMode":{"2108:1":{"resolvedValue":{"r":1,"g":0.9607843160629272,"b":0.9686274528503418,"a":1},"alias":null}},"scopes":["ALL_SCOPES"],"hiddenFromPublishing":false,"codeSyntax":{}},{"id":"VariableID:2109:2265","name":"primitive/pink/100","description":"","type":"COLOR","valuesByMode":{"2108:1":{"r":0.9960784316062927,"g":0.843137264251709,"b":0.886274516582489,"a":1}},"resolvedValuesByMode":{"2108:1":{"resolvedValue":{"r":0.9960784316062927,"g":0.843137264251709,"b":0.886274516582489,"a":1},"alias":null}},"scopes":["ALL_SCOPES"],"hiddenFromPublishing":false,"codeSyntax":{}},{"id":"VariableID:2109:2266","name":"primitive/pink/200","description":"","type":"COLOR","valuesByMode":{"2108:1":{"r":0.9843137264251709,"g":0.7137255072593689,"b":0.8078431487083435,"a":1}},"resolvedValuesByMode":{"2108:1":{"resolvedValue":{"r":0.9843137264251709,"g":0.7137255072593689,"b":0.8078431487083435,"a":1},"alias":null}},"scopes":["ALL_SCOPES"],"hiddenFromPublishing":false,"codeSyntax":{}},{"id":"VariableID:2109:2267","name":"primitive/pink/300","description":"","type":"COLOR","valuesByMode":{"2108:1":{"r":0.9647058844566345,"g":0.529411792755127,"b":0.7019608020782471,"a":1}},"resolvedValuesByMode":{"2108:1":{"resolvedValue":{"r":0.9647058844566345,"g":0.529411792755127,"b":0.7019608020782471,"a":1},"alias":null}},"scopes":["ALL_SCOPES"],"hiddenFromPublishing":false,"codeSyntax":{}},{"id":"VariableID:2109:2268","name":"primitive/pink/400","description":"","type":"COLOR","valuesByMode":{"2108:1":{"r":0.929411768913269,"g":0.3921568691730499,"b":0.6509804129600525,"a":1}},"resolvedValuesByMode":{"2108:1":{"resolvedValue":{"r":0.929411768913269,"g":0.3921568691730499,"b":0.6509804129600525,"a":1},"alias":null}},"scopes":["ALL_SCOPES"],"hiddenFromPublishing":false,"codeSyntax":{}},{"id":"VariableID:2109:2269","name":"primitive/pink/500","description":"","type":"COLOR","valuesByMode":{"2108:1":{"r":0.8352941274642944,"g":0.24705882370471954,"b":0.5490196347236633,"a":1}},"resolvedValuesByMode":{"2108:1":{"resolvedValue":{"r":0.8352941274642944,"g":0.24705882370471954,"b":0.5490196347236633,"a":1},"alias":null}},"scopes":["ALL_SCOPES"],"hiddenFromPublishing":false,"codeSyntax":{}},{"id":"VariableID:2109:2270","name":"primitive/pink/600","description":"","type":"COLOR","valuesByMode":{"2108:1":{"r":0.7215686440467834,"g":0.19607843458652496,"b":0.501960813999176,"a":1}},"resolvedValuesByMode":{"2108:1":{"resolvedValue":{"r":0.7215686440467834,"g":0.19607843458652496,"b":0.501960813999176,"a":1},"alias":null}},"scopes":["ALL_SCOPES"],"hiddenFromPublishing":false,"codeSyntax":{}},{"id":"VariableID:2109:2271","name":"primitive/pink/700","description":"","type":"COLOR","valuesByMode":{"2108:1":{"r":0.5921568870544434,"g":0.14901961386203766,"b":0.4274509847164154,"a":1}},"resolvedValuesByMode":{"2108:1":{"resolvedValue":{"r":0.5921568870544434,"g":0.14901961386203766,"b":0.4274509847164154,"a":1},"alias":null}},"scopes":["ALL_SCOPES"],"hiddenFromPublishing":false,"codeSyntax":{}},{"id":"VariableID:2109:2272","name":"primitive/pink/800","description":"","type":"COLOR","valuesByMode":{"2108:1":{"r":0.43921568989753723,"g":0.1411764770746231,"b":0.3490196168422699,"a":1}},"resolvedValuesByMode":{"2108:1":{"resolvedValue":{"r":0.43921568989753723,"g":0.1411764770746231,"b":0.3490196168422699,"a":1},"alias":null}},"scopes":["ALL_SCOPES"],"hiddenFromPublishing":false,"codeSyntax":{}},{"id":"VariableID:2109:2273","name":"primitive/pink/900","description":"","type":"COLOR","valuesByMode":{"2108:1":{"r":0.32156863808631897,"g":0.10588235408067703,"b":0.2549019753932953,"a":1}},"resolvedValuesByMode":{"2108:1":{"resolvedValue":{"r":0.32156863808631897,"g":0.10588235408067703,"b":0.2549019753932953,"a":1},"alias":null}},"scopes":["ALL_SCOPES"],"hiddenFromPublishing":false,"codeSyntax":{}}]}
+{
+  "id": "VariableCollectionId:2108:2118",
+  "name": "Color",
+  "modes": { "2108:1": "Value" },
+  "variableIds": [
+    "VariableID:2109:2109",
+    "VariableID:2109:2153",
+    "VariableID:2109:2154",
+    "VariableID:2109:2155",
+    "VariableID:2109:2156",
+    "VariableID:2109:2157",
+    "VariableID:2109:2158",
+    "VariableID:2109:2159",
+    "VariableID:2109:2160",
+    "VariableID:2109:2161",
+    "VariableID:2109:2162",
+    "VariableID:2109:2163",
+    "VariableID:2109:2164",
+    "VariableID:2109:2165",
+    "VariableID:2109:2166",
+    "VariableID:2109:2167",
+    "VariableID:2109:2168",
+    "VariableID:2109:2169",
+    "VariableID:2109:2170",
+    "VariableID:2109:2171",
+    "VariableID:2109:2172",
+    "VariableID:2109:2173",
+    "VariableID:2109:2174",
+    "VariableID:2109:2175",
+    "VariableID:2109:2176",
+    "VariableID:2109:2177",
+    "VariableID:2109:2178",
+    "VariableID:2109:2179",
+    "VariableID:2109:2180",
+    "VariableID:2109:2181",
+    "VariableID:2109:2182",
+    "VariableID:2109:2183",
+    "VariableID:2109:2184",
+    "VariableID:2109:2185",
+    "VariableID:2109:2186",
+    "VariableID:2109:2187",
+    "VariableID:2109:2188",
+    "VariableID:2109:2189",
+    "VariableID:2109:2190",
+    "VariableID:2109:2191",
+    "VariableID:2109:2192",
+    "VariableID:2109:2193",
+    "VariableID:2109:2194",
+    "VariableID:2109:2195",
+    "VariableID:2109:2196",
+    "VariableID:2109:2197",
+    "VariableID:2109:2198",
+    "VariableID:2109:2199",
+    "VariableID:2109:2200",
+    "VariableID:2109:2201",
+    "VariableID:2109:2202",
+    "VariableID:2109:2203",
+    "VariableID:2109:2204",
+    "VariableID:2109:2205",
+    "VariableID:2109:2206",
+    "VariableID:2109:2207",
+    "VariableID:2109:2208",
+    "VariableID:2109:2209",
+    "VariableID:2109:2210",
+    "VariableID:2109:2211",
+    "VariableID:2109:2212",
+    "VariableID:2109:2213",
+    "VariableID:2109:2214",
+    "VariableID:2109:2215",
+    "VariableID:2109:2216",
+    "VariableID:2109:2217",
+    "VariableID:2109:2218",
+    "VariableID:2109:2219",
+    "VariableID:2109:2220",
+    "VariableID:2109:2221",
+    "VariableID:2109:2222",
+    "VariableID:2109:2223",
+    "VariableID:2109:2224",
+    "VariableID:2109:2225",
+    "VariableID:2109:2226",
+    "VariableID:2109:2227",
+    "VariableID:2109:2228",
+    "VariableID:2109:2229",
+    "VariableID:2109:2230",
+    "VariableID:2109:2231",
+    "VariableID:2109:2232",
+    "VariableID:2109:2233",
+    "VariableID:2109:2234",
+    "VariableID:2109:2235",
+    "VariableID:2109:2236",
+    "VariableID:2109:2237",
+    "VariableID:2109:2238",
+    "VariableID:2109:2239",
+    "VariableID:2109:2240",
+    "VariableID:2109:2241",
+    "VariableID:2109:2242",
+    "VariableID:2109:2243",
+    "VariableID:2109:2244",
+    "VariableID:2109:2245",
+    "VariableID:2109:2246",
+    "VariableID:2109:2247",
+    "VariableID:2109:2248",
+    "VariableID:2109:2249",
+    "VariableID:2109:2250",
+    "VariableID:2109:2251",
+    "VariableID:2109:2252",
+    "VariableID:2109:2253",
+    "VariableID:2109:2254",
+    "VariableID:2109:2255",
+    "VariableID:2109:2256",
+    "VariableID:2109:2257",
+    "VariableID:2109:2258",
+    "VariableID:2109:2259",
+    "VariableID:2109:2260",
+    "VariableID:2109:2261",
+    "VariableID:2109:2262",
+    "VariableID:2109:2263",
+    "VariableID:2109:2264",
+    "VariableID:2109:2265",
+    "VariableID:2109:2266",
+    "VariableID:2109:2267",
+    "VariableID:2109:2268",
+    "VariableID:2109:2269",
+    "VariableID:2109:2270",
+    "VariableID:2109:2271",
+    "VariableID:2109:2272",
+    "VariableID:2109:2273"
+  ],
+  "variables": [
+    {
+      "id": "VariableID:2109:2109",
+      "name": "primitive/orange/50",
+      "description": "",
+      "type": "COLOR",
+      "valuesByMode": {
+        "2108:1": { "r": 1, "g": 0.9803921580314636, "b": 0.9411764740943909, "a": 1 }
+      },
+      "resolvedValuesByMode": {
+        "2108:1": {
+          "resolvedValue": { "r": 1, "g": 0.9803921580314636, "b": 0.9411764740943909, "a": 1 },
+          "alias": null
+        }
+      },
+      "scopes": ["ALL_SCOPES"],
+      "hiddenFromPublishing": false,
+      "codeSyntax": {}
+    },
+    {
+      "id": "VariableID:2109:2153",
+      "name": "primitive/orange/100",
+      "description": "",
+      "type": "COLOR",
+      "valuesByMode": {
+        "2108:1": {
+          "r": 0.9960784316062927,
+          "g": 0.9215686321258545,
+          "b": 0.7960784435272217,
+          "a": 1
+        }
+      },
+      "resolvedValuesByMode": {
+        "2108:1": {
+          "resolvedValue": {
+            "r": 0.9960784316062927,
+            "g": 0.9215686321258545,
+            "b": 0.7960784435272217,
+            "a": 1
+          },
+          "alias": null
+        }
+      },
+      "scopes": ["ALL_SCOPES"],
+      "hiddenFromPublishing": false,
+      "codeSyntax": {}
+    },
+    {
+      "id": "VariableID:2109:2154",
+      "name": "primitive/orange/200",
+      "description": "",
+      "type": "COLOR",
+      "valuesByMode": {
+        "2108:1": {
+          "r": 0.9843137264251709,
+          "g": 0.8274509906768799,
+          "b": 0.5529412031173706,
+          "a": 1
+        }
+      },
+      "resolvedValuesByMode": {
+        "2108:1": {
+          "resolvedValue": {
+            "r": 0.9843137264251709,
+            "g": 0.8274509906768799,
+            "b": 0.5529412031173706,
+            "a": 1
+          },
+          "alias": null
+        }
+      },
+      "scopes": ["ALL_SCOPES"],
+      "hiddenFromPublishing": false,
+      "codeSyntax": {}
+    },
+    {
+      "id": "VariableID:2109:2155",
+      "name": "primitive/orange/300",
+      "description": "",
+      "type": "COLOR",
+      "valuesByMode": {
+        "2108:1": {
+          "r": 0.9647058844566345,
+          "g": 0.6784313917160034,
+          "b": 0.3333333432674408,
+          "a": 1
+        }
+      },
+      "resolvedValuesByMode": {
+        "2108:1": {
+          "resolvedValue": {
+            "r": 0.9647058844566345,
+            "g": 0.6784313917160034,
+            "b": 0.3333333432674408,
+            "a": 1
+          },
+          "alias": null
+        }
+      },
+      "scopes": ["ALL_SCOPES"],
+      "hiddenFromPublishing": false,
+      "codeSyntax": {}
+    },
+    {
+      "id": "VariableID:2109:2156",
+      "name": "primitive/orange/400",
+      "description": "",
+      "type": "COLOR",
+      "valuesByMode": {
+        "2108:1": {
+          "r": 0.929411768913269,
+          "g": 0.5372549295425415,
+          "b": 0.21176470816135406,
+          "a": 1
+        }
+      },
+      "resolvedValuesByMode": {
+        "2108:1": {
+          "resolvedValue": {
+            "r": 0.929411768913269,
+            "g": 0.5372549295425415,
+            "b": 0.21176470816135406,
+            "a": 1
+          },
+          "alias": null
+        }
+      },
+      "scopes": ["ALL_SCOPES"],
+      "hiddenFromPublishing": false,
+      "codeSyntax": {}
+    },
+    {
+      "id": "VariableID:2109:2157",
+      "name": "primitive/orange/500",
+      "description": "",
+      "type": "COLOR",
+      "valuesByMode": {
+        "2108:1": {
+          "r": 0.8666666746139526,
+          "g": 0.41960784792900085,
+          "b": 0.125490203499794,
+          "a": 1
+        }
+      },
+      "resolvedValuesByMode": {
+        "2108:1": {
+          "resolvedValue": {
+            "r": 0.8666666746139526,
+            "g": 0.41960784792900085,
+            "b": 0.125490203499794,
+            "a": 1
+          },
+          "alias": null
+        }
+      },
+      "scopes": ["ALL_SCOPES"],
+      "hiddenFromPublishing": false,
+      "codeSyntax": {}
+    },
+    {
+      "id": "VariableID:2109:2158",
+      "name": "primitive/orange/600",
+      "description": "",
+      "type": "COLOR",
+      "valuesByMode": {
+        "2108:1": {
+          "r": 0.7529411911964417,
+          "g": 0.33725491166114807,
+          "b": 0.12941177189350128,
+          "a": 1
+        }
+      },
+      "resolvedValuesByMode": {
+        "2108:1": {
+          "resolvedValue": {
+            "r": 0.7529411911964417,
+            "g": 0.33725491166114807,
+            "b": 0.12941177189350128,
+            "a": 1
+          },
+          "alias": null
+        }
+      },
+      "scopes": ["ALL_SCOPES"],
+      "hiddenFromPublishing": false,
+      "codeSyntax": {}
+    },
+    {
+      "id": "VariableID:2109:2159",
+      "name": "primitive/orange/700",
+      "description": "",
+      "type": "COLOR",
+      "valuesByMode": {
+        "2108:1": {
+          "r": 0.6117647290229797,
+          "g": 0.25882354378700256,
+          "b": 0.12941177189350128,
+          "a": 1
+        }
+      },
+      "resolvedValuesByMode": {
+        "2108:1": {
+          "resolvedValue": {
+            "r": 0.6117647290229797,
+            "g": 0.25882354378700256,
+            "b": 0.12941177189350128,
+            "a": 1
+          },
+          "alias": null
+        }
+      },
+      "scopes": ["ALL_SCOPES"],
+      "hiddenFromPublishing": false,
+      "codeSyntax": {}
+    },
+    {
+      "id": "VariableID:2109:2160",
+      "name": "primitive/orange/800",
+      "description": "",
+      "type": "COLOR",
+      "valuesByMode": {
+        "2108:1": {
+          "r": 0.48235294222831726,
+          "g": 0.20392157137393951,
+          "b": 0.11764705926179886,
+          "a": 1
+        }
+      },
+      "resolvedValuesByMode": {
+        "2108:1": {
+          "resolvedValue": {
+            "r": 0.48235294222831726,
+            "g": 0.20392157137393951,
+            "b": 0.11764705926179886,
+            "a": 1
+          },
+          "alias": null
+        }
+      },
+      "scopes": ["ALL_SCOPES"],
+      "hiddenFromPublishing": false,
+      "codeSyntax": {}
+    },
+    {
+      "id": "VariableID:2109:2161",
+      "name": "primitive/orange/900",
+      "description": "",
+      "type": "COLOR",
+      "valuesByMode": {
+        "2108:1": {
+          "r": 0.3960784375667572,
+          "g": 0.16862745583057404,
+          "b": 0.09803921729326248,
+          "a": 1
+        }
+      },
+      "resolvedValuesByMode": {
+        "2108:1": {
+          "resolvedValue": {
+            "r": 0.3960784375667572,
+            "g": 0.16862745583057404,
+            "b": 0.09803921729326248,
+            "a": 1
+          },
+          "alias": null
+        }
+      },
+      "scopes": ["ALL_SCOPES"],
+      "hiddenFromPublishing": false,
+      "codeSyntax": {}
+    },
+    {
+      "id": "VariableID:2109:2162",
+      "name": "primitive/white alpha/50",
+      "description": "",
+      "type": "COLOR",
+      "valuesByMode": { "2108:1": { "r": 1, "g": 1, "b": 1, "a": 0.03999999910593033 } },
+      "resolvedValuesByMode": {
+        "2108:1": {
+          "resolvedValue": { "r": 1, "g": 1, "b": 1, "a": 0.03999999910593033 },
+          "alias": null
+        }
+      },
+      "scopes": ["ALL_SCOPES"],
+      "hiddenFromPublishing": false,
+      "codeSyntax": {}
+    },
+    {
+      "id": "VariableID:2109:2163",
+      "name": "primitive/white alpha/100",
+      "description": "",
+      "type": "COLOR",
+      "valuesByMode": { "2108:1": { "r": 1, "g": 1, "b": 1, "a": 0.05999999865889549 } },
+      "resolvedValuesByMode": {
+        "2108:1": {
+          "resolvedValue": { "r": 1, "g": 1, "b": 1, "a": 0.05999999865889549 },
+          "alias": null
+        }
+      },
+      "scopes": ["ALL_SCOPES"],
+      "hiddenFromPublishing": false,
+      "codeSyntax": {}
+    },
+    {
+      "id": "VariableID:2109:2164",
+      "name": "primitive/white alpha/200",
+      "description": "",
+      "type": "COLOR",
+      "valuesByMode": { "2108:1": { "r": 1, "g": 1, "b": 1, "a": 0.07999999821186066 } },
+      "resolvedValuesByMode": {
+        "2108:1": {
+          "resolvedValue": { "r": 1, "g": 1, "b": 1, "a": 0.07999999821186066 },
+          "alias": null
+        }
+      },
+      "scopes": ["ALL_SCOPES"],
+      "hiddenFromPublishing": false,
+      "codeSyntax": {}
+    },
+    {
+      "id": "VariableID:2109:2165",
+      "name": "primitive/white alpha/300",
+      "description": "",
+      "type": "COLOR",
+      "valuesByMode": { "2108:1": { "r": 1, "g": 1, "b": 1, "a": 0.1599999964237213 } },
+      "resolvedValuesByMode": {
+        "2108:1": {
+          "resolvedValue": { "r": 1, "g": 1, "b": 1, "a": 0.1599999964237213 },
+          "alias": null
+        }
+      },
+      "scopes": ["ALL_SCOPES"],
+      "hiddenFromPublishing": false,
+      "codeSyntax": {}
+    },
+    {
+      "id": "VariableID:2109:2166",
+      "name": "primitive/white alpha/400",
+      "description": "",
+      "type": "COLOR",
+      "valuesByMode": { "2108:1": { "r": 1, "g": 1, "b": 1, "a": 0.23999999463558197 } },
+      "resolvedValuesByMode": {
+        "2108:1": {
+          "resolvedValue": { "r": 1, "g": 1, "b": 1, "a": 0.23999999463558197 },
+          "alias": null
+        }
+      },
+      "scopes": ["ALL_SCOPES"],
+      "hiddenFromPublishing": false,
+      "codeSyntax": {}
+    },
+    {
+      "id": "VariableID:2109:2167",
+      "name": "primitive/white alpha/500",
+      "description": "",
+      "type": "COLOR",
+      "valuesByMode": { "2108:1": { "r": 1, "g": 1, "b": 1, "a": 0.36000001430511475 } },
+      "resolvedValuesByMode": {
+        "2108:1": {
+          "resolvedValue": { "r": 1, "g": 1, "b": 1, "a": 0.36000001430511475 },
+          "alias": null
+        }
+      },
+      "scopes": ["ALL_SCOPES"],
+      "hiddenFromPublishing": false,
+      "codeSyntax": {}
+    },
+    {
+      "id": "VariableID:2109:2168",
+      "name": "primitive/white alpha/600",
+      "description": "",
+      "type": "COLOR",
+      "valuesByMode": { "2108:1": { "r": 1, "g": 1, "b": 1, "a": 0.47999998927116394 } },
+      "resolvedValuesByMode": {
+        "2108:1": {
+          "resolvedValue": { "r": 1, "g": 1, "b": 1, "a": 0.47999998927116394 },
+          "alias": null
+        }
+      },
+      "scopes": ["ALL_SCOPES"],
+      "hiddenFromPublishing": false,
+      "codeSyntax": {}
+    },
+    {
+      "id": "VariableID:2109:2169",
+      "name": "primitive/white alpha/700",
+      "description": "",
+      "type": "COLOR",
+      "valuesByMode": { "2108:1": { "r": 1, "g": 1, "b": 1, "a": 0.6399999856948853 } },
+      "resolvedValuesByMode": {
+        "2108:1": {
+          "resolvedValue": { "r": 1, "g": 1, "b": 1, "a": 0.6399999856948853 },
+          "alias": null
+        }
+      },
+      "scopes": ["ALL_SCOPES"],
+      "hiddenFromPublishing": false,
+      "codeSyntax": {}
+    },
+    {
+      "id": "VariableID:2109:2170",
+      "name": "primitive/white alpha/800",
+      "description": "",
+      "type": "COLOR",
+      "valuesByMode": { "2108:1": { "r": 1, "g": 1, "b": 1, "a": 0.800000011920929 } },
+      "resolvedValuesByMode": {
+        "2108:1": {
+          "resolvedValue": { "r": 1, "g": 1, "b": 1, "a": 0.800000011920929 },
+          "alias": null
+        }
+      },
+      "scopes": ["ALL_SCOPES"],
+      "hiddenFromPublishing": false,
+      "codeSyntax": {}
+    },
+    {
+      "id": "VariableID:2109:2171",
+      "name": "primitive/white alpha/900",
+      "description": "",
+      "type": "COLOR",
+      "valuesByMode": { "2108:1": { "r": 1, "g": 1, "b": 1, "a": 0.9200000166893005 } },
+      "resolvedValuesByMode": {
+        "2108:1": {
+          "resolvedValue": { "r": 1, "g": 1, "b": 1, "a": 0.9200000166893005 },
+          "alias": null
+        }
+      },
+      "scopes": ["ALL_SCOPES"],
+      "hiddenFromPublishing": false,
+      "codeSyntax": {}
+    },
+    {
+      "id": "VariableID:2109:2172",
+      "name": "primitive/black alpha/50",
+      "description": "",
+      "type": "COLOR",
+      "valuesByMode": { "2108:1": { "r": 0, "g": 0, "b": 0, "a": 0.03999999910593033 } },
+      "resolvedValuesByMode": {
+        "2108:1": {
+          "resolvedValue": { "r": 0, "g": 0, "b": 0, "a": 0.03999999910593033 },
+          "alias": null
+        }
+      },
+      "scopes": ["ALL_SCOPES"],
+      "hiddenFromPublishing": false,
+      "codeSyntax": {}
+    },
+    {
+      "id": "VariableID:2109:2173",
+      "name": "primitive/black alpha/100",
+      "description": "",
+      "type": "COLOR",
+      "valuesByMode": { "2108:1": { "r": 0, "g": 0, "b": 0, "a": 0.05999999865889549 } },
+      "resolvedValuesByMode": {
+        "2108:1": {
+          "resolvedValue": { "r": 0, "g": 0, "b": 0, "a": 0.05999999865889549 },
+          "alias": null
+        }
+      },
+      "scopes": ["ALL_SCOPES"],
+      "hiddenFromPublishing": false,
+      "codeSyntax": {}
+    },
+    {
+      "id": "VariableID:2109:2174",
+      "name": "primitive/black alpha/200",
+      "description": "",
+      "type": "COLOR",
+      "valuesByMode": { "2108:1": { "r": 0, "g": 0, "b": 0, "a": 0.07999999821186066 } },
+      "resolvedValuesByMode": {
+        "2108:1": {
+          "resolvedValue": { "r": 0, "g": 0, "b": 0, "a": 0.07999999821186066 },
+          "alias": null
+        }
+      },
+      "scopes": ["ALL_SCOPES"],
+      "hiddenFromPublishing": false,
+      "codeSyntax": {}
+    },
+    {
+      "id": "VariableID:2109:2175",
+      "name": "primitive/black alpha/300",
+      "description": "",
+      "type": "COLOR",
+      "valuesByMode": { "2108:1": { "r": 0, "g": 0, "b": 0, "a": 0.1599999964237213 } },
+      "resolvedValuesByMode": {
+        "2108:1": {
+          "resolvedValue": { "r": 0, "g": 0, "b": 0, "a": 0.1599999964237213 },
+          "alias": null
+        }
+      },
+      "scopes": ["ALL_SCOPES"],
+      "hiddenFromPublishing": false,
+      "codeSyntax": {}
+    },
+    {
+      "id": "VariableID:2109:2176",
+      "name": "primitive/black alpha/400",
+      "description": "",
+      "type": "COLOR",
+      "valuesByMode": { "2108:1": { "r": 0, "g": 0, "b": 0, "a": 0.23999999463558197 } },
+      "resolvedValuesByMode": {
+        "2108:1": {
+          "resolvedValue": { "r": 0, "g": 0, "b": 0, "a": 0.23999999463558197 },
+          "alias": null
+        }
+      },
+      "scopes": ["ALL_SCOPES"],
+      "hiddenFromPublishing": false,
+      "codeSyntax": {}
+    },
+    {
+      "id": "VariableID:2109:2177",
+      "name": "primitive/black alpha/500",
+      "description": "",
+      "type": "COLOR",
+      "valuesByMode": { "2108:1": { "r": 0, "g": 0, "b": 0, "a": 0.36000001430511475 } },
+      "resolvedValuesByMode": {
+        "2108:1": {
+          "resolvedValue": { "r": 0, "g": 0, "b": 0, "a": 0.36000001430511475 },
+          "alias": null
+        }
+      },
+      "scopes": ["ALL_SCOPES"],
+      "hiddenFromPublishing": false,
+      "codeSyntax": {}
+    },
+    {
+      "id": "VariableID:2109:2178",
+      "name": "primitive/black alpha/600",
+      "description": "",
+      "type": "COLOR",
+      "valuesByMode": { "2108:1": { "r": 0, "g": 0, "b": 0, "a": 0.47999998927116394 } },
+      "resolvedValuesByMode": {
+        "2108:1": {
+          "resolvedValue": { "r": 0, "g": 0, "b": 0, "a": 0.47999998927116394 },
+          "alias": null
+        }
+      },
+      "scopes": ["ALL_SCOPES"],
+      "hiddenFromPublishing": false,
+      "codeSyntax": {}
+    },
+    {
+      "id": "VariableID:2109:2179",
+      "name": "primitive/black alpha/700",
+      "description": "",
+      "type": "COLOR",
+      "valuesByMode": { "2108:1": { "r": 0, "g": 0, "b": 0, "a": 0.6399999856948853 } },
+      "resolvedValuesByMode": {
+        "2108:1": {
+          "resolvedValue": { "r": 0, "g": 0, "b": 0, "a": 0.6399999856948853 },
+          "alias": null
+        }
+      },
+      "scopes": ["ALL_SCOPES"],
+      "hiddenFromPublishing": false,
+      "codeSyntax": {}
+    },
+    {
+      "id": "VariableID:2109:2180",
+      "name": "primitive/black alpha/800",
+      "description": "",
+      "type": "COLOR",
+      "valuesByMode": { "2108:1": { "r": 0, "g": 0, "b": 0, "a": 0.800000011920929 } },
+      "resolvedValuesByMode": {
+        "2108:1": {
+          "resolvedValue": { "r": 0, "g": 0, "b": 0, "a": 0.800000011920929 },
+          "alias": null
+        }
+      },
+      "scopes": ["ALL_SCOPES"],
+      "hiddenFromPublishing": false,
+      "codeSyntax": {}
+    },
+    {
+      "id": "VariableID:2109:2181",
+      "name": "primitive/black alpha/900",
+      "description": "",
+      "type": "COLOR",
+      "valuesByMode": { "2108:1": { "r": 0, "g": 0, "b": 0, "a": 0.9200000166893005 } },
+      "resolvedValuesByMode": {
+        "2108:1": {
+          "resolvedValue": { "r": 0, "g": 0, "b": 0, "a": 0.9200000166893005 },
+          "alias": null
+        }
+      },
+      "scopes": ["ALL_SCOPES"],
+      "hiddenFromPublishing": false,
+      "codeSyntax": {}
+    },
+    {
+      "id": "VariableID:2109:2182",
+      "name": "primitive/gray/50",
+      "description": "",
+      "type": "COLOR",
+      "valuesByMode": {
+        "2108:1": {
+          "r": 0.9686274528503418,
+          "g": 0.9803921580314636,
+          "b": 0.9882352948188782,
+          "a": 1
+        }
+      },
+      "resolvedValuesByMode": {
+        "2108:1": {
+          "resolvedValue": {
+            "r": 0.9686274528503418,
+            "g": 0.9803921580314636,
+            "b": 0.9882352948188782,
+            "a": 1
+          },
+          "alias": null
+        }
+      },
+      "scopes": ["ALL_SCOPES"],
+      "hiddenFromPublishing": false,
+      "codeSyntax": {}
+    },
+    {
+      "id": "VariableID:2109:2183",
+      "name": "primitive/gray/100",
+      "description": "",
+      "type": "COLOR",
+      "valuesByMode": {
+        "2108:1": {
+          "r": 0.929411768913269,
+          "g": 0.9490196108818054,
+          "b": 0.9686274528503418,
+          "a": 1
+        }
+      },
+      "resolvedValuesByMode": {
+        "2108:1": {
+          "resolvedValue": {
+            "r": 0.929411768913269,
+            "g": 0.9490196108818054,
+            "b": 0.9686274528503418,
+            "a": 1
+          },
+          "alias": null
+        }
+      },
+      "scopes": ["ALL_SCOPES"],
+      "hiddenFromPublishing": false,
+      "codeSyntax": {}
+    },
+    {
+      "id": "VariableID:2109:2184",
+      "name": "primitive/gray/200",
+      "description": "",
+      "type": "COLOR",
+      "valuesByMode": {
+        "2108:1": {
+          "r": 0.886274516582489,
+          "g": 0.9098039269447327,
+          "b": 0.9411764740943909,
+          "a": 1
+        }
+      },
+      "resolvedValuesByMode": {
+        "2108:1": {
+          "resolvedValue": {
+            "r": 0.886274516582489,
+            "g": 0.9098039269447327,
+            "b": 0.9411764740943909,
+            "a": 1
+          },
+          "alias": null
+        }
+      },
+      "scopes": ["ALL_SCOPES"],
+      "hiddenFromPublishing": false,
+      "codeSyntax": {}
+    },
+    {
+      "id": "VariableID:2109:2185",
+      "name": "primitive/gray/300",
+      "description": "",
+      "type": "COLOR",
+      "valuesByMode": {
+        "2108:1": {
+          "r": 0.7960784435272217,
+          "g": 0.8352941274642944,
+          "b": 0.8784313797950745,
+          "a": 1
+        }
+      },
+      "resolvedValuesByMode": {
+        "2108:1": {
+          "resolvedValue": {
+            "r": 0.7960784435272217,
+            "g": 0.8352941274642944,
+            "b": 0.8784313797950745,
+            "a": 1
+          },
+          "alias": null
+        }
+      },
+      "scopes": ["ALL_SCOPES"],
+      "hiddenFromPublishing": false,
+      "codeSyntax": {}
+    },
+    {
+      "id": "VariableID:2109:2186",
+      "name": "primitive/gray/400",
+      "description": "",
+      "type": "COLOR",
+      "valuesByMode": {
+        "2108:1": {
+          "r": 0.6274510025978088,
+          "g": 0.6823529601097107,
+          "b": 0.7529411911964417,
+          "a": 1
+        }
+      },
+      "resolvedValuesByMode": {
+        "2108:1": {
+          "resolvedValue": {
+            "r": 0.6274510025978088,
+            "g": 0.6823529601097107,
+            "b": 0.7529411911964417,
+            "a": 1
+          },
+          "alias": null
+        }
+      },
+      "scopes": ["ALL_SCOPES"],
+      "hiddenFromPublishing": false,
+      "codeSyntax": {}
+    },
+    {
+      "id": "VariableID:2109:2187",
+      "name": "primitive/gray/500",
+      "description": "",
+      "type": "COLOR",
+      "valuesByMode": {
+        "2108:1": {
+          "r": 0.4431372582912445,
+          "g": 0.501960813999176,
+          "b": 0.5882353186607361,
+          "a": 1
+        }
+      },
+      "resolvedValuesByMode": {
+        "2108:1": {
+          "resolvedValue": {
+            "r": 0.4431372582912445,
+            "g": 0.501960813999176,
+            "b": 0.5882353186607361,
+            "a": 1
+          },
+          "alias": null
+        }
+      },
+      "scopes": ["ALL_SCOPES"],
+      "hiddenFromPublishing": false,
+      "codeSyntax": {}
+    },
+    {
+      "id": "VariableID:2109:2188",
+      "name": "primitive/gray/600",
+      "description": "",
+      "type": "COLOR",
+      "valuesByMode": {
+        "2108:1": {
+          "r": 0.29019609093666077,
+          "g": 0.3333333432674408,
+          "b": 0.40784314274787903,
+          "a": 1
+        }
+      },
+      "resolvedValuesByMode": {
+        "2108:1": {
+          "resolvedValue": {
+            "r": 0.29019609093666077,
+            "g": 0.3333333432674408,
+            "b": 0.40784314274787903,
+            "a": 1
+          },
+          "alias": null
+        }
+      },
+      "scopes": ["ALL_SCOPES"],
+      "hiddenFromPublishing": false,
+      "codeSyntax": {}
+    },
+    {
+      "id": "VariableID:2109:2189",
+      "name": "primitive/gray/700",
+      "description": "",
+      "type": "COLOR",
+      "valuesByMode": {
+        "2108:1": {
+          "r": 0.1764705926179886,
+          "g": 0.21568627655506134,
+          "b": 0.2823529541492462,
+          "a": 1
+        }
+      },
+      "resolvedValuesByMode": {
+        "2108:1": {
+          "resolvedValue": {
+            "r": 0.1764705926179886,
+            "g": 0.21568627655506134,
+            "b": 0.2823529541492462,
+            "a": 1
+          },
+          "alias": null
+        }
+      },
+      "scopes": ["ALL_SCOPES"],
+      "hiddenFromPublishing": false,
+      "codeSyntax": {}
+    },
+    {
+      "id": "VariableID:2109:2190",
+      "name": "primitive/gray/800",
+      "description": "",
+      "type": "COLOR",
+      "valuesByMode": {
+        "2108:1": {
+          "r": 0.10196078568696976,
+          "g": 0.125490203499794,
+          "b": 0.1725490242242813,
+          "a": 1
+        }
+      },
+      "resolvedValuesByMode": {
+        "2108:1": {
+          "resolvedValue": {
+            "r": 0.10196078568696976,
+            "g": 0.125490203499794,
+            "b": 0.1725490242242813,
+            "a": 1
+          },
+          "alias": null
+        }
+      },
+      "scopes": ["ALL_SCOPES"],
+      "hiddenFromPublishing": false,
+      "codeSyntax": {}
+    },
+    {
+      "id": "VariableID:2109:2191",
+      "name": "primitive/gray/900",
+      "description": "",
+      "type": "COLOR",
+      "valuesByMode": {
+        "2108:1": {
+          "r": 0.09019608050584793,
+          "g": 0.09803921729326248,
+          "b": 0.13725490868091583,
+          "a": 1
+        }
+      },
+      "resolvedValuesByMode": {
+        "2108:1": {
+          "resolvedValue": {
+            "r": 0.09019608050584793,
+            "g": 0.09803921729326248,
+            "b": 0.13725490868091583,
+            "a": 1
+          },
+          "alias": null
+        }
+      },
+      "scopes": ["ALL_SCOPES"],
+      "hiddenFromPublishing": false,
+      "codeSyntax": {}
+    },
+    {
+      "id": "VariableID:2109:2192",
+      "name": "primitive/red/50",
+      "description": "",
+      "type": "COLOR",
+      "valuesByMode": {
+        "2108:1": { "r": 1, "g": 0.9607843160629272, "b": 0.9607843160629272, "a": 1 }
+      },
+      "resolvedValuesByMode": {
+        "2108:1": {
+          "resolvedValue": { "r": 1, "g": 0.9607843160629272, "b": 0.9607843160629272, "a": 1 },
+          "alias": null
+        }
+      },
+      "scopes": ["ALL_SCOPES"],
+      "hiddenFromPublishing": false,
+      "codeSyntax": {}
+    },
+    {
+      "id": "VariableID:2109:2193",
+      "name": "primitive/red/100",
+      "description": "",
+      "type": "COLOR",
+      "valuesByMode": {
+        "2108:1": {
+          "r": 0.9960784316062927,
+          "g": 0.843137264251709,
+          "b": 0.843137264251709,
+          "a": 1
+        }
+      },
+      "resolvedValuesByMode": {
+        "2108:1": {
+          "resolvedValue": {
+            "r": 0.9960784316062927,
+            "g": 0.843137264251709,
+            "b": 0.843137264251709,
+            "a": 1
+          },
+          "alias": null
+        }
+      },
+      "scopes": ["ALL_SCOPES"],
+      "hiddenFromPublishing": false,
+      "codeSyntax": {}
+    },
+    {
+      "id": "VariableID:2109:2194",
+      "name": "primitive/red/200",
+      "description": "",
+      "type": "COLOR",
+      "valuesByMode": {
+        "2108:1": {
+          "r": 0.9960784316062927,
+          "g": 0.6980392336845398,
+          "b": 0.6980392336845398,
+          "a": 1
+        }
+      },
+      "resolvedValuesByMode": {
+        "2108:1": {
+          "resolvedValue": {
+            "r": 0.9960784316062927,
+            "g": 0.6980392336845398,
+            "b": 0.6980392336845398,
+            "a": 1
+          },
+          "alias": null
+        }
+      },
+      "scopes": ["ALL_SCOPES"],
+      "hiddenFromPublishing": false,
+      "codeSyntax": {}
+    },
+    {
+      "id": "VariableID:2109:2195",
+      "name": "primitive/red/300",
+      "description": "",
+      "type": "COLOR",
+      "valuesByMode": {
+        "2108:1": {
+          "r": 0.9882352948188782,
+          "g": 0.5058823823928833,
+          "b": 0.5058823823928833,
+          "a": 1
+        }
+      },
+      "resolvedValuesByMode": {
+        "2108:1": {
+          "resolvedValue": {
+            "r": 0.9882352948188782,
+            "g": 0.5058823823928833,
+            "b": 0.5058823823928833,
+            "a": 1
+          },
+          "alias": null
+        }
+      },
+      "scopes": ["ALL_SCOPES"],
+      "hiddenFromPublishing": false,
+      "codeSyntax": {}
+    },
+    {
+      "id": "VariableID:2109:2196",
+      "name": "primitive/red/400",
+      "description": "",
+      "type": "COLOR",
+      "valuesByMode": {
+        "2108:1": {
+          "r": 0.9607843160629272,
+          "g": 0.3960784375667572,
+          "b": 0.3960784375667572,
+          "a": 1
+        }
+      },
+      "resolvedValuesByMode": {
+        "2108:1": {
+          "resolvedValue": {
+            "r": 0.9607843160629272,
+            "g": 0.3960784375667572,
+            "b": 0.3960784375667572,
+            "a": 1
+          },
+          "alias": null
+        }
+      },
+      "scopes": ["ALL_SCOPES"],
+      "hiddenFromPublishing": false,
+      "codeSyntax": {}
+    },
+    {
+      "id": "VariableID:2109:2197",
+      "name": "primitive/red/500",
+      "description": "",
+      "type": "COLOR",
+      "valuesByMode": {
+        "2108:1": {
+          "r": 0.8980392217636108,
+          "g": 0.24313725531101227,
+          "b": 0.24313725531101227,
+          "a": 1
+        }
+      },
+      "resolvedValuesByMode": {
+        "2108:1": {
+          "resolvedValue": {
+            "r": 0.8980392217636108,
+            "g": 0.24313725531101227,
+            "b": 0.24313725531101227,
+            "a": 1
+          },
+          "alias": null
+        }
+      },
+      "scopes": ["ALL_SCOPES"],
+      "hiddenFromPublishing": false,
+      "codeSyntax": {}
+    },
+    {
+      "id": "VariableID:2109:2198",
+      "name": "primitive/red/600",
+      "description": "",
+      "type": "COLOR",
+      "valuesByMode": {
+        "2108:1": {
+          "r": 0.772549033164978,
+          "g": 0.1882352977991104,
+          "b": 0.1882352977991104,
+          "a": 1
+        }
+      },
+      "resolvedValuesByMode": {
+        "2108:1": {
+          "resolvedValue": {
+            "r": 0.772549033164978,
+            "g": 0.1882352977991104,
+            "b": 0.1882352977991104,
+            "a": 1
+          },
+          "alias": null
+        }
+      },
+      "scopes": ["ALL_SCOPES"],
+      "hiddenFromPublishing": false,
+      "codeSyntax": {}
+    },
+    {
+      "id": "VariableID:2109:2199",
+      "name": "primitive/red/700",
+      "description": "",
+      "type": "COLOR",
+      "valuesByMode": {
+        "2108:1": {
+          "r": 0.6078431606292725,
+          "g": 0.1725490242242813,
+          "b": 0.1725490242242813,
+          "a": 1
+        }
+      },
+      "resolvedValuesByMode": {
+        "2108:1": {
+          "resolvedValue": {
+            "r": 0.6078431606292725,
+            "g": 0.1725490242242813,
+            "b": 0.1725490242242813,
+            "a": 1
+          },
+          "alias": null
+        }
+      },
+      "scopes": ["ALL_SCOPES"],
+      "hiddenFromPublishing": false,
+      "codeSyntax": {}
+    },
+    {
+      "id": "VariableID:2109:2200",
+      "name": "primitive/red/800",
+      "description": "",
+      "type": "COLOR",
+      "valuesByMode": {
+        "2108:1": {
+          "r": 0.5098039507865906,
+          "g": 0.15294118225574493,
+          "b": 0.15294118225574493,
+          "a": 1
+        }
+      },
+      "resolvedValuesByMode": {
+        "2108:1": {
+          "resolvedValue": {
+            "r": 0.5098039507865906,
+            "g": 0.15294118225574493,
+            "b": 0.15294118225574493,
+            "a": 1
+          },
+          "alias": null
+        }
+      },
+      "scopes": ["ALL_SCOPES"],
+      "hiddenFromPublishing": false,
+      "codeSyntax": {}
+    },
+    {
+      "id": "VariableID:2109:2201",
+      "name": "primitive/red/900",
+      "description": "",
+      "type": "COLOR",
+      "valuesByMode": {
+        "2108:1": {
+          "r": 0.38823530077934265,
+          "g": 0.09019608050584793,
+          "b": 0.10588235408067703,
+          "a": 1
+        }
+      },
+      "resolvedValuesByMode": {
+        "2108:1": {
+          "resolvedValue": {
+            "r": 0.38823530077934265,
+            "g": 0.09019608050584793,
+            "b": 0.10588235408067703,
+            "a": 1
+          },
+          "alias": null
+        }
+      },
+      "scopes": ["ALL_SCOPES"],
+      "hiddenFromPublishing": false,
+      "codeSyntax": {}
+    },
+    {
+      "id": "VariableID:2109:2202",
+      "name": "primitive/yellow/50",
+      "description": "",
+      "type": "COLOR",
+      "valuesByMode": { "2108:1": { "r": 1, "g": 1, "b": 0.9411764740943909, "a": 1 } },
+      "resolvedValuesByMode": {
+        "2108:1": {
+          "resolvedValue": { "r": 1, "g": 1, "b": 0.9411764740943909, "a": 1 },
+          "alias": null
+        }
+      },
+      "scopes": ["ALL_SCOPES"],
+      "hiddenFromPublishing": false,
+      "codeSyntax": {}
+    },
+    {
+      "id": "VariableID:2109:2203",
+      "name": "primitive/yellow/100",
+      "description": "",
+      "type": "COLOR",
+      "valuesByMode": {
+        "2108:1": {
+          "r": 0.9960784316062927,
+          "g": 0.9882352948188782,
+          "b": 0.7490196228027344,
+          "a": 1
+        }
+      },
+      "resolvedValuesByMode": {
+        "2108:1": {
+          "resolvedValue": {
+            "r": 0.9960784316062927,
+            "g": 0.9882352948188782,
+            "b": 0.7490196228027344,
+            "a": 1
+          },
+          "alias": null
+        }
+      },
+      "scopes": ["ALL_SCOPES"],
+      "hiddenFromPublishing": false,
+      "codeSyntax": {}
+    },
+    {
+      "id": "VariableID:2109:2204",
+      "name": "primitive/yellow/200",
+      "description": "",
+      "type": "COLOR",
+      "valuesByMode": {
+        "2108:1": {
+          "r": 0.9803921580314636,
+          "g": 0.9411764740943909,
+          "b": 0.5372549295425415,
+          "a": 1
+        }
+      },
+      "resolvedValuesByMode": {
+        "2108:1": {
+          "resolvedValue": {
+            "r": 0.9803921580314636,
+            "g": 0.9411764740943909,
+            "b": 0.5372549295425415,
+            "a": 1
+          },
+          "alias": null
+        }
+      },
+      "scopes": ["ALL_SCOPES"],
+      "hiddenFromPublishing": false,
+      "codeSyntax": {}
+    },
+    {
+      "id": "VariableID:2109:2205",
+      "name": "primitive/yellow/300",
+      "description": "",
+      "type": "COLOR",
+      "valuesByMode": {
+        "2108:1": {
+          "r": 0.9647058844566345,
+          "g": 0.8784313797950745,
+          "b": 0.3686274588108063,
+          "a": 1
+        }
+      },
+      "resolvedValuesByMode": {
+        "2108:1": {
+          "resolvedValue": {
+            "r": 0.9647058844566345,
+            "g": 0.8784313797950745,
+            "b": 0.3686274588108063,
+            "a": 1
+          },
+          "alias": null
+        }
+      },
+      "scopes": ["ALL_SCOPES"],
+      "hiddenFromPublishing": false,
+      "codeSyntax": {}
+    },
+    {
+      "id": "VariableID:2109:2206",
+      "name": "primitive/yellow/400",
+      "description": "",
+      "type": "COLOR",
+      "valuesByMode": {
+        "2108:1": {
+          "r": 0.9254902005195618,
+          "g": 0.7882353067398071,
+          "b": 0.29411765933036804,
+          "a": 1
+        }
+      },
+      "resolvedValuesByMode": {
+        "2108:1": {
+          "resolvedValue": {
+            "r": 0.9254902005195618,
+            "g": 0.7882353067398071,
+            "b": 0.29411765933036804,
+            "a": 1
+          },
+          "alias": null
+        }
+      },
+      "scopes": ["ALL_SCOPES"],
+      "hiddenFromPublishing": false,
+      "codeSyntax": {}
+    },
+    {
+      "id": "VariableID:2109:2207",
+      "name": "primitive/yellow/500",
+      "description": "",
+      "type": "COLOR",
+      "valuesByMode": {
+        "2108:1": {
+          "r": 0.8392156958580017,
+          "g": 0.6196078658103943,
+          "b": 0.18039216101169586,
+          "a": 1
+        }
+      },
+      "resolvedValuesByMode": {
+        "2108:1": {
+          "resolvedValue": {
+            "r": 0.8392156958580017,
+            "g": 0.6196078658103943,
+            "b": 0.18039216101169586,
+            "a": 1
+          },
+          "alias": null
+        }
+      },
+      "scopes": ["ALL_SCOPES"],
+      "hiddenFromPublishing": false,
+      "codeSyntax": {}
+    },
+    {
+      "id": "VariableID:2109:2208",
+      "name": "primitive/yellow/600",
+      "description": "",
+      "type": "COLOR",
+      "valuesByMode": {
+        "2108:1": {
+          "r": 0.7176470756530762,
+          "g": 0.4745098054409027,
+          "b": 0.12156862765550613,
+          "a": 1
+        }
+      },
+      "resolvedValuesByMode": {
+        "2108:1": {
+          "resolvedValue": {
+            "r": 0.7176470756530762,
+            "g": 0.4745098054409027,
+            "b": 0.12156862765550613,
+            "a": 1
+          },
+          "alias": null
+        }
+      },
+      "scopes": ["ALL_SCOPES"],
+      "hiddenFromPublishing": false,
+      "codeSyntax": {}
+    },
+    {
+      "id": "VariableID:2109:2209",
+      "name": "primitive/yellow/700",
+      "description": "",
+      "type": "COLOR",
+      "valuesByMode": {
+        "2108:1": {
+          "r": 0.5921568870544434,
+          "g": 0.3529411852359772,
+          "b": 0.08627451211214066,
+          "a": 1
+        }
+      },
+      "resolvedValuesByMode": {
+        "2108:1": {
+          "resolvedValue": {
+            "r": 0.5921568870544434,
+            "g": 0.3529411852359772,
+            "b": 0.08627451211214066,
+            "a": 1
+          },
+          "alias": null
+        }
+      },
+      "scopes": ["ALL_SCOPES"],
+      "hiddenFromPublishing": false,
+      "codeSyntax": {}
+    },
+    {
+      "id": "VariableID:2109:2210",
+      "name": "primitive/yellow/800",
+      "description": "",
+      "type": "COLOR",
+      "valuesByMode": {
+        "2108:1": {
+          "r": 0.45490196347236633,
+          "g": 0.25882354378700256,
+          "b": 0.062745101749897,
+          "a": 1
+        }
+      },
+      "resolvedValuesByMode": {
+        "2108:1": {
+          "resolvedValue": {
+            "r": 0.45490196347236633,
+            "g": 0.25882354378700256,
+            "b": 0.062745101749897,
+            "a": 1
+          },
+          "alias": null
+        }
+      },
+      "scopes": ["ALL_SCOPES"],
+      "hiddenFromPublishing": false,
+      "codeSyntax": {}
+    },
+    {
+      "id": "VariableID:2109:2211",
+      "name": "primitive/yellow/900",
+      "description": "",
+      "type": "COLOR",
+      "valuesByMode": {
+        "2108:1": {
+          "r": 0.37254902720451355,
+          "g": 0.21568627655506134,
+          "b": 0.054901961237192154,
+          "a": 1
+        }
+      },
+      "resolvedValuesByMode": {
+        "2108:1": {
+          "resolvedValue": {
+            "r": 0.37254902720451355,
+            "g": 0.21568627655506134,
+            "b": 0.054901961237192154,
+            "a": 1
+          },
+          "alias": null
+        }
+      },
+      "scopes": ["ALL_SCOPES"],
+      "hiddenFromPublishing": false,
+      "codeSyntax": {}
+    },
+    {
+      "id": "VariableID:2109:2212",
+      "name": "primitive/black",
+      "description": "",
+      "type": "COLOR",
+      "valuesByMode": { "2108:1": { "r": 0, "g": 0, "b": 0, "a": 1 } },
+      "resolvedValuesByMode": {
+        "2108:1": { "resolvedValue": { "r": 0, "g": 0, "b": 0, "a": 1 }, "alias": null }
+      },
+      "scopes": ["ALL_SCOPES"],
+      "hiddenFromPublishing": false,
+      "codeSyntax": {}
+    },
+    {
+      "id": "VariableID:2109:2213",
+      "name": "primitive/white",
+      "description": "",
+      "type": "COLOR",
+      "valuesByMode": { "2108:1": { "r": 1, "g": 1, "b": 1, "a": 1 } },
+      "resolvedValuesByMode": {
+        "2108:1": { "resolvedValue": { "r": 1, "g": 1, "b": 1, "a": 1 }, "alias": null }
+      },
+      "scopes": ["ALL_SCOPES"],
+      "hiddenFromPublishing": false,
+      "codeSyntax": {}
+    },
+    {
+      "id": "VariableID:2109:2214",
+      "name": "primitive/green/50",
+      "description": "",
+      "type": "COLOR",
+      "valuesByMode": {
+        "2108:1": { "r": 0.9411764740943909, "g": 1, "b": 0.95686274766922, "a": 1 }
+      },
+      "resolvedValuesByMode": {
+        "2108:1": {
+          "resolvedValue": { "r": 0.9411764740943909, "g": 1, "b": 0.95686274766922, "a": 1 },
+          "alias": null
+        }
+      },
+      "scopes": ["ALL_SCOPES"],
+      "hiddenFromPublishing": false,
+      "codeSyntax": {}
+    },
+    {
+      "id": "VariableID:2109:2215",
+      "name": "primitive/green/100",
+      "description": "",
+      "type": "COLOR",
+      "valuesByMode": {
+        "2108:1": {
+          "r": 0.7764706015586853,
+          "g": 0.9647058844566345,
+          "b": 0.8352941274642944,
+          "a": 1
+        }
+      },
+      "resolvedValuesByMode": {
+        "2108:1": {
+          "resolvedValue": {
+            "r": 0.7764706015586853,
+            "g": 0.9647058844566345,
+            "b": 0.8352941274642944,
+            "a": 1
+          },
+          "alias": null
+        }
+      },
+      "scopes": ["ALL_SCOPES"],
+      "hiddenFromPublishing": false,
+      "codeSyntax": {}
+    },
+    {
+      "id": "VariableID:2109:2216",
+      "name": "primitive/green/200",
+      "description": "",
+      "type": "COLOR",
+      "valuesByMode": {
+        "2108:1": {
+          "r": 0.6039215922355652,
+          "g": 0.9019607901573181,
+          "b": 0.7058823704719543,
+          "a": 1
+        }
+      },
+      "resolvedValuesByMode": {
+        "2108:1": {
+          "resolvedValue": {
+            "r": 0.6039215922355652,
+            "g": 0.9019607901573181,
+            "b": 0.7058823704719543,
+            "a": 1
+          },
+          "alias": null
+        }
+      },
+      "scopes": ["ALL_SCOPES"],
+      "hiddenFromPublishing": false,
+      "codeSyntax": {}
+    },
+    {
+      "id": "VariableID:2109:2217",
+      "name": "primitive/green/300",
+      "description": "",
+      "type": "COLOR",
+      "valuesByMode": {
+        "2108:1": {
+          "r": 0.40784314274787903,
+          "g": 0.8274509906768799,
+          "b": 0.5686274766921997,
+          "a": 1
+        }
+      },
+      "resolvedValuesByMode": {
+        "2108:1": {
+          "resolvedValue": {
+            "r": 0.40784314274787903,
+            "g": 0.8274509906768799,
+            "b": 0.5686274766921997,
+            "a": 1
+          },
+          "alias": null
+        }
+      },
+      "scopes": ["ALL_SCOPES"],
+      "hiddenFromPublishing": false,
+      "codeSyntax": {}
+    },
+    {
+      "id": "VariableID:2109:2218",
+      "name": "primitive/green/400",
+      "description": "",
+      "type": "COLOR",
+      "valuesByMode": {
+        "2108:1": {
+          "r": 0.2823529541492462,
+          "g": 0.7333333492279053,
+          "b": 0.47058823704719543,
+          "a": 1
+        }
+      },
+      "resolvedValuesByMode": {
+        "2108:1": {
+          "resolvedValue": {
+            "r": 0.2823529541492462,
+            "g": 0.7333333492279053,
+            "b": 0.47058823704719543,
+            "a": 1
+          },
+          "alias": null
+        }
+      },
+      "scopes": ["ALL_SCOPES"],
+      "hiddenFromPublishing": false,
+      "codeSyntax": {}
+    },
+    {
+      "id": "VariableID:2109:2219",
+      "name": "primitive/green/500",
+      "description": "",
+      "type": "COLOR",
+      "valuesByMode": {
+        "2108:1": {
+          "r": 0.21960784494876862,
+          "g": 0.6313725709915161,
+          "b": 0.4117647111415863,
+          "a": 1
+        }
+      },
+      "resolvedValuesByMode": {
+        "2108:1": {
+          "resolvedValue": {
+            "r": 0.21960784494876862,
+            "g": 0.6313725709915161,
+            "b": 0.4117647111415863,
+            "a": 1
+          },
+          "alias": null
+        }
+      },
+      "scopes": ["ALL_SCOPES"],
+      "hiddenFromPublishing": false,
+      "codeSyntax": {}
+    },
+    {
+      "id": "VariableID:2109:2220",
+      "name": "primitive/green/600",
+      "description": "",
+      "type": "COLOR",
+      "valuesByMode": {
+        "2108:1": {
+          "r": 0.14509804546833038,
+          "g": 0.5215686559677124,
+          "b": 0.3529411852359772,
+          "a": 1
+        }
+      },
+      "resolvedValuesByMode": {
+        "2108:1": {
+          "resolvedValue": {
+            "r": 0.14509804546833038,
+            "g": 0.5215686559677124,
+            "b": 0.3529411852359772,
+            "a": 1
+          },
+          "alias": null
+        }
+      },
+      "scopes": ["ALL_SCOPES"],
+      "hiddenFromPublishing": false,
+      "codeSyntax": {}
+    },
+    {
+      "id": "VariableID:2109:2221",
+      "name": "primitive/green/700",
+      "description": "",
+      "type": "COLOR",
+      "valuesByMode": {
+        "2108:1": {
+          "r": 0.15294118225574493,
+          "g": 0.40392157435417175,
+          "b": 0.2862745225429535,
+          "a": 1
+        }
+      },
+      "resolvedValuesByMode": {
+        "2108:1": {
+          "resolvedValue": {
+            "r": 0.15294118225574493,
+            "g": 0.40392157435417175,
+            "b": 0.2862745225429535,
+            "a": 1
+          },
+          "alias": null
+        }
+      },
+      "scopes": ["ALL_SCOPES"],
+      "hiddenFromPublishing": false,
+      "codeSyntax": {}
+    },
+    {
+      "id": "VariableID:2109:2222",
+      "name": "primitive/green/800",
+      "description": "",
+      "type": "COLOR",
+      "valuesByMode": {
+        "2108:1": {
+          "r": 0.13333334028720856,
+          "g": 0.3294117748737335,
+          "b": 0.239215686917305,
+          "a": 1
+        }
+      },
+      "resolvedValuesByMode": {
+        "2108:1": {
+          "resolvedValue": {
+            "r": 0.13333334028720856,
+            "g": 0.3294117748737335,
+            "b": 0.239215686917305,
+            "a": 1
+          },
+          "alias": null
+        }
+      },
+      "scopes": ["ALL_SCOPES"],
+      "hiddenFromPublishing": false,
+      "codeSyntax": {}
+    },
+    {
+      "id": "VariableID:2109:2223",
+      "name": "primitive/green/900",
+      "description": "",
+      "type": "COLOR",
+      "valuesByMode": {
+        "2108:1": {
+          "r": 0.10980392247438431,
+          "g": 0.2705882489681244,
+          "b": 0.19607843458652496,
+          "a": 1
+        }
+      },
+      "resolvedValuesByMode": {
+        "2108:1": {
+          "resolvedValue": {
+            "r": 0.10980392247438431,
+            "g": 0.2705882489681244,
+            "b": 0.19607843458652496,
+            "a": 1
+          },
+          "alias": null
+        }
+      },
+      "scopes": ["ALL_SCOPES"],
+      "hiddenFromPublishing": false,
+      "codeSyntax": {}
+    },
+    {
+      "id": "VariableID:2109:2224",
+      "name": "primitive/teal/50",
+      "description": "",
+      "type": "COLOR",
+      "valuesByMode": {
+        "2108:1": { "r": 0.9019607901573181, "g": 1, "b": 0.9803921580314636, "a": 1 }
+      },
+      "resolvedValuesByMode": {
+        "2108:1": {
+          "resolvedValue": { "r": 0.9019607901573181, "g": 1, "b": 0.9803921580314636, "a": 1 },
+          "alias": null
+        }
+      },
+      "scopes": ["ALL_SCOPES"],
+      "hiddenFromPublishing": false,
+      "codeSyntax": {}
+    },
+    {
+      "id": "VariableID:2109:2225",
+      "name": "primitive/teal/100",
+      "description": "",
+      "type": "COLOR",
+      "valuesByMode": {
+        "2108:1": {
+          "r": 0.6980392336845398,
+          "g": 0.9607843160629272,
+          "b": 0.9176470637321472,
+          "a": 1
+        }
+      },
+      "resolvedValuesByMode": {
+        "2108:1": {
+          "resolvedValue": {
+            "r": 0.6980392336845398,
+            "g": 0.9607843160629272,
+            "b": 0.9176470637321472,
+            "a": 1
+          },
+          "alias": null
+        }
+      },
+      "scopes": ["ALL_SCOPES"],
+      "hiddenFromPublishing": false,
+      "codeSyntax": {}
+    },
+    {
+      "id": "VariableID:2109:2226",
+      "name": "primitive/teal/200",
+      "description": "",
+      "type": "COLOR",
+      "valuesByMode": {
+        "2108:1": {
+          "r": 0.5058823823928833,
+          "g": 0.9019607901573181,
+          "b": 0.8509804010391235,
+          "a": 1
+        }
+      },
+      "resolvedValuesByMode": {
+        "2108:1": {
+          "resolvedValue": {
+            "r": 0.5058823823928833,
+            "g": 0.9019607901573181,
+            "b": 0.8509804010391235,
+            "a": 1
+          },
+          "alias": null
+        }
+      },
+      "scopes": ["ALL_SCOPES"],
+      "hiddenFromPublishing": false,
+      "codeSyntax": {}
+    },
+    {
+      "id": "VariableID:2109:2227",
+      "name": "primitive/teal/300",
+      "description": "",
+      "type": "COLOR",
+      "valuesByMode": {
+        "2108:1": {
+          "r": 0.30980393290519714,
+          "g": 0.8196078538894653,
+          "b": 0.772549033164978,
+          "a": 1
+        }
+      },
+      "resolvedValuesByMode": {
+        "2108:1": {
+          "resolvedValue": {
+            "r": 0.30980393290519714,
+            "g": 0.8196078538894653,
+            "b": 0.772549033164978,
+            "a": 1
+          },
+          "alias": null
+        }
+      },
+      "scopes": ["ALL_SCOPES"],
+      "hiddenFromPublishing": false,
+      "codeSyntax": {}
+    },
+    {
+      "id": "VariableID:2109:2228",
+      "name": "primitive/teal/400",
+      "description": "",
+      "type": "COLOR",
+      "valuesByMode": {
+        "2108:1": {
+          "r": 0.21960784494876862,
+          "g": 0.6980392336845398,
+          "b": 0.6745098233222961,
+          "a": 1
+        }
+      },
+      "resolvedValuesByMode": {
+        "2108:1": {
+          "resolvedValue": {
+            "r": 0.21960784494876862,
+            "g": 0.6980392336845398,
+            "b": 0.6745098233222961,
+            "a": 1
+          },
+          "alias": null
+        }
+      },
+      "scopes": ["ALL_SCOPES"],
+      "hiddenFromPublishing": false,
+      "codeSyntax": {}
+    },
+    {
+      "id": "VariableID:2109:2229",
+      "name": "primitive/teal/500",
+      "description": "",
+      "type": "COLOR",
+      "valuesByMode": {
+        "2108:1": {
+          "r": 0.1921568661928177,
+          "g": 0.5921568870544434,
+          "b": 0.5843137502670288,
+          "a": 1
+        }
+      },
+      "resolvedValuesByMode": {
+        "2108:1": {
+          "resolvedValue": {
+            "r": 0.1921568661928177,
+            "g": 0.5921568870544434,
+            "b": 0.5843137502670288,
+            "a": 1
+          },
+          "alias": null
+        }
+      },
+      "scopes": ["ALL_SCOPES"],
+      "hiddenFromPublishing": false,
+      "codeSyntax": {}
+    },
+    {
+      "id": "VariableID:2109:2230",
+      "name": "primitive/teal/600",
+      "description": "",
+      "type": "COLOR",
+      "valuesByMode": {
+        "2108:1": {
+          "r": 0.1725490242242813,
+          "g": 0.47843137383461,
+          "b": 0.48235294222831726,
+          "a": 1
+        }
+      },
+      "resolvedValuesByMode": {
+        "2108:1": {
+          "resolvedValue": {
+            "r": 0.1725490242242813,
+            "g": 0.47843137383461,
+            "b": 0.48235294222831726,
+            "a": 1
+          },
+          "alias": null
+        }
+      },
+      "scopes": ["ALL_SCOPES"],
+      "hiddenFromPublishing": false,
+      "codeSyntax": {}
+    },
+    {
+      "id": "VariableID:2109:2231",
+      "name": "primitive/teal/700",
+      "description": "",
+      "type": "COLOR",
+      "valuesByMode": {
+        "2108:1": {
+          "r": 0.1568627506494522,
+          "g": 0.3686274588108063,
+          "b": 0.3803921639919281,
+          "a": 1
+        }
+      },
+      "resolvedValuesByMode": {
+        "2108:1": {
+          "resolvedValue": {
+            "r": 0.1568627506494522,
+            "g": 0.3686274588108063,
+            "b": 0.3803921639919281,
+            "a": 1
+          },
+          "alias": null
+        }
+      },
+      "scopes": ["ALL_SCOPES"],
+      "hiddenFromPublishing": false,
+      "codeSyntax": {}
+    },
+    {
+      "id": "VariableID:2109:2232",
+      "name": "primitive/teal/800",
+      "description": "",
+      "type": "COLOR",
+      "valuesByMode": {
+        "2108:1": {
+          "r": 0.13725490868091583,
+          "g": 0.30588236451148987,
+          "b": 0.32156863808631897,
+          "a": 1
+        }
+      },
+      "resolvedValuesByMode": {
+        "2108:1": {
+          "resolvedValue": {
+            "r": 0.13725490868091583,
+            "g": 0.30588236451148987,
+            "b": 0.32156863808631897,
+            "a": 1
+          },
+          "alias": null
+        }
+      },
+      "scopes": ["ALL_SCOPES"],
+      "hiddenFromPublishing": false,
+      "codeSyntax": {}
+    },
+    {
+      "id": "VariableID:2109:2233",
+      "name": "primitive/teal/900",
+      "description": "",
+      "type": "COLOR",
+      "valuesByMode": {
+        "2108:1": {
+          "r": 0.11372549086809158,
+          "g": 0.250980406999588,
+          "b": 0.2666666805744171,
+          "a": 1
+        }
+      },
+      "resolvedValuesByMode": {
+        "2108:1": {
+          "resolvedValue": {
+            "r": 0.11372549086809158,
+            "g": 0.250980406999588,
+            "b": 0.2666666805744171,
+            "a": 1
+          },
+          "alias": null
+        }
+      },
+      "scopes": ["ALL_SCOPES"],
+      "hiddenFromPublishing": false,
+      "codeSyntax": {}
+    },
+    {
+      "id": "VariableID:2109:2234",
+      "name": "primitive/blue/50",
+      "description": "",
+      "type": "COLOR",
+      "valuesByMode": {
+        "2108:1": { "r": 0.9215686321258545, "g": 0.9725490212440491, "b": 1, "a": 1 }
+      },
+      "resolvedValuesByMode": {
+        "2108:1": {
+          "resolvedValue": { "r": 0.9215686321258545, "g": 0.9725490212440491, "b": 1, "a": 1 },
+          "alias": null
+        }
+      },
+      "scopes": ["ALL_SCOPES"],
+      "hiddenFromPublishing": false,
+      "codeSyntax": {}
+    },
+    {
+      "id": "VariableID:2109:2235",
+      "name": "primitive/blue/100",
+      "description": "",
+      "type": "COLOR",
+      "valuesByMode": {
+        "2108:1": {
+          "r": 0.7450980544090271,
+          "g": 0.8901960849761963,
+          "b": 0.9725490212440491,
+          "a": 1
+        }
+      },
+      "resolvedValuesByMode": {
+        "2108:1": {
+          "resolvedValue": {
+            "r": 0.7450980544090271,
+            "g": 0.8901960849761963,
+            "b": 0.9725490212440491,
+            "a": 1
+          },
+          "alias": null
+        }
+      },
+      "scopes": ["ALL_SCOPES"],
+      "hiddenFromPublishing": false,
+      "codeSyntax": {}
+    },
+    {
+      "id": "VariableID:2109:2236",
+      "name": "primitive/blue/200",
+      "description": "",
+      "type": "COLOR",
+      "valuesByMode": {
+        "2108:1": {
+          "r": 0.5647059082984924,
+          "g": 0.8039215803146362,
+          "b": 0.95686274766922,
+          "a": 1
+        }
+      },
+      "resolvedValuesByMode": {
+        "2108:1": {
+          "resolvedValue": {
+            "r": 0.5647059082984924,
+            "g": 0.8039215803146362,
+            "b": 0.95686274766922,
+            "a": 1
+          },
+          "alias": null
+        }
+      },
+      "scopes": ["ALL_SCOPES"],
+      "hiddenFromPublishing": false,
+      "codeSyntax": {}
+    },
+    {
+      "id": "VariableID:2109:2237",
+      "name": "primitive/blue/300",
+      "description": "",
+      "type": "COLOR",
+      "valuesByMode": {
+        "2108:1": {
+          "r": 0.38823530077934265,
+          "g": 0.7019608020782471,
+          "b": 0.929411768913269,
+          "a": 1
+        }
+      },
+      "resolvedValuesByMode": {
+        "2108:1": {
+          "resolvedValue": {
+            "r": 0.38823530077934265,
+            "g": 0.7019608020782471,
+            "b": 0.929411768913269,
+            "a": 1
+          },
+          "alias": null
+        }
+      },
+      "scopes": ["ALL_SCOPES"],
+      "hiddenFromPublishing": false,
+      "codeSyntax": {}
+    },
+    {
+      "id": "VariableID:2109:2238",
+      "name": "primitive/blue/400",
+      "description": "",
+      "type": "COLOR",
+      "valuesByMode": {
+        "2108:1": {
+          "r": 0.25882354378700256,
+          "g": 0.6000000238418579,
+          "b": 0.8823529481887817,
+          "a": 1
+        }
+      },
+      "resolvedValuesByMode": {
+        "2108:1": {
+          "resolvedValue": {
+            "r": 0.25882354378700256,
+            "g": 0.6000000238418579,
+            "b": 0.8823529481887817,
+            "a": 1
+          },
+          "alias": null
+        }
+      },
+      "scopes": ["ALL_SCOPES"],
+      "hiddenFromPublishing": false,
+      "codeSyntax": {}
+    },
+    {
+      "id": "VariableID:2109:2239",
+      "name": "primitive/blue/500",
+      "description": "",
+      "type": "COLOR",
+      "valuesByMode": {
+        "2108:1": {
+          "r": 0.1921568661928177,
+          "g": 0.5098039507865906,
+          "b": 0.8078431487083435,
+          "a": 1
+        }
+      },
+      "resolvedValuesByMode": {
+        "2108:1": {
+          "resolvedValue": {
+            "r": 0.1921568661928177,
+            "g": 0.5098039507865906,
+            "b": 0.8078431487083435,
+            "a": 1
+          },
+          "alias": null
+        }
+      },
+      "scopes": ["ALL_SCOPES"],
+      "hiddenFromPublishing": false,
+      "codeSyntax": {}
+    },
+    {
+      "id": "VariableID:2109:2240",
+      "name": "primitive/blue/600",
+      "description": "",
+      "type": "COLOR",
+      "valuesByMode": {
+        "2108:1": {
+          "r": 0.16862745583057404,
+          "g": 0.42352941632270813,
+          "b": 0.6901960968971252,
+          "a": 1
+        }
+      },
+      "resolvedValuesByMode": {
+        "2108:1": {
+          "resolvedValue": {
+            "r": 0.16862745583057404,
+            "g": 0.42352941632270813,
+            "b": 0.6901960968971252,
+            "a": 1
+          },
+          "alias": null
+        }
+      },
+      "scopes": ["ALL_SCOPES"],
+      "hiddenFromPublishing": false,
+      "codeSyntax": {}
+    },
+    {
+      "id": "VariableID:2109:2241",
+      "name": "primitive/blue/700",
+      "description": "",
+      "type": "COLOR",
+      "valuesByMode": {
+        "2108:1": {
+          "r": 0.1725490242242813,
+          "g": 0.32156863808631897,
+          "b": 0.5098039507865906,
+          "a": 1
+        }
+      },
+      "resolvedValuesByMode": {
+        "2108:1": {
+          "resolvedValue": {
+            "r": 0.1725490242242813,
+            "g": 0.32156863808631897,
+            "b": 0.5098039507865906,
+            "a": 1
+          },
+          "alias": null
+        }
+      },
+      "scopes": ["ALL_SCOPES"],
+      "hiddenFromPublishing": false,
+      "codeSyntax": {}
+    },
+    {
+      "id": "VariableID:2109:2242",
+      "name": "primitive/blue/800",
+      "description": "",
+      "type": "COLOR",
+      "valuesByMode": {
+        "2108:1": {
+          "r": 0.16470588743686676,
+          "g": 0.26274511218070984,
+          "b": 0.3960784375667572,
+          "a": 1
+        }
+      },
+      "resolvedValuesByMode": {
+        "2108:1": {
+          "resolvedValue": {
+            "r": 0.16470588743686676,
+            "g": 0.26274511218070984,
+            "b": 0.3960784375667572,
+            "a": 1
+          },
+          "alias": null
+        }
+      },
+      "scopes": ["ALL_SCOPES"],
+      "hiddenFromPublishing": false,
+      "codeSyntax": {}
+    },
+    {
+      "id": "VariableID:2109:2243",
+      "name": "primitive/blue/900",
+      "description": "",
+      "type": "COLOR",
+      "valuesByMode": {
+        "2108:1": {
+          "r": 0.10196078568696976,
+          "g": 0.21176470816135406,
+          "b": 0.364705890417099,
+          "a": 1
+        }
+      },
+      "resolvedValuesByMode": {
+        "2108:1": {
+          "resolvedValue": {
+            "r": 0.10196078568696976,
+            "g": 0.21176470816135406,
+            "b": 0.364705890417099,
+            "a": 1
+          },
+          "alias": null
+        }
+      },
+      "scopes": ["ALL_SCOPES"],
+      "hiddenFromPublishing": false,
+      "codeSyntax": {}
+    },
+    {
+      "id": "VariableID:2109:2244",
+      "name": "primitive/cyan/50",
+      "description": "",
+      "type": "COLOR",
+      "valuesByMode": {
+        "2108:1": {
+          "r": 0.929411768913269,
+          "g": 0.9921568632125854,
+          "b": 0.9921568632125854,
+          "a": 1
+        }
+      },
+      "resolvedValuesByMode": {
+        "2108:1": {
+          "resolvedValue": {
+            "r": 0.929411768913269,
+            "g": 0.9921568632125854,
+            "b": 0.9921568632125854,
+            "a": 1
+          },
+          "alias": null
+        }
+      },
+      "scopes": ["ALL_SCOPES"],
+      "hiddenFromPublishing": false,
+      "codeSyntax": {}
+    },
+    {
+      "id": "VariableID:2109:2245",
+      "name": "primitive/cyan/100",
+      "description": "",
+      "type": "COLOR",
+      "valuesByMode": {
+        "2108:1": {
+          "r": 0.7686274647712708,
+          "g": 0.9450980424880981,
+          "b": 0.9764705896377563,
+          "a": 1
+        }
+      },
+      "resolvedValuesByMode": {
+        "2108:1": {
+          "resolvedValue": {
+            "r": 0.7686274647712708,
+            "g": 0.9450980424880981,
+            "b": 0.9764705896377563,
+            "a": 1
+          },
+          "alias": null
+        }
+      },
+      "scopes": ["ALL_SCOPES"],
+      "hiddenFromPublishing": false,
+      "codeSyntax": {}
+    },
+    {
+      "id": "VariableID:2109:2246",
+      "name": "primitive/cyan/200",
+      "description": "",
+      "type": "COLOR",
+      "valuesByMode": {
+        "2108:1": {
+          "r": 0.615686297416687,
+          "g": 0.9254902005195618,
+          "b": 0.9764705896377563,
+          "a": 1
+        }
+      },
+      "resolvedValuesByMode": {
+        "2108:1": {
+          "resolvedValue": {
+            "r": 0.615686297416687,
+            "g": 0.9254902005195618,
+            "b": 0.9764705896377563,
+            "a": 1
+          },
+          "alias": null
+        }
+      },
+      "scopes": ["ALL_SCOPES"],
+      "hiddenFromPublishing": false,
+      "codeSyntax": {}
+    },
+    {
+      "id": "VariableID:2109:2247",
+      "name": "primitive/cyan/300",
+      "description": "",
+      "type": "COLOR",
+      "valuesByMode": {
+        "2108:1": {
+          "r": 0.4627451002597809,
+          "g": 0.8941176533699036,
+          "b": 0.9686274528503418,
+          "a": 1
+        }
+      },
+      "resolvedValuesByMode": {
+        "2108:1": {
+          "resolvedValue": {
+            "r": 0.4627451002597809,
+            "g": 0.8941176533699036,
+            "b": 0.9686274528503418,
+            "a": 1
+          },
+          "alias": null
+        }
+      },
+      "scopes": ["ALL_SCOPES"],
+      "hiddenFromPublishing": false,
+      "codeSyntax": {}
+    },
+    {
+      "id": "VariableID:2109:2248",
+      "name": "primitive/cyan/400",
+      "description": "",
+      "type": "COLOR",
+      "valuesByMode": {
+        "2108:1": {
+          "r": 0.04313725605607033,
+          "g": 0.772549033164978,
+          "b": 0.9176470637321472,
+          "a": 1
+        }
+      },
+      "resolvedValuesByMode": {
+        "2108:1": {
+          "resolvedValue": {
+            "r": 0.04313725605607033,
+            "g": 0.772549033164978,
+            "b": 0.9176470637321472,
+            "a": 1
+          },
+          "alias": null
+        }
+      },
+      "scopes": ["ALL_SCOPES"],
+      "hiddenFromPublishing": false,
+      "codeSyntax": {}
+    },
+    {
+      "id": "VariableID:2109:2249",
+      "name": "primitive/cyan/500",
+      "description": "",
+      "type": "COLOR",
+      "valuesByMode": {
+        "2108:1": { "r": 0, "g": 0.7098039388656616, "b": 0.8470588326454163, "a": 1 }
+      },
+      "resolvedValuesByMode": {
+        "2108:1": {
+          "resolvedValue": { "r": 0, "g": 0.7098039388656616, "b": 0.8470588326454163, "a": 1 },
+          "alias": null
+        }
+      },
+      "scopes": ["ALL_SCOPES"],
+      "hiddenFromPublishing": false,
+      "codeSyntax": {}
+    },
+    {
+      "id": "VariableID:2109:2250",
+      "name": "primitive/cyan/600",
+      "description": "",
+      "type": "COLOR",
+      "valuesByMode": {
+        "2108:1": { "r": 0, "g": 0.6392157077789307, "b": 0.7686274647712708, "a": 1 }
+      },
+      "resolvedValuesByMode": {
+        "2108:1": {
+          "resolvedValue": { "r": 0, "g": 0.6392157077789307, "b": 0.7686274647712708, "a": 1 },
+          "alias": null
+        }
+      },
+      "scopes": ["ALL_SCOPES"],
+      "hiddenFromPublishing": false,
+      "codeSyntax": {}
+    },
+    {
+      "id": "VariableID:2109:2251",
+      "name": "primitive/cyan/700",
+      "description": "",
+      "type": "COLOR",
+      "valuesByMode": {
+        "2108:1": {
+          "r": 0.03529411926865578,
+          "g": 0.529411792755127,
+          "b": 0.6274510025978088,
+          "a": 1
+        }
+      },
+      "resolvedValuesByMode": {
+        "2108:1": {
+          "resolvedValue": {
+            "r": 0.03529411926865578,
+            "g": 0.529411792755127,
+            "b": 0.6274510025978088,
+            "a": 1
+          },
+          "alias": null
+        }
+      },
+      "scopes": ["ALL_SCOPES"],
+      "hiddenFromPublishing": false,
+      "codeSyntax": {}
+    },
+    {
+      "id": "VariableID:2109:2252",
+      "name": "primitive/cyan/800",
+      "description": "",
+      "type": "COLOR",
+      "valuesByMode": {
+        "2108:1": {
+          "r": 0.0313725508749485,
+          "g": 0.43529412150382996,
+          "b": 0.5137255191802979,
+          "a": 1
+        }
+      },
+      "resolvedValuesByMode": {
+        "2108:1": {
+          "resolvedValue": {
+            "r": 0.0313725508749485,
+            "g": 0.43529412150382996,
+            "b": 0.5137255191802979,
+            "a": 1
+          },
+          "alias": null
+        }
+      },
+      "scopes": ["ALL_SCOPES"],
+      "hiddenFromPublishing": false,
+      "codeSyntax": {}
+    },
+    {
+      "id": "VariableID:2109:2253",
+      "name": "primitive/cyan/900",
+      "description": "",
+      "type": "COLOR",
+      "valuesByMode": {
+        "2108:1": {
+          "r": 0.0235294122248888,
+          "g": 0.33725491166114807,
+          "b": 0.4000000059604645,
+          "a": 1
+        }
+      },
+      "resolvedValuesByMode": {
+        "2108:1": {
+          "resolvedValue": {
+            "r": 0.0235294122248888,
+            "g": 0.33725491166114807,
+            "b": 0.4000000059604645,
+            "a": 1
+          },
+          "alias": null
+        }
+      },
+      "scopes": ["ALL_SCOPES"],
+      "hiddenFromPublishing": false,
+      "codeSyntax": {}
+    },
+    {
+      "id": "VariableID:2109:2254",
+      "name": "primitive/purple/50",
+      "description": "",
+      "type": "COLOR",
+      "valuesByMode": {
+        "2108:1": { "r": 0.9803921580314636, "g": 0.9607843160629272, "b": 1, "a": 1 }
+      },
+      "resolvedValuesByMode": {
+        "2108:1": {
+          "resolvedValue": { "r": 0.9803921580314636, "g": 0.9607843160629272, "b": 1, "a": 1 },
+          "alias": null
+        }
+      },
+      "scopes": ["ALL_SCOPES"],
+      "hiddenFromPublishing": false,
+      "codeSyntax": {}
+    },
+    {
+      "id": "VariableID:2109:2255",
+      "name": "primitive/purple/100",
+      "description": "",
+      "type": "COLOR",
+      "valuesByMode": {
+        "2108:1": {
+          "r": 0.9137254953384399,
+          "g": 0.8470588326454163,
+          "b": 0.9921568632125854,
+          "a": 1
+        }
+      },
+      "resolvedValuesByMode": {
+        "2108:1": {
+          "resolvedValue": {
+            "r": 0.9137254953384399,
+            "g": 0.8470588326454163,
+            "b": 0.9921568632125854,
+            "a": 1
+          },
+          "alias": null
+        }
+      },
+      "scopes": ["ALL_SCOPES"],
+      "hiddenFromPublishing": false,
+      "codeSyntax": {}
+    },
+    {
+      "id": "VariableID:2109:2256",
+      "name": "primitive/purple/200",
+      "description": "",
+      "type": "COLOR",
+      "valuesByMode": {
+        "2108:1": {
+          "r": 0.8392156958580017,
+          "g": 0.7372549176216125,
+          "b": 0.9803921580314636,
+          "a": 1
+        }
+      },
+      "resolvedValuesByMode": {
+        "2108:1": {
+          "resolvedValue": {
+            "r": 0.8392156958580017,
+            "g": 0.7372549176216125,
+            "b": 0.9803921580314636,
+            "a": 1
+          },
+          "alias": null
+        }
+      },
+      "scopes": ["ALL_SCOPES"],
+      "hiddenFromPublishing": false,
+      "codeSyntax": {}
+    },
+    {
+      "id": "VariableID:2109:2257",
+      "name": "primitive/purple/300",
+      "description": "",
+      "type": "COLOR",
+      "valuesByMode": {
+        "2108:1": {
+          "r": 0.7176470756530762,
+          "g": 0.5803921818733215,
+          "b": 0.95686274766922,
+          "a": 1
+        }
+      },
+      "resolvedValuesByMode": {
+        "2108:1": {
+          "resolvedValue": {
+            "r": 0.7176470756530762,
+            "g": 0.5803921818733215,
+            "b": 0.95686274766922,
+            "a": 1
+          },
+          "alias": null
+        }
+      },
+      "scopes": ["ALL_SCOPES"],
+      "hiddenFromPublishing": false,
+      "codeSyntax": {}
+    },
+    {
+      "id": "VariableID:2109:2258",
+      "name": "primitive/purple/400",
+      "description": "",
+      "type": "COLOR",
+      "valuesByMode": {
+        "2108:1": {
+          "r": 0.6235294342041016,
+          "g": 0.47843137383461,
+          "b": 0.9176470637321472,
+          "a": 1
+        }
+      },
+      "resolvedValuesByMode": {
+        "2108:1": {
+          "resolvedValue": {
+            "r": 0.6235294342041016,
+            "g": 0.47843137383461,
+            "b": 0.9176470637321472,
+            "a": 1
+          },
+          "alias": null
+        }
+      },
+      "scopes": ["ALL_SCOPES"],
+      "hiddenFromPublishing": false,
+      "codeSyntax": {}
+    },
+    {
+      "id": "VariableID:2109:2259",
+      "name": "primitive/purple/500",
+      "description": "",
+      "type": "COLOR",
+      "valuesByMode": {
+        "2108:1": {
+          "r": 0.501960813999176,
+          "g": 0.3529411852359772,
+          "b": 0.8352941274642944,
+          "a": 1
+        }
+      },
+      "resolvedValuesByMode": {
+        "2108:1": {
+          "resolvedValue": {
+            "r": 0.501960813999176,
+            "g": 0.3529411852359772,
+            "b": 0.8352941274642944,
+            "a": 1
+          },
+          "alias": null
+        }
+      },
+      "scopes": ["ALL_SCOPES"],
+      "hiddenFromPublishing": false,
+      "codeSyntax": {}
+    },
+    {
+      "id": "VariableID:2109:2260",
+      "name": "primitive/purple/600",
+      "description": "",
+      "type": "COLOR",
+      "valuesByMode": {
+        "2108:1": {
+          "r": 0.41960784792900085,
+          "g": 0.27450981736183167,
+          "b": 0.7568627595901489,
+          "a": 1
+        }
+      },
+      "resolvedValuesByMode": {
+        "2108:1": {
+          "resolvedValue": {
+            "r": 0.41960784792900085,
+            "g": 0.27450981736183167,
+            "b": 0.7568627595901489,
+            "a": 1
+          },
+          "alias": null
+        }
+      },
+      "scopes": ["ALL_SCOPES"],
+      "hiddenFromPublishing": false,
+      "codeSyntax": {}
+    },
+    {
+      "id": "VariableID:2109:2261",
+      "name": "primitive/purple/700",
+      "description": "",
+      "type": "COLOR",
+      "valuesByMode": {
+        "2108:1": {
+          "r": 0.3333333432674408,
+          "g": 0.23529411852359772,
+          "b": 0.6039215922355652,
+          "a": 1
+        }
+      },
+      "resolvedValuesByMode": {
+        "2108:1": {
+          "resolvedValue": {
+            "r": 0.3333333432674408,
+            "g": 0.23529411852359772,
+            "b": 0.6039215922355652,
+            "a": 1
+          },
+          "alias": null
+        }
+      },
+      "scopes": ["ALL_SCOPES"],
+      "hiddenFromPublishing": false,
+      "codeSyntax": {}
+    },
+    {
+      "id": "VariableID:2109:2262",
+      "name": "primitive/purple/800",
+      "description": "",
+      "type": "COLOR",
+      "valuesByMode": {
+        "2108:1": {
+          "r": 0.2666666805744171,
+          "g": 0.20000000298023224,
+          "b": 0.47843137383461,
+          "a": 1
+        }
+      },
+      "resolvedValuesByMode": {
+        "2108:1": {
+          "resolvedValue": {
+            "r": 0.2666666805744171,
+            "g": 0.20000000298023224,
+            "b": 0.47843137383461,
+            "a": 1
+          },
+          "alias": null
+        }
+      },
+      "scopes": ["ALL_SCOPES"],
+      "hiddenFromPublishing": false,
+      "codeSyntax": {}
+    },
+    {
+      "id": "VariableID:2109:2263",
+      "name": "primitive/purple/900",
+      "description": "",
+      "type": "COLOR",
+      "valuesByMode": {
+        "2108:1": {
+          "r": 0.19607843458652496,
+          "g": 0.14901961386203766,
+          "b": 0.3490196168422699,
+          "a": 1
+        }
+      },
+      "resolvedValuesByMode": {
+        "2108:1": {
+          "resolvedValue": {
+            "r": 0.19607843458652496,
+            "g": 0.14901961386203766,
+            "b": 0.3490196168422699,
+            "a": 1
+          },
+          "alias": null
+        }
+      },
+      "scopes": ["ALL_SCOPES"],
+      "hiddenFromPublishing": false,
+      "codeSyntax": {}
+    },
+    {
+      "id": "VariableID:2109:2264",
+      "name": "primitive/pink/50",
+      "description": "",
+      "type": "COLOR",
+      "valuesByMode": {
+        "2108:1": { "r": 1, "g": 0.9607843160629272, "b": 0.9686274528503418, "a": 1 }
+      },
+      "resolvedValuesByMode": {
+        "2108:1": {
+          "resolvedValue": { "r": 1, "g": 0.9607843160629272, "b": 0.9686274528503418, "a": 1 },
+          "alias": null
+        }
+      },
+      "scopes": ["ALL_SCOPES"],
+      "hiddenFromPublishing": false,
+      "codeSyntax": {}
+    },
+    {
+      "id": "VariableID:2109:2265",
+      "name": "primitive/pink/100",
+      "description": "",
+      "type": "COLOR",
+      "valuesByMode": {
+        "2108:1": {
+          "r": 0.9960784316062927,
+          "g": 0.843137264251709,
+          "b": 0.886274516582489,
+          "a": 1
+        }
+      },
+      "resolvedValuesByMode": {
+        "2108:1": {
+          "resolvedValue": {
+            "r": 0.9960784316062927,
+            "g": 0.843137264251709,
+            "b": 0.886274516582489,
+            "a": 1
+          },
+          "alias": null
+        }
+      },
+      "scopes": ["ALL_SCOPES"],
+      "hiddenFromPublishing": false,
+      "codeSyntax": {}
+    },
+    {
+      "id": "VariableID:2109:2266",
+      "name": "primitive/pink/200",
+      "description": "",
+      "type": "COLOR",
+      "valuesByMode": {
+        "2108:1": {
+          "r": 0.9843137264251709,
+          "g": 0.7137255072593689,
+          "b": 0.8078431487083435,
+          "a": 1
+        }
+      },
+      "resolvedValuesByMode": {
+        "2108:1": {
+          "resolvedValue": {
+            "r": 0.9843137264251709,
+            "g": 0.7137255072593689,
+            "b": 0.8078431487083435,
+            "a": 1
+          },
+          "alias": null
+        }
+      },
+      "scopes": ["ALL_SCOPES"],
+      "hiddenFromPublishing": false,
+      "codeSyntax": {}
+    },
+    {
+      "id": "VariableID:2109:2267",
+      "name": "primitive/pink/300",
+      "description": "",
+      "type": "COLOR",
+      "valuesByMode": {
+        "2108:1": {
+          "r": 0.9647058844566345,
+          "g": 0.529411792755127,
+          "b": 0.7019608020782471,
+          "a": 1
+        }
+      },
+      "resolvedValuesByMode": {
+        "2108:1": {
+          "resolvedValue": {
+            "r": 0.9647058844566345,
+            "g": 0.529411792755127,
+            "b": 0.7019608020782471,
+            "a": 1
+          },
+          "alias": null
+        }
+      },
+      "scopes": ["ALL_SCOPES"],
+      "hiddenFromPublishing": false,
+      "codeSyntax": {}
+    },
+    {
+      "id": "VariableID:2109:2268",
+      "name": "primitive/pink/400",
+      "description": "",
+      "type": "COLOR",
+      "valuesByMode": {
+        "2108:1": {
+          "r": 0.929411768913269,
+          "g": 0.3921568691730499,
+          "b": 0.6509804129600525,
+          "a": 1
+        }
+      },
+      "resolvedValuesByMode": {
+        "2108:1": {
+          "resolvedValue": {
+            "r": 0.929411768913269,
+            "g": 0.3921568691730499,
+            "b": 0.6509804129600525,
+            "a": 1
+          },
+          "alias": null
+        }
+      },
+      "scopes": ["ALL_SCOPES"],
+      "hiddenFromPublishing": false,
+      "codeSyntax": {}
+    },
+    {
+      "id": "VariableID:2109:2269",
+      "name": "primitive/pink/500",
+      "description": "",
+      "type": "COLOR",
+      "valuesByMode": {
+        "2108:1": {
+          "r": 0.8352941274642944,
+          "g": 0.24705882370471954,
+          "b": 0.5490196347236633,
+          "a": 1
+        }
+      },
+      "resolvedValuesByMode": {
+        "2108:1": {
+          "resolvedValue": {
+            "r": 0.8352941274642944,
+            "g": 0.24705882370471954,
+            "b": 0.5490196347236633,
+            "a": 1
+          },
+          "alias": null
+        }
+      },
+      "scopes": ["ALL_SCOPES"],
+      "hiddenFromPublishing": false,
+      "codeSyntax": {}
+    },
+    {
+      "id": "VariableID:2109:2270",
+      "name": "primitive/pink/600",
+      "description": "",
+      "type": "COLOR",
+      "valuesByMode": {
+        "2108:1": {
+          "r": 0.7215686440467834,
+          "g": 0.19607843458652496,
+          "b": 0.501960813999176,
+          "a": 1
+        }
+      },
+      "resolvedValuesByMode": {
+        "2108:1": {
+          "resolvedValue": {
+            "r": 0.7215686440467834,
+            "g": 0.19607843458652496,
+            "b": 0.501960813999176,
+            "a": 1
+          },
+          "alias": null
+        }
+      },
+      "scopes": ["ALL_SCOPES"],
+      "hiddenFromPublishing": false,
+      "codeSyntax": {}
+    },
+    {
+      "id": "VariableID:2109:2271",
+      "name": "primitive/pink/700",
+      "description": "",
+      "type": "COLOR",
+      "valuesByMode": {
+        "2108:1": {
+          "r": 0.5921568870544434,
+          "g": 0.14901961386203766,
+          "b": 0.4274509847164154,
+          "a": 1
+        }
+      },
+      "resolvedValuesByMode": {
+        "2108:1": {
+          "resolvedValue": {
+            "r": 0.5921568870544434,
+            "g": 0.14901961386203766,
+            "b": 0.4274509847164154,
+            "a": 1
+          },
+          "alias": null
+        }
+      },
+      "scopes": ["ALL_SCOPES"],
+      "hiddenFromPublishing": false,
+      "codeSyntax": {}
+    },
+    {
+      "id": "VariableID:2109:2272",
+      "name": "primitive/pink/800",
+      "description": "",
+      "type": "COLOR",
+      "valuesByMode": {
+        "2108:1": {
+          "r": 0.43921568989753723,
+          "g": 0.1411764770746231,
+          "b": 0.3490196168422699,
+          "a": 1
+        }
+      },
+      "resolvedValuesByMode": {
+        "2108:1": {
+          "resolvedValue": {
+            "r": 0.43921568989753723,
+            "g": 0.1411764770746231,
+            "b": 0.3490196168422699,
+            "a": 1
+          },
+          "alias": null
+        }
+      },
+      "scopes": ["ALL_SCOPES"],
+      "hiddenFromPublishing": false,
+      "codeSyntax": {}
+    },
+    {
+      "id": "VariableID:2109:2273",
+      "name": "primitive/pink/900",
+      "description": "",
+      "type": "COLOR",
+      "valuesByMode": {
+        "2108:1": {
+          "r": 0.32156863808631897,
+          "g": 0.10588235408067703,
+          "b": 0.2549019753932953,
+          "a": 1
+        }
+      },
+      "resolvedValuesByMode": {
+        "2108:1": {
+          "resolvedValue": {
+            "r": 0.32156863808631897,
+            "g": 0.10588235408067703,
+            "b": 0.2549019753932953,
+            "a": 1
+          },
+          "alias": null
+        }
+      },
+      "scopes": ["ALL_SCOPES"],
+      "hiddenFromPublishing": false,
+      "codeSyntax": {}
+    }
+  ]
+}

@@ -1,6 +1,4 @@
-import { memo } from "react";
-import { View } from "react-native";
+import { memo } from 'react';
+import { View } from 'react-native';
 
-export const Spacer = memo(() => (
-    <View style={{ flex: 1 }} />
-))
+export const Spacer = memo(() => <View style={{ flex: 1 }} />);
