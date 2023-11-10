@@ -2,6 +2,7 @@ import { memo } from 'react';
 
 import { Calendar } from './components/Calendar';
 import { Camera } from './components/Camera';
+import { Checkmark } from './components/Checkmark';
 import { GoogleLogo } from './components/Google';
 import { Home } from './components/Home';
 import { Recipe } from './components/Recipe';
@@ -22,6 +23,8 @@ export const AppIcon = memo<Props>(({ name, ...rest }) => {
     return <Calendar {...rest} />;
   } else if (name === 'camera') {
     return <Camera {...rest} />;
+  } else if (name === 'check-mark') {
+    return <Checkmark {...rest} />;
   }
   return <></>;
 });
