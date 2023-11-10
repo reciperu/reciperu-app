@@ -114,7 +114,7 @@ export default function OnboardingTopPage() {
     }
   }, []);
   return (
-    <View style={{ flex: 1, backgroundColor: 'white' }}>
+    <View style={styles.container}>
       <Stack.Screen
         options={{
           title: '',
@@ -128,7 +128,7 @@ export default function OnboardingTopPage() {
         {/* プロフィール画像 */}
         <View style={styles.imageInputWrapper}>
           <InputLabel>プロフィール画像</InputLabel>
-          <Pressable onPress={pickImage} style={{ width: AVATAR_SIZE }}>
+          <Pressable onPress={pickImage} style={styles.avatarButtonWrapper}>
             <View style={styles.imagePickerWrapper}>
               {image ? (
                 <Image contentFit="cover" source={{ uri: image }} style={styles.avatarSize} />
@@ -153,7 +153,7 @@ export default function OnboardingTopPage() {
               ]}>
               <Pressable onPress={() => setDefaultAvatar(item.image, item.key)}>
                 <View style={item.key === imageKey ? styles.outline : styles.noOutline}>
-                  <View style={[styles.imagePickerWrapper]}>
+                  <View style={styles.imagePickerWrapper}>
                     <Image contentFit="cover" source={item.image} style={styles.avatarSize} />
                   </View>
                 </View>
@@ -191,18 +191,19 @@ export default function OnboardingTopPage() {
 }
 
 const styles = StyleSheet.create({
+  container: { flex: 1, backgroundColor: 'white' },
   pageTitle: {
-    fontSize: 16,
-    marginTop: 0,
+    fontSize: 18,
+    marginTop: 8,
     textAlign: 'center',
   },
   contentWrapper: { marginTop: 36 },
   imageInputWrapper: {
     paddingHorizontal: 16,
   },
+  avatarButtonWrapper: { width: AVATAR_SIZE },
   bottomArea: {
-    paddingLeft: 16,
-    paddingRight: 16,
+    paddingHorizontal: 16,
     backgroundColor: '#fff',
     paddingBottom: 50,
   },
