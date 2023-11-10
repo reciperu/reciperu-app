@@ -1,5 +1,5 @@
 import React, { memo } from 'react';
-import { ActivityIndicator, StyleSheet, TouchableWithoutFeedback, View } from 'react-native';
+import { ActivityIndicator, Pressable, StyleSheet, View } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 
 import { Text } from '@/components/ui/Text';
@@ -30,13 +30,7 @@ export const Button = memo<Props>(
     textStyle = {},
   }) => {
     return (
-      <TouchableWithoutFeedback
-        disabled={disabled || loading}
-        onPress={onPress}
-        style={[
-          (disabled || loading) && styles.disabledContainer,
-          (disabled || loading) && styles.disabledTextContainer,
-        ]}>
+      <Pressable disabled={disabled || loading} onPress={onPress}>
         {scheme === 'filled' ? (
           <>
             {variant === 'primary' ? (
@@ -44,7 +38,11 @@ export const Button = memo<Props>(
                 start={{ x: 0, y: 0 }}
                 end={{ x: 1.0, y: 1.0 }}
                 locations={[0, 0.6, 1]}
-                style={styles.container}
+                style={[
+                  styles.container,
+                  (disabled || loading) && styles.disabledContainer,
+                  (disabled || loading) && styles.disabledTextContainer,
+                ]}
                 colors={['#FF8753', '#ED64A6', '#ED64A6']}>
                 {loading ? (
                   <ActivityIndicator size="small" color="#FFFFFF" />
@@ -56,7 +54,13 @@ export const Button = memo<Props>(
                 </Text>
               </LinearGradient>
             ) : (
-              <View style={[styles.container, { backgroundColor: bgColor }]}>
+              <View
+                style={[
+                  styles.container,
+                  { backgroundColor: bgColor },
+                  (disabled || loading) && styles.disabledContainer,
+                  (disabled || loading) && styles.disabledTextContainer,
+                ]}>
                 {loading ? (
                   <ActivityIndicator size="small" color="#FFFFFF" />
                 ) : (
@@ -76,7 +80,7 @@ export const Button = memo<Props>(
             </Text>
           </View>
         )}
-      </TouchableWithoutFeedback>
+      </Pressable>
     );
   }
 );
