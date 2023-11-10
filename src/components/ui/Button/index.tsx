@@ -1,8 +1,9 @@
 import React, { memo } from 'react';
-import { ActivityIndicator, StyleSheet, TouchableOpacity, View } from 'react-native';
+import { ActivityIndicator, StyleSheet, TouchableWithoutFeedback, View } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 
 import { Text } from '@/components/ui/Text';
+import { Constants } from '@/constants';
 
 interface Props {
   leftIcon?: React.ReactNode;
@@ -29,11 +30,10 @@ export const Button = memo<Props>(
     textStyle = {},
   }) => {
     return (
-      <TouchableOpacity
+      <TouchableWithoutFeedback
         disabled={disabled || loading}
         onPress={onPress}
         style={[
-          styles.wrapper,
           (disabled || loading) && styles.disabledContainer,
           (disabled || loading) && styles.disabledTextContainer,
         ]}>
@@ -44,17 +44,16 @@ export const Button = memo<Props>(
                 start={{ x: 0, y: 0 }}
                 end={{ x: 1.0, y: 1.0 }}
                 locations={[0, 0.6, 1]}
+                style={styles.container}
                 colors={['#FF8753', '#ED64A6', '#ED64A6']}>
-                <View style={styles.container}>
-                  {loading ? (
-                    <ActivityIndicator size="small" color="#FFFFFF" />
-                  ) : (
-                    leftIcon && leftIcon
-                  )}
-                  <Text style={[styles.text, styles.primaryText, textStyle]} fw="bold">
-                    {children}
-                  </Text>
-                </View>
+                {loading ? (
+                  <ActivityIndicator size="small" color="#FFFFFF" />
+                ) : (
+                  leftIcon && leftIcon
+                )}
+                <Text style={[styles.text, styles.primaryText, textStyle]} fw="bold">
+                  {children}
+                </Text>
               </LinearGradient>
             ) : (
               <View style={[styles.container, { backgroundColor: bgColor }]}>
@@ -63,7 +62,7 @@ export const Button = memo<Props>(
                 ) : (
                   leftIcon && leftIcon
                 )}
-                <Text style={[styles.text, styles.primaryText, textStyle]} fw="bold">
+                <Text style={[styles.text, styles.othersText, textStyle]} fw="bold">
                   {children}
                 </Text>
               </View>
@@ -77,7 +76,7 @@ export const Button = memo<Props>(
             </Text>
           </View>
         )}
-      </TouchableOpacity>
+      </TouchableWithoutFeedback>
     );
   }
 );
@@ -94,6 +93,8 @@ const styles = StyleSheet.create({
     gap: 8,
     justifyContent: 'center',
     padding: 12,
+    borderRadius: 24,
+    overflow: 'hidden',
   },
   text: {
     fontSize: 16,
@@ -102,6 +103,9 @@ const styles = StyleSheet.create({
   },
   primaryText: {
     color: '#fff',
+  },
+  othersText: {
+    color: Constants.colors.primitive.pink[400],
   },
   disabledContainer: {
     opacity: 0.4,
