@@ -3,8 +3,15 @@ import Svg, { Path } from 'react-native-svg';
 
 import { IconProps } from '../types';
 
+import { Constants } from '@/constants';
+
 export const Calendar = memo<IconProps>(
-  ({ width = 24, height = 24, color = '#4A5568', variant = 'outline' }) => {
+  ({
+    width = 24,
+    height = 24,
+    color = Constants.colors.primitive.gray[600],
+    variant = 'outline',
+  }) => {
     if (variant === 'filled') {
       return (
         <Svg width={width} height={height} viewBox="0 0 18 18" fill="none">

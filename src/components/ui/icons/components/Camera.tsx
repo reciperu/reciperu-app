@@ -3,8 +3,10 @@ import Svg, { Path } from 'react-native-svg';
 
 import { IconProps } from '../types';
 
+import { Constants } from '@/constants';
+
 export const Camera = memo<Pick<IconProps, 'width' | 'height' | 'color'>>(
-  ({ width = 16, height = 16, color = '#4A5568' }) => (
+  ({ width = 16, height = 16, color = Constants.colors.primitive.gray[600] }) => (
     <Svg width={width} height={height} viewBox="0 0 16 16" fill="none">
       <Path
         d="M8 10.5C9.10457 10.5 10 9.60457 10 8.5C10 7.39543 9.10457 6.5 8 6.5C6.89543 6.5 6 7.39543 6 8.5C6 9.60457 6.89543 10.5 8 10.5Z"

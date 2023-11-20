@@ -35,6 +35,12 @@
           "photosPermission": "$(PRODUCT_NAME)があなたの写真にアクセスすることを許可してください。",
           "cameraPermission": "$(PRODUCT_NAME)がカメラにアクセスすることを許可してください。"
         }
+      ],
+      [
+        "expo-barcode-scanner",
+        {
+          "cameraPermission": "$(PRODUCT_NAME)がカメラにアクセスすることを許可してください。"
+        }
       ]
     ],
     "experiments": {

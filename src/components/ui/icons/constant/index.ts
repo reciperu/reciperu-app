@@ -5,4 +5,5 @@ export const ICON_NAME_LIST = [
   'home',
   'camera',
   'check-mark',
+  'list-check',
 ] as const;

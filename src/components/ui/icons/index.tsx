@@ -5,6 +5,7 @@ import { Camera } from './components/Camera';
 import { Checkmark } from './components/Checkmark';
 import { GoogleLogo } from './components/Google';
 import { Home } from './components/Home';
+import { ListCheck } from './components/ListCheck';
 import { Recipe } from './components/Recipe';
 import { AppIconNames, IconProps } from './types';
 
@@ -25,6 +26,8 @@ export const AppIcon = memo<Props>(({ name, ...rest }) => {
     return <Camera {...rest} />;
   } else if (name === 'check-mark') {
     return <Checkmark {...rest} />;
+  } else if (name === 'list-check') {
+    return <ListCheck {...rest} />;
   }
   return <></>;
 });
