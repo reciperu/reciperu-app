@@ -42,6 +42,8 @@ const useAuthProvider = () => {
 
     const result = await signInWithCredential(auth, credential);
     if (result) {
+      const token = await result.user.getIdToken();
+      secureStoreService.save(StoreKeyEnum.TOKEN, token);
       setUser(result.user);
     }
   };
@@ -51,7 +53,6 @@ const useAuthProvider = () => {
     const userInfo = await GoogleSignin.signInSilently();
 
     if (userInfo && userInfo.idToken) {
-      secureStoreService.save(StoreKeyEnum.TOKEN, userInfo?.idToken);
       await handleCredentialResponse(userInfo.idToken);
     }
   };
@@ -76,7 +77,6 @@ const useAuthProvider = () => {
       await GoogleSignin.hasPlayServices();
       const userInfo = await GoogleSignin.signIn();
       if (userInfo?.idToken) {
-        secureStoreService.save(StoreKeyEnum.TOKEN, userInfo?.idToken);
         await handleCredentialResponse(userInfo.idToken);
       }
       setLoading(false);
