@@ -4,6 +4,7 @@ import { StyleSheet, View } from 'react-native';
 import { Button } from '@/components/ui/Button';
 import { Spacer } from '@/components/ui/Spacer';
 import { Text } from '@/components/ui/Text';
+import { Constants } from '@/constants';
 
 export default function OnboardingJoinBookTopPage() {
   return (
@@ -15,9 +16,12 @@ export default function OnboardingJoinBookTopPage() {
             headerShadowVisible: false,
           }}
         />
-        <Text fw="bold" style={styles.pageTitle}>
-          料理本を共有してもらいましょう
-        </Text>
+        <View style={styles.titleWrapper}>
+          <Text style={styles.stepper}>3/4</Text>
+          <Text fw="bold" style={styles.pageTitle}>
+            料理本を共有してもらいましょう
+          </Text>
+        </View>
         <View style={styles.contentWrapper}>
           <Text style={[styles.descriptionText, { marginBottom: 8 }]}>料理本の共有には</Text>
           <Text style={styles.descriptionText}>1. QRコードを読み取る</Text>
@@ -39,10 +43,15 @@ export default function OnboardingJoinBookTopPage() {
 
 const styles = StyleSheet.create({
   container: { flex: 1, backgroundColor: 'white', paddingHorizontal: 16, paddingBottom: 50 },
+  titleWrapper: {
+    marginTop: 8,
+  },
+  stepper: {
+    fontSize: 12,
+    color: Constants.colors.primitive['black alpha'][600],
+  },
   pageTitle: {
     fontSize: 18,
-    marginTop: 8,
-    textAlign: 'center',
   },
   contentWrapper: { marginTop: 36 },
   actionButtonWrapper: {

@@ -121,9 +121,12 @@ export default function OnboardingTopPage() {
           headerShadowVisible: false,
         }}
       />
-      <Text fw="bold" style={styles.pageTitle}>
-        あなたの情報を教えてください
-      </Text>
+      <View style={styles.titleWrapper}>
+        <Text style={styles.stepper}>1/4</Text>
+        <Text fw="bold" style={styles.pageTitle}>
+          あなたの情報を教えてください
+        </Text>
+      </View>
       <View style={styles.contentWrapper}>
         {/* プロフィール画像 */}
         <View style={styles.imageInputWrapper}>
@@ -192,10 +195,16 @@ export default function OnboardingTopPage() {
 
 const styles = StyleSheet.create({
   container: { flex: 1, backgroundColor: 'white' },
+  titleWrapper: {
+    paddingHorizontal: 16,
+    marginTop: 8,
+  },
+  stepper: {
+    fontSize: 12,
+    color: Constants.colors.primitive['black alpha'][600],
+  },
   pageTitle: {
     fontSize: 18,
-    marginTop: 8,
-    textAlign: 'center',
   },
   contentWrapper: { marginTop: 36 },
   imageInputWrapper: {
