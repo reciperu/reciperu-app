@@ -7,9 +7,9 @@ import { Constants } from '@/constants';
 
 export const Checkmark = memo<Pick<IconProps, 'width' | 'height' | 'color'>>(
   ({ width = 24, height = 24, color = Constants.colors.primitive.gray[300] }) => (
-    <Svg width={width} height={height} viewBox="0 0 24 24" fill="none">
+    <Svg width={width} height={height} viewBox="0 0 20 20" fill="none">
       <Path
-        d="M12 2.25C6.62391 2.25 2.25 6.62391 2.25 12C2.25 17.3761 6.62391 21.75 12 21.75C17.3761 21.75 21.75 17.3761 21.75 12C21.75 6.62391 17.3761 2.25 12 2.25ZM10.2188 16.8928L6.44062 12.6942L7.55578 11.6906L10.1808 14.6072L16.4062 7.19344L17.5566 8.15625L10.2188 16.8928Z"
+        d="M10 0.25C4.62391 0.25 0.25 4.62391 0.25 10C0.25 15.3761 4.62391 19.75 10 19.75C15.3761 19.75 19.75 15.3761 19.75 10C19.75 4.62391 15.3761 0.25 10 0.25ZM8.21875 14.8928L4.44062 10.6942L5.55578 9.69062L8.18078 12.6072L14.4062 5.19344L15.5566 6.15625L8.21875 14.8928Z"
         fill={color}
       />
     </Svg>

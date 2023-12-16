@@ -30,12 +30,6 @@ export default function OnboardingJoinBookReadQRPage() {
   if (hasPermission === false) {
     return (
       <View style={styles.container}>
-        <Stack.Screen
-          options={{
-            title: '',
-            headerShadowVisible: false,
-          }}
-        />
         {/* // TODO: UIアップデート */}
         <Text>カメラの利用を許可してください</Text>
       </View>

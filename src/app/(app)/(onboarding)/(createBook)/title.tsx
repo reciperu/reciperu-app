@@ -1,4 +1,4 @@
-import { Stack, router } from 'expo-router';
+import { Stack, router, useRouter } from 'expo-router';
 import { useCallback, useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 
@@ -9,22 +9,19 @@ import { TextInput } from '@/components/ui/TextInput';
 import { Constants } from '@/constants';
 import { Validation } from '@/constants/validation';
 import { Book } from '@/features/Book';
-import { useFetchMyProfile } from '@/features/users/apis/getMyProfile';
+import { useFetchMyProfile } from '@/features/Users/apis/getMyProfile';
 
 export default function OnboardingCreateBookTitlePage() {
   const { data } = useFetchMyProfile();
+  const router = useRouter();
   const [bookName, setBookName] = useState(`${data?.name}さんの料理本`);
   // TODO: 作成
-  const handlePress = useCallback(() => {}, []);
+  const handlePress = useCallback(() => {
+    router.push('/(onboarding)/(registerRecipes)/select');
+  }, []);
   return (
     <>
       <View style={styles.container}>
-        <Stack.Screen
-          options={{
-            title: '',
-            headerShadowVisible: false,
-          }}
-        />
         <View style={styles.titleWrapper}>
           <Text style={styles.stepper}>3/4</Text>
           <Text fw="bold" style={styles.pageTitle}>
@@ -32,7 +29,7 @@ export default function OnboardingCreateBookTitlePage() {
           </Text>
         </View>
         <View style={styles.bookWrapper}>
-          <Book name={data?.name || ''} icon={data?.imageUrl || ''} />
+          <Book name={bookName} icon={data?.imageUrl || ''} />
         </View>
         <Spacer />
         <View style={styles.actionButtonWrapper}>
@@ -59,11 +56,12 @@ const styles = StyleSheet.create({
     marginTop: 8,
   },
   stepper: {
-    fontSize: 12,
+    fontSize: 14,
     color: Constants.colors.primitive['black alpha'][600],
   },
   pageTitle: {
     fontSize: 18,
+    marginVertical: 2,
   },
   contentWrapper: { marginTop: 36 },
   bookWrapper: { display: 'flex', alignItems: 'center', marginTop: 32 },

@@ -9,12 +9,6 @@ export default function OnboardingJoinBookCompletePage() {
   return (
     <>
       <View style={styles.container}>
-        <Stack.Screen
-          options={{
-            title: '',
-            headerShadowVisible: false,
-          }}
-        />
         <Text fw="bold" style={styles.pageTitle}>
           {/* // TODO: ユーザー名 */}
           ありがとうございます！{'\n'}ハナコさんと一緒に料理本を作りましょう🎉

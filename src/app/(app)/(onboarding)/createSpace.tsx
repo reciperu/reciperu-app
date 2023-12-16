@@ -31,12 +31,6 @@ export default function OnboardingCreateSpacePage() {
   return (
     <>
       <View style={styles.container}>
-        <Stack.Screen
-          options={{
-            title: '',
-            headerShadowVisible: false,
-          }}
-        />
         <View style={styles.titleWrapper}>
           <Text style={styles.stepper}>2/4</Text>
           <Text fw="bold" style={styles.pageTitle}>
@@ -68,11 +62,12 @@ const styles = StyleSheet.create({
     marginBottom: 40,
   },
   stepper: {
-    fontSize: 12,
+    fontSize: 14,
     color: Constants.colors.primitive['black alpha'][600],
   },
   pageTitle: {
     fontSize: 18,
+    marginVertical: 2,
   },
   contentWrapper: { marginTop: 36 },
   checkListWrapper: {

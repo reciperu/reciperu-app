@@ -14,8 +14,8 @@ import { TextInput } from '@/components/ui/TextInput';
 import { AppIcon } from '@/components/ui/icons';
 import { Constants } from '@/constants';
 import { Validation } from '@/constants/validation';
-import { useFetchMyProfile } from '@/features/users/apis/getMyProfile';
-import { usePatchMyProfile } from '@/features/users/apis/patchMyProfile';
+import { useFetchMyProfile } from '@/features/Users/apis/getMyProfile';
+import { usePatchMyProfile } from '@/features/Users/apis/patchMyProfile';
 
 const AVATAR_SIZE = 40;
 
@@ -200,11 +200,12 @@ const styles = StyleSheet.create({
     marginTop: 8,
   },
   stepper: {
-    fontSize: 12,
+    fontSize: 14,
     color: Constants.colors.primitive['black alpha'][600],
   },
   pageTitle: {
     fontSize: 18,
+    marginVertical: 2,
   },
   contentWrapper: { marginTop: 36 },
   imageInputWrapper: {

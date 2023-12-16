@@ -1,0 +1,94 @@
+import { Stack, useRouter } from 'expo-router';
+import { useCallback } from 'react';
+import { Pressable, ScrollView, StyleSheet, View } from 'react-native';
+
+import { Button } from '@/components/ui/Button';
+import { CheckIconButton } from '@/components/ui/CheckIconButton';
+import { Flex } from '@/components/ui/Flex';
+import { Spacer } from '@/components/ui/Spacer';
+import { Text } from '@/components/ui/Text';
+import { Constants } from '@/constants';
+import { RECIPE_LIST } from '@/features/Onboarding/Recipe/constants';
+import { RecipeItem } from '@/features/Recipe/Item';
+import { useStore } from '@/store';
+
+export default function OnboardingRegisterRecipesSelectPage() {
+  const selectedRecipes = useStore((state) => state.onboardingSelectedRecipeIdxList);
+  const setSelectedRecipes = useStore((state) => state.setOnboardingSelectedRecipeIdxList);
+  const router = useRouter();
+  // TODO: 作成
+  const handlePress = useCallback(() => {
+    router.push('/(onboarding)/(registerRecipes)/confirm');
+  }, []);
+  return (
+    <ScrollView style={styles.container}>
+      <Stack.Screen
+        options={{
+          title: '',
+          headerShadowVisible: false,
+        }}
+      />
+      <View style={styles.titleWrapper}>
+        <Text style={styles.stepper}>4/4</Text>
+        <Text fw="bold" style={styles.pageTitle}>
+          最後に料理を登録しましょう
+        </Text>
+        <Text>登録したい料理を１つ以上選択してください</Text>
+      </View>
+      <View style={styles.contentBox}>
+        {RECIPE_LIST.map((recipe, idx) => (
+          <Pressable key={idx} onPress={() => setSelectedRecipes(idx)}>
+            <View style={styles.recipeItemWrapper}>
+              <Flex style={styles.recipeBox}>
+                <View style={styles.recipeInnerContent}>
+                  <RecipeItem data={recipe} />
+                </View>
+                <CheckIconButton checked={selectedRecipes.includes(idx)} />
+              </Flex>
+            </View>
+          </Pressable>
+        ))}
+      </View>
+      <Spacer />
+      <View style={styles.actionButtonWrapper}>
+        <Button onPress={handlePress} disabled={!selectedRecipes.length}>
+          次に進む
+        </Button>
+      </View>
+    </ScrollView>
+  );
+}
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    paddingHorizontal: 16,
+    paddingBottom: 50,
+    display: 'flex',
+    backgroundColor: 'white',
+  },
+  titleWrapper: {
+    marginTop: 8,
+  },
+  contentBox: { marginVertical: 20 },
+  stepper: {
+    fontSize: 14,
+    color: Constants.colors.primitive['black alpha'][600],
+  },
+  pageTitle: {
+    fontSize: 18,
+    marginVertical: 2,
+  },
+  contentWrapper: { marginTop: 36 },
+  recipeItemWrapper: { paddingVertical: 4, marginVertical: 2 },
+  recipeBox: {
+    alignItems: 'center',
+    justifyContent: 'space-between',
+  },
+  recipeInnerContent: { flex: 1 },
+  actionButtonWrapper: {
+    display: 'flex',
+    flexDirection: 'column',
+    gap: 16,
+  },
+});
