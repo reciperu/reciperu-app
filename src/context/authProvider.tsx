@@ -74,8 +74,13 @@ const useAuthProvider = () => {
   useEffect(() => {
     handleRedirect();
 
-    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+    const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
       if (currentUser) {
+        const token = await secureStoreService.getValueFor(StoreKeyEnum.TOKEN);
+        if (!token) {
+          const newToken = await currentUser.getIdToken();
+          await secureStoreService.save(StoreKeyEnum.TOKEN, newToken);
+        }
         setUser(currentUser);
       } else {
         setUser(null);
