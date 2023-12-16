@@ -18,12 +18,12 @@ export interface RadiusVariable {
 interface CodeSyntax {}
 
 export interface RadiusData {
-  '2xl': number;
-  '3xl': number;
-  base: number;
-  full: number;
-  lg: number;
-  md: number;
-  sm: number;
-  xl: number;
+  '2xl': 16;
+  '3xl': 24;
+  base: 4;
+  full: 9999;
+  lg: 8;
+  md: 6;
+  sm: 2;
+  xl: 12;
 }
