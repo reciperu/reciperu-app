@@ -3,7 +3,8 @@ export interface SpaceUser {
   name: string;
   imageUrl: string;
   activeStatus: UserStatus;
-  spaceRole: UserRole;
+  recipeBookOwnerId: 'string';
+  recipeBookParticipantId: 'string';
 }
 
 export interface UserCheckResponse {
@@ -11,18 +12,12 @@ export interface UserCheckResponse {
   name: string;
   imageUrl: string;
   activeStatus: UserStatus;
-  spaceRole: UserRole;
 }
 
 export enum UserStatus {
   ONBOARDING = 'ONBOARDING',
   JOINED_SPACE = 'JOINED_SPACE',
   NOT_JOINED_SPACE = 'NOT_JOINED_SPACE',
-}
-
-export enum UserRole {
-  OWNER = 'OWNER',
-  MEMBER = 'MEMBER',
 }
 
 export interface UpdatedUserBody {

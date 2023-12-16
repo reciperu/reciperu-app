@@ -7,8 +7,16 @@ import {
   User,
   signOut as firebaseSignOut,
 } from 'firebase/auth';
-import { PropsWithChildren, createContext, useContext, useEffect, useState } from 'react';
+import {
+  PropsWithChildren,
+  createContext,
+  useCallback,
+  useContext,
+  useEffect,
+  useState,
+} from 'react';
 
+import { usePostAuth } from '@/features/Auth/api/postAuth';
 import { useProtectedRoute } from '@/hooks/useProtectedRoute';
 import { auth } from '@/lib/firebase-config';
 import secureStoreService, { StoreKeyEnum } from '@/lib/secureStore';
@@ -16,6 +24,7 @@ import secureStoreService, { StoreKeyEnum } from '@/lib/secureStore';
 type Auth = {
   user: User | null;
   loading: boolean;
+  clearUser: () => void;
   googleSignIn: () => Promise<boolean>;
   signOut: () => Promise<void>;
 };
@@ -29,12 +38,17 @@ export const useAuthContext = () => {
 const useAuthProvider = () => {
   const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState(true);
+  const { postAuth } = usePostAuth();
   useProtectedRoute(user);
   useEffect(() => {
     // googlesigninを行う場合に必須で呼び出すもの
     GoogleSignin.configure({
       webClientId: WEB_CLIENT_ID,
     });
+  }, []);
+  // ユーザー情報のクリア
+  const clearUser = useCallback(() => {
+    setUser(null);
   }, []);
   // Google の認証応答からの ID トークンを Firebase 認証情報と交換し、それを使用して Firebase での認証を行う
   const handleCredentialResponse = async (googleIdToken: string) => {
@@ -79,6 +93,7 @@ const useAuthProvider = () => {
       if (userInfo?.idToken) {
         await handleCredentialResponse(userInfo.idToken);
       }
+      await postAuth();
       setLoading(false);
       return true;
     } catch {
@@ -103,6 +118,7 @@ const useAuthProvider = () => {
     loading,
     googleSignIn,
     signOut,
+    clearUser,
   };
 };
 

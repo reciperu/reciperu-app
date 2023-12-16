@@ -1,6 +1,6 @@
 import { useSWRConfig } from 'swr';
 
-import { SpaceUser, UpdatedUserBody } from '@/features/users/types';
+import { SpaceUser, UpdatedUserBody } from '@/features/Users/types';
 import { client } from '@/lib/axios';
 
 const patchMyProfile = async (id: string, updatedProfile: UpdatedUserBody) =>

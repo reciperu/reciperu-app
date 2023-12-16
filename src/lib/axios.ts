@@ -25,7 +25,7 @@ client.interceptors.request.use(
       const token = await secureStoreService.getValueFor(StoreKeyEnum.TOKEN);
       if (!token) {
         // note: 今のところ認証必須
-        router.push('(auth)/sign-in');
+        router.replace('/(auth)/sign-in');
         return Promise.reject(AUTH_ERROR_MESSAGE);
       } else {
         config.headers['Authorization'] = `Bearer ${token}`;
@@ -49,7 +49,12 @@ client.interceptors.response.use(
         await secureStoreService.save(StoreKeyEnum.TOKEN, res.idToken);
         error.config.retry = true;
         return client.request(error.config);
+      } else {
+        router.replace('/(auth)/sign-in');
+        return Promise.reject(AUTH_ERROR_MESSAGE);
       }
+    } else {
+      router.replace('/(auth)/sign-in');
       return Promise.reject(error);
     }
   }

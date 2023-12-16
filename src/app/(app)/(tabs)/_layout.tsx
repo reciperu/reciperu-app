@@ -1,4 +1,4 @@
-import { Redirect, Tabs } from 'expo-router';
+import { Redirect, Tabs, router } from 'expo-router';
 import { useEffect } from 'react';
 import { Alert, Dimensions, TouchableHighlight, View } from 'react-native';
 
@@ -7,18 +7,30 @@ import { Text } from '@/components/ui/Text';
 import { AppIcon } from '@/components/ui/icons';
 import { Constants } from '@/constants';
 import { useAuthContext } from '@/context/authProvider';
-import { useFetchUserCheck } from '@/features/users/apis/getUserCheck';
-import { UserStatus } from '@/features/users/types';
+import { useFetchMyProfile } from '@/features/Users/apis/getMyProfile';
+import { UserStatus } from '@/features/Users/types';
 
 export default function TabLayout() {
   const authContext = useAuthContext();
   const windowHeight = Dimensions.get('window').height;
-  const { data, isLoading, error, mutate } = useFetchUserCheck();
+  const { data, isLoading, error, mutate } = useFetchMyProfile();
   useEffect(() => {
     if (error) {
-      Alert.alert('エラー', 'エラーが発生しました。', [
-        { text: 'もう一度試す', onPress: () => mutate() },
-      ]);
+      if (error.status === 401) {
+        Alert.alert('エラー', 'ログインが必要です', [
+          {
+            text: 'ログインする',
+            onPress: () => {
+              authContext.clearUser();
+              router.replace('/(auth)/sign-in');
+            },
+          },
+        ]);
+      } else {
+        Alert.alert('エラー', 'エラーが発生しました。', [
+          { text: 'もう一度試す', onPress: () => mutate() },
+        ]);
+      }
     }
   }, [error]);
   // 取得中
