@@ -13,13 +13,12 @@ import { RecipeItem } from '@/features/Recipe/Item';
 import { useStore } from '@/store';
 
 export default function OnboardingRegisterRecipesSelectPage() {
-  const selectedRecipes = useStore((state) => state.onboardingSelectedRecipeIdxList);
-  const setSelectedRecipes = useStore((state) => state.setOnboardingSelectedRecipeIdxList);
+  const selectedRecipes = useStore((state) => state.onboardingSelectedRecipeList);
+  const setSelectedRecipes = useStore((state) => state.setOnboardingSelectedRecipeList);
   const router = useRouter();
-  // TODO: 作成
   const handlePress = useCallback(() => {
     router.push('/(onboarding)/(registerRecipes)/confirm');
-  }, []);
+  }, [router]);
   return (
     <ScrollView style={styles.container}>
       <Stack.Screen
@@ -37,13 +36,15 @@ export default function OnboardingRegisterRecipesSelectPage() {
       </View>
       <View style={styles.contentBox}>
         {RECIPE_LIST.map((recipe, idx) => (
-          <Pressable key={idx} onPress={() => setSelectedRecipes(idx)}>
+          <Pressable key={idx} onPress={() => setSelectedRecipes(recipe)}>
             <View style={styles.recipeItemWrapper}>
               <Flex style={styles.recipeBox}>
                 <View style={styles.recipeInnerContent}>
                   <RecipeItem data={recipe} />
                 </View>
-                <CheckIconButton checked={selectedRecipes.includes(idx)} />
+                <CheckIconButton
+                  checked={Boolean(selectedRecipes.find((item) => item.idx === recipe.idx))}
+                />
               </Flex>
             </View>
           </Pressable>

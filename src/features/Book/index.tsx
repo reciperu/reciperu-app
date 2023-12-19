@@ -46,7 +46,7 @@ const styles = StyleSheet.create({
     height: 367,
     position: 'relative',
     backgroundColor: Constants.colors.primitive.pink['50'],
-    borderRadius: 8,
+    borderRadius: Constants.radius['lg'],
     /* shadow */
     shadowColor: '#000',
     shadowOffset: {
@@ -78,6 +78,6 @@ const styles = StyleSheet.create({
     position: 'absolute',
     left: 0,
     top: 0,
-    borderRadius: 8,
+    borderRadius: Constants.radius['base'],
   },
 });

@@ -1,4 +1,5 @@
 export interface Recipe {
+  id: string;
   title: string;
   thumbnailUrl: string;
   imageUrls: string[];
@@ -6,4 +7,8 @@ export interface Recipe {
   recipeUrl: string;
   faviconUrl: string;
   appName: string;
+}
+
+export interface OnboardingRecipe extends Omit<Recipe, 'id'> {
+  idx: number;
 }

@@ -8,7 +8,7 @@ import { Constants } from '@/constants';
 import { Recipe } from '@/features/Recipe/types';
 
 interface Props {
-  data: Recipe;
+  data: Omit<Recipe, 'id'> | Recipe;
 }
 
 export const RecipeItem = memo<Props>(({ data }) => {

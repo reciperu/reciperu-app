@@ -102,7 +102,7 @@ const styles = StyleSheet.create({
   dot: {
     width: 10,
     height: 10,
-    borderRadius: 5,
+    borderRadius: Constants.radius['full'],
   },
   activeDot: {
     backgroundColor: Constants.colors.primitive.pink[400],

@@ -1,5 +1,3 @@
-import { Asset } from 'expo-asset';
-import * as FileSystem from 'expo-file-system';
 import { Image } from 'expo-image';
 import * as ImagePicker from 'expo-image-picker';
 import { Stack, router } from 'expo-router';
@@ -16,6 +14,7 @@ import { Constants } from '@/constants';
 import { Validation } from '@/constants/validation';
 import { useFetchMyProfile } from '@/features/Users/apis/getMyProfile';
 import { usePatchMyProfile } from '@/features/Users/apis/patchMyProfile';
+import { convertToBase64FromModule } from '@/utils/image';
 
 const AVATAR_SIZE = 40;
 
@@ -59,24 +58,6 @@ export default function OnboardingTopPage() {
       setImage(result.assets[0].uri);
     }
   }, []);
-  const convertToBase64 = useCallback(async (image: string) => {
-    try {
-      const asset = Asset.fromModule(image);
-      // ローカルのURIがあることを確認する
-      await asset.downloadAsync();
-      if (asset.localUri) {
-        // ファイルの内容をBase64として読み込む
-        const base64 = await FileSystem.readAsStringAsync(asset.localUri, {
-          encoding: FileSystem.EncodingType.Base64,
-        });
-        return `data:image/png;base64,${base64}`;
-      }
-      return null;
-    } catch (e) {
-      console.error(e);
-      return null;
-    }
-  }, []);
 
   const setDefaultAvatar = useCallback(
     async (image: string, key: string) => {
@@ -85,7 +66,7 @@ export default function OnboardingTopPage() {
         setImage(null);
         return;
       }
-      const base64 = await convertToBase64(image);
+      const base64 = await convertToBase64FromModule(image);
       if (base64) {
         setImageKey(key);
         setImage(base64);
@@ -106,13 +87,13 @@ export default function OnboardingTopPage() {
         console.error(e);
       }
     }
-  }, [username, image, data?.id]);
+  }, [username, image, data?.id, data?.activeStatus, updateProfile]);
   useEffect(() => {
     if (data) {
       if (!image) setImage(data.imageUrl);
       if (!username) setImage(data.name);
     }
-  }, []);
+  }, [data]);
   return (
     <View style={styles.container}>
       <Stack.Screen
@@ -220,7 +201,7 @@ const styles = StyleSheet.create({
   imagePickerWrapper: {
     width: AVATAR_SIZE,
     height: AVATAR_SIZE,
-    borderRadius: 20,
+    borderRadius: Constants.radius['3xl'],
     overflow: 'hidden',
   },
   noImagePickerButton: {
@@ -235,13 +216,13 @@ const styles = StyleSheet.create({
     borderStyle: 'solid',
     borderWidth: 3,
     borderColor: 'rgba(63, 153, 225, 0.60)',
-    borderRadius: 24,
+    borderRadius: Constants.radius['3xl'],
   },
   noOutline: {
     borderStyle: 'solid',
     borderWidth: 3,
     borderColor: 'white',
-    borderRadius: 24,
+    borderRadius: Constants.radius['3xl'],
   },
   avatarSize: {
     width: AVATAR_SIZE,

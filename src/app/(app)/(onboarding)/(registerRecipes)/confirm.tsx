@@ -1,5 +1,5 @@
 import { useRouter } from 'expo-router';
-import { useCallback, useMemo } from 'react';
+import { useCallback } from 'react';
 import { Pressable, ScrollView, StyleSheet, View, useWindowDimensions } from 'react-native';
 
 import { Button } from '@/components/ui/Button';
@@ -7,22 +7,16 @@ import { Flex } from '@/components/ui/Flex';
 import { Spacer } from '@/components/ui/Spacer';
 import { Text } from '@/components/ui/Text';
 import { Constants } from '@/constants';
-import { RECIPE_LIST } from '@/features/Onboarding/Recipe/constants';
 import { RecipeItem } from '@/features/Recipe/Item';
 import { useStore } from '@/store';
 
 export default function OnboardingRegisterRecipesConfirmPage() {
-  const selectedRecipes = useStore((state) => state.onboardingSelectedRecipeIdxList);
+  const selectedRecipes = useStore((state) => state.onboardingSelectedRecipeList);
   const { height } = useWindowDimensions();
   const router = useRouter();
-  const selectedRecipeList = useMemo(
-    () => selectedRecipes.map((idx) => RECIPE_LIST[idx]),
-    [selectedRecipes]
-  );
-  // TODO: 作成
   const handlePress = useCallback(() => {
     router.push('/(onboarding)/(registerRecipes)/confirm');
-  }, []);
+  }, [router]);
   return (
     <ScrollView style={styles.container}>
       <View style={{ minHeight: height - 144 }}>
@@ -34,18 +28,23 @@ export default function OnboardingRegisterRecipesConfirmPage() {
           <Text>追加情報があれば入力することができます</Text>
         </View>
         <View style={{ marginVertical: 20 }}>
-          {selectedRecipeList.map((recipe, idx) => (
-            <View style={{ paddingVertical: 4, marginVertical: 2 }} key={idx}>
+          {selectedRecipes.map((recipe) => (
+            <View style={{ paddingVertical: 4, marginVertical: 2 }} key={recipe.idx}>
               <Flex
                 style={{
-                  alignItems: 'center',
+                  alignItems: 'flex-start',
                   justifyContent: 'space-between',
                 }}>
                 <View style={{ flex: 1 }}>
                   <RecipeItem data={recipe} />
                 </View>
-                <Pressable onPress={() => router.push('/(onboarding)/(registerRecipes)/edit/123')}>
-                  <Text>press</Text>
+                <Pressable
+                  onPress={() => router.push(`/(onboarding)/(registerRecipes)/edit/${recipe.idx}`)}>
+                  <View style={styles.editButtonWrapper}>
+                    <Text fw="bold" style={styles.editButtonText}>
+                      編集
+                    </Text>
+                  </View>
                 </Pressable>
               </Flex>
             </View>
@@ -86,5 +85,15 @@ const styles = StyleSheet.create({
     display: 'flex',
     flexDirection: 'column',
     gap: 16,
+  },
+  editButtonWrapper: {
+    backgroundColor: Constants.colors.primitive.pink[400],
+    paddingVertical: 4,
+    paddingHorizontal: 12,
+    borderRadius: Constants.radius['3xl'],
+  },
+  editButtonText: {
+    color: Constants.colors.primitive.white['undefined'],
+    fontSize: 12,
   },
 });
