@@ -24,7 +24,7 @@ export const CheckIconButton = memo<Props>(({ checked }) => {
       style={{
         width: 20,
         height: 20,
-        borderRadius: 10,
+        borderRadius: Constants.radius['xl'],
         borderWidth: 1,
         borderColor: Constants.colors.primitive.gray['400'],
         display: 'flex',

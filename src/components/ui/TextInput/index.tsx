@@ -4,6 +4,7 @@ import { TextInput as RNTextInput, StyleProp, StyleSheet, View, ViewStyle } from
 import { Flex } from '@/components/ui/Flex';
 import { Text } from '@/components/ui/Text';
 import { Constants } from '@/constants';
+import { Spacer } from '../Spacer';
 
 interface Props {
   style?: StyleProp<ViewStyle>;
@@ -12,10 +13,23 @@ interface Props {
   placeholder?: string;
   maxLength?: number;
   errorMessage?: string;
+  multiline?: boolean;
+  numberOfLines?: number;
+  description?: string;
 }
 
 export const TextInput = memo<PropsWithChildren<Props>>(
-  ({ style, onChange, value, placeholder = '', maxLength, errorMessage }) => {
+  ({
+    style,
+    onChange,
+    value,
+    placeholder = '',
+    maxLength,
+    errorMessage,
+    multiline,
+    numberOfLines = 1,
+    description,
+  }) => {
     const [isFocused, setIsFocused] = useState(false);
     const [isError, setIsError] = useState(false);
 
@@ -46,7 +60,7 @@ export const TextInput = memo<PropsWithChildren<Props>>(
               paddingVertical: 12,
               paddingHorizontal: 12,
               borderColor: Constants.colors.primitive.gray[200],
-              borderRadius: 4,
+              borderRadius: Constants.radius['base'],
             },
             isFocused && styles.inputFocus, // フォーカス時にスタイルを適用
             isError && styles.inputError, // エラー時にスタイルを適用
@@ -58,12 +72,21 @@ export const TextInput = memo<PropsWithChildren<Props>>(
           maxLength={maxLength}
           onFocus={handleFocus}
           onBlur={handleBlur}
+          autoCapitalize="none"
+          multiline={multiline}
+          numberOfLines={numberOfLines}
         />
-        {typeof maxLength === 'number' && (
-          <Flex style={{ justifyContent: 'flex-end', marginTop: 4 }}>
-            <Text style={{ fontSize: 12 }}>
-              {value.length}/{maxLength}
-            </Text>
+        {(typeof maxLength === 'number' || typeof description === 'string') && (
+          <Flex style={{ justifyContent: 'space-between', marginTop: 4 }}>
+            {typeof description === 'string' && (
+              <Text style={styles.description}>{description}</Text>
+            )}
+            <Spacer />
+            {typeof maxLength === 'number' && (
+              <Text style={styles.count}>
+                {value.length}/{maxLength}
+              </Text>
+            )}
           </Flex>
         )}
       </View>
@@ -78,4 +101,6 @@ const styles = StyleSheet.create({
   inputError: {
     borderColor: Constants.colors.primitive.red[400], // エラー時のボーダーカラー
   },
+  description: { fontSize: 12, color: Constants.colors.primitive.gray[600] },
+  count: { fontSize: 12 },
 });

@@ -3,13 +3,22 @@ import { StyleSheet } from 'react-native';
 
 import { Text } from '@/components/ui/Text';
 
-export const InputLabel = memo<PropsWithChildren>(({ children }) => {
-  return <Text style={styles.wrapper}>{children}</Text>;
+interface Props {
+  required?: boolean;
+}
+
+export const InputLabel = memo<PropsWithChildren<Props>>(({ children, required = false }) => {
+  return (
+    <Text style={styles.wrapper}>
+      {children}
+      {required && '（必須）'}
+    </Text>
+  );
 });
 
 const styles = StyleSheet.create({
   wrapper: {
     fontSize: 12,
-    marginBottom: 8,
+    marginBottom: 4,
   },
 });

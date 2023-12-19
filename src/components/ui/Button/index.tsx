@@ -87,7 +87,7 @@ export const Button = memo<Props>(
 
 const styles = StyleSheet.create({
   wrapper: {
-    borderRadius: 24,
+    borderRadius: Constants.radius['3xl'],
     overflow: 'hidden',
   },
   container: {
@@ -97,7 +97,7 @@ const styles = StyleSheet.create({
     gap: 8,
     justifyContent: 'center',
     padding: 12,
-    borderRadius: 24,
+    borderRadius: Constants.radius['3xl'],
     overflow: 'hidden',
   },
   text: {
