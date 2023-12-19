@@ -1,7 +1,8 @@
-import { Recipe } from '@/features/Recipe/types';
+import { OnboardingRecipe } from '@/features/Recipe/types';
 
-export const RECIPE_LIST: Recipe[] = [
+export const RECIPE_LIST: OnboardingRecipe[] = [
   {
+    idx: 0,
     title: '肉じゃが',
     thumbnailUrl:
       'https://recipe.r10s.jp/recipe-space/d/strg/ctrl/3/94e161458b3bbb07c6a1c0cd6f42e8350b4e6fe7.91.2.3.2.jpg?interpolation=lanczos-none&fit=around|716:716&crop=716:716;*,*',
@@ -12,6 +13,7 @@ export const RECIPE_LIST: Recipe[] = [
     appName: 'Rakutenレシピ',
   },
   {
+    idx: 1,
     title: 'カレー',
     thumbnailUrl:
       'https://recipe.r10s.jp/recipe-space/d/strg/ctrl/3/fa3117b7037beaf99e2576983ddfce2fc6772063.94.2.3.2.jpg?interpolation=lanczos-none&fit=around|716:716&crop=716:716;*,*',
@@ -22,6 +24,7 @@ export const RECIPE_LIST: Recipe[] = [
     appName: 'Rakutenレシピ',
   },
   {
+    idx: 2,
     title: 'ほうれん草のおひたし',
     thumbnailUrl:
       'https://recipe.r10s.jp/recipe-space/d/strg/ctrl/3/73f2e1634a79aa8dced1cbbd6d02f585a8361e57.25.2.3.2.jpg?interpolation=lanczos-none&fit=around|716:716&crop=716:716;*,*',
@@ -32,6 +35,7 @@ export const RECIPE_LIST: Recipe[] = [
     appName: 'Rakutenレシピ',
   },
   {
+    idx: 3,
     title: '豚の生姜焼き',
     thumbnailUrl:
       'https://recipe.r10s.jp/recipe-space/d/strg/ctrl/3/0a0161eed585ce380805a712445a0803e3b66637.21.2.3.2.jpg?interpolation=lanczos-none&fit=around|716:716&crop=716:716;*,*',
@@ -42,6 +46,7 @@ export const RECIPE_LIST: Recipe[] = [
     appName: 'Rakutenレシピ',
   },
   {
+    idx: 4,
     title: 'サバの味噌煮',
     thumbnailUrl:
       'https://recipe.r10s.jp/recipe-space/d/strg/ctrl/3/f32da2dcd2cd43f9df166f857bd364f55f9cfaee.23.9.3.3.jpg?interpolation=lanczos-none&fit=around|716:716&crop=716:716;*,*',
@@ -52,6 +57,7 @@ export const RECIPE_LIST: Recipe[] = [
     appName: 'Rakutenレシピ',
   },
   {
+    idx: 5,
     title: 'ハンバーグ',
     thumbnailUrl:
       'https://recipe.r10s.jp/recipe-space/d/strg/ctrl/3/874b2417ce9cbb455d5ab3150a47f2424e9f29db.57.1.3.2.jpg?interpolation=lanczos-none&fit=around|716:716&crop=716:716;*,*',
@@ -62,6 +68,7 @@ export const RECIPE_LIST: Recipe[] = [
     appName: 'Rakutenレシピ',
   },
   {
+    idx: 6,
     title: '野菜炒め',
     thumbnailUrl:
       'https://recipe.r10s.jp/recipe-space/d/strg/ctrl/3/664a2b71daa6345d38d20ab87a0ec4d925d6f09c.46.2.3.2.jpg?interpolation=lanczos-none&fit=around|716:716&crop=716:716;*,*',
