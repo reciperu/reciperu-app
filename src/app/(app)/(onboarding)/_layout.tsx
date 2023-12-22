@@ -1,4 +1,5 @@
 import { Stack } from 'expo-router';
+import { View } from 'react-native';
 
 import { Constants } from '@/constants';
 
@@ -69,6 +70,14 @@ export default function OnboardingLayout() {
         options={{
           // Set the presentation mode to modal for our modal route.
           presentation: 'modal',
+        }}
+      />
+      <Stack.Screen
+        name="(registerRecipes)/complete"
+        options={{
+          title: '',
+          headerLeft: () => <View />,
+          headerShadowVisible: false,
         }}
       />
     </Stack>
