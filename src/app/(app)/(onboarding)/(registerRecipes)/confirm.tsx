@@ -1,5 +1,5 @@
 import { useRouter } from 'expo-router';
-import { useCallback } from 'react';
+import { useCallback, useState } from 'react';
 import { Pressable, ScrollView, StyleSheet, View, useWindowDimensions } from 'react-native';
 
 import { Button } from '@/components/ui/Button';
@@ -8,15 +8,33 @@ import { Spacer } from '@/components/ui/Spacer';
 import { Text } from '@/components/ui/Text';
 import { Constants } from '@/constants';
 import { RecipeItem } from '@/features/Recipe/Item';
+import { usePostRecipeBulk } from '@/features/Recipe/apis/postRecipeBulk';
 import { useStore } from '@/store';
 
 export default function OnboardingRegisterRecipesConfirmPage() {
   const selectedRecipes = useStore((state) => state.onboardingSelectedRecipeList);
+  const [pending, setPending] = useState(false);
   const { height } = useWindowDimensions();
+  const { postRecipeBulkData } = usePostRecipeBulk();
   const router = useRouter();
-  const handlePress = useCallback(() => {
-    router.push('/(onboarding)/(registerRecipes)/confirm');
-  }, [router]);
+  const handlePress = useCallback(async () => {
+    if (pending) return;
+    setPending(true);
+    try {
+      await postRecipeBulkData(selectedRecipes);
+      router.push('/(onboarding)/(registerRecipes)/complete');
+    } catch (err) {
+      console.log(err);
+    }
+    setPending(false);
+  }, [router, pending, selectedRecipes, postRecipeBulkData]);
+  const handleEdit = useCallback(
+    (idx: number) => {
+      if (pending) return;
+      router.push(`/(onboarding)/(registerRecipes)/edit/${idx}`);
+    },
+    [router, pending]
+  );
   return (
     <ScrollView style={styles.container}>
       <View style={{ minHeight: height - 144 }}>
@@ -38,9 +56,9 @@ export default function OnboardingRegisterRecipesConfirmPage() {
                 <View style={{ flex: 1 }}>
                   <RecipeItem data={recipe} />
                 </View>
-                <Pressable
-                  onPress={() => router.push(`/(onboarding)/(registerRecipes)/edit/${recipe.idx}`)}>
-                  <View style={styles.editButtonWrapper}>
+                <Pressable onPress={() => handleEdit(recipe.idx)}>
+                  <View
+                    style={[styles.editButtonWrapper, pending && styles.disabledEditButtonWrapper]}>
                     <Text fw="bold" style={styles.editButtonText}>
                       編集
                     </Text>
@@ -52,7 +70,7 @@ export default function OnboardingRegisterRecipesConfirmPage() {
         </View>
         <Spacer />
         <View style={styles.actionButtonWrapper}>
-          <Button onPress={handlePress} disabled={!selectedRecipes.length}>
+          <Button onPress={handlePress} loading={pending} disabled={!selectedRecipes.length}>
             次に進む
           </Button>
         </View>
@@ -91,6 +109,9 @@ const styles = StyleSheet.create({
     paddingVertical: 4,
     paddingHorizontal: 12,
     borderRadius: Constants.radius['3xl'],
+  },
+  disabledEditButtonWrapper: {
+    opacity: 0.5,
   },
   editButtonText: {
     color: Constants.colors.primitive.white['undefined'],
