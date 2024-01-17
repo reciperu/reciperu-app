@@ -19,7 +19,7 @@ export const Book = memo<Props>(({ name, icon }) => {
       </NotoText>
       {icon.length > 0 && (
         <View style={styles.imageWrapper}>
-          <Image style={styles.image} source={{ uri: 'https://source.unsplash.com/85J99sGggnw' }} />
+          <Image style={styles.image} source={{ uri: icon }} />
         </View>
       )}
       <LinearGradient
@@ -67,10 +67,11 @@ const styles = StyleSheet.create({
     borderRadius: 36,
   },
   title: {
-    fontSize: 20,
+    fontSize: 16,
     textAlign: 'center',
     marginTop: 32,
     marginBottom: 24,
+    color: Constants.colors.primitive.pink[400],
   },
   gradientOverlay: {
     width: 260,

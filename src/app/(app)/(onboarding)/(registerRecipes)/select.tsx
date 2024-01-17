@@ -32,7 +32,9 @@ export default function OnboardingRegisterRecipesSelectPage() {
         <NotoText fw="bold" style={styles.pageTitle}>
           最後に料理を登録しましょう
         </NotoText>
-        <NotoText>登録したい料理を１つ以上選択してください</NotoText>
+        <NotoText style={{ color: Constants.colors.primitive['black alpha'][700] }}>
+          登録したい料理を１つ以上選択してください
+        </NotoText>
       </View>
       <View style={styles.contentBox}>
         {RECIPE_LIST.map((recipe, idx) => (

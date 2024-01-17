@@ -43,7 +43,9 @@ export default function OnboardingRegisterRecipesConfirmPage() {
           <NotoText fw="bold" style={styles.pageTitle}>
             以下の料理を登録します
           </NotoText>
-          <NotoText>追加情報があれば入力することができます</NotoText>
+          <NotoText style={{ color: Constants.colors.primitive['black alpha'][700] }}>
+            レシピ情報は後から編集することもできます
+          </NotoText>
         </View>
         <View style={{ marginVertical: 20 }}>
           {selectedRecipes.map((recipe) => (
