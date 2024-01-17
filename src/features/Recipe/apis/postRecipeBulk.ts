@@ -10,9 +10,15 @@ const postRecipeBulk = async (body: Omit<Recipe, 'id'>[]) =>
 export const usePostRecipeBulk = () => {
   const { mutate } = useSWRConfig();
   const postRecipeBulkData = (body: Omit<Recipe, 'id'>[]) => {
-    return mutate('/recipes/bulk', () => postRecipeBulk(body), {
+    return mutate('/recipes', () => postRecipeBulk(body), {
+      populateCache: (updatedRecipes, currentRecipes) => {
+        if (!currentRecipes?.length) {
+          return { ...updatedRecipes.data };
+        } else {
+          return { ...currentRecipes, ...updatedRecipes.data };
+        }
+      },
       revalidate: false,
-      // NOTE: レシピの一覧を更新
     });
   };
   return { postRecipeBulkData };
