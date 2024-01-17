@@ -1,4 +1,3 @@
-import { WEB_CLIENT_ID } from '@env';
 import { GoogleSignin } from '@react-native-google-signin/google-signin';
 import {
   GoogleAuthProvider,
@@ -43,7 +42,7 @@ const useAuthProvider = () => {
   useEffect(() => {
     // googlesigninを行う場合に必須で呼び出すもの
     GoogleSignin.configure({
-      webClientId: WEB_CLIENT_ID,
+      webClientId: process.env.EXPO_PUBLIC_WEB_CLIENT_ID,
     });
   }, []);
   // ユーザー情報のクリア
