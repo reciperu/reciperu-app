@@ -91,7 +91,7 @@ export default function OnboardingTopPage() {
   useEffect(() => {
     if (data) {
       if (!image) setImage(data.imageUrl);
-      if (!username) setImage(data.name);
+      if (!username) setUsername(data.name);
     }
   }, [data]);
   return (
@@ -114,7 +114,7 @@ export default function OnboardingTopPage() {
           <InputLabel>プロフィール画像</InputLabel>
           <Pressable onPress={pickImage} style={styles.avatarButtonWrapper}>
             <View style={styles.imagePickerWrapper}>
-              {image ? (
+              {image?.length ? (
                 <Image contentFit="cover" source={{ uri: image }} style={styles.avatarSize} />
               ) : (
                 <View style={styles.noImagePickerButton}>
