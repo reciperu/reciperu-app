@@ -1,21 +1,39 @@
 import { Image } from 'expo-image';
 import { useRouter } from 'expo-router';
-import { ScrollView, StyleSheet, View, useWindowDimensions } from 'react-native';
+import { useEffect, useRef } from 'react';
+import { Dimensions, ScrollView, StyleSheet, View } from 'react-native';
+import Confetti from 'react-native-confetti';
 import { noop } from 'swr/_internal';
 
 import { Button } from '@/components/ui/Button';
 import { Spacer } from '@/components/ui/Spacer';
-
-import { Constants } from '@/constants';
 import { NotoText } from '@/components/ui/Text';
+import { Constants } from '@/constants';
 
 const Dec01Image = require('assets/dec_01.webp') as string;
 
+const { height, width } = Dimensions.get('window');
+
 export default function OnboardingRegisterRecipesCompletePage() {
-  const { height } = useWindowDimensions();
+  const confettiRef = useRef<Confetti>(null);
   const router = useRouter();
+
+  useEffect(() => {
+    if (confettiRef.current) {
+      confettiRef.current.startConfetti();
+    }
+    return () => {
+      if (confettiRef.current) {
+        confettiRef.current.stopConfetti();
+      }
+    };
+  }, []);
+
   return (
     <ScrollView style={styles.container}>
+      <View style={{ position: 'absolute', top: -40, left: 0, width, height }}>
+        <Confetti ref={confettiRef} bsize={0} untilStopped />
+      </View>
       <View style={{ minHeight: height - 144 }}>
         <View style={styles.titleWrapper}>
           <NotoText fw="bold" style={styles.pageTitle}>
