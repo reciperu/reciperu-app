@@ -35,8 +35,9 @@ const ImageList = [
   { key: 'avatar07', image: Avatar07 },
 ] as const;
 
+const { width } = Dimensions.get('window');
+
 export default function OnboardingTopPage() {
-  const { width } = Dimensions.get('window');
   const [image, setImage] = useState<string | null>(null);
   const [imageKey, setImageKey] = useState<string | null>(null);
   const [username, setUsername] = useState('');

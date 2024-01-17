@@ -3,9 +3,10 @@ import React, { memo, useCallback, useRef, useState } from 'react';
 import { View, Dimensions, StyleSheet, TouchableOpacity } from 'react-native';
 import Carousel from 'react-native-snap-carousel';
 
-import { Constants } from '@/constants';
 import { NotoText } from '@/components/ui/Text';
-const SLIDER_WIDTH = Dimensions.get('window').width;
+import { Constants } from '@/constants';
+
+const { width: SLIDER_WIDTH } = Dimensions.get('window');
 const ITEM_WIDTH = SLIDER_WIDTH;
 
 interface Props {

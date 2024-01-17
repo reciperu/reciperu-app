@@ -3,8 +3,9 @@ import { ActivityIndicator, Dimensions, SafeAreaView, StyleSheet, View } from 'r
 
 import { Constants } from '@/constants';
 
+const { width, height } = Dimensions.get('window');
+
 export const PageWholeLoader = memo(() => {
-  const { width, height } = Dimensions.get('window');
   return (
     <SafeAreaView style={{ width, height, position: 'absolute', top: 0, left: 0 }}>
       <View style={styles.container}>
