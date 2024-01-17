@@ -8,4 +8,7 @@ export const ICON_NAME_LIST = [
   'list-check',
   'arrow-back',
   'filled-close',
+  'alert',
+  'warning',
+  'info-circle',
 ] as const;
