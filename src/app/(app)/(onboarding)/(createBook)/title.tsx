@@ -9,16 +9,24 @@ import { TextInput } from '@/components/ui/TextInput';
 import { Constants } from '@/constants';
 import { Validation } from '@/constants/validation';
 import { Book } from '@/features/Book';
+import { usePutRecipeBook } from '@/features/Book/api/putRecipeBook';
 import { useFetchMyProfile } from '@/features/Users/apis/getMyProfile';
+
+const getDefaultTitle = (name: string) => `${name}さんのレシピ集`;
 
 export default function OnboardingCreateBookTitlePage() {
   const { data } = useFetchMyProfile();
+  const { putRecipeBook } = usePutRecipeBook(data?.recipeBookOwnerId || '');
   const router = useRouter();
-  const [bookName, setBookName] = useState(`${data?.name}さんの料理本`);
+  const [bookName, setBookName] = useState(getDefaultTitle(data?.name || ''));
   // TODO: 作成
   const handlePress = useCallback(() => {
+    // タイトルがデフォルトと異なる場合は更新
+    if (bookName !== getDefaultTitle(data?.name || '')) {
+      putRecipeBook(bookName);
+    }
     router.push('/(onboarding)/(registerRecipes)/select');
-  }, []);
+  }, [bookName, data?.name, putRecipeBook, router]);
   return (
     <>
       <View style={styles.container}>
