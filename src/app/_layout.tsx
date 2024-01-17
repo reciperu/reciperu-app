@@ -16,6 +16,9 @@ export default function RootLayout() {
     'LINE-extra-bold': require('assets/fonts/LINESeedJP_A_OTF_Eb.otf'),
     'LINE-regular': require('assets/fonts/LINESeedJP_A_OTF_Rg.otf'),
     'LINE-light': require('assets/fonts/LINESeedJP_A_OTF_Th.otf'),
+    'noto-sans-regular': require('assets/fonts/NotoSansJP-Regular.ttf'),
+    'noto-sans-bold': require('assets/fonts/NotoSansJP-Bold.ttf'),
+    'noto-sans-black': require('assets/fonts/NotoSansJP-Black.ttf'),
   });
 
   const onLayoutRootView = useCallback(async () => {

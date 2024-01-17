@@ -2,7 +2,7 @@ import React, { memo } from 'react';
 import { ActivityIndicator, Pressable, StyleSheet, View } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 
-import { Text } from '@/components/ui/Text';
+import { NotoText } from '@/components/ui/Text';
 import { Constants } from '@/constants';
 
 interface Props {
@@ -49,9 +49,9 @@ export const Button = memo<Props>(
                 ) : (
                   leftIcon && leftIcon
                 )}
-                <Text style={[styles.text, styles.primaryText, textStyle]} fw="bold">
+                <NotoText style={[styles.text, styles.primaryText, textStyle]} fw="bold">
                   {children}
-                </Text>
+                </NotoText>
               </LinearGradient>
             ) : (
               <View
@@ -66,18 +66,18 @@ export const Button = memo<Props>(
                 ) : (
                   leftIcon && leftIcon
                 )}
-                <Text style={[styles.text, styles.othersText, textStyle]} fw="bold">
+                <NotoText style={[styles.text, styles.othersText, textStyle]} fw="bold">
                   {children}
-                </Text>
+                </NotoText>
               </View>
             )}
           </>
         ) : (
           <View style={styles.container}>
             {loading ? <ActivityIndicator size="small" /> : leftIcon && leftIcon}
-            <Text style={[styles.text, textStyle]} fw="bold">
+            <NotoText style={[styles.text, textStyle]} fw="bold">
               {children}
-            </Text>
+            </NotoText>
           </View>
         )}
       </Pressable>

@@ -1,9 +1,9 @@
-import { Stack, router } from 'expo-router';
+import { router } from 'expo-router';
 import { StyleSheet, View } from 'react-native';
 
 import { Button } from '@/components/ui/Button';
 import { Spacer } from '@/components/ui/Spacer';
-import { Text } from '@/components/ui/Text';
+import { NotoText } from '@/components/ui/Text';
 import { Constants } from '@/constants';
 
 export default function OnboardingJoinBookTopPage() {
@@ -11,18 +11,22 @@ export default function OnboardingJoinBookTopPage() {
     <>
       <View style={styles.container}>
         <View style={styles.titleWrapper}>
-          <Text style={styles.stepper}>3/4</Text>
-          <Text fw="bold" style={styles.pageTitle}>
+          <NotoText style={styles.stepper}>3/4</NotoText>
+          <NotoText fw="bold" style={styles.pageTitle}>
             料理本を共有してもらいましょう
-          </Text>
+          </NotoText>
         </View>
         <View style={styles.contentWrapper}>
-          <Text style={[styles.descriptionText, { marginBottom: 8 }]}>料理本の共有には</Text>
-          <Text style={styles.descriptionText}>1. QRコードを読み取る</Text>
-          <Text style={styles.descriptionText}>2. 招待リンクからアプリを開く</Text>
-          <Text style={[styles.descriptionText, { marginTop: 8 }]}>
+          <NotoText style={[styles.descriptionText, { marginBottom: 8 }]}>
+            料理本の共有には
+          </NotoText>
+          <View style={styles.colorBox}>
+            <NotoText style={styles.descriptionText}>1. QRコードを読み取る</NotoText>
+            <NotoText style={styles.descriptionText}>2. 招待リンクからアプリを開く</NotoText>
+          </View>
+          <NotoText style={[styles.descriptionText, { marginTop: 8 }]}>
             のどちらかを行う必要があります
-          </Text>
+          </NotoText>
         </View>
         <Spacer />
         <View style={styles.actionButtonWrapper}>
@@ -55,4 +59,9 @@ const styles = StyleSheet.create({
     gap: 16,
   },
   descriptionText: { fontSize: 16 },
+  colorBox: {
+    backgroundColor: '#EDF2F7',
+    paddingVertical: 12,
+    paddingHorizontal: 16,
+  },
 });

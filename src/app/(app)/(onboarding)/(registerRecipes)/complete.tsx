@@ -5,8 +5,9 @@ import { noop } from 'swr/_internal';
 
 import { Button } from '@/components/ui/Button';
 import { Spacer } from '@/components/ui/Spacer';
-import { Text } from '@/components/ui/Text';
+
 import { Constants } from '@/constants';
+import { NotoText } from '@/components/ui/Text';
 
 const Dec01Image = require('assets/dec_01.webp') as string;
 
@@ -17,14 +18,14 @@ export default function OnboardingRegisterRecipesCompletePage() {
     <ScrollView style={styles.container}>
       <View style={{ minHeight: height - 144 }}>
         <View style={styles.titleWrapper}>
-          <Text fw="bold" style={styles.pageTitle}>
+          <NotoText fw="bold" style={styles.pageTitle}>
             レシピルを利用する準備が完了しました！
-          </Text>
+          </NotoText>
         </View>
         <View style={styles.cardContainer}>
-          <Text fw="bold" style={styles.cardTitle}>
+          <NotoText fw="bold" style={styles.cardTitle}>
             あなたの料理本を誰かと共有しませんか？
-          </Text>
+          </NotoText>
           {/* // TODO: 後で検討 */}
           <View style={styles.cardActionButton}>
             <Button onPress={noop}>共有する</Button>

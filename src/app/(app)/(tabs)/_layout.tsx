@@ -3,7 +3,7 @@ import { useEffect } from 'react';
 import { Alert, Dimensions, TouchableHighlight, View } from 'react-native';
 
 import { PageWholeLoader } from '@/components/ui/PageWholeLoader';
-import { Text } from '@/components/ui/Text';
+import { NotoText } from '@/components/ui/Text';
 import { AppIcon } from '@/components/ui/icons';
 import { Constants } from '@/constants';
 import { useAuthContext } from '@/context/authProvider';
@@ -63,7 +63,7 @@ export default function TabLayout() {
             title: 'ホーム',
             headerRight: () => (
               <TouchableHighlight onPress={() => authContext.signOut()}>
-                <Text style={{ color: 'red' }}>サインアウト</Text>
+                <NotoText style={{ color: 'red' }}>サインアウト</NotoText>
               </TouchableHighlight>
             ),
             tabBarIcon: ({ color, focused }) => (
@@ -83,7 +83,7 @@ export default function TabLayout() {
             title: '料理',
             headerRight: () => (
               <TouchableHighlight onPress={() => authContext.signOut()}>
-                <Text style={{ color: 'red' }}>サインアウト</Text>
+                <NotoText style={{ color: 'red' }}>サインアウト</NotoText>
               </TouchableHighlight>
             ),
             tabBarIcon: ({ color, focused }) => (
@@ -103,7 +103,7 @@ export default function TabLayout() {
             title: '献立',
             headerRight: () => (
               <TouchableHighlight onPress={() => authContext.signOut()}>
-                <Text style={{ color: 'red' }}>サインアウト</Text>
+                <NotoText style={{ color: 'red' }}>サインアウト</NotoText>
               </TouchableHighlight>
             ),
             tabBarIcon: ({ color, focused }) => (
@@ -123,7 +123,7 @@ export default function TabLayout() {
             title: 'マイページ',
             headerRight: () => (
               <TouchableHighlight onPress={() => authContext.signOut()}>
-                <Text style={{ color: 'red' }}>サインアウト</Text>
+                <NotoText style={{ color: 'red' }}>サインアウト</NotoText>
               </TouchableHighlight>
             ),
           }}

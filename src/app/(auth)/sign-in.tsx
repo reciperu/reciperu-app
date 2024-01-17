@@ -5,7 +5,7 @@ import { View } from 'react-native';
 import { Button } from '@/components/ui/Button';
 import { Container } from '@/components/ui/Container';
 import { Spacer } from '@/components/ui/Spacer';
-import { Text } from '@/components/ui/Text';
+import { NotoText } from '@/components/ui/Text';
 import { AppIcon } from '@/components/ui/icons';
 import { useAuthContext } from '@/context/authProvider';
 
@@ -31,9 +31,9 @@ export default function SignInPage() {
       />
       <Container>
         <View style={{ flex: 1 }}>
-          <Text fw="bold" style={{ marginTop: 20, textAlign: 'center', fontSize: 16 }}>
+          <NotoText fw="bold" style={{ marginTop: 20, textAlign: 'center', fontSize: 16 }}>
             あなただけの料理本を作りましょう
-          </Text>
+          </NotoText>
           <Spacer />
           <Button
             scheme="text"

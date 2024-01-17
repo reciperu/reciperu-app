@@ -6,7 +6,7 @@ import { Button } from '@/components/ui/Button';
 import { CheckIconButton } from '@/components/ui/CheckIconButton';
 import { Flex } from '@/components/ui/Flex';
 import { Spacer } from '@/components/ui/Spacer';
-import { Text } from '@/components/ui/Text';
+import { NotoText } from '@/components/ui/Text';
 import { Constants } from '@/constants';
 import { RECIPE_LIST } from '@/features/Onboarding/Recipe/constants';
 import { RecipeItem } from '@/features/Recipe/Item';
@@ -28,11 +28,11 @@ export default function OnboardingRegisterRecipesSelectPage() {
         }}
       />
       <View style={styles.titleWrapper}>
-        <Text style={styles.stepper}>4/4</Text>
-        <Text fw="bold" style={styles.pageTitle}>
+        <NotoText style={styles.stepper}>4/4</NotoText>
+        <NotoText fw="bold" style={styles.pageTitle}>
           最後に料理を登録しましょう
-        </Text>
-        <Text>登録したい料理を１つ以上選択してください</Text>
+        </NotoText>
+        <NotoText>登録したい料理を１つ以上選択してください</NotoText>
       </View>
       <View style={styles.contentBox}>
         {RECIPE_LIST.map((recipe, idx) => (

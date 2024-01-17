@@ -3,8 +3,8 @@ import { Stack, router } from 'expo-router';
 import { useEffect, useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 
-import { Text } from '@/components/ui/Text';
 import { PageWholeLoader } from '@/components/ui/PageWholeLoader';
+import { NotoText } from '@/components/ui/Text';
 
 export default function OnboardingJoinBookReadQRPage() {
   const [hasPermission, setHasPermission] = useState(false);
@@ -31,7 +31,7 @@ export default function OnboardingJoinBookReadQRPage() {
     return (
       <View style={styles.container}>
         {/* // TODO: UIアップデート */}
-        <Text>カメラの利用を許可してください</Text>
+        <NotoText>カメラの利用を許可してください</NotoText>
       </View>
     );
   }

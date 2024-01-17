@@ -3,7 +3,7 @@ import { memo } from 'react';
 import { View } from 'react-native';
 
 import { Flex } from '@/components/ui/Flex';
-import { Text } from '@/components/ui/Text';
+import { NotoText } from '@/components/ui/Text';
 import { Constants } from '@/constants';
 import { Recipe } from '@/features/Recipe/types';
 
@@ -19,14 +19,14 @@ export const RecipeItem = memo<Props>(({ data }) => {
         style={{ width: 114, height: 64, borderRadius: Constants.radius.base }}
       />
       <View style={{ flex: 1 }}>
-        <Text fw="bold" style={{ fontSize: 14 }}>
+        <NotoText fw="bold" style={{ fontSize: 14 }}>
           {data.title}
-        </Text>
+        </NotoText>
         <Flex style={{ alignItems: 'center', gap: 4, marginTop: 2 }}>
           <Image source={data.faviconUrl} style={{ width: 12, height: 12 }} />
-          <Text style={{ fontSize: 10, color: Constants.colors.primitive.gray['600'] }}>
+          <NotoText style={{ fontSize: 10, color: Constants.colors.primitive.gray['600'] }}>
             {data.appName}
-          </Text>
+          </NotoText>
         </Flex>
       </View>
     </Flex>
