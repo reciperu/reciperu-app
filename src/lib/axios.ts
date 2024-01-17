@@ -2,6 +2,7 @@ import { GoogleSignin } from '@react-native-google-signin/google-signin';
 import Axios from 'axios';
 import { router } from 'expo-router';
 import qs, { parse } from 'qs';
+import Toast from 'react-native-toast-message';
 
 import { API_TIMEOUT, AUTH_ERROR_MESSAGE } from '@/constants';
 import secureStoreService, { StoreKeyEnum } from '@/lib/secureStore';
@@ -53,7 +54,17 @@ client.interceptors.response.use(
         return Promise.reject(AUTH_ERROR_MESSAGE);
       }
     } else {
-      router.replace('/(auth)/sign-in');
+      const message = error.response?.data?.message || error.message;
+      if (message?.length) {
+        Toast.show({
+          type: 'error',
+          text1: 'エラーが発生しました',
+          text2: error.response?.data?.message || error.message,
+          visibilityTime: 3000,
+          autoHide: true,
+          topOffset: 60,
+        });
+      }
       return Promise.reject(error);
     }
   }

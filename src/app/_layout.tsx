@@ -3,12 +3,79 @@ import { Slot } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
 import { useCallback } from 'react';
 import { AppState, AppStateStatus, View } from 'react-native';
+import Toast, { ToastConfig } from 'react-native-toast-message';
 import { SWRConfig } from 'swr';
 
+import { NotoText } from '@/components/ui/Text';
+import { ToastWrapper } from '@/components/ui/Toast';
+import { AppIcon } from '@/components/ui/icons';
+import { Constants } from '@/constants';
 import { AuthProvider } from '@/context/authProvider';
 import { client } from '@/lib/axios';
 
 SplashScreen.preventAutoHideAsync();
+
+const toastConfig: ToastConfig = {
+  successToast: ({ text1, text2 }) => (
+    <ToastWrapper style={{ borderColor: Constants.colors.primitive.green[300] }}>
+      <AppIcon
+        name="check-mark"
+        width={18}
+        height={18}
+        color={Constants.colors.primitive.green[500]}
+      />
+      <View>
+        <NotoText>{text1}</NotoText>
+        <NotoText style={{ fontSize: 12, color: Constants.colors.primitive.gray[600] }}>
+          {text2}
+        </NotoText>
+      </View>
+    </ToastWrapper>
+  ),
+  errorToast: ({ text1, text2 }) => (
+    <ToastWrapper style={{ borderColor: Constants.colors.primitive.red[300] }}>
+      <AppIcon name="alert" width={18} height={18} color={Constants.colors.primitive.red[500]} />
+      <View>
+        <NotoText>{text1}</NotoText>
+        <NotoText style={{ fontSize: 12, color: Constants.colors.primitive.gray[600] }}>
+          {text2}
+        </NotoText>
+      </View>
+    </ToastWrapper>
+  ),
+  warningToast: ({ text1, text2 }) => (
+    <ToastWrapper style={{ borderColor: Constants.colors.primitive.orange[300] }}>
+      <AppIcon
+        name="warning"
+        width={18}
+        height={18}
+        color={Constants.colors.primitive.orange[400]}
+      />
+      <View>
+        <NotoText>{text1}</NotoText>
+        <NotoText style={{ fontSize: 12, color: Constants.colors.primitive.gray[600] }}>
+          {text2}
+        </NotoText>
+      </View>
+    </ToastWrapper>
+  ),
+  infoToast: ({ text1, text2 }) => (
+    <ToastWrapper style={{ borderColor: Constants.colors.primitive.blue[300] }}>
+      <AppIcon
+        name="info-circle"
+        width={18}
+        height={18}
+        color={Constants.colors.primitive.blue[500]}
+      />
+      <View>
+        <NotoText>{text1}</NotoText>
+        <NotoText style={{ fontSize: 12, color: Constants.colors.primitive.gray[600] }}>
+          {text2}
+        </NotoText>
+      </View>
+    </ToastWrapper>
+  ),
+};
 
 export default function RootLayout() {
   const [fontsLoaded] = useFonts({
@@ -68,6 +135,7 @@ export default function RootLayout() {
         <View onLayout={onLayoutRootView}>
           <Slot />
         </View>
+        <Toast config={toastConfig} />
       </SWRConfig>
     </AuthProvider>
   );

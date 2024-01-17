@@ -16,7 +16,7 @@
     "format:prettier": "yarn prettier --check --write .",
     "lint:es": "yarn eslint .",
     "format:es": "yarn eslint . --fix",
-    "postinstall": "patch-package"
+    "postinstall": "npx patch-package"
   },
   "dependencies": {
     "@react-native-async-storage/async-storage": "^1.19.3",
@@ -39,12 +39,14 @@
     "firebase": "^10.5.0",
     "react": "18.2.0",
     "react-native": "0.72.5",
+    "react-native-confetti": "^0.1.0",
     "react-native-gesture-handler": "~2.12.0",
     "react-native-linear-gradient": "^2.8.3",
     "react-native-safe-area-context": "4.6.3",
     "react-native-screens": "~3.22.0",
     "react-native-snap-carousel": "^3.9.1",
     "react-native-svg": "13.9.0",
+    "react-native-toast-message": "^2.2.0",
     "react-native-url-polyfill": "^2.0.0",
     "swr": "^2.2.4",
     "zustand": "^4.4.3"
@@ -52,6 +54,7 @@
   "devDependencies": {
     "@babel/core": "^7.20.0",
     "@types/react": "~18.2.14",
+    "@types/react-native-confetti": "^0.1.4",
     "@types/react-native-snap-carousel": "^3.8.9",
     "@typescript-eslint/eslint-plugin": "^6.7.5",
     "@typescript-eslint/parser": "^6.7.5",
