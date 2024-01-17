@@ -15,7 +15,8 @@
     "lint:prettier": "yarn prettier --check .",
     "format:prettier": "yarn prettier --check --write .",
     "lint:es": "yarn eslint .",
-    "format:es": "yarn eslint . --fix"
+    "format:es": "yarn eslint . --fix",
+    "postinstall": "patch-package"
   },
   "dependencies": {
     "@react-native-async-storage/async-storage": "^1.19.3",
