@@ -2,7 +2,7 @@ import React, { PropsWithChildren, memo, useEffect, useState } from 'react';
 import { TextInput as RNTextInput, StyleProp, StyleSheet, View, ViewStyle } from 'react-native';
 
 import { Flex } from '@/components/ui/Flex';
-import { Text } from '@/components/ui/Text';
+import { NotoText } from '@/components/ui/Text';
 import { Constants } from '@/constants';
 import { Spacer } from '../Spacer';
 
@@ -79,13 +79,13 @@ export const TextInput = memo<PropsWithChildren<Props>>(
         {(typeof maxLength === 'number' || typeof description === 'string') && (
           <Flex style={{ justifyContent: 'space-between', marginTop: 4 }}>
             {typeof description === 'string' && (
-              <Text style={styles.description}>{description}</Text>
+              <NotoText style={styles.description}>{description}</NotoText>
             )}
             <Spacer />
             {typeof maxLength === 'number' && (
-              <Text style={styles.count}>
+              <NotoText style={styles.count}>
                 {value.length}/{maxLength}
-              </Text>
+              </NotoText>
             )}
           </Flex>
         )}

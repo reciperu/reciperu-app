@@ -1,10 +1,10 @@
-import { Stack, router, useRouter } from 'expo-router';
+import { useRouter } from 'expo-router';
 import { useCallback, useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 
 import { Button } from '@/components/ui/Button';
 import { Spacer } from '@/components/ui/Spacer';
-import { Text } from '@/components/ui/Text';
+import { NotoText } from '@/components/ui/Text';
 import { TextInput } from '@/components/ui/TextInput';
 import { Constants } from '@/constants';
 import { Validation } from '@/constants/validation';
@@ -23,10 +23,10 @@ export default function OnboardingCreateBookTitlePage() {
     <>
       <View style={styles.container}>
         <View style={styles.titleWrapper}>
-          <Text style={styles.stepper}>3/4</Text>
-          <Text fw="bold" style={styles.pageTitle}>
+          <NotoText style={styles.stepper}>3/4</NotoText>
+          <NotoText fw="bold" style={styles.pageTitle}>
             料理本に名前をつけましょう
-          </Text>
+          </NotoText>
         </View>
         <View style={styles.bookWrapper}>
           <Book name={bookName} icon={data?.imageUrl || ''} />

@@ -3,8 +3,8 @@ import React, { memo, useCallback, useRef, useState } from 'react';
 import { View, Dimensions, StyleSheet, TouchableOpacity } from 'react-native';
 import Carousel from 'react-native-snap-carousel';
 
-import { Text } from '@/components/ui/Text';
 import { Constants } from '@/constants';
+import { NotoText } from '@/components/ui/Text';
 const SLIDER_WIDTH = Dimensions.get('window').width;
 const ITEM_WIDTH = SLIDER_WIDTH;
 
@@ -33,9 +33,9 @@ export const OnboardingCarousel = memo<Props>(({ data }) => {
     return (
       <View style={styles.slide}>
         <Image source={item.image} style={styles.image} />
-        <Text fw="bold" style={styles.title}>
+        <NotoText fw="bold" style={styles.title}>
           {item.title}
-        </Text>
+        </NotoText>
       </View>
     );
   };

@@ -7,7 +7,7 @@ import { Dimensions, StyleSheet, View, Pressable, FlatList } from 'react-native'
 import { Button } from '@/components/ui/Button';
 import { InputLabel } from '@/components/ui/InputLabel';
 import { Spacer } from '@/components/ui/Spacer';
-import { Text } from '@/components/ui/Text';
+import { NotoText } from '@/components/ui/Text';
 import { TextInput } from '@/components/ui/TextInput';
 import { AppIcon } from '@/components/ui/icons';
 import { Constants } from '@/constants';
@@ -103,10 +103,10 @@ export default function OnboardingTopPage() {
         }}
       />
       <View style={styles.titleWrapper}>
-        <Text style={styles.stepper}>1/4</Text>
-        <Text fw="bold" style={styles.pageTitle}>
+        <NotoText style={styles.stepper}>1/4</NotoText>
+        <NotoText fw="bold" style={styles.pageTitle}>
           あなたの情報を教えてください
-        </Text>
+        </NotoText>
       </View>
       <View style={styles.contentWrapper}>
         {/* プロフィール画像 */}

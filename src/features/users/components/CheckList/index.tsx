@@ -3,9 +3,9 @@ import { StyleSheet, View } from 'react-native';
 
 import { CheckList } from '@/components/ui/CheckList';
 import { Flex } from '@/components/ui/Flex';
-import { Text } from '@/components/ui/Text';
 import { AppIcon } from '@/components/ui/icons';
 import { Constants } from '@/constants';
+import { NotoText } from '@/components/ui/Text';
 
 export const UserCheckList = memo(() => {
   // TODO: API経由でユーザーのチェックリストを取得する
@@ -13,9 +13,9 @@ export const UserCheckList = memo(() => {
     <View style={styles.container}>
       <Flex style={styles.titleWrapper}>
         <AppIcon name="list-check" />
-        <Text fw="bold" style={styles.title}>
+        <NotoText fw="bold" style={styles.title}>
           チェックリスト
-        </Text>
+        </NotoText>
       </Flex>
       <Flex style={styles.checkListWrapper}>
         <View>

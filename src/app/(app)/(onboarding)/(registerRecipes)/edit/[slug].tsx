@@ -7,7 +7,7 @@ import { Flex } from '@/components/ui/Flex';
 import { ImageUploadArea } from '@/components/ui/ImageUploadArea';
 import { CompactImageUploadArea } from '@/components/ui/ImageUploadArea/compact';
 import { InputLabel } from '@/components/ui/InputLabel';
-import { Text } from '@/components/ui/Text';
+import { NotoText } from '@/components/ui/Text';
 import { TextInput } from '@/components/ui/TextInput';
 import { HeaderLeftBackButton } from '@/components/ui/icons/components/HeaderLeftBackButton';
 import { Constants } from '@/constants';
@@ -125,9 +125,9 @@ export default function Modal() {
           headerLeft: isPresented ? () => <HeaderLeftBackButton /> : undefined,
           headerRight: () => (
             <TouchableOpacity onPress={handleUpdate}>
-              <Text fw="bold" style={styles.headerUpdateButton}>
+              <NotoText fw="bold" style={styles.headerUpdateButton}>
                 更新
-              </Text>
+              </NotoText>
             </TouchableOpacity>
           ),
         }}

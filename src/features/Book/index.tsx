@@ -3,7 +3,7 @@ import { memo } from 'react';
 import { StyleSheet, View } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 
-import { Text } from '@/components/ui/Text';
+import { NotoText } from '@/components/ui/Text';
 import { Constants } from '@/constants';
 
 interface Props {
@@ -14,9 +14,9 @@ interface Props {
 export const Book = memo<Props>(({ name, icon }) => {
   return (
     <View style={styles.container}>
-      <Text fw="bold" style={styles.title}>
+      <NotoText fw="bold" style={styles.title}>
         {name}
-      </Text>
+      </NotoText>
       {icon.length > 0 && (
         <View style={styles.imageWrapper}>
           <Image style={styles.image} source={{ uri: 'https://source.unsplash.com/85J99sGggnw' }} />

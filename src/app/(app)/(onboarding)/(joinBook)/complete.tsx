@@ -1,18 +1,18 @@
-import { Stack, router } from 'expo-router';
+import { router } from 'expo-router';
 import { StyleSheet, View } from 'react-native';
 
 import { Button } from '@/components/ui/Button';
 import { Spacer } from '@/components/ui/Spacer';
-import { Text } from '@/components/ui/Text';
+import { NotoText } from '@/components/ui/Text';
 
 export default function OnboardingJoinBookCompletePage() {
   return (
     <>
       <View style={styles.container}>
-        <Text fw="bold" style={styles.pageTitle}>
+        <NotoText fw="bold" style={styles.pageTitle}>
           {/* // TODO: ユーザー名 */}
           ありがとうございます！{'\n'}ハナコさんと一緒に料理本を作りましょう🎉
-        </Text>
+        </NotoText>
         <Spacer />
         {/* // TODO: チェックリスト */}
         <View style={styles.actionButtonWrapper}>

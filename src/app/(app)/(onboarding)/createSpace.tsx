@@ -3,7 +3,7 @@ import { StyleSheet, View } from 'react-native';
 
 import { Button } from '@/components/ui/Button';
 import { Spacer } from '@/components/ui/Spacer';
-import { Text } from '@/components/ui/Text';
+import { NotoText } from '@/components/ui/Text';
 import { Constants } from '@/constants';
 import { OnboardingCarousel } from '@/features/Onboarding/Carousel';
 const Instruction01 = require('assets/instructions/instruction-1.webp') as string;
@@ -32,10 +32,10 @@ export default function OnboardingCreateSpacePage() {
     <>
       <View style={styles.container}>
         <View style={styles.titleWrapper}>
-          <Text style={styles.stepper}>2/4</Text>
-          <Text fw="bold" style={styles.pageTitle}>
+          <NotoText style={styles.stepper}>2/4</NotoText>
+          <NotoText fw="bold" style={styles.pageTitle}>
             次に、あなたの料理本を作成しましょう
-          </Text>
+          </NotoText>
         </View>
         <OnboardingCarousel data={CAROUSEL_DATA} />
         <Spacer />

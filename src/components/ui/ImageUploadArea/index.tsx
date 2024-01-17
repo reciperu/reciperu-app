@@ -4,7 +4,7 @@ import { memo, useCallback, useMemo } from 'react';
 import { Pressable, StyleSheet, View, useWindowDimensions } from 'react-native';
 
 import { Flex } from '@/components/ui/Flex';
-import { Text } from '@/components/ui/Text';
+import { NotoText } from '@/components/ui/Text';
 import { AppIcon } from '@/components/ui/icons';
 import { Constants } from '@/constants';
 
@@ -65,9 +65,9 @@ export const ImageUploadArea = memo<Props>(({ image, setImage }) => {
             styles.noImageContainer,
           ]}>
           <AppIcon name="camera" width={24} height={24} />
-          <Text style={{ fontSize: 10, color: Constants.colors.primitive.gray[600] }}>
+          <NotoText style={{ fontSize: 10, color: Constants.colors.primitive.gray[600] }}>
             画像を追加
-          </Text>
+          </NotoText>
         </Flex>
       )}
     </Pressable>
