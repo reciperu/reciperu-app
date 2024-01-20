@@ -10,9 +10,10 @@ import { useAuthContext } from '@/context/authProvider';
 import { useFetchMyProfile } from '@/features/Users/apis/getMyProfile';
 import { UserStatus } from '@/features/Users/types';
 
+const { height: windowHeight } = Dimensions.get('window');
+
 export default function TabLayout() {
   const authContext = useAuthContext();
-  const windowHeight = Dimensions.get('window').height;
   const { data, isLoading, error, mutate } = useFetchMyProfile();
   useEffect(() => {
     if (error) {

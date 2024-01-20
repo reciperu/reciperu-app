@@ -1,6 +1,6 @@
 import { Image } from 'expo-image';
 import { useRouter } from 'expo-router';
-import { useEffect, useRef } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import { Dimensions, ScrollView, StyleSheet, View } from 'react-native';
 import Confetti from 'react-native-confetti';
 import { noop } from 'swr/_internal';
@@ -9,14 +9,32 @@ import { Button } from '@/components/ui/Button';
 import { Spacer } from '@/components/ui/Spacer';
 import { NotoText } from '@/components/ui/Text';
 import { Constants } from '@/constants';
+import { useFetchMyProfile } from '@/features/Users/apis/getMyProfile';
+import { usePatchMyProfile } from '@/features/Users/apis/patchMyProfile';
+import { UserStatus } from '@/features/Users/types';
 
 const Dec01Image = require('assets/dec_01.webp') as string;
 
 const { height, width } = Dimensions.get('window');
 
 export default function OnboardingRegisterRecipesCompletePage() {
+  const [loading, setLoading] = useState(false);
   const confettiRef = useRef<Confetti>(null);
   const router = useRouter();
+  const { updateProfile } = usePatchMyProfile();
+  const { data } = useFetchMyProfile();
+  const handleStart = useCallback(async () => {
+    if (data) {
+      setLoading(true);
+      await updateProfile(data.id, {
+        name: data.name,
+        imageUrl: data.imageUrl,
+        activeStatus: UserStatus.JOINED_SPACE,
+      });
+      router.push('/(tabs)/home');
+      setLoading(false);
+    }
+  }, [data, router, updateProfile]);
 
   useEffect(() => {
     if (confettiRef.current) {
@@ -59,7 +77,9 @@ export default function OnboardingRegisterRecipesCompletePage() {
         </View>
         <Spacer />
         <View style={styles.actionButtonWrapper}>
-          <Button onPress={() => router.push('/(tabs)/home')}>さっそく始める</Button>
+          <Button onPress={handleStart} loading={loading}>
+            さっそく始める
+          </Button>
         </View>
       </View>
     </ScrollView>

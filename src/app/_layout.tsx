@@ -93,6 +93,7 @@ export default function RootLayout() {
       await SplashScreen.hideAsync();
     }
   }, [fontsLoaded]);
+
   if (!fontsLoaded) {
     return null;
   }
