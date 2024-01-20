@@ -9,6 +9,7 @@ import { Constants } from '@/constants';
 import { useAuthContext } from '@/context/authProvider';
 import { useFetchMyProfile } from '@/features/Users/apis/getMyProfile';
 import { UserStatus } from '@/features/Users/types';
+import { Image } from 'expo-image';
 
 const { height: windowHeight } = Dimensions.get('window');
 
@@ -126,6 +127,19 @@ export default function TabLayout() {
               <TouchableHighlight onPress={() => authContext.signOut()}>
                 <NotoText style={{ color: 'red' }}>サインアウト</NotoText>
               </TouchableHighlight>
+            ),
+            tabBarIcon: ({ color, focused }) => (
+              <Image
+                contentFit="cover"
+                source={{ uri: data?.imageUrl || '' }}
+                style={{
+                  width: 24,
+                  height: 24,
+                  borderRadius: Constants.radius['full'],
+                  borderWidth: focused ? 2 : undefined,
+                  borderColor: focused ? '#ED64A660' : undefined,
+                }}
+              />
             ),
           }}
         />
