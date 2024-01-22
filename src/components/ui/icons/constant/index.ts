@@ -11,4 +11,5 @@ export const ICON_NAME_LIST = [
   'alert',
   'warning',
   'info-circle',
+  'bell',
 ] as const;
