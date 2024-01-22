@@ -45,8 +45,13 @@ client.interceptors.response.use(
       // リトライ処理
       if (!error.config.retry) {
         // tokenの更新
-        const res = await GoogleSignin.getTokens();
-        await secureStoreService.save(StoreKeyEnum.TOKEN, res.idToken);
+        try {
+          const res = await GoogleSignin.getTokens();
+          await secureStoreService.save(StoreKeyEnum.TOKEN, res.idToken);
+        } catch (error) {
+          console.log(error);
+          router.replace('/(auth)/sign-in');
+        }
         error.config.retry = true;
         return client.request(error.config);
       } else {
@@ -57,7 +62,7 @@ client.interceptors.response.use(
       const message = error.response?.data?.message || error.message;
       if (message?.length) {
         Toast.show({
-          type: 'error',
+          type: 'errorToast',
           text1: 'エラーが発生しました',
           text2: error.response?.data?.message || error.message,
           visibilityTime: 3000,

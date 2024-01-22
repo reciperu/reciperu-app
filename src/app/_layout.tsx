@@ -15,6 +15,10 @@ import { client } from '@/lib/axios';
 
 SplashScreen.preventAutoHideAsync();
 
+export const unstable_settings = {
+  initialRouteName: '(app)/(main)/(tabs)/home',
+};
+
 const toastConfig: ToastConfig = {
   successToast: ({ text1, text2 }) => (
     <ToastWrapper style={{ borderColor: Constants.colors.primitive.green[300] }}>

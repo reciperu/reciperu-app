@@ -18,7 +18,7 @@ export const useProtectedRoute = (user: User | null) => {
       router.replace('(auth)/sign-in');
     } else if (user && inAuthGroup) {
       // Redirect away from the sign-in page.
-      router.replace('(app)/(tabs)/home');
+      router.replace('(app)/(main)/(tabs)/home');
     }
   }, [user, segments]);
 };

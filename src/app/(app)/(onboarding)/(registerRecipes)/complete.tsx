@@ -31,7 +31,7 @@ export default function OnboardingRegisterRecipesCompletePage() {
         imageUrl: data.imageUrl,
         activeStatus: UserStatus.JOINED_SPACE,
       });
-      router.push('/(tabs)/home');
+      router.push('/(main)/(tabs)/home');
       setLoading(false);
     }
   }, [data, router, updateProfile]);
