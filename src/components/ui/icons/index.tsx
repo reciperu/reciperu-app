@@ -2,6 +2,7 @@ import { memo } from 'react';
 
 import { Alert } from './components/Alert';
 import { ArrowBack } from './components/ArrowBack';
+import { Bell } from './components/Bell';
 import { Calendar } from './components/Calendar';
 import { Camera } from './components/Camera';
 import { Checkmark } from './components/Checkmark';
@@ -43,6 +44,8 @@ export const AppIcon = memo<Props>(({ name, ...rest }) => {
     return <InfoCircle {...rest} />;
   } else if (name === 'warning') {
     return <Warning {...rest} />;
+  } else if (name === 'bell') {
+    return <Bell {...rest} />;
   }
   return <></>;
 });
