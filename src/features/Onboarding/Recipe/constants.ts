@@ -1,5 +1,7 @@
 import { OnboardingRecipe } from '@/features/Recipe/types';
 
+export const APP_NAME = 'Sharely';
+
 export const RECIPE_LIST: OnboardingRecipe[] = [
   {
     idx: 0,
