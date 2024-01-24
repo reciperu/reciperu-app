@@ -1,6 +1,5 @@
 import { GoogleSignin } from '@react-native-google-signin/google-signin';
 import Axios from 'axios';
-import { router } from 'expo-router';
 import qs, { parse } from 'qs';
 import Toast from 'react-native-toast-message';
 
@@ -25,8 +24,7 @@ client.interceptors.request.use(
       const token = await secureStoreService.getValueFor(StoreKeyEnum.TOKEN);
       if (!token) {
         // note: 今のところ認証必須
-        router.replace('/(auth)/sign-in');
-        return Promise.reject(AUTH_ERROR_MESSAGE);
+        return Promise.reject(new Error(AUTH_ERROR_MESSAGE));
       } else {
         config.headers['Authorization'] = `Bearer ${token}`;
       }
@@ -50,13 +48,11 @@ client.interceptors.response.use(
           await secureStoreService.save(StoreKeyEnum.TOKEN, res.idToken);
         } catch (error) {
           console.log(error);
-          router.replace('/(auth)/sign-in');
         }
         error.config.retry = true;
         return client.request(error.config);
       } else {
-        router.replace('/(auth)/sign-in');
-        return Promise.reject(AUTH_ERROR_MESSAGE);
+        return error;
       }
     } else {
       const message = error.response?.data?.message || error.message;
