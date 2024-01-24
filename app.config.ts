@@ -4,12 +4,11 @@ import { ExpoConfig, ConfigContext } from 'expo/config';
 export default ({ config }: ConfigContext): ExpoConfig => {
   return {
     ...config,
-    name: process.env.EXPO_PUBLIC_APP_NAME || 'レシピル',
-    slug: process.env.EXPO_PUBLIC_SCHEME || 'reciperu-app',
+    name: process.env.EXPO_PUBLIC_APP_NAME || 'Sharely（dev）',
+    slug: process.env.EXPO_PUBLIC_SCHEME || 'sharely-app',
     version: '1.0.0',
     orientation: 'portrait',
-    icon:
-      process.env.NODE_ENV === 'development' ? './assets/dev/icon.png' : './assets/prd/icon.png',
+    icon: './assets/icon.png',
     userInterfaceStyle: 'light',
     splash: {
       image: './assets/splash.png',
@@ -31,10 +30,7 @@ export default ({ config }: ConfigContext): ExpoConfig => {
       ...config.android,
       adaptiveIcon: {
         ...config.android?.adaptiveIcon,
-        foregroundImage:
-          process.env.NODE_ENV === 'development'
-            ? './assets/dev/adaptive-icon.png'
-            : './assets/prd/adaptive-icon.png',
+        foregroundImage: './assets/adaptive-icon.png',
       },
       googleServicesFile: './google-services.json',
       package: process.env.ANDROID_PACKAGE || 'com.ryotanny.reciperu-dev',
