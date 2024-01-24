@@ -1,19 +1,16 @@
-import { Image } from 'expo-image';
 import { useRouter } from 'expo-router';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { Dimensions, ScrollView, StyleSheet, View } from 'react-native';
 import Confetti from 'react-native-confetti';
-import { noop } from 'swr/_internal';
 
+import { SharingPromotionCard } from '@/components/feature/Promotion/Sharing';
 import { Button } from '@/components/ui/Button';
 import { Spacer } from '@/components/ui/Spacer';
 import { NotoText } from '@/components/ui/Text';
-import { Constants } from '@/constants';
+import { APP_NAME } from '@/features/Onboarding/Recipe/constants';
 import { useFetchMyProfile } from '@/features/Users/apis/getMyProfile';
 import { usePatchMyProfile } from '@/features/Users/apis/patchMyProfile';
 import { UserStatus } from '@/features/Users/types';
-
-const Dec01Image = require('assets/dec_01.webp') as string;
 
 const { height, width } = Dimensions.get('window');
 
@@ -55,26 +52,10 @@ export default function OnboardingRegisterRecipesCompletePage() {
       <View style={{ minHeight: height - 144 }}>
         <View style={styles.titleWrapper}>
           <NotoText fw="bold" style={styles.pageTitle}>
-            レシピルを利用する準備が完了しました！
+            {APP_NAME}を利用する準備が完了しました！
           </NotoText>
         </View>
-        <View style={styles.cardContainer}>
-          <NotoText fw="bold" style={styles.cardTitle}>
-            あなたの料理本を誰かと共有しませんか？
-          </NotoText>
-          {/* // TODO: 後で検討 */}
-          <View style={styles.cardActionButton}>
-            <Button onPress={noop}>共有する</Button>
-          </View>
-          <Image
-            contentFit="contain"
-            source={Dec01Image}
-            style={{
-              width: '100%',
-              height: 75,
-            }}
-          />
-        </View>
+        <SharingPromotionCard />
         <Spacer />
         <View style={styles.actionButtonWrapper}>
           <Button onPress={handleStart} loading={loading}>
@@ -96,6 +77,7 @@ const styles = StyleSheet.create({
   },
   titleWrapper: {
     marginTop: 8,
+    marginBottom: 24,
   },
   pageTitle: {
     fontSize: 18,
@@ -107,13 +89,4 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     gap: 16,
   },
-  cardContainer: {
-    paddingTop: 16,
-    paddingHorizontal: 24,
-    backgroundColor: Constants.colors.primitive.gray[50],
-    borderRadius: Constants.radius['lg'],
-    marginTop: 24,
-  },
-  cardTitle: { fontSize: 14, textAlign: 'center' },
-  cardActionButton: { marginTop: 12, marginBottom: 12 },
 });
