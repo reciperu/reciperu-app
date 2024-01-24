@@ -20,7 +20,7 @@ export default function OnboardingJoinBookReadQRPage() {
 
   const handleBarCodeScanned = ({ data }: BarCodeEvent) => {
     console.log(data);
-    // TODO: QRコードのデータを取得して、それを元に料理本に参加する
+    // TODO: QRコードのデータを取得して、それを元にレシピ集に参加する
     router.push('/(onboarding)/(joinBook)/complete');
   };
 

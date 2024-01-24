@@ -13,12 +13,12 @@ export default function OnboardingJoinBookTopPage() {
         <View style={styles.titleWrapper}>
           <NotoText style={styles.stepper}>3/4</NotoText>
           <NotoText fw="bold" style={styles.pageTitle}>
-            料理本を共有してもらいましょう
+            レシピ集を共有してもらいましょう
           </NotoText>
         </View>
         <View style={styles.contentWrapper}>
           <NotoText style={[styles.descriptionText, { marginBottom: 8 }]}>
-            料理本の共有には
+            レシピ集の共有には
           </NotoText>
           <View style={styles.colorBox}>
             <NotoText style={styles.descriptionText}>1. QRコードを読み取る</NotoText>

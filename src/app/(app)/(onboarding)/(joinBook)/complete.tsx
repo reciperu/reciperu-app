@@ -11,7 +11,7 @@ export default function OnboardingJoinBookCompletePage() {
       <View style={styles.container}>
         <NotoText fw="bold" style={styles.pageTitle}>
           {/* // TODO: ユーザー名 */}
-          ありがとうございます！{'\n'}ハナコさんと一緒に料理本を作りましょう🎉
+          ありがとうございます！{'\n'}ハナコさんと一緒にレシピ集を作りましょう🎉
         </NotoText>
         <Spacer />
         {/* // TODO: チェックリスト */}

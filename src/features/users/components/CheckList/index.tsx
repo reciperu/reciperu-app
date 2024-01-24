@@ -3,9 +3,9 @@ import { StyleSheet, View } from 'react-native';
 
 import { CheckList } from '@/components/ui/CheckList';
 import { Flex } from '@/components/ui/Flex';
+import { NotoText } from '@/components/ui/Text';
 import { AppIcon } from '@/components/ui/icons';
 import { Constants } from '@/constants';
-import { NotoText } from '@/components/ui/Text';
 
 export const UserCheckList = memo(() => {
   // TODO: API経由でユーザーのチェックリストを取得する
@@ -23,11 +23,11 @@ export const UserCheckList = memo(() => {
             data={[
               {
                 checked: true,
-                value: '料理本を共有で管理しよう',
+                value: 'レシピ集を共有で管理しよう',
               },
               {
                 checked: false,
-                value: '料理本に料理を登録しよう',
+                value: 'レシピ集に料理を登録しよう',
               },
               {
                 checked: false,

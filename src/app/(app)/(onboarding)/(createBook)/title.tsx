@@ -33,7 +33,7 @@ export default function OnboardingCreateBookTitlePage() {
         <View style={styles.titleWrapper}>
           <NotoText style={styles.stepper}>3/4</NotoText>
           <NotoText fw="bold" style={styles.pageTitle}>
-            料理本に名前をつけましょう
+            レシピ集に名前をつけましょう
           </NotoText>
         </View>
         <View style={styles.bookWrapper}>

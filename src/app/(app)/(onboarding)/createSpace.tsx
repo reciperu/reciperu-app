@@ -13,11 +13,11 @@ const Instruction03 = require('assets/instructions/instruction-3.webp') as strin
 const CAROUSEL_DATA = [
   {
     image: Instruction01,
-    title: 'あなただけの料理本を作ることができます',
+    title: 'あなただけのレシピ集を作ることができます',
   },
   {
     image: Instruction02,
-    title: `料理本を共有しているユーザーに
+    title: `レシピ集を共有しているユーザーに
 食べたい料理をアプリ内で簡単に提案できます`,
   },
   {
@@ -34,19 +34,19 @@ export default function OnboardingCreateSpacePage() {
         <View style={styles.titleWrapper}>
           <NotoText style={styles.stepper}>2/4</NotoText>
           <NotoText fw="bold" style={styles.pageTitle}>
-            次に、あなたの料理本を作成しましょう
+            次に、あなたのレシピ集を作成しましょう
           </NotoText>
         </View>
         <OnboardingCarousel data={CAROUSEL_DATA} />
         <Spacer />
         <View style={styles.actionButtonWrapper}>
           <Button onPress={() => router.push('/(onboarding)/(createBook)/title')}>
-            新しく料理本を作成する
+            新しくレシピ集を作成する
           </Button>
           <Button
             variant="others"
             onPress={() => router.push('/(onboarding)/(joinBook)/description')}>
-            他の人が作った料理本を見る
+            他の人が作ったレシピ集を見る
           </Button>
         </View>
       </View>
