@@ -12,7 +12,7 @@ export const HeaderAppIcon = memo(() => {
   }, [router]);
   return (
     <Pressable style={styles.container} onPress={handlePress}>
-      <Image source={require('assets/logo.webp')} style={{ width: 24, height: 24 }} />
+      <Image source={require('assets/logo-horizon.svg')} style={{ width: 62, height: 20 }} />
     </Pressable>
   );
 });
