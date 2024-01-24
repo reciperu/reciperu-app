@@ -1,9 +1,11 @@
+import { Image } from 'expo-image';
 import { Stack } from 'expo-router';
 import React from 'react';
 import { View } from 'react-native';
 
 import { Button } from '@/components/ui/Button';
 import { Container } from '@/components/ui/Container';
+import { Flex } from '@/components/ui/Flex';
 import { Spacer } from '@/components/ui/Spacer';
 import { NotoText } from '@/components/ui/Text';
 import { AppIcon } from '@/components/ui/icons';
@@ -31,9 +33,13 @@ export default function SignInPage() {
       />
       <Container>
         <View style={{ flex: 1 }}>
-          <NotoText fw="bold" style={{ marginTop: 20, textAlign: 'center', fontSize: 16 }}>
-            あなただけの料理本を作りましょう
-          </NotoText>
+          <Flex style={{ justifyContent: 'center', paddingVertical: 40 }}>
+            <Image
+              source={require('assets/logo-vertical.svg')}
+              style={{ width: 84, height: 126 }}
+              alt="ロゴ"
+            />
+          </Flex>
           <Spacer />
           <Button
             scheme="text"
