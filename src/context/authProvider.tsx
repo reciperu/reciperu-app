@@ -23,6 +23,7 @@ import secureStoreService, { StoreKeyEnum } from '@/lib/secureStore';
 type Auth = {
   user: User | null;
   loading: boolean;
+  initialize: boolean;
   clearUser: () => void;
   googleSignIn: () => Promise<boolean>;
   signOut: () => Promise<void>;
@@ -36,7 +37,8 @@ export const useAuthContext = () => {
 
 const useAuthProvider = () => {
   const [user, setUser] = useState<User | null>(null);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
+  const [initialize, setInitialize] = useState(false);
   const { postAuth } = usePostAuth();
   useProtectedRoute(user);
   useEffect(() => {
@@ -61,32 +63,36 @@ const useAuthProvider = () => {
     }
   };
 
-  const handleRedirect = async () => {
+  const handleRedirect = useCallback(async () => {
     // google側にログインしているユーザーの情報を取得する
     const userInfo = await GoogleSignin.signInSilently();
-
+    console.log(`userInfo: ${JSON.stringify(userInfo)}`);
     if (userInfo && userInfo.idToken) {
       await handleCredentialResponse(userInfo.idToken);
     }
-  };
+  }, []);
 
   useEffect(() => {
-    handleRedirect();
+    (async () => {
+      await handleRedirect();
+    })();
+  }, [handleRedirect]);
 
+  useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
+      console.log(`currentUser: ${currentUser}`);
       if (currentUser) {
-        const token = await secureStoreService.getValueFor(StoreKeyEnum.TOKEN);
-        if (!token) {
-          const newToken = await currentUser.getIdToken();
-          await secureStoreService.save(StoreKeyEnum.TOKEN, newToken);
-        }
+        const newToken = await currentUser.getIdToken(true);
+        await secureStoreService.save(StoreKeyEnum.TOKEN, newToken);
         setUser(currentUser);
       } else {
         setUser(null);
       }
-      setLoading(false);
-      unsubscribe();
+      setInitialize(true);
     });
+    return () => {
+      unsubscribe();
+    };
   }, [setUser]);
 
   const googleSignIn = async (): Promise<boolean> => {
@@ -120,6 +126,7 @@ const useAuthProvider = () => {
   return {
     user,
     loading,
+    initialize,
     googleSignIn,
     signOut,
     clearUser,

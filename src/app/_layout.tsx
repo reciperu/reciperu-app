@@ -1,23 +1,20 @@
 import { useFonts } from 'expo-font';
 import { Slot } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
-import { useCallback } from 'react';
+import { PropsWithChildren, memo, useCallback } from 'react';
 import { AppState, AppStateStatus, View } from 'react-native';
 import Toast, { ToastConfig } from 'react-native-toast-message';
 import { SWRConfig } from 'swr';
 
+import { PageWholeLoader } from '@/components/ui/PageWholeLoader';
 import { NotoText } from '@/components/ui/Text';
 import { ToastWrapper } from '@/components/ui/Toast';
 import { AppIcon } from '@/components/ui/icons';
 import { Constants } from '@/constants';
-import { AuthProvider } from '@/context/authProvider';
+import { AuthProvider, useAuthContext } from '@/context/authProvider';
 import { client } from '@/lib/axios';
 
 SplashScreen.preventAutoHideAsync();
-
-export const unstable_settings = {
-  initialRouteName: '(app)/(main)/(tabs)/home',
-};
 
 const toastConfig: ToastConfig = {
   successToast: ({ text1, text2 }) => (
@@ -138,10 +135,20 @@ export default function RootLayout() {
           },
         }}>
         <View onLayout={onLayoutRootView}>
-          <Slot />
+          <WholeLayout>
+            <Slot />
+          </WholeLayout>
         </View>
         <Toast config={toastConfig} />
       </SWRConfig>
     </AuthProvider>
   );
 }
+
+const WholeLayout = memo<PropsWithChildren>(({ children }) => {
+  const authContext = useAuthContext();
+  if (!authContext.initialize) {
+    return <PageWholeLoader />;
+  }
+  return <>{children}</>;
+});

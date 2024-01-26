@@ -1,5 +1,5 @@
 import { Redirect, Stack, useRouter } from 'expo-router';
-import { useEffect } from 'react';
+import { memo, useEffect } from 'react';
 import { Alert } from 'react-native';
 
 import { PageWholeLoader } from '@/components/ui/PageWholeLoader';
@@ -9,6 +9,14 @@ import { useFetchMyProfile } from '@/features/Users/apis/getMyProfile';
 import { UserStatus } from '@/features/Users/types';
 
 export default function MainLayout() {
+  const authContext = useAuthContext();
+  if (!authContext.user) {
+    return <Redirect href="/(auth)/sign-in" />;
+  }
+  return <MainContent />;
+}
+
+const MainContent = memo(() => {
   const authContext = useAuthContext();
   const { data, isLoading, error, mutate } = useFetchMyProfile();
   const router = useRouter();
@@ -57,4 +65,4 @@ export default function MainLayout() {
       />
     </Stack>
   );
-}
+});
