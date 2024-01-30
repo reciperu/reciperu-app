@@ -1,19 +1,16 @@
 import { Image } from 'expo-image';
 import { Tabs } from 'expo-router';
-import { Dimensions, TouchableHighlight, View } from 'react-native';
+import { Dimensions, View } from 'react-native';
 
 import { HeaderAppIcon } from '@/components/ui/Header/AppIcon';
 import { HeaderNotificationIcon } from '@/components/ui/Header/NotificationIcon';
-import { NotoText } from '@/components/ui/Text';
 import { AppIcon } from '@/components/ui/icons';
 import { Constants } from '@/constants';
-import { useAuthContext } from '@/context/authProvider';
-import { useFetchMyProfile } from '@/features/Users/apis/getMyProfile';
+import { useFetchMyProfile } from '@/features/User/apis/getMyProfile';
 
 const { height: windowHeight } = Dimensions.get('window');
 
 export default function TabLayout() {
-  const authContext = useAuthContext();
   const { data } = useFetchMyProfile();
   return (
     <View style={{ minHeight: windowHeight }}>
@@ -51,11 +48,6 @@ export default function TabLayout() {
             headerTitle: '',
             headerRight: () => <HeaderNotificationIcon />,
             headerLeft: () => <HeaderAppIcon />,
-            // headerRight: () => (
-            //   <TouchableHighlight onPress={() => authContext.signOut()}>
-            //     <NotoText style={{ color: 'red' }}>サインアウト</NotoText>
-            //   </TouchableHighlight>
-            // ),
             tabBarIcon: ({ color, focused }) => (
               <AppIcon
                 width={28}

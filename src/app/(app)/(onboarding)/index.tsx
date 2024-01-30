@@ -12,8 +12,8 @@ import { TextInput } from '@/components/ui/TextInput';
 import { AppIcon } from '@/components/ui/icons';
 import { Constants } from '@/constants';
 import { Validation } from '@/constants/validation';
-import { useFetchMyProfile } from '@/features/Users/apis/getMyProfile';
-import { usePatchMyProfile } from '@/features/Users/apis/patchMyProfile';
+import { useFetchMyProfile } from '@/features/User/apis/getMyProfile';
+import { usePatchMyProfile } from '@/features/User/apis/patchMyProfile';
 import { convertToBase64FromModule } from '@/utils/image';
 
 const AVATAR_SIZE = 40;
