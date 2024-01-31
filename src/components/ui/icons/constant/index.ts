@@ -12,4 +12,6 @@ export const ICON_NAME_LIST = [
   'warning',
   'info-circle',
   'bell',
+  'pencil',
+  'new-window-arrow',
 ] as const;

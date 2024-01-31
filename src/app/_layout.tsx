@@ -1,8 +1,10 @@
+import { BottomSheetModalProvider } from '@gorhom/bottom-sheet';
 import { useFonts } from 'expo-font';
 import { Slot } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
 import { PropsWithChildren, memo, useCallback } from 'react';
 import { AppState, AppStateStatus, View } from 'react-native';
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import Toast, { ToastConfig } from 'react-native-toast-message';
 import { SWRConfig } from 'swr';
 
@@ -27,9 +29,11 @@ const toastConfig: ToastConfig = {
       />
       <View>
         <NotoText>{text1}</NotoText>
-        <NotoText style={{ fontSize: 12, color: Constants.colors.primitive.gray[600] }}>
-          {text2}
-        </NotoText>
+        {!!text2?.length && (
+          <NotoText style={{ fontSize: 12, color: Constants.colors.primitive.gray[600] }}>
+            {text2}
+          </NotoText>
+        )}
       </View>
     </ToastWrapper>
   ),
@@ -38,9 +42,11 @@ const toastConfig: ToastConfig = {
       <AppIcon name="alert" width={18} height={18} color={Constants.colors.primitive.red[500]} />
       <View>
         <NotoText>{text1}</NotoText>
-        <NotoText style={{ fontSize: 12, color: Constants.colors.primitive.gray[600] }}>
-          {text2}
-        </NotoText>
+        {!!text2?.length && (
+          <NotoText style={{ fontSize: 12, color: Constants.colors.primitive.gray[600] }}>
+            {text2}
+          </NotoText>
+        )}
       </View>
     </ToastWrapper>
   ),
@@ -54,9 +60,11 @@ const toastConfig: ToastConfig = {
       />
       <View>
         <NotoText>{text1}</NotoText>
-        <NotoText style={{ fontSize: 12, color: Constants.colors.primitive.gray[600] }}>
-          {text2}
-        </NotoText>
+        {!!text2?.length && (
+          <NotoText style={{ fontSize: 12, color: Constants.colors.primitive.gray[600] }}>
+            {text2}
+          </NotoText>
+        )}
       </View>
     </ToastWrapper>
   ),
@@ -70,9 +78,11 @@ const toastConfig: ToastConfig = {
       />
       <View>
         <NotoText>{text1}</NotoText>
-        <NotoText style={{ fontSize: 12, color: Constants.colors.primitive.gray[600] }}>
-          {text2}
-        </NotoText>
+        {!!text2?.length && (
+          <NotoText style={{ fontSize: 12, color: Constants.colors.primitive.gray[600] }}>
+            {text2}
+          </NotoText>
+        )}
       </View>
     </ToastWrapper>
   ),
@@ -134,12 +144,16 @@ export default function RootLayout() {
             };
           },
         }}>
-        <View onLayout={onLayoutRootView}>
-          <WholeLayout>
-            <Slot />
-          </WholeLayout>
-        </View>
-        <Toast config={toastConfig} />
+        <BottomSheetModalProvider>
+          <GestureHandlerRootView style={{ flex: 1, flexGrow: 1 }}>
+            <View onLayout={onLayoutRootView}>
+              <WholeLayout>
+                <Slot />
+              </WholeLayout>
+            </View>
+          </GestureHandlerRootView>
+          <Toast config={toastConfig} />
+        </BottomSheetModalProvider>
       </SWRConfig>
     </AuthProvider>
   );

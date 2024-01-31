@@ -1,19 +1,29 @@
 import { Image } from 'expo-image';
 import { Tabs } from 'expo-router';
-import { Dimensions, TouchableHighlight, View } from 'react-native';
+import { memo } from 'react';
+import { Dimensions, View } from 'react-native';
 
 import { HeaderAppIcon } from '@/components/ui/Header/AppIcon';
 import { HeaderNotificationIcon } from '@/components/ui/Header/NotificationIcon';
-import { NotoText } from '@/components/ui/Text';
 import { AppIcon } from '@/components/ui/icons';
 import { Constants } from '@/constants';
-import { useAuthContext } from '@/context/authProvider';
 import { useFetchMyProfile } from '@/features/Users/apis/getMyProfile';
 
 const { height: windowHeight } = Dimensions.get('window');
 
+const HeaderRightIcon = memo(() => (
+  <View style={{ marginRight: 16 }}>
+    <HeaderNotificationIcon />
+  </View>
+));
+
+const HeaderLeftIcon = memo(() => (
+  <View style={{ marginLeft: 16 }}>
+    <HeaderAppIcon />
+  </View>
+));
+
 export default function TabLayout() {
-  const authContext = useAuthContext();
   const { data } = useFetchMyProfile();
   return (
     <View style={{ minHeight: windowHeight }}>
@@ -25,14 +35,15 @@ export default function TabLayout() {
           tabBarInactiveTintColor: Constants.colors.primitive.gray[600],
           tabBarActiveTintColor: Constants.colors.primitive.pink[400],
           tabBarLabelStyle: { fontFamily: 'noto-sans-bold', fontSize: 10 },
+          headerShadowVisible: false,
+          headerTitle: '',
+          headerRight: () => <HeaderRightIcon />,
+          headerLeft: () => <HeaderLeftIcon />,
         }}>
         <Tabs.Screen
           name="home"
           options={{
             title: 'ホーム',
-            headerTitle: '',
-            headerRight: () => <HeaderNotificationIcon />,
-            headerLeft: () => <HeaderAppIcon />,
             tabBarIcon: ({ color, focused }) => (
               <AppIcon
                 width={28}
@@ -47,10 +58,7 @@ export default function TabLayout() {
         <Tabs.Screen
           name="recipe"
           options={{
-            title: '料理',
-            headerTitle: '',
-            headerRight: () => <HeaderNotificationIcon />,
-            headerLeft: () => <HeaderAppIcon />,
+            title: 'レシピ',
             // headerRight: () => (
             //   <TouchableHighlight onPress={() => authContext.signOut()}>
             //     <NotoText style={{ color: 'red' }}>サインアウト</NotoText>
@@ -71,9 +79,6 @@ export default function TabLayout() {
           name="menu"
           options={{
             title: '献立',
-            headerTitle: '',
-            headerRight: () => <HeaderNotificationIcon />,
-            headerLeft: () => <HeaderAppIcon />,
             tabBarIcon: ({ color, focused }) => (
               <AppIcon
                 width={22}
@@ -89,10 +94,8 @@ export default function TabLayout() {
           name="myPage"
           options={{
             title: 'マイページ',
-            headerTitle: '',
-            headerRight: () => <HeaderNotificationIcon />,
-            headerLeft: () => <HeaderAppIcon />,
-            tabBarIcon: ({ color, focused }) => (
+            headerShown: false,
+            tabBarIcon: ({ focused }) => (
               <Image
                 contentFit="cover"
                 source={{ uri: data?.imageUrl || '' }}

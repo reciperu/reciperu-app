@@ -16,7 +16,7 @@ export interface UserCheckResponse {
 
 export enum UserStatus {
   ONBOARDING = 'ONBOARDING',
-  JOINED_SPACE = 'JOINED_SPACE',
+  JOINED_SPACE = 'JOINED_RECIPE_BOOK',
   NOT_JOINED_SPACE = 'NOT_JOINED_SPACE',
 }
 

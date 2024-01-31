@@ -10,13 +10,11 @@ import { Spacer } from '@/components/ui/Spacer';
 import { NotoText } from '@/components/ui/Text';
 import { TextInput } from '@/components/ui/TextInput';
 import { AppIcon } from '@/components/ui/icons';
-import { Constants } from '@/constants';
+import { AVATAR_SIZE, Constants } from '@/constants';
 import { Validation } from '@/constants/validation';
 import { useFetchMyProfile } from '@/features/Users/apis/getMyProfile';
 import { usePatchMyProfile } from '@/features/Users/apis/patchMyProfile';
 import { convertToBase64FromModule } from '@/utils/image';
-
-const AVATAR_SIZE = 40;
 
 const Avatar01 = require('assets/avatar/avatar01.png') as string;
 const Avatar02 = require('assets/avatar/avatar02.png') as string;

@@ -11,6 +11,8 @@ import { GoogleLogo } from './components/Google';
 import { Home } from './components/Home';
 import { InfoCircle } from './components/InfoCircle';
 import { ListCheck } from './components/ListCheck';
+import { NewWindowArrow } from './components/NewWindowArrow';
+import { Pencil } from './components/Pencil';
 import { Recipe } from './components/Recipe';
 import { Warning } from './components/Warning';
 import { AppIconNames, IconProps } from './types';
@@ -46,6 +48,10 @@ export const AppIcon = memo<Props>(({ name, ...rest }) => {
     return <Warning {...rest} />;
   } else if (name === 'bell') {
     return <Bell {...rest} />;
+  } else if (name === 'pencil') {
+    return <Pencil {...rest} />;
+  } else if (name === 'new-window-arrow') {
+    return <NewWindowArrow {...rest} />;
   }
   return <></>;
 });

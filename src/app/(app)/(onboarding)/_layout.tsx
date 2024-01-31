@@ -1,9 +1,15 @@
-import { Stack } from 'expo-router';
+import { Redirect, Stack } from 'expo-router';
 import { View } from 'react-native';
 
 import { Constants } from '@/constants';
+import { useFetchMyProfile } from '@/features/Users/apis/getMyProfile';
+import { UserStatus } from '@/features/Users/types';
 
 export default function OnboardingLayout() {
+  const { data } = useFetchMyProfile();
+  if (data?.activeStatus === UserStatus.JOINED_SPACE) {
+    return <Redirect href="/(main)/(tabs)/home" />;
+  }
   return (
     <Stack
       screenOptions={{
