@@ -10,7 +10,7 @@ import { Constants } from '@/constants';
 import { Validation } from '@/constants/validation';
 import { Book } from '@/features/Book';
 import { usePutRecipeBook } from '@/features/Book/api/putRecipeBook';
-import { useFetchMyProfile } from '@/features/Users/apis/getMyProfile';
+import { useFetchMyProfile } from '@/features/User/apis/getMyProfile';
 
 const getDefaultTitle = (name: string) => `${name}さんのレシピ集`;
 

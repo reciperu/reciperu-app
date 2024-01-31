@@ -1,6 +1,6 @@
 import { useSWRConfig } from 'swr';
 
-import { SpaceUser } from '@/features/Users/types';
+import { SpaceUser } from '@/features/User/types';
 import { client } from '@/lib/axios';
 
 // TODO: api修正まち

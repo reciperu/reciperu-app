@@ -8,9 +8,9 @@ import { Button } from '@/components/ui/Button';
 import { Spacer } from '@/components/ui/Spacer';
 import { NotoText } from '@/components/ui/Text';
 import { APP_NAME } from '@/features/Onboarding/Recipe/constants';
-import { useFetchMyProfile } from '@/features/Users/apis/getMyProfile';
-import { usePatchMyProfile } from '@/features/Users/apis/patchMyProfile';
-import { UserStatus } from '@/features/Users/types';
+import { useFetchMyProfile } from '@/features/User/apis/getMyProfile';
+import { usePatchMyProfile } from '@/features/User/apis/patchMyProfile';
+import { UserStatus } from '@/features/User/types';
 
 const { height, width } = Dimensions.get('window');
 

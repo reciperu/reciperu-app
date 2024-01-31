@@ -7,7 +7,7 @@ import { HeaderAppIcon } from '@/components/ui/Header/AppIcon';
 import { HeaderNotificationIcon } from '@/components/ui/Header/NotificationIcon';
 import { AppIcon } from '@/components/ui/icons';
 import { Constants } from '@/constants';
-import { useFetchMyProfile } from '@/features/Users/apis/getMyProfile';
+import { useFetchMyProfile } from '@/features/User/apis/getMyProfile';
 
 const { height: windowHeight } = Dimensions.get('window');
 
