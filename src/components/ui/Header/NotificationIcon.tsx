@@ -19,7 +19,9 @@ export const HeaderNotificationIcon = memo(() => {
 
 const styles = StyleSheet.create({
   container: {
-    marginRight: 16,
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
     backgroundColor: 'white',
   },
 });
