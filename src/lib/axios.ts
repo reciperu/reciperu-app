@@ -1,4 +1,3 @@
-import { GoogleSignin } from '@react-native-google-signin/google-signin';
 import Axios from 'axios';
 import qs, { parse } from 'qs';
 import Toast from 'react-native-toast-message';
@@ -44,8 +43,24 @@ client.interceptors.response.use(
       if (!error.config.retry) {
         // tokenの更新
         try {
-          const res = await GoogleSignin.getTokens();
-          await secureStoreService.save(StoreKeyEnum.TOKEN, res.idToken);
+          // TODO: トークンをrefreshする場合は以下を参照して実装する
+          // https://qiita.com/spre55/items/0753e993548c16d35530
+          const refreshToken = await secureStoreService.getValueFor(StoreKeyEnum.REFRESH_TOKEN);
+
+          const response = await fetch(
+            `https://securetoken.googleapis.com/v1/token?key=${process.env.EXPO_PUBLIC_API_KEY}`,
+            {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/x-www-form-urlencoded; charset=utf-8',
+              },
+              body: 'grant_type=refresh_token&refresh_token=' + refreshToken,
+            }
+          );
+          const json = await response.json();
+          console.log(`json!!: ${JSON.stringify(json)}`);
+          await secureStoreService.save(StoreKeyEnum.TOKEN, json.id_token);
+          await secureStoreService.save(StoreKeyEnum.REFRESH_TOKEN, json.refresh_token);
         } catch (error) {
           console.log(error);
         }

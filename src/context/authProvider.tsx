@@ -59,6 +59,7 @@ const useAuthProvider = () => {
     if (result) {
       const token = await result.user.getIdToken();
       secureStoreService.save(StoreKeyEnum.TOKEN, token);
+      secureStoreService.save(StoreKeyEnum.REFRESH_TOKEN, result.user.refreshToken);
       setUser(result.user);
     }
   };
@@ -66,7 +67,6 @@ const useAuthProvider = () => {
   const handleRedirect = useCallback(async () => {
     // google側にログインしているユーザーの情報を取得する
     const userInfo = await GoogleSignin.signInSilently();
-    console.log(`userInfo: ${JSON.stringify(userInfo)}`);
     if (userInfo && userInfo.idToken) {
       await handleCredentialResponse(userInfo.idToken);
     }
@@ -80,10 +80,11 @@ const useAuthProvider = () => {
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
-      console.log(`currentUser: ${currentUser}`);
+      console.log(`currentUser: ${JSON.stringify(currentUser)}`);
       if (currentUser) {
         const newToken = await currentUser.getIdToken(true);
         await secureStoreService.save(StoreKeyEnum.TOKEN, newToken);
+        await secureStoreService.save(StoreKeyEnum.REFRESH_TOKEN, currentUser.refreshToken);
         setUser(currentUser);
       } else {
         setUser(null);

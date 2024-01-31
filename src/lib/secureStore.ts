@@ -2,6 +2,7 @@ import * as SecureStore from 'expo-secure-store';
 
 export enum StoreKeyEnum {
   TOKEN = 'token',
+  REFRESH_TOKEN = 'refreshToken',
 }
 
 /**
