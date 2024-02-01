@@ -1,6 +1,7 @@
 import { BottomSheetModal } from '@gorhom/bottom-sheet';
 import { Image } from 'expo-image';
 import * as ImagePicker from 'expo-image-picker';
+import { Link } from 'expo-router';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { Dimensions, FlatList, Pressable, StyleSheet, Text, View } from 'react-native';
 import Toast from 'react-native-toast-message';
@@ -8,14 +9,13 @@ import Toast from 'react-native-toast-message';
 import { UserInfo } from '@/components/feature/MyPage/UserInfo';
 import { Button } from '@/components/ui/Button';
 import { Container } from '@/components/ui/Container';
+import { Flex } from '@/components/ui/Flex';
 import { AppIcon } from '@/components/ui/icons';
 import { AVATAR_SIZE, Constants } from '@/constants';
-import { useFetchMyProfile } from '@/features/Users/apis/getMyProfile';
-import { usePatchMyProfile } from '@/features/Users/apis/patchMyProfile';
-import { convertToBase64FromModule } from '@/utils/image';
-import { Flex } from '@/components/ui/Flex';
-import { Link } from 'expo-router';
 import { APP_NAME } from '@/features/Onboarding/Recipe/constants';
+import { useFetchMyProfile } from '@/features/User/apis/getMyProfile';
+import { usePatchMyProfile } from '@/features/User/apis/patchMyProfile';
+import { convertToBase64FromModule } from '@/utils/image';
 
 const Avatar01 = require('assets/avatar/avatar01.png') as string;
 const Avatar02 = require('assets/avatar/avatar02.png') as string;

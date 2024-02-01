@@ -2,8 +2,8 @@ import { Redirect, Stack } from 'expo-router';
 import { View } from 'react-native';
 
 import { Constants } from '@/constants';
-import { useFetchMyProfile } from '@/features/Users/apis/getMyProfile';
-import { UserStatus } from '@/features/Users/types';
+import { useFetchMyProfile } from '@/features/User/apis/getMyProfile';
+import { UserStatus } from '@/features/User/types';
 
 export default function OnboardingLayout() {
   const { data } = useFetchMyProfile();

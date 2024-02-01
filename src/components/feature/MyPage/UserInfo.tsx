@@ -6,8 +6,8 @@ import Toast from 'react-native-toast-message';
 import { Flex } from '@/components/ui/Flex';
 import { AppIcon } from '@/components/ui/icons';
 import { Constants } from '@/constants';
-import { usePatchMyProfile } from '@/features/Users/apis/patchMyProfile';
-import { SpaceUser } from '@/features/Users/types';
+import { usePatchMyProfile } from '@/features/User/apis/patchMyProfile';
+import { SpaceUser } from '@/features/User/types';
 
 interface Props {
   data?: SpaceUser;
