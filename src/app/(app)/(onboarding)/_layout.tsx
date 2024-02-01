@@ -7,6 +7,7 @@ import { UserStatus } from '@/features/User/types';
 
 export default function OnboardingLayout() {
   const { data } = useFetchMyProfile();
+  if (!data) return <></>;
   if (data?.activeStatus === UserStatus.JOINED_SPACE) {
     return <Redirect href="/(main)/(tabs)/home" />;
   }
