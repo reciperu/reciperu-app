@@ -15,6 +15,7 @@ import { AVATAR_SIZE, Constants } from '@/constants';
 import { APP_NAME } from '@/features/Onboarding/Recipe/constants';
 import { useFetchMyProfile } from '@/features/User/apis/getMyProfile';
 import { usePatchMyProfile } from '@/features/User/apis/patchMyProfile';
+import { openURL } from '@/functions/utils';
 import { convertToBase64FromModule } from '@/utils/image';
 
 const Avatar01 = require('assets/avatar/avatar01.png') as string;
@@ -208,46 +209,65 @@ export default function MyPagePage() {
               </Link>
             </View>
             {/* プライバシーポリシー */}
-            <View style={{ width: '100%', height: 48, backgroundColor: 'white' }}>
-              <Flex
-                style={{
-                  paddingLeft: 16,
-                  paddingRight: 8,
-                  paddingVertical: 16,
-                  justifyContent: 'space-between',
-                  width: '100%',
-                  alignItems: 'center',
-                }}>
-                <Text>プライバシーポリシー</Text>
-                <AppIcon
-                  name="new-window-arrow"
-                  width={16}
-                  height={16}
-                  color={Constants.colors.primitive.gray[300]}
-                />
-              </Flex>
-            </View>
+            <Pressable
+              onPress={() =>
+                openURL('https://ryotanny.notion.site/bf33d3830eb8492cb28872569e875179')
+              }>
+              <View style={{ width: '100%', height: 48, backgroundColor: 'white' }}>
+                <Flex
+                  style={{
+                    paddingLeft: 16,
+                    paddingRight: 8,
+                    paddingVertical: 16,
+                    justifyContent: 'space-between',
+                    width: '100%',
+                    alignItems: 'center',
+                  }}>
+                  <Text>プライバシーポリシー</Text>
+                  <AppIcon
+                    name="new-window-arrow"
+                    width={16}
+                    height={16}
+                    color={Constants.colors.primitive.gray[300]}
+                  />
+                </Flex>
+              </View>
+            </Pressable>
             {/* 利用規約 */}
-            <View style={{ width: '100%', height: 48, backgroundColor: 'white' }}>
-              <Flex
-                style={{
-                  paddingLeft: 16,
-                  paddingRight: 8,
-                  paddingVertical: 16,
-                  justifyContent: 'space-between',
-                  width: '100%',
-                  alignItems: 'center',
-                }}>
-                <Text>利用規約</Text>
-                <AppIcon
-                  name="new-window-arrow"
-                  width={16}
-                  height={16}
-                  color={Constants.colors.primitive.gray[300]}
-                />
-              </Flex>
-            </View>
+            <Pressable
+              onPress={() =>
+                openURL('https://ryotanny.notion.site/684b04dcdc7a4212a2c6334a5743b9c8')
+              }>
+              <View style={{ width: '100%', height: 48, backgroundColor: 'white' }}>
+                <Flex
+                  style={{
+                    paddingLeft: 16,
+                    paddingRight: 8,
+                    paddingVertical: 16,
+                    justifyContent: 'space-between',
+                    width: '100%',
+                    alignItems: 'center',
+                  }}>
+                  <Text>利用規約</Text>
+                  <AppIcon
+                    name="new-window-arrow"
+                    width={16}
+                    height={16}
+                    color={Constants.colors.primitive.gray[300]}
+                  />
+                </Flex>
+              </View>
+            </Pressable>
             {/* アプリを共有 */}
+            {/* // TODO: appstoreのリンク取得後コメントアウト外す */}
+            {/* <Pressable
+              onPress={() =>
+                Share.share({
+                  message:
+                    "https://apps.apple.com/jp/app/%E7%9E%91%E6%83%B3time/id6475310806",
+                })
+              }
+            >
             <View style={{ width: '100%', height: 48, backgroundColor: 'white' }}>
               <Flex
                 style={{
@@ -267,6 +287,7 @@ export default function MyPagePage() {
                 />
               </Flex>
             </View>
+            </Pressable> */}
             {/* Sharelyについて */}
             <View style={{ width: '100%' }}>
               <Link href="/myPage/about" style={{ height: 48, backgroundColor: 'white' }}>
