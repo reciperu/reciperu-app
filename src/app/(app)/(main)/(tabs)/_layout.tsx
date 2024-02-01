@@ -59,11 +59,6 @@ export default function TabLayout() {
           name="recipe"
           options={{
             title: 'レシピ',
-            // headerRight: () => (
-            //   <TouchableHighlight onPress={() => authContext.signOut()}>
-            //     <NotoText style={{ color: 'red' }}>サインアウト</NotoText>
-            //   </TouchableHighlight>
-            // ),
             tabBarIcon: ({ color, focused }) => (
               <AppIcon
                 width={28}

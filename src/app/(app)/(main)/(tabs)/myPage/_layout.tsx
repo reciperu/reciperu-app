@@ -1,6 +1,6 @@
-import { Stack } from 'expo-router';
+import { Stack, usePathname } from 'expo-router';
 import { memo } from 'react';
-import { View } from 'react-native';
+import { Text, View } from 'react-native';
 
 import { HeaderAppIcon } from '@/components/ui/Header/AppIcon';
 import { HeaderNotificationIcon } from '@/components/ui/Header/NotificationIcon';
@@ -20,6 +20,7 @@ const HeaderLeftIcon = memo(() => (
 ));
 
 export default function MyPageLayout() {
+  const pathname = usePathname();
   return (
     <Stack
       screenOptions={{
@@ -61,6 +62,13 @@ export default function MyPageLayout() {
           headerTintColor: Constants.colors.primitive.pink[400],
           headerTitleStyle: {
             color: 'black',
+          },
+          headerTitle: () => {
+            console.log(pathname);
+            if (pathname === '/myPage/account/withdraw') {
+              return <Text style={{ fontWeight: 'bold', fontSize: 16 }}>退会する</Text>;
+            }
+            return <Text style={{ fontWeight: 'bold', fontSize: 16 }}>アカウント設定</Text>;
           },
         }}
       />
