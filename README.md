@@ -28,3 +28,6 @@ yarn android:dev
 # - 本番向けビルド
 yarn android:prd
 ```
+
+memo:
+https://medium.com/nerd-for-tech/apple-google-authentication-in-expo-apps-using-firebase-997125440032
