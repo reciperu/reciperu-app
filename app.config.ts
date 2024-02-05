@@ -21,6 +21,7 @@ export default ({ config }: ConfigContext): ExpoConfig => {
       // 環境変数からバンドル識別子を取得
       bundleIdentifier: process.env.IOS_BUNDLE_IDENTIFIER || 'com.ryotanny.reciperu-app-develop',
       googleServicesFile: './GoogleService-Info.plist',
+      usesAppleSignIn: true,
       infoPlist: {
         CFBundleLocalizations: ['ja_JP'],
         CFBundleDevelopmentRegion: 'ja_JP',
@@ -38,6 +39,7 @@ export default ({ config }: ConfigContext): ExpoConfig => {
     plugins: [
       'expo-router',
       '@react-native-google-signin/google-signin',
+      'expo-apple-authentication',
       [
         'expo-image-picker',
         {

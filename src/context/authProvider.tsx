@@ -1,10 +1,14 @@
 import { GoogleSignin } from '@react-native-google-signin/google-signin';
+import * as AppleAuthentication from 'expo-apple-authentication';
+import * as Crypto from 'expo-crypto';
 import {
   GoogleAuthProvider,
+  OAuthProvider,
   onAuthStateChanged,
   signInWithCredential,
   User,
   signOut as firebaseSignOut,
+  UserCredential,
 } from 'firebase/auth';
 import {
   PropsWithChildren,
@@ -17,15 +21,18 @@ import {
 
 import { usePostAuth } from '@/features/Auth/api/postAuth';
 import { useProtectedRoute } from '@/hooks/useProtectedRoute';
+import AsyncStorage from '@/lib/asyncStorage';
 import { auth } from '@/lib/firebase-config';
 import secureStoreService, { StoreKeyEnum } from '@/lib/secureStore';
 
 type Auth = {
   user: User | null;
-  loading: boolean;
+  googleAuthPending: boolean;
+  appleAuthPending: boolean;
   initialize: boolean;
   clearUser: () => void;
-  googleSignIn: () => Promise<boolean>;
+  signInWithGoogle: () => Promise<boolean>;
+  signInWithApple: () => Promise<boolean>;
   signOut: () => Promise<void>;
 };
 
@@ -37,7 +44,8 @@ export const useAuthContext = () => {
 
 const useAuthProvider = () => {
   const [user, setUser] = useState<User | null>(null);
-  const [loading, setLoading] = useState(false);
+  const [googleAuthPending, setGoogleAuthPending] = useState(false);
+  const [appleAuthPending, setAppleAuthPending] = useState(false);
   const [initialize, setInitialize] = useState(false);
   const { postAuth } = usePostAuth();
   useProtectedRoute(user);
@@ -52,7 +60,7 @@ const useAuthProvider = () => {
     setUser(null);
   }, []);
   // Google の認証応答からの ID トークンを Firebase 認証情報と交換し、それを使用して Firebase での認証を行う
-  const handleCredentialResponse = async (googleIdToken: string) => {
+  const handleCredentialResponseWithGoogle = async (googleIdToken: string) => {
     const credential = GoogleAuthProvider.credential(googleIdToken);
 
     const result = await signInWithCredential(auth, credential);
@@ -63,12 +71,27 @@ const useAuthProvider = () => {
       setUser(result.user);
     }
   };
+  // Apple の認証応答からの ID トークンを Firebase 認証情報と交換し、それを使用して Firebase での認証を行う
+  const handleCredentialResponseWithApple = async (result: UserCredential) => {
+    if (result) {
+      const token = await result.user.getIdToken();
+      secureStoreService.save(StoreKeyEnum.TOKEN, token);
+      secureStoreService.save(StoreKeyEnum.REFRESH_TOKEN, result.user.refreshToken);
+      setUser(result.user);
+    }
+  };
 
   const handleRedirect = useCallback(async () => {
-    // google側にログインしているユーザーの情報を取得する
-    const userInfo = await GoogleSignin.signInSilently();
-    if (userInfo && userInfo.idToken) {
-      await handleCredentialResponse(userInfo.idToken);
+    const lastLoginMethod = await AsyncStorage.getValueFor('last_login_method');
+    if (lastLoginMethod === 'google') {
+      // google側にログインしているユーザーの情報を取得する
+      const userInfo = await GoogleSignin.signInSilently();
+      if (userInfo && userInfo.idToken) {
+        await handleCredentialResponseWithGoogle(userInfo.idToken);
+      }
+    }
+    if (lastLoginMethod === 'apple') {
+      // TODO
     }
   }, []);
 
@@ -96,26 +119,63 @@ const useAuthProvider = () => {
     };
   }, [setUser]);
 
-  const googleSignIn = async (): Promise<boolean> => {
-    setLoading(true);
+  const signInWithGoogle = async (): Promise<boolean> => {
+    setGoogleAuthPending(true);
     try {
       await GoogleSignin.hasPlayServices();
       const userInfo = await GoogleSignin.signIn();
       if (userInfo?.idToken) {
-        await handleCredentialResponse(userInfo.idToken);
+        await handleCredentialResponseWithGoogle(userInfo.idToken);
       }
       await postAuth();
-      setLoading(false);
+      await AsyncStorage.save('last_login_method', 'google');
+      setGoogleAuthPending(false);
       return true;
     } catch {
-      setLoading(false);
+      setGoogleAuthPending(false);
+      return false;
+    }
+  };
+
+  const signInWithApple = async () => {
+    setAppleAuthPending(true);
+    try {
+      const nonce = Math.random().toString(36).substring(2, 10);
+      const hashedNonce = await Crypto.digestStringAsync(
+        Crypto.CryptoDigestAlgorithm.SHA256,
+        nonce
+      );
+      const appleCredential = await AppleAuthentication.signInAsync({
+        requestedScopes: [
+          AppleAuthentication.AppleAuthenticationScope.FULL_NAME,
+          AppleAuthentication.AppleAuthenticationScope.EMAIL,
+        ],
+        nonce: hashedNonce,
+      });
+      const { identityToken } = appleCredential;
+      const provider = new OAuthProvider('apple.com');
+      const credential = provider.credential({
+        idToken: identityToken!,
+        rawNonce: nonce,
+      });
+      const result = await signInWithCredential(auth, credential);
+      await handleCredentialResponseWithApple(result);
+      await postAuth();
+      await AsyncStorage.save('last_login_method', 'apple');
+      setAppleAuthPending(false);
+      return true;
+    } catch {
+      setAppleAuthPending(false);
       return false;
     }
   };
 
   const signOut = async () => {
     try {
-      await GoogleSignin.signOut();
+      const lastLoginMethod = await AsyncStorage.getValueFor('last_login_method');
+      if (lastLoginMethod === 'google') {
+        await GoogleSignin.signOut();
+      }
       await firebaseSignOut(auth);
       await secureStoreService.deleteValueFor(StoreKeyEnum.TOKEN);
       setUser(null);
@@ -126,9 +186,11 @@ const useAuthProvider = () => {
 
   return {
     user,
-    loading,
+    googleAuthPending,
+    appleAuthPending,
     initialize,
-    googleSignIn,
+    signInWithGoogle,
+    signInWithApple,
     signOut,
     clearUser,
   };
