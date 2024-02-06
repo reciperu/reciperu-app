@@ -6,15 +6,16 @@ import { Constants } from '@/constants';
 
 interface Props {
   checked: boolean;
+  size?: number;
 }
 
-export const CheckIconButton = memo<Props>(({ checked }) => {
+export const CheckIconButton = memo<Props>(({ checked, size = 20 }) => {
   if (checked) {
     return (
       <AppIcon
         name="check-mark"
-        width={20}
-        height={20}
+        width={size}
+        height={size}
         color={Constants.colors.primitive.pink['400']}
       />
     );
@@ -22,8 +23,8 @@ export const CheckIconButton = memo<Props>(({ checked }) => {
   return (
     <View
       style={{
-        width: 20,
-        height: 20,
+        width: size,
+        height: size,
         borderRadius: Constants.radius['xl'],
         borderWidth: 1,
         borderColor: Constants.colors.primitive.gray['400'],
