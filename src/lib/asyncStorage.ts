@@ -12,7 +12,9 @@ const deleteValueFor = async (key: KEY_MAP) => {
 
 const getValueFor = async (key: KEY_MAP) => {
   const result = await AsyncStorage.getItem(key);
-  if (result) {
+  if (typeof result === 'string') {
+    return result;
+  } else if (result) {
     return JSON.parse(result);
   }
   return null;
