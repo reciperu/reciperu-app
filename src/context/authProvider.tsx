@@ -138,6 +138,9 @@ const useAuthProvider = () => {
   };
 
   const signInWithApple = async () => {
+    if (!AppleAuthentication.isAvailableAsync || appleAuthPending) {
+      return false;
+    }
     setAppleAuthPending(true);
     try {
       const nonce = Math.random().toString(36).substring(2, 10);
