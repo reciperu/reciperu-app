@@ -11,7 +11,7 @@ import { UserStatus } from '@/features/User/types';
 export default function MainLayout() {
   const authContext = useAuthContext();
   if (!authContext.user) {
-    return <Redirect href="/(auth)/sign-in" />;
+    return <Redirect href="/(auth)/signIn" />;
   }
   return <MainContent />;
 }
@@ -28,7 +28,7 @@ const MainContent = memo(() => {
             text: 'ログインする',
             onPress: () => {
               authContext.clearUser();
-              router.replace('/(auth)/sign-in');
+              router.replace('/(auth)/signIn');
             },
           },
         ]);
