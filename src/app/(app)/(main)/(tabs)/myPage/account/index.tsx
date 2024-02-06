@@ -1,15 +1,24 @@
+import { Link, useRouter } from 'expo-router';
+import { useCallback, useEffect, useMemo, useState } from 'react';
+import { Alert, Pressable, Text, View } from 'react-native';
+
 import { Container } from '@/components/ui/Container';
 import { Flex } from '@/components/ui/Flex';
 import { AppIcon } from '@/components/ui/icons';
 import { Constants } from '@/constants';
 import { useAuthContext } from '@/context/authProvider';
-import { Link, useRouter } from 'expo-router';
-import { useCallback } from 'react';
-import { Alert, Pressable, Text, View } from 'react-native';
+import asyncStorage from '@/lib/asyncStorage';
 
 export default function AccountPage() {
   const authContext = useAuthContext();
+  const [loginMethod, setLoginMethod] = useState('');
   const router = useRouter();
+  const email = useMemo(() => {
+    if (authContext.user) {
+      return authContext.user.email;
+    }
+    return '';
+  }, [authContext]);
   const handleSignOut = useCallback(() => {
     Alert.alert('ログアウトしますか？', '', [
       {
@@ -19,18 +28,28 @@ export default function AccountPage() {
       {
         text: 'ログアウト',
         style: 'destructive',
-        onPress: () => {
-          authContext.signOut();
-          router.push('/(auth)/sign-in');
+        onPress: async () => {
+          await authContext.signOut();
+          router.push('/(auth)/signIn');
         },
       },
     ]);
   }, [authContext]);
+  useEffect(() => {
+    const fetchLoginMethod = async () => {
+      const loginMethod = await asyncStorage.getValueFor('last_login_method');
+      if (loginMethod === 'google') {
+        setLoginMethod('Google');
+      } else if (loginMethod === 'apple') {
+        setLoginMethod('Apple');
+      }
+    };
+    fetchLoginMethod();
+  }, []);
   return (
     <Container bgColor={Constants.colors.primitive.gray[100]}>
       <View style={{ flex: 1, paddingVertical: 16 }}>
         <View style={{ width: '100%', borderRadius: 8, overflow: 'hidden' }}>
-          {/* // TODO */}
           <Flex
             style={{
               padding: 16,
@@ -42,10 +61,9 @@ export default function AccountPage() {
             }}>
             <Text>メールアドレス</Text>
             <Text style={{ fontSize: 12, color: Constants.colors.primitive.gray[500] }}>
-              sample@sample.com
+              {email}
             </Text>
           </Flex>
-          {/* // TODO */}
           <Flex
             style={{
               padding: 16,
@@ -56,7 +74,9 @@ export default function AccountPage() {
               backgroundColor: 'white',
             }}>
             <Text>ログイン方法</Text>
-            <Text style={{ fontSize: 12, color: Constants.colors.primitive.gray[500] }}>LINE</Text>
+            <Text style={{ fontSize: 12, color: Constants.colors.primitive.gray[500] }}>
+              {loginMethod}
+            </Text>
           </Flex>
         </View>
         <View style={{ width: '100%', borderRadius: 8, overflow: 'hidden', marginTop: 24 }}>
