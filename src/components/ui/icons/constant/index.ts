@@ -14,4 +14,5 @@ export const ICON_NAME_LIST = [
   'bell',
   'pencil',
   'new-window-arrow',
+  'close-circle',
 ] as const;

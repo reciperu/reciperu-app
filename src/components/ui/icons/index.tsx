@@ -16,6 +16,7 @@ import { Pencil } from './components/Pencil';
 import { Recipe } from './components/Recipe';
 import { Warning } from './components/Warning';
 import { AppIconNames, IconProps } from './types';
+import { CloseCircle } from './components/CloseCircle';
 
 interface Props extends IconProps {
   name: AppIconNames;
@@ -52,6 +53,8 @@ export const AppIcon = memo<Props>(({ name, ...rest }) => {
     return <Pencil {...rest} />;
   } else if (name === 'new-window-arrow') {
     return <NewWindowArrow {...rest} />;
+  } else if (name === 'close-circle') {
+    return <CloseCircle {...rest} />;
   }
   return <></>;
 });
