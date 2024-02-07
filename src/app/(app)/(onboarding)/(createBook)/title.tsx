@@ -8,11 +8,10 @@ import { NotoText } from '@/components/ui/Text';
 import { TextInput } from '@/components/ui/TextInput';
 import { Constants } from '@/constants';
 import { Validation } from '@/constants/validation';
-import { Book } from '@/features/Book';
 import { usePutRecipeBook } from '@/features/Book/api/putRecipeBook';
 import { useFetchMyProfile } from '@/features/User/apis/getMyProfile';
 
-const getDefaultTitle = (name: string) => `${name}さんのレシピ集`;
+const getDefaultTitle = (name: string) => `${name}さんのスペース`;
 
 export default function OnboardingCreateBookTitlePage() {
   const { data } = useFetchMyProfile();
@@ -33,26 +32,21 @@ export default function OnboardingCreateBookTitlePage() {
         <View style={styles.titleWrapper}>
           <NotoText style={styles.stepper}>3/4</NotoText>
           <NotoText fw="bold" style={styles.pageTitle}>
-            レシピ集に名前をつけましょう
+            スペースに名前をつけましょう
           </NotoText>
         </View>
-        <View style={styles.bookWrapper}>
-          <Book name={bookName} icon={data?.imageUrl || ''} />
-        </View>
+        <TextInput
+          value={bookName}
+          onChange={(text) => setBookName(text)}
+          maxLength={Validation.SPACE_NAME.MAX_LENGTH.VALUE}
+        />
         <Spacer />
-        <View style={styles.actionButtonWrapper}>
-          <TextInput
-            value={bookName}
-            onChange={(text) => setBookName(text)}
-            maxLength={Validation.BOOK_NAME.MAX_LENGTH.VALUE}
-          />
-          <Button disabled={bookName.trim() === ''} onPress={handlePress}>
-            次に進む
-          </Button>
-          <Button variant="others" onPress={() => router.back()}>
-            戻る
-          </Button>
-        </View>
+        <Button disabled={bookName.trim() === ''} onPress={handlePress}>
+          次に進む
+        </Button>
+        <Button variant="others" onPress={() => router.back()}>
+          戻る
+        </Button>
       </View>
     </>
   );
@@ -62,6 +56,7 @@ const styles = StyleSheet.create({
   container: { flex: 1, backgroundColor: 'white', paddingHorizontal: 16, paddingBottom: 50 },
   titleWrapper: {
     marginTop: 8,
+    marginBottom: 12,
   },
   stepper: {
     fontSize: 14,

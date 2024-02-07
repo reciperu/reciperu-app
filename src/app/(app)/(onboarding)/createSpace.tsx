@@ -6,22 +6,29 @@ import { Spacer } from '@/components/ui/Spacer';
 import { NotoText } from '@/components/ui/Text';
 import { Constants } from '@/constants';
 import { OnboardingCarousel } from '@/features/Onboarding/Carousel';
-const Instruction01 = require('assets/instructions/instruction-1.webp') as string;
-const Instruction02 = require('assets/instructions/instruction-2.webp') as string;
-const Instruction03 = require('assets/instructions/instruction-3.webp') as string;
+const Instruction01 = require('assets/instructions/instruction-1.png') as string;
+const Instruction02 = require('assets/instructions/instruction-2.png') as string;
+const Instruction03 = require('assets/instructions/instruction-3.png') as string;
+const Instruction04 = require('assets/instructions/instruction-4.png') as string;
 
 const CAROUSEL_DATA = [
   {
     image: Instruction01,
-    title: 'あなただけのレシピ集を作ることができます',
+    title: `スペースとは、あなたとパートナーだけの
+プライベートな空間です`,
   },
   {
     image: Instruction02,
-    title: `レシピ集を共有しているユーザーに
-食べたい料理をアプリ内で簡単に提案できます`,
+    title: `スペースでは２人だけのレシピ集を
+作ることができます`,
   },
   {
     image: Instruction03,
+    title: `同じスペースに所属しているパートナーと
+食べたい料理を共有、提案することができます`,
+  },
+  {
+    image: Instruction04,
     title: `作った料理を1分で登録！
 簡単に登録できるので継続できます`,
   },
@@ -34,19 +41,19 @@ export default function OnboardingCreateSpacePage() {
         <View style={styles.titleWrapper}>
           <NotoText style={styles.stepper}>2/4</NotoText>
           <NotoText fw="bold" style={styles.pageTitle}>
-            次に、あなたのレシピ集を作成しましょう
+            次に、あなたのスペースを作成しましょう
           </NotoText>
         </View>
         <OnboardingCarousel data={CAROUSEL_DATA} />
         <Spacer />
         <View style={styles.actionButtonWrapper}>
           <Button onPress={() => router.push('/(onboarding)/(createBook)/title')}>
-            新しくレシピ集を作成する
+            新しくスペースを作成する
           </Button>
           <Button
             variant="others"
             onPress={() => router.push('/(onboarding)/(joinBook)/description')}>
-            他の人が作ったレシピ集を見る
+            他の人が作ったスペースに参加する
           </Button>
         </View>
       </View>

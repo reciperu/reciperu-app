@@ -44,7 +44,7 @@ export default function OnboardingRegisterRecipesConfirmPage() {
             以下の料理を登録します
           </NotoText>
           <NotoText style={{ color: Constants.colors.primitive['black alpha'][700] }}>
-            レシピ情報は後から編集することもできます
+            レシピ情報は後から変更することができます
           </NotoText>
         </View>
         <View style={{ marginVertical: 20 }}>

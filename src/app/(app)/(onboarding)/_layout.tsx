@@ -1,6 +1,7 @@
 import { Redirect, Stack } from 'expo-router';
 import { View } from 'react-native';
 
+import { HeaderAppIcon } from '@/components/ui/Header/AppIcon';
 import { Constants } from '@/constants';
 import { useFetchMyProfile } from '@/features/User/apis/getMyProfile';
 import { UserStatus } from '@/features/User/types';
@@ -15,9 +16,7 @@ export default function OnboardingLayout() {
     <Stack
       screenOptions={{
         headerStyle: {},
-        headerTitleStyle: {
-          fontWeight: 'bold',
-        },
+        headerTitle: () => <HeaderAppIcon />,
         headerTintColor: Constants.colors.primitive.pink[400],
       }}>
       <Stack.Screen
