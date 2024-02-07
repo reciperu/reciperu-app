@@ -11,7 +11,7 @@ export const SharingPromotionCard = memo(() => {
   return (
     <View style={styles.cardContainer}>
       <NotoText fw="bold" style={styles.cardTitle}>
-        あなたのレシピ集を誰かと共有しませんか？
+        スペースにパートナーを招待しませんか？
       </NotoText>
       {/* // TODO: 後で検討 */}
       <View style={styles.cardActionButton}>
