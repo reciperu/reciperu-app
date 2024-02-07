@@ -44,6 +44,7 @@ export default function TabLayout() {
           name="home"
           options={{
             title: 'ホーム',
+            headerStyle: { backgroundColor: Constants.colors.primitive.pink['50'] },
             tabBarIcon: ({ color, focused }) => (
               <AppIcon
                 width={28}
