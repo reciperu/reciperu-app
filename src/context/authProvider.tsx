@@ -19,7 +19,7 @@ import {
   useState,
 } from 'react';
 
-import { usePostAuth } from '@/features/Auth/api/postAuth';
+import { usePostAuth } from '@/features/Auth/apis/postAuth';
 import { useProtectedRoute } from '@/hooks/useProtectedRoute';
 import AsyncStorage from '@/lib/asyncStorage';
 import { auth } from '@/lib/firebase-config';
