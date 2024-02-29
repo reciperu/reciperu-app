@@ -13,7 +13,7 @@ export const ToastWrapper = memo<PropsWithChildren<Props>>(({ children, style })
       return {
         width: '90%',
         backgroundColor: 'white',
-        padding: 8,
+        padding: 12,
         borderRadius: 8,
         gap: 8,
         alignItems: 'center',
@@ -32,7 +32,7 @@ export const ToastWrapper = memo<PropsWithChildren<Props>>(({ children, style })
     return {
       width: '90%',
       backgroundColor: 'white',
-      padding: 8,
+      padding: 12,
       borderRadius: 8,
       gap: 8,
       alignItems: 'center',
