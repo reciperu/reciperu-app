@@ -58,7 +58,7 @@ export default function HomePage() {
                   style={{ width: 48, height: 48, borderRadius: 24 }}
                 />
                 <NotoText fw="bold" style={{ fontSize: 12, textAlign: 'center' }}>
-                  {data?.name || ''}
+                  あなた
                 </NotoText>
               </Flex>
             </Pressable>
