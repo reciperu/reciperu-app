@@ -3,8 +3,8 @@ export interface SpaceUser {
   name: string;
   imageUrl: string;
   activeStatus: UserStatus;
-  recipeBookOwnerId: 'string';
-  recipeBookParticipantId: 'string';
+  spaceOwnerId: string;
+  spaceParticipantId: string;
 }
 
 export interface UserCheckResponse {

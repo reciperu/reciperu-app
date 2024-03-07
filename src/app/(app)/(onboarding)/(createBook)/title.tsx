@@ -8,24 +8,26 @@ import { NotoText } from '@/components/ui/Text';
 import { TextInput } from '@/components/ui/TextInput';
 import { Constants } from '@/constants';
 import { Validation } from '@/constants/validation';
-import { usePutRecipeBook } from '@/features/Book/api/putRecipeBook';
+import { usePutSpace } from '@/features/Space/apis/putSpace';
 import { useFetchMyProfile } from '@/features/User/apis/getMyProfile';
 
 const getDefaultTitle = (name: string) => `${name}さんのスペース`;
 
 export default function OnboardingCreateBookTitlePage() {
   const { data } = useFetchMyProfile();
-  const { putRecipeBook } = usePutRecipeBook(data?.recipeBookOwnerId || '');
+  // TODO：後で変更
+  const { putSpace } = usePutSpace(data?.spaceOwnerId || '');
   const router = useRouter();
-  const [bookName, setBookName] = useState(getDefaultTitle(data?.name || ''));
-  // TODO: 作成
-  const handlePress = useCallback(() => {
-    // タイトルがデフォルトと異なる場合は更新
-    if (bookName !== getDefaultTitle(data?.name || '')) {
-      putRecipeBook(bookName);
+  const [spaceName, setSpaceName] = useState(getDefaultTitle(data?.name || ''));
+
+  const handlePress = useCallback(async () => {
+    try {
+      await putSpace(spaceName);
+      router.push('/(onboarding)/(registerRecipes)/select');
+    } catch (error) {
+      console.log(`error: ${error}`);
     }
-    router.push('/(onboarding)/(registerRecipes)/select');
-  }, [bookName, data?.name, putRecipeBook, router]);
+  }, [spaceName, putSpace, router]);
   return (
     <>
       <View style={styles.container}>
@@ -36,12 +38,12 @@ export default function OnboardingCreateBookTitlePage() {
           </NotoText>
         </View>
         <TextInput
-          value={bookName}
-          onChange={(text) => setBookName(text)}
+          value={spaceName}
+          onChange={(text) => setSpaceName(text)}
           maxLength={Validation.SPACE_NAME.MAX_LENGTH.VALUE}
         />
         <Spacer />
-        <Button disabled={bookName.trim() === ''} onPress={handlePress}>
+        <Button disabled={spaceName.trim() === ''} onPress={handlePress}>
           次に進む
         </Button>
         <Button variant="others" onPress={() => router.back()}>
