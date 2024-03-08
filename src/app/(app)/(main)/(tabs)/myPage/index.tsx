@@ -115,7 +115,7 @@ export default function MyPagePage() {
   }, [data, tmpImage, updateProfile]);
 
   return (
-    <Container bgColor={Constants.colors.primitive.gray[100]}>
+    <Container bgColor={Constants.colors.primitive.pink[50]}>
       <View style={{ flex: 1, paddingVertical: 16 }}>
         <View style={{ padding: 16, borderRadius: 8, backgroundColor: 'white' }}>
           <UserInfo data={userInfoData} openSheet={handleOpenSheet} closeSheet={handleCloseSheet} />
