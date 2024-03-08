@@ -15,8 +15,7 @@ const getDefaultTitle = (name: string) => `${name}さんのスペース`;
 
 export default function OnboardingCreateBookTitlePage() {
   const { data } = useFetchMyProfile();
-  // TODO：後で変更
-  const { putSpace } = usePutSpace(data?.spaceOwnerId || '');
+  const { putSpace } = usePutSpace(data?.spaceId || '');
   const router = useRouter();
   const [spaceName, setSpaceName] = useState(getDefaultTitle(data?.name || ''));
 

@@ -12,3 +12,10 @@ export interface Recipe {
 export interface OnboardingRecipe extends Omit<Recipe, 'id'> {
   idx: number;
 }
+
+export interface MetaData {
+  title: string;
+  thumbnailUrl: string;
+  appName: string;
+  faviconUrl: string;
+}

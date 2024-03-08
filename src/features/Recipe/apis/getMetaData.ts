@@ -1,11 +1,11 @@
 import { useSWRConfig } from 'swr';
 
-import { SpaceUser } from '@/features/User/types';
+import { MetaData } from '../types';
+
 import { client } from '@/lib/axios';
 
-// TODO: api修正まち
 const getMetaData = async (url: string) =>
-  await client.get<SpaceUser>(`/recipes/meta-data?url=${url}`);
+  await client.get<MetaData>(`/recipes/meta-data?recipeUrl=${url}`);
 
 export const useFetchMetaData = () => {
   const { mutate } = useSWRConfig();

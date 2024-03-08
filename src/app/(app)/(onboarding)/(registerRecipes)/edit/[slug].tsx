@@ -12,6 +12,7 @@ import { TextInput } from '@/components/ui/TextInput';
 import { HeaderLeftBackButton } from '@/components/ui/icons/components/HeaderLeftBackButton';
 import { Constants } from '@/constants';
 import { Validation } from '@/constants/validation';
+import { useFetchMetaData } from '@/features/Recipe/apis/getMetaData';
 import { useStore } from '@/store';
 import { convertImageToBase64FromUri } from '@/utils/image';
 import { isValidUrl } from '@/utils/validation';
@@ -19,11 +20,15 @@ import { isValidUrl } from '@/utils/validation';
 export default function Modal() {
   const isPresented = router.canGoBack();
   const { slug } = useLocalSearchParams();
+  const { fetchMetaData } = useFetchMetaData();
   const navigation = useNavigation();
 
+  const [isFocused, setIsFocused] = useState(false);
   const [thumbnail, setThumbnail] = useState('');
   const [url, setUrl] = useState('');
   const [recipeName, setRecipeName] = useState('');
+  const [appName, setAppName] = useState('');
+  const [faviconUrl, setFaviconUrl] = useState('');
   const [memo, setMemo] = useState('');
   const [images, setImages] = useState<string[]>(['']);
   const [urlFormErrorMessage, setUrlFormErrorMessage] = useState('');
@@ -81,6 +86,8 @@ export default function Modal() {
         title: recipeName,
         memo,
         imageUrls: images,
+        appName,
+        faviconUrl,
       };
       // TODO: レシピURLが変わっていればOGP情報の更新
       // サムネイル
@@ -106,7 +113,15 @@ export default function Modal() {
     updateSelectedRecipe,
     url,
     validate,
+    appName,
+    faviconUrl,
   ]);
+  const handleBlur = useCallback(() => {
+    setIsFocused(false);
+  }, []);
+  const handleFocus = useCallback(() => {
+    setIsFocused(true);
+  }, []);
   useEffect(() => {
     if (targetRecipe) {
       setThumbnail(targetRecipe.thumbnailUrl);
@@ -115,6 +130,23 @@ export default function Modal() {
       setMemo(targetRecipe.memo);
     }
   }, [targetRecipe]);
+  const fetchRecipeDataFromMetaData = useCallback(async () => {
+    if (!isFocused && isValidUrl(url) && targetRecipe?.recipeUrl !== url) {
+      const result = await fetchMetaData(url);
+      console.log(`result: ${JSON.stringify(result?.data)}`);
+      if (result?.data) {
+        const { title, thumbnailUrl, appName, faviconUrl } = result.data;
+        if (title) setRecipeName(title);
+        if (thumbnailUrl) setThumbnail(thumbnailUrl);
+        console.log(`appName: ${appName}`);
+        if (appName) setAppName(appName);
+        if (faviconUrl) setFaviconUrl(faviconUrl);
+      }
+    }
+  }, [fetchMetaData, isFocused, url]);
+  useEffect(() => {
+    fetchRecipeDataFromMetaData();
+  }, [url, isFocused]);
   return (
     <ScrollView style={styles.container}>
       <Stack.Screen
@@ -141,6 +173,8 @@ export default function Modal() {
             <InputLabel>レシピURL</InputLabel>
             <TextInput
               value={url}
+              onFocus={handleFocus}
+              onBlur={handleBlur}
               onChange={(text) => setUrl(text)}
               errorMessage={urlFormErrorMessage}
               description="レシピサイト、Instagram、YouTubeなどのURL"

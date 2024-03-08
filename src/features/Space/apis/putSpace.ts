@@ -11,7 +11,6 @@ const putSpaceApi = async (id: string, name: string) =>
 export const usePutSpace = (id: string) => {
   const { mutate } = useSWRConfig();
   const putSpace = (name: string) => {
-    console.log(`putSpace: ${id}, ${name}`);
     return mutate(`/spaces/${id}`, () => putSpaceApi(id, name), {
       populateCache: (updatedSpace, currentSpace) => {
         if (currentSpace) {

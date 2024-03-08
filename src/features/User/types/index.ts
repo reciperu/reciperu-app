@@ -3,8 +3,8 @@ export interface SpaceUser {
   name: string;
   imageUrl: string;
   activeStatus: UserStatus;
-  spaceOwnerId: string;
-  spaceParticipantId: string;
+  spaceId: string;
+  spaceRole: 'OWNER' | 'PARTICIPANT';
 }
 
 export interface UserCheckResponse {

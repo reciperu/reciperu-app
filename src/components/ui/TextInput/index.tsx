@@ -1,14 +1,17 @@
-import React, { PropsWithChildren, memo, useEffect, useState } from 'react';
+import React, { PropsWithChildren, memo, useCallback, useEffect, useState } from 'react';
 import { TextInput as RNTextInput, StyleProp, StyleSheet, View, ViewStyle } from 'react-native';
+
+import { Spacer } from '../Spacer';
 
 import { Flex } from '@/components/ui/Flex';
 import { NotoText } from '@/components/ui/Text';
 import { Constants } from '@/constants';
-import { Spacer } from '../Spacer';
 
 interface Props {
   style?: StyleProp<ViewStyle>;
   onChange: (text: string) => void;
+  onFocus?: () => void;
+  onBlur?: () => void;
   value: string;
   placeholder?: string;
   maxLength?: number;
@@ -22,6 +25,8 @@ export const TextInput = memo<PropsWithChildren<Props>>(
   ({
     style,
     onChange,
+    onBlur,
+    onFocus,
     value,
     placeholder = '',
     maxLength,
@@ -34,16 +39,18 @@ export const TextInput = memo<PropsWithChildren<Props>>(
     const [isError, setIsError] = useState(false);
 
     // フォーカス時のスタイルを適用するためのハンドラ
-    const handleFocus = () => {
+    const handleFocus = useCallback(() => {
       setIsFocused(true);
       setIsError(false); // エラー状態をクリアする場合
-    };
+      if (onFocus) onFocus();
+    }, [onFocus]);
 
     // フォーカスが外れた時のハンドラ
-    const handleBlur = () => {
+    const handleBlur = useCallback(() => {
       setIsFocused(false);
+      if (onBlur) onBlur();
       // ここでエラーチェックのロジックを実行することもできます
-    };
+    }, [onBlur]);
 
     // エラー状態を設定する関数
     useEffect(() => {
@@ -51,6 +58,7 @@ export const TextInput = memo<PropsWithChildren<Props>>(
         setIsError(true);
       }
     }, []);
+
     return (
       <View>
         <RNTextInput
