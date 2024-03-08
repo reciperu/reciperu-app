@@ -12,7 +12,7 @@ export const RECIPE_LIST: OnboardingRecipe[] = [
     memo: '',
     recipeUrl: 'https://recipe.rakuten.co.jp/recipe/1390024097/',
     faviconUrl: 'https://recipe.rakuten.co.jp/favicon.ico',
-    appName: 'Rakutenレシピ',
+    appName: '楽天レシピ',
   },
   {
     idx: 1,
@@ -23,7 +23,7 @@ export const RECIPE_LIST: OnboardingRecipe[] = [
     memo: '',
     recipeUrl: 'https://recipe.rakuten.co.jp/recipe/1080009668/',
     faviconUrl: 'https://recipe.rakuten.co.jp/favicon.ico',
-    appName: 'Rakutenレシピ',
+    appName: '楽天レシピ',
   },
   {
     idx: 2,
@@ -34,7 +34,7 @@ export const RECIPE_LIST: OnboardingRecipe[] = [
     memo: '',
     recipeUrl: 'https://recipe.rakuten.co.jp/recipe/1930005599/',
     faviconUrl: 'https://recipe.rakuten.co.jp/favicon.ico',
-    appName: 'Rakutenレシピ',
+    appName: '楽天レシピ',
   },
   {
     idx: 3,
@@ -45,7 +45,7 @@ export const RECIPE_LIST: OnboardingRecipe[] = [
     memo: '',
     recipeUrl: 'https://recipe.rakuten.co.jp/recipe/1250008859/',
     faviconUrl: 'https://recipe.rakuten.co.jp/favicon.ico',
-    appName: 'Rakutenレシピ',
+    appName: '楽天レシピ',
   },
   {
     idx: 4,
@@ -56,7 +56,7 @@ export const RECIPE_LIST: OnboardingRecipe[] = [
     memo: '',
     recipeUrl: 'https://recipe.rakuten.co.jp/recipe/1340030082/',
     faviconUrl: 'https://recipe.rakuten.co.jp/favicon.ico',
-    appName: 'Rakutenレシピ',
+    appName: '楽天レシピ',
   },
   {
     idx: 5,
@@ -67,7 +67,7 @@ export const RECIPE_LIST: OnboardingRecipe[] = [
     memo: '',
     recipeUrl: 'https://recipe.rakuten.co.jp/recipe/1160000135/',
     faviconUrl: 'https://recipe.rakuten.co.jp/favicon.ico',
-    appName: 'Rakutenレシピ',
+    appName: '楽天レシピ',
   },
   {
     idx: 6,
@@ -78,6 +78,6 @@ export const RECIPE_LIST: OnboardingRecipe[] = [
     memo: '',
     recipeUrl: 'https://recipe.rakuten.co.jp/recipe/1050010857/',
     faviconUrl: 'https://recipe.rakuten.co.jp/favicon.ico',
-    appName: 'Rakutenレシピ',
+    appName: '楽天レシピ',
   },
 ];
