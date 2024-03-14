@@ -1,7 +1,7 @@
 import { Stack } from 'expo-router';
 import { Text, View } from 'react-native';
 
-import { Container } from '@/components/ui/Container';
+import { Container } from '@/features/chore/Container';
 
 export default function NotificationTopPage() {
   return (

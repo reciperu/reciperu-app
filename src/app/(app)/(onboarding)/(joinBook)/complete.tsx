@@ -1,9 +1,9 @@
 import { router } from 'expo-router';
 import { StyleSheet, View } from 'react-native';
 
-import { Button } from '@/components/ui/Button';
-import { Spacer } from '@/components/ui/Spacer';
-import { NotoText } from '@/components/ui/Text';
+import { Button } from '@/features/chore/Button';
+import { Spacer } from '@/features/chore/Spacer';
+import { NotoText } from '@/features/chore/Text';
 
 export default function OnboardingJoinBookCompletePage() {
   return (

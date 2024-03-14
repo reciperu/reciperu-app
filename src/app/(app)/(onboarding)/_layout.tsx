@@ -1,10 +1,10 @@
 import { Redirect, Stack } from 'expo-router';
 import { View } from 'react-native';
 
-import { HeaderAppIcon } from '@/components/ui/Header/AppIcon';
 import { Constants } from '@/constants';
 import { useFetchMyProfile } from '@/features/User/apis/getMyProfile';
 import { UserStatus } from '@/features/User/types';
+import { HeaderAppIcon } from '@/features/chore/Header/AppIcon';
 
 export default function OnboardingLayout() {
   const { data } = useFetchMyProfile();

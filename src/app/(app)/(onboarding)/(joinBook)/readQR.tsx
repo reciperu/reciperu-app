@@ -3,8 +3,8 @@ import { Stack, router } from 'expo-router';
 import { useEffect, useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 
-import { PageWholeLoader } from '@/components/ui/PageWholeLoader';
-import { NotoText } from '@/components/ui/Text';
+import { PageWholeLoader } from '@/features/chore/PageWholeLoader';
+import { NotoText } from '@/features/chore/Text';
 
 export default function OnboardingJoinBookReadQRPage() {
   const [hasPermission, setHasPermission] = useState(false);

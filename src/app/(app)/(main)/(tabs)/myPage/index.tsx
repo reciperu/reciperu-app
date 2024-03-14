@@ -6,15 +6,15 @@ import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { Dimensions, FlatList, Pressable, StyleSheet, Text, View } from 'react-native';
 import Toast from 'react-native-toast-message';
 
-import { UserInfo } from '@/components/feature/MyPage/UserInfo';
-import { Button } from '@/components/ui/Button';
-import { Container } from '@/components/ui/Container';
-import { Flex } from '@/components/ui/Flex';
-import { AppIcon } from '@/components/ui/icons';
 import { AVATAR_SIZE, Constants } from '@/constants';
+import { UserInfo } from '@/features/MyPage/UserInfo';
 import { APP_NAME } from '@/features/Onboarding/Recipe/constants';
 import { useFetchMyProfile } from '@/features/User/apis/getMyProfile';
 import { usePatchMyProfile } from '@/features/User/apis/patchMyProfile';
+import { Button } from '@/features/chore/Button';
+import { Container } from '@/features/chore/Container';
+import { Flex } from '@/features/chore/Flex';
+import { AppIcon } from '@/features/chore/icons';
 import { openURL } from '@/functions/utils';
 import { convertToBase64FromModule } from '@/utils/image';
 

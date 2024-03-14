@@ -2,10 +2,10 @@ import { Image } from 'expo-image';
 import { memo } from 'react';
 import { View } from 'react-native';
 
-import { Flex } from '@/components/ui/Flex';
-import { NotoText } from '@/components/ui/Text';
 import { Constants } from '@/constants';
 import { Recipe } from '@/features/Recipe/types';
+import { Flex } from '@/features/chore/Flex';
+import { NotoText } from '@/features/chore/Text';
 
 interface Props {
   data: Omit<Recipe, 'id'> | Recipe;

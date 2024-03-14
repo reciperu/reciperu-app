@@ -2,17 +2,17 @@ import { Stack, router, useLocalSearchParams, useNavigation } from 'expo-router'
 import { Fragment, useCallback, useEffect, useMemo, useState } from 'react';
 import { ScrollView, StyleSheet, TouchableOpacity, View } from 'react-native';
 
-import { Container } from '@/components/ui/Container';
-import { Flex } from '@/components/ui/Flex';
-import { ImageUploadArea } from '@/components/ui/ImageUploadArea';
-import { CompactImageUploadArea } from '@/components/ui/ImageUploadArea/compact';
-import { InputLabel } from '@/components/ui/InputLabel';
-import { NotoText } from '@/components/ui/Text';
-import { TextInput } from '@/components/ui/TextInput';
-import { HeaderLeftBackButton } from '@/components/ui/icons/components/HeaderLeftBackButton';
 import { Constants } from '@/constants';
 import { Validation } from '@/constants/validation';
 import { useFetchMetaData } from '@/features/Recipe/apis/getMetaData';
+import { Container } from '@/features/chore/Container';
+import { Flex } from '@/features/chore/Flex';
+import { ImageUploadArea } from '@/features/chore/ImageUploadArea';
+import { CompactImageUploadArea } from '@/features/chore/ImageUploadArea/compact';
+import { InputLabel } from '@/features/chore/InputLabel';
+import { NotoText } from '@/features/chore/Text';
+import { TextInput } from '@/features/chore/TextInput';
+import { HeaderLeftBackButton } from '@/features/chore/icons/components/HeaderLeftBackButton';
 import { useStore } from '@/store';
 import { convertImageToBase64FromUri } from '@/utils/image';
 import { isValidUrl } from '@/utils/validation';

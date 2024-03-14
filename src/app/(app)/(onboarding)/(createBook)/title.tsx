@@ -2,14 +2,14 @@ import { useRouter } from 'expo-router';
 import { useCallback, useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 
-import { Button } from '@/components/ui/Button';
-import { Spacer } from '@/components/ui/Spacer';
-import { NotoText } from '@/components/ui/Text';
-import { TextInput } from '@/components/ui/TextInput';
 import { Constants } from '@/constants';
 import { Validation } from '@/constants/validation';
 import { usePutSpace } from '@/features/Space/apis/putSpace';
 import { useFetchMyProfile } from '@/features/User/apis/getMyProfile';
+import { Button } from '@/features/chore/Button';
+import { Spacer } from '@/features/chore/Spacer';
+import { NotoText } from '@/features/chore/Text';
+import { TextInput } from '@/features/chore/TextInput';
 
 const getDefaultTitle = (name: string) => `${name}さんのスペース`;
 

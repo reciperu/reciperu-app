@@ -1,11 +1,12 @@
-import { Container } from '@/components/ui/Container';
-import { Constants } from '@/constants';
 import { Stack } from 'expo-router';
 import { Text } from 'react-native';
 
+import { Constants } from '@/constants';
+import { Container } from '@/features/chore/Container';
+
 export default function WithdrawPage() {
   return (
-    <Container bgColor={Constants.colors.primitive.gray[100]}>
+    <Container bgColor={Constants.colors.primitive.pink[50]}>
       <Stack.Screen
         options={{
           title: '退会する',

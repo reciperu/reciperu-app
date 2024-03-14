@@ -2,11 +2,11 @@ import { Redirect, Stack, useRouter } from 'expo-router';
 import { memo, useEffect } from 'react';
 import { Alert } from 'react-native';
 
-import { PageWholeLoader } from '@/components/ui/PageWholeLoader';
 import { AUTH_ERROR_MESSAGE } from '@/constants';
 import { useAuthContext } from '@/context/authProvider';
 import { useFetchMyProfile } from '@/features/User/apis/getMyProfile';
 import { UserStatus } from '@/features/User/types';
+import { PageWholeLoader } from '@/features/chore/PageWholeLoader';
 
 export default function MainLayout() {
   const authContext = useAuthContext();

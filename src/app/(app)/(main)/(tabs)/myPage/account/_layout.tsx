@@ -2,8 +2,7 @@ import { Stack } from 'expo-router';
 import { memo } from 'react';
 import { View } from 'react-native';
 
-import { HeaderNotificationIcon } from '@/components/ui/Header/NotificationIcon';
-import { Constants } from '@/constants';
+import { HeaderNotificationIcon } from '@/features/chore/Header/NotificationIcon';
 
 const HeaderRightIcon = memo(() => (
   <View style={{ marginTop: 10 }}>

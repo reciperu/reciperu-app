@@ -1,26 +1,25 @@
-import { Dimensions, Pressable, View } from 'react-native';
-
-import { Container } from '@/components/ui/Container';
-import { SharingPromotionCard } from '@/components/feature/Promotion/Sharing';
-import { Tabs, useRouter } from 'expo-router';
-import { useFetchMyProfile } from '@/features/User/apis/getMyProfile';
-import { useMemo } from 'react';
 import { Image } from 'expo-image';
+import { Tabs, useRouter } from 'expo-router';
+import { useMemo } from 'react';
+import { Dimensions, Pressable, View } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
+
 import { Constants } from '@/constants';
-import { Flex } from '@/components/ui/Flex';
-import { NotoText } from '@/components/ui/Text';
+import { useFetchSpace } from '@/features/Space/apis/getSpace';
+import { useFetchMyProfile } from '@/features/User/apis/getMyProfile';
+import { Flex } from '@/features/chore/Flex';
+import { NotoText } from '@/features/chore/Text';
 
 const { width } = Dimensions.get('window');
 
 export default function HomePage() {
   const { data } = useFetchMyProfile();
+  const { data: space } = useFetchSpace(data?.spaceId || '');
   const router = useRouter();
   const imageHeight = (width / 390) * 103;
-  // TODO: スペース名
   const spaceName = useMemo(() => {
-    return data?.name || '';
-  }, [data]);
+    return space?.name || '';
+  }, [space]);
   return (
     <>
       <Tabs.Screen

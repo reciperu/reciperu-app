@@ -1,11 +1,11 @@
-import { Stack, router } from 'expo-router';
+import { router } from 'expo-router';
 import { StyleSheet, View } from 'react-native';
 
-import { Button } from '@/components/ui/Button';
-import { Spacer } from '@/components/ui/Spacer';
-import { NotoText } from '@/components/ui/Text';
 import { Constants } from '@/constants';
 import { OnboardingCarousel } from '@/features/Onboarding/Carousel';
+import { Button } from '@/features/chore/Button';
+import { Spacer } from '@/features/chore/Spacer';
+import { NotoText } from '@/features/chore/Text';
 const Instruction01 = require('assets/instructions/instruction-1.png') as string;
 const Instruction02 = require('assets/instructions/instruction-2.png') as string;
 const Instruction03 = require('assets/instructions/instruction-3.png') as string;

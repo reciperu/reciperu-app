@@ -3,14 +3,14 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 import { Dimensions, ScrollView, StyleSheet, View } from 'react-native';
 import Confetti from 'react-native-confetti';
 
-import { SharingPromotionCard } from '@/components/feature/Promotion/Sharing';
-import { Button } from '@/components/ui/Button';
-import { Spacer } from '@/components/ui/Spacer';
-import { NotoText } from '@/components/ui/Text';
 import { APP_NAME } from '@/features/Onboarding/Recipe/constants';
+import { SharingPromotionCard } from '@/features/Promotion/Sharing';
 import { useFetchMyProfile } from '@/features/User/apis/getMyProfile';
 import { usePatchMyProfile } from '@/features/User/apis/patchMyProfile';
 import { UserStatus } from '@/features/User/types';
+import { Button } from '@/features/chore/Button';
+import { Spacer } from '@/features/chore/Spacer';
+import { NotoText } from '@/features/chore/Text';
 
 const { height, width } = Dimensions.get('window');
 

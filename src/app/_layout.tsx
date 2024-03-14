@@ -8,12 +8,12 @@ import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import Toast, { ToastConfig } from 'react-native-toast-message';
 import { SWRConfig } from 'swr';
 
-import { PageWholeLoader } from '@/components/ui/PageWholeLoader';
-import { NotoText } from '@/components/ui/Text';
-import { ToastWrapper } from '@/components/ui/Toast';
-import { AppIcon } from '@/components/ui/icons';
 import { Constants } from '@/constants';
 import { AuthProvider, useAuthContext } from '@/context/authProvider';
+import { PageWholeLoader } from '@/features/chore/PageWholeLoader';
+import { NotoText } from '@/features/chore/Text';
+import { ToastWrapper } from '@/features/chore/Toast';
+import { AppIcon } from '@/features/chore/icons';
 import { client } from '@/lib/axios';
 
 SplashScreen.preventAutoHideAsync();

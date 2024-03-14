@@ -4,17 +4,17 @@ import { Link, Stack } from 'expo-router';
 import React, { useCallback, useState } from 'react';
 import { Pressable, View } from 'react-native';
 
-import { Button } from '@/components/ui/Button';
-import { CheckIconButton } from '@/components/ui/CheckIconButton';
-import { Container } from '@/components/ui/Container';
-import { Flex } from '@/components/ui/Flex';
-import { AppModal } from '@/components/ui/Modal';
-import { useModal } from '@/components/ui/Modal/useModal';
-import { Spacer } from '@/components/ui/Spacer';
-import { NotoText } from '@/components/ui/Text';
-import { AppIcon } from '@/components/ui/icons';
 import { Constants } from '@/constants';
 import { useAuthContext } from '@/context/authProvider';
+import { Button } from '@/features/chore/Button';
+import { CheckIconButton } from '@/features/chore/CheckIconButton';
+import { Container } from '@/features/chore/Container';
+import { Flex } from '@/features/chore/Flex';
+import { AppModal } from '@/features/chore/Modal';
+import { useModal } from '@/features/chore/Modal/useModal';
+import { Spacer } from '@/features/chore/Spacer';
+import { NotoText } from '@/features/chore/Text';
+import { AppIcon } from '@/features/chore/icons';
 
 export default function SignInPage() {
   const authContext = useAuthContext();

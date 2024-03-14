@@ -2,14 +2,14 @@ import { useMemo, useState, useCallback } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import Toast from 'react-native-toast-message';
 
-import { Button } from '@/components/ui/Button';
-import { Container } from '@/components/ui/Container';
-import { InputLabel } from '@/components/ui/InputLabel';
-import { Spacer } from '@/components/ui/Spacer';
-import { TextInput } from '@/components/ui/TextInput';
 import { Constants } from '@/constants';
 import { usePostContact } from '@/features/Contact/apis/postContact';
 import { APP_NAME } from '@/features/Onboarding/Recipe/constants';
+import { Button } from '@/features/chore/Button';
+import { Container } from '@/features/chore/Container';
+import { InputLabel } from '@/features/chore/InputLabel';
+import { Spacer } from '@/features/chore/Spacer';
+import { TextInput } from '@/features/chore/TextInput';
 
 export default function ContactPage() {
   const { postContactData } = usePostContact();

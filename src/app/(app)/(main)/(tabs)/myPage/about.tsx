@@ -1,15 +1,16 @@
 import * as ExpoConstants from 'expo-constants';
 import { Image } from 'expo-image';
-import { useCallback, useMemo } from 'react';
+import { Fragment, useMemo } from 'react';
 import { Pressable, ScrollView, Text, View } from 'react-native';
 
-import { Container } from '@/components/ui/Container';
-import { Flex } from '@/components/ui/Flex';
-import { Spacer } from '@/components/ui/Spacer';
-import { NotoText } from '@/components/ui/Text';
-import { AppIcon } from '@/components/ui/icons';
 import { Constants } from '@/constants';
 import { useFetchRoadmap } from '@/features/Roadmap/apis/getRoadmap';
+import { RoadmapItem } from '@/features/Roadmap/components/RoadmapItem';
+import { Container } from '@/features/chore/Container';
+import { Flex } from '@/features/chore/Flex';
+import { Spacer } from '@/features/chore/Spacer';
+import { NotoText } from '@/features/chore/Text';
+import { AppIcon } from '@/features/chore/icons';
 import { openURL } from '@/functions/utils';
 
 const DEVELOPER_LIST = [
@@ -37,28 +38,6 @@ export default function AboutPage() {
     }
     return [];
   }, [data]);
-  const getStatusLabel = useCallback((status: '対応中' | '未対応' | '対応済') => {
-    if (status === '対応中') {
-      return '開発中';
-    }
-    if (status === '未対応') {
-      return '未対応';
-    }
-    if (status === '対応済') {
-      return '対応済';
-    }
-  }, []);
-  const getStatusColor = useCallback((status: '対応中' | '未対応' | '対応済') => {
-    if (status === '対応中') {
-      return '#48BB78';
-    }
-    if (status === '未対応') {
-      return '#ECC94B';
-    }
-    if (status === '対応済') {
-      return '#90CDF4';
-    }
-  }, []);
   // アプリのバージョンを取得
   const appVersion = (ExpoConstants.default as any).manifest.version;
   return (
@@ -129,43 +108,9 @@ export default function AboutPage() {
             </Flex>
             <Flex style={{ flexDirection: 'column', gap: 12 }}>
               {displayData.map((item) => (
-                <Flex
-                  key={item.id}
-                  style={{
-                    alignItems: 'center',
-                    padding: 12,
-                    gap: 8,
-                    backgroundColor: 'white',
-                    borderRadius: Constants.radius.lg,
-                  }}>
-                  <View style={{ flex: 1 }}>
-                    <NotoText style={{ fontSize: 14, lineHeight: 18 }}>{item.title}</NotoText>
-                    {item.description && (
-                      <NotoText
-                        style={{ fontSize: 10, color: Constants.colors.primitive.gray[600] }}>
-                        {item.description}
-                      </NotoText>
-                    )}
-                  </View>
-                  <Flex style={{ alignItems: 'center', gap: 4 }}>
-                    <View
-                      style={{
-                        width: 8,
-                        height: 8,
-                        backgroundColor: getStatusColor(item.status[0]),
-                        borderRadius: 4,
-                      }}
-                    />
-                    <NotoText
-                      style={{
-                        fontSize: 12,
-                        lineHeight: 16,
-                        color: Constants.colors.primitive.gray[600],
-                      }}>
-                      {getStatusLabel(item.status[0])}
-                    </NotoText>
-                  </Flex>
-                </Flex>
+                <Fragment key={item.id}>
+                  <RoadmapItem {...item} />
+                </Fragment>
               ))}
             </Flex>
           </View>

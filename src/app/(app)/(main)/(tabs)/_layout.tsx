@@ -3,11 +3,11 @@ import { Tabs } from 'expo-router';
 import { memo } from 'react';
 import { Dimensions, View } from 'react-native';
 
-import { HeaderAppIcon } from '@/components/ui/Header/AppIcon';
-import { HeaderNotificationIcon } from '@/components/ui/Header/NotificationIcon';
-import { AppIcon } from '@/components/ui/icons';
 import { Constants } from '@/constants';
 import { useFetchMyProfile } from '@/features/User/apis/getMyProfile';
+import { HeaderAppIcon } from '@/features/chore/Header/AppIcon';
+import { HeaderNotificationIcon } from '@/features/chore/Header/NotificationIcon';
+import { AppIcon } from '@/features/chore/icons';
 
 const { height: windowHeight } = Dimensions.get('window');
 
@@ -100,7 +100,7 @@ export default function TabLayout() {
                   height: 24,
                   borderRadius: Constants.radius['full'],
                   borderWidth: focused ? 2 : undefined,
-                  borderColor: focused ? '#ED64A660' : undefined,
+                  borderColor: focused ? '#BEE3F8' : undefined,
                 }}
               />
             ),

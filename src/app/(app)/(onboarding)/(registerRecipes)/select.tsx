@@ -2,14 +2,14 @@ import { Stack, useRouter } from 'expo-router';
 import { useCallback } from 'react';
 import { Pressable, ScrollView, StyleSheet, View } from 'react-native';
 
-import { Button } from '@/components/ui/Button';
-import { CheckIconButton } from '@/components/ui/CheckIconButton';
-import { Flex } from '@/components/ui/Flex';
-import { Spacer } from '@/components/ui/Spacer';
-import { NotoText } from '@/components/ui/Text';
 import { Constants } from '@/constants';
 import { RECIPE_LIST } from '@/features/Onboarding/Recipe/constants';
 import { RecipeItem } from '@/features/Recipe/Item';
+import { Button } from '@/features/chore/Button';
+import { CheckIconButton } from '@/features/chore/CheckIconButton';
+import { Flex } from '@/features/chore/Flex';
+import { Spacer } from '@/features/chore/Spacer';
+import { NotoText } from '@/features/chore/Text';
 import { useStore } from '@/store';
 
 export default function OnboardingRegisterRecipesSelectPage() {

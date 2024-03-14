@@ -4,16 +4,16 @@ import { Stack, router } from 'expo-router';
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { Dimensions, StyleSheet, View, Pressable, FlatList } from 'react-native';
 
-import { Button } from '@/components/ui/Button';
-import { InputLabel } from '@/components/ui/InputLabel';
-import { Spacer } from '@/components/ui/Spacer';
-import { NotoText } from '@/components/ui/Text';
-import { TextInput } from '@/components/ui/TextInput';
-import { AppIcon } from '@/components/ui/icons';
 import { AVATAR_SIZE, Constants } from '@/constants';
 import { Validation } from '@/constants/validation';
 import { useFetchMyProfile } from '@/features/User/apis/getMyProfile';
 import { usePatchMyProfile } from '@/features/User/apis/patchMyProfile';
+import { Button } from '@/features/chore/Button';
+import { InputLabel } from '@/features/chore/InputLabel';
+import { Spacer } from '@/features/chore/Spacer';
+import { NotoText } from '@/features/chore/Text';
+import { TextInput } from '@/features/chore/TextInput';
+import { AppIcon } from '@/features/chore/icons';
 import { convertToBase64FromModule } from '@/utils/image';
 
 const Avatar01 = require('assets/avatar/avatar01.png') as string;

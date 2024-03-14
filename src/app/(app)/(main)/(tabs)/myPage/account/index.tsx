@@ -2,11 +2,11 @@ import { Link, useRouter } from 'expo-router';
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { Alert, Pressable, Text, View } from 'react-native';
 
-import { Container } from '@/components/ui/Container';
-import { Flex } from '@/components/ui/Flex';
-import { AppIcon } from '@/components/ui/icons';
 import { Constants } from '@/constants';
 import { useAuthContext } from '@/context/authProvider';
+import { Container } from '@/features/chore/Container';
+import { Flex } from '@/features/chore/Flex';
+import { AppIcon } from '@/features/chore/icons';
 import asyncStorage from '@/lib/asyncStorage';
 
 export default function AccountPage() {
@@ -47,7 +47,7 @@ export default function AccountPage() {
     fetchLoginMethod();
   }, []);
   return (
-    <Container bgColor={Constants.colors.primitive.gray[100]}>
+    <Container bgColor={Constants.colors.primitive.pink[50]}>
       <View style={{ flex: 1, paddingVertical: 16 }}>
         <View style={{ width: '100%', borderRadius: 8, overflow: 'hidden' }}>
           <Flex
