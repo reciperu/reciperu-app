@@ -3,8 +3,8 @@ import { memo } from 'react';
 import { StyleSheet, View } from 'react-native';
 import { noop } from 'swr/_internal';
 
-import { Button } from '@/components/ui/Button';
-import { NotoText } from '@/components/ui/Text';
+import { Button } from '@/features/chore/Button';
+import { NotoText } from '@/features/chore/Text';
 import { Constants } from '@/constants';
 
 export const SharingPromotionCard = memo(() => {

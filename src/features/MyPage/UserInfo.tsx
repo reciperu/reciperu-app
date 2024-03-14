@@ -3,8 +3,8 @@ import { memo, useCallback, useState } from 'react';
 import { Pressable, Text, TextInput, View } from 'react-native';
 import Toast from 'react-native-toast-message';
 
-import { Flex } from '@/components/ui/Flex';
-import { AppIcon } from '@/components/ui/icons';
+import { Flex } from '@/features/chore/Flex';
+import { AppIcon } from '@/features/chore/icons';
 import { Constants } from '@/constants';
 import { usePatchMyProfile } from '@/features/User/apis/patchMyProfile';
 import { SpaceUser } from '@/features/User/types';

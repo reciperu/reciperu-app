@@ -1,7 +1,7 @@
 import { memo } from 'react';
 import { View } from 'react-native';
 
-import { AppIcon } from '@/components/ui/icons';
+import { AppIcon } from '@/features/chore/icons';
 import { Constants } from '@/constants';
 
 interface Props {

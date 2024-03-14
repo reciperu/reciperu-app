@@ -2,7 +2,7 @@ import { Image } from 'expo-image';
 import { memo } from 'react';
 import { StyleSheet } from 'react-native';
 
-import { AppIcon } from '@/components/ui/icons';
+import { AppIcon } from '@/features/chore/icons';
 
 const CheckedImage = require('assets/checked.png') as string;
 

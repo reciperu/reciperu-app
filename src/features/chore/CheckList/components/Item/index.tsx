@@ -1,10 +1,10 @@
 import { PropsWithChildren, memo } from 'react';
 import { StyleSheet } from 'react-native';
 
-import { CheckImage } from '@/components/ui/CheckList/components/Icon';
-import { CheckListItemObject } from '@/components/ui/CheckList/types';
-import { Flex } from '@/components/ui/Flex';
-import { NotoText } from '@/components/ui/Text';
+import { CheckImage } from '@/features/chore/CheckList/components/Icon';
+import { CheckListItemObject } from '@/features/chore/CheckList/types';
+import { Flex } from '@/features/chore/Flex';
+import { NotoText } from '@/features/chore/Text';
 
 export const CheckListItem = memo<PropsWithChildren<CheckListItemObject>>(
   ({ checked = false, value }) => {

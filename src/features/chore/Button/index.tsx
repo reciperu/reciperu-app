@@ -2,7 +2,7 @@ import React, { memo } from 'react';
 import { ActivityIndicator, Pressable, StyleSheet, View } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 
-import { NotoText } from '@/components/ui/Text';
+import { NotoText } from '@/features/chore/Text';
 import { Constants } from '@/constants';
 
 interface Props {

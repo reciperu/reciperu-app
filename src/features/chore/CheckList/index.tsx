@@ -1,8 +1,8 @@
 import { memo } from 'react';
 import { View } from 'react-native';
 
-import { CheckListItem } from '@/components/ui/CheckList/components/Item';
-import { CheckListItemObject } from '@/components/ui/CheckList/types';
+import { CheckListItem } from '@/features/chore/CheckList/components/Item';
+import { CheckListItemObject } from '@/features/chore/CheckList/types';
 
 interface Props {
   data: CheckListItemObject[];
