@@ -3,7 +3,7 @@ import { useCallback } from 'react';
 import { Pressable, ScrollView, StyleSheet, View } from 'react-native';
 
 import { Constants, ONBOARDING_RECIPE_LIST } from '@/constants';
-import { RecipeItem } from '@/features/Recipe/Item';
+import { RecipeItem } from '@/features/Recipe/components/RecipeItem';
 import { Button } from '@/cores/components/Button';
 import { CheckIconButton } from '@/cores/components/CheckIconButton';
 import { Flex } from '@/cores/components/Flex';

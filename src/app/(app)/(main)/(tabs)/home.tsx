@@ -12,6 +12,9 @@ import { Flex } from '@/cores/components/Flex';
 import { Spacer } from '@/cores/components/Spacer';
 import { NotoText } from '@/cores/components/Text';
 import { AppIcon } from '@/cores/components/icons';
+import { TodayMenuSection } from '@/features/Home/components/TodayMenuSection';
+import { RecentMenuSection } from '@/features/Home/components/RecentMenuSection';
+import { UserEatingListSection } from '@/features/Home/components/UserEatingListSection';
 
 const { width } = Dimensions.get('window');
 
@@ -85,73 +88,22 @@ export default function HomePage() {
         <Container needBottomPadding>
           {/* 今日の献立 */}
           <View style={{ marginBottom: 40 }}>
-            <Flex style={{ gap: 8, alignItems: 'center' }}>
-              <Image
-                source={require('assets/menu_section_icon.svg')}
-                style={{ width: 24, height: 24 }}
-                contentFit="contain"
-              />
-              <NotoText fw="bold" style={{ fontSize: 16, lineHeight: 24 }}>
-                今日の献立
-              </NotoText>
-              <Spacer />
-              <Pressable>
-                <Flex style={{ gap: 4, alignItems: 'center' }}>
-                  <Text
-                    style={{
-                      color: Constants.colors.primitive.blue[400],
-                      fontSize: 12,
-                      textDecorationLine: 'underline',
-                    }}>
-                    すべての献立を見る
-                  </Text>
-                  <View style={{ transform: 'rotate(180deg)' }}>
-                    <AppIcon
-                      name="arrow-back"
-                      color={Constants.colors.primitive.blue[400]}
-                      width={12}
-                      height={12}
-                    />
-                  </View>
-                </Flex>
-              </Pressable>
-            </Flex>
+            <TodayMenuSection />
           </View>
           {/* パートナーの食べたい料理 */}
           {/* 自分の食べたい料理 */}
+          <View style={{ marginBottom: 40 }}>
+            <UserEatingListSection
+              avatar={data?.imageUrl}
+              name={data?.name}
+              list={[]}
+              loading={false}
+              type="mine"
+            />
+          </View>
           {/* 最近の献立 */}
           <View style={{ marginBottom: 40 }}>
-            <Flex style={{ gap: 8, alignItems: 'center' }}>
-              <Image
-                source={require('assets/recent_recipe_section_logo.svg')}
-                style={{ width: 24, height: 24 }}
-                contentFit="contain"
-              />
-              <NotoText fw="bold" style={{ fontSize: 16, lineHeight: 24 }}>
-                最近の献立
-              </NotoText>
-              <Spacer />
-              <Pressable>
-                <Flex style={{ gap: 4, alignItems: 'center' }}>
-                  <Text
-                    style={{
-                      color: Constants.colors.primitive.blue[400],
-                      fontSize: 12,
-                      textDecorationLine: 'underline',
-                    }}>
-                    もっと見る
-                  </Text>
-                  <View style={{ transform: 'rotate(180deg)' }}>
-                    <AppIcon
-                      name="arrow-back"
-                      color={Constants.colors.primitive.blue[400]}
-                      width={12}
-                      height={12}
-                    />
-                  </View>
-                </Flex>
-              </Pressable>
-            </Flex>
+            <RecentMenuSection />
           </View>
         </Container>
       </View>

@@ -3,7 +3,7 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 import { Dimensions, ScrollView, StyleSheet, View } from 'react-native';
 import Confetti from 'react-native-confetti';
 
-import { SharingPromotionCard } from '@/features/Promotion/Sharing';
+import { SharingPromotionCard } from '@/features/Promotion/components/sharing';
 import { useFetchMyProfile } from '@/features/User/apis/getMyProfile';
 import { usePatchMyProfile } from '@/features/User/apis/patchMyProfile';
 import { UserStatus } from '@/features/User/types';

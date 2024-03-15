@@ -3,7 +3,7 @@ import { useCallback, useState } from 'react';
 import { Pressable, ScrollView, StyleSheet, View, useWindowDimensions } from 'react-native';
 
 import { Constants } from '@/constants';
-import { RecipeItem } from '@/features/Recipe/Item';
+import { RecipeItem } from '@/features/Recipe/components/RecipeItem';
 import { usePostRecipeBulk } from '@/features/Recipe/apis/postRecipeBulk';
 import { Button } from '@/cores/components/Button';
 import { Flex } from '@/cores/components/Flex';
