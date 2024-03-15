@@ -2,10 +2,10 @@ import { memo } from 'react';
 import { StyleSheet, View } from 'react-native';
 
 import { Constants } from '@/constants';
-import { CheckList } from '@/features/chore/CheckList';
-import { Flex } from '@/features/chore/Flex';
-import { NotoText } from '@/features/chore/Text';
-import { AppIcon } from '@/features/chore/icons';
+import { CheckList } from '@/cores/components/CheckList';
+import { Flex } from '@/cores/components/Flex';
+import { NotoText } from '@/cores/components/Text';
+import { AppIcon } from '@/cores/components/icons';
 
 export const UserCheckList = memo(() => {
   // TODO: API経由でユーザーのチェックリストを取得する

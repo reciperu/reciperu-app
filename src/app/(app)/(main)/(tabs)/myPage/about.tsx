@@ -6,11 +6,11 @@ import { Pressable, ScrollView, Text, View } from 'react-native';
 import { Constants } from '@/constants';
 import { useFetchRoadmap } from '@/features/Roadmap/apis/getRoadmap';
 import { RoadmapItem } from '@/features/Roadmap/components/RoadmapItem';
-import { Container } from '@/features/chore/Container';
-import { Flex } from '@/features/chore/Flex';
-import { Spacer } from '@/features/chore/Spacer';
-import { NotoText } from '@/features/chore/Text';
-import { AppIcon } from '@/features/chore/icons';
+import { Container } from '@/cores/components/Container';
+import { Flex } from '@/cores/components/Flex';
+import { Spacer } from '@/cores/components/Spacer';
+import { NotoText } from '@/cores/components/Text';
+import { AppIcon } from '@/cores/components/icons';
 import { openURL } from '@/functions/utils';
 
 const DEVELOPER_LIST = [

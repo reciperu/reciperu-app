@@ -6,6 +6,8 @@ import { Bell } from './components/Bell';
 import { Calendar } from './components/Calendar';
 import { Camera } from './components/Camera';
 import { Checkmark } from './components/Checkmark';
+import { CloseCircle } from './components/CloseCircle';
+import { EmojiSad } from './components/EmojiSad';
 import { FilledClose } from './components/FilledClose';
 import { GoogleLogo } from './components/Google';
 import { Home } from './components/Home';
@@ -16,7 +18,6 @@ import { Pencil } from './components/Pencil';
 import { Recipe } from './components/Recipe';
 import { Warning } from './components/Warning';
 import { AppIconNames, IconProps } from './types';
-import { CloseCircle } from './components/CloseCircle';
 
 interface Props extends IconProps {
   name: AppIconNames;
@@ -55,6 +56,8 @@ export const AppIcon = memo<Props>(({ name, ...rest }) => {
     return <NewWindowArrow {...rest} />;
   } else if (name === 'close-circle') {
     return <CloseCircle {...rest} />;
+  } else if (name === 'emoji-sad') {
+    return <EmojiSad {...rest} />;
   }
   return <></>;
 });

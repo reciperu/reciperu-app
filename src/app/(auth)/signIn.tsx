@@ -6,15 +6,15 @@ import { Pressable, View } from 'react-native';
 
 import { Constants } from '@/constants';
 import { useAuthContext } from '@/context/authProvider';
-import { Button } from '@/features/chore/Button';
-import { CheckIconButton } from '@/features/chore/CheckIconButton';
-import { Container } from '@/features/chore/Container';
-import { Flex } from '@/features/chore/Flex';
-import { AppModal } from '@/features/chore/Modal';
-import { useModal } from '@/features/chore/Modal/useModal';
-import { Spacer } from '@/features/chore/Spacer';
-import { NotoText } from '@/features/chore/Text';
-import { AppIcon } from '@/features/chore/icons';
+import { Button } from '@/cores/components/Button';
+import { CheckIconButton } from '@/cores/components/CheckIconButton';
+import { Container } from '@/cores/components/Container';
+import { Flex } from '@/cores/components/Flex';
+import { AppModal } from '@/cores/components/Modal';
+import { useModal } from '@/cores/components/Modal/useModal';
+import { Spacer } from '@/cores/components/Spacer';
+import { NotoText } from '@/cores/components/Text';
+import { AppIcon } from '@/cores/components/icons';
 
 export default function SignInPage() {
   const authContext = useAuthContext();

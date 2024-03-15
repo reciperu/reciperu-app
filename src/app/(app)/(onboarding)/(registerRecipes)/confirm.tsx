@@ -5,10 +5,10 @@ import { Pressable, ScrollView, StyleSheet, View, useWindowDimensions } from 're
 import { Constants } from '@/constants';
 import { RecipeItem } from '@/features/Recipe/Item';
 import { usePostRecipeBulk } from '@/features/Recipe/apis/postRecipeBulk';
-import { Button } from '@/features/chore/Button';
-import { Flex } from '@/features/chore/Flex';
-import { Spacer } from '@/features/chore/Spacer';
-import { NotoText } from '@/features/chore/Text';
+import { Button } from '@/cores/components/Button';
+import { Flex } from '@/cores/components/Flex';
+import { Spacer } from '@/cores/components/Spacer';
+import { NotoText } from '@/cores/components/Text';
 import { useStore } from '@/store';
 
 export default function OnboardingRegisterRecipesConfirmPage() {

@@ -3,8 +3,8 @@ import { View } from 'react-native';
 
 import { Constants } from '@/constants';
 import { RoadmapItem as Props } from '@/features/Roadmap/types';
-import { Flex } from '@/features/chore/Flex';
-import { NotoText } from '@/features/chore/Text';
+import { Flex } from '@/cores/components/Flex';
+import { NotoText } from '@/cores/components/Text';
 
 export const RoadmapItem = memo<Props>((item) => {
   const getStatusLabel = useCallback((status: '対応中' | '未対応' | '対応済') => {

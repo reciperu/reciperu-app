@@ -3,7 +3,7 @@ import LinearGradient from 'react-native-linear-gradient';
 
 import licenseFile from '../../../../../../licenses.json';
 
-import { Container } from '@/features/chore/Container';
+import { Container } from '@/cores/components/Container';
 
 type License = {
   [key: string]: {

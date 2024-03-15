@@ -4,9 +4,9 @@ import { Alert, Pressable, Text, View } from 'react-native';
 
 import { Constants } from '@/constants';
 import { useAuthContext } from '@/context/authProvider';
-import { Container } from '@/features/chore/Container';
-import { Flex } from '@/features/chore/Flex';
-import { AppIcon } from '@/features/chore/icons';
+import { Container } from '@/cores/components/Container';
+import { Flex } from '@/cores/components/Flex';
+import { AppIcon } from '@/cores/components/icons';
 import asyncStorage from '@/lib/asyncStorage';
 
 export default function AccountPage() {

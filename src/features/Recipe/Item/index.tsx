@@ -4,8 +4,8 @@ import { View } from 'react-native';
 
 import { Constants } from '@/constants';
 import { Recipe } from '@/features/Recipe/types';
-import { Flex } from '@/features/chore/Flex';
-import { NotoText } from '@/features/chore/Text';
+import { Flex } from '@/cores/components/Flex';
+import { NotoText } from '@/cores/components/Text';
 
 interface Props {
   data: Omit<Recipe, 'id'> | Recipe;

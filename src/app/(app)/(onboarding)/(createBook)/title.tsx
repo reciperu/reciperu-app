@@ -6,10 +6,10 @@ import { Constants } from '@/constants';
 import { Validation } from '@/constants/validation';
 import { usePutSpace } from '@/features/Space/apis/putSpace';
 import { useFetchMyProfile } from '@/features/User/apis/getMyProfile';
-import { Button } from '@/features/chore/Button';
-import { Spacer } from '@/features/chore/Spacer';
-import { NotoText } from '@/features/chore/Text';
-import { TextInput } from '@/features/chore/TextInput';
+import { Button } from '@/cores/components/Button';
+import { Spacer } from '@/cores/components/Spacer';
+import { NotoText } from '@/cores/components/Text';
+import { TextInput } from '@/cores/components/TextInput';
 
 const getDefaultTitle = (name: string) => `${name}さんのスペース`;
 

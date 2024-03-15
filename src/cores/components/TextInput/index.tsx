@@ -3,8 +3,8 @@ import { TextInput as RNTextInput, StyleProp, StyleSheet, View, ViewStyle } from
 
 import { Spacer } from '../Spacer';
 
-import { Flex } from '@/features/chore/Flex';
-import { NotoText } from '@/features/chore/Text';
+import { Flex } from '@/cores/components/Flex';
+import { NotoText } from '@/cores/components/Text';
 import { Constants } from '@/constants';
 
 interface Props {

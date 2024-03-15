@@ -3,9 +3,9 @@ import * as ImagePicker from 'expo-image-picker';
 import { memo, useCallback } from 'react';
 import { Pressable, StyleSheet, View } from 'react-native';
 
-import { Flex } from '@/features/chore/Flex';
-import { NotoText } from '@/features/chore/Text';
-import { AppIcon } from '@/features/chore/icons';
+import { Flex } from '@/cores/components/Flex';
+import { NotoText } from '@/cores/components/Text';
+import { AppIcon } from '@/cores/components/icons';
 import { Constants } from '@/constants';
 
 interface Props {

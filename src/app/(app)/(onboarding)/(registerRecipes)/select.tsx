@@ -2,14 +2,13 @@ import { Stack, useRouter } from 'expo-router';
 import { useCallback } from 'react';
 import { Pressable, ScrollView, StyleSheet, View } from 'react-native';
 
-import { Constants } from '@/constants';
-import { RECIPE_LIST } from '@/features/Onboarding/Recipe/constants';
+import { Constants, ONBOARDING_RECIPE_LIST } from '@/constants';
 import { RecipeItem } from '@/features/Recipe/Item';
-import { Button } from '@/features/chore/Button';
-import { CheckIconButton } from '@/features/chore/CheckIconButton';
-import { Flex } from '@/features/chore/Flex';
-import { Spacer } from '@/features/chore/Spacer';
-import { NotoText } from '@/features/chore/Text';
+import { Button } from '@/cores/components/Button';
+import { CheckIconButton } from '@/cores/components/CheckIconButton';
+import { Flex } from '@/cores/components/Flex';
+import { Spacer } from '@/cores/components/Spacer';
+import { NotoText } from '@/cores/components/Text';
 import { useStore } from '@/store';
 
 export default function OnboardingRegisterRecipesSelectPage() {
@@ -37,7 +36,7 @@ export default function OnboardingRegisterRecipesSelectPage() {
         </NotoText>
       </View>
       <View style={styles.contentBox}>
-        {RECIPE_LIST.map((recipe, idx) => (
+        {ONBOARDING_RECIPE_LIST.map((recipe, idx) => (
           <Pressable key={idx} onPress={() => setSelectedRecipes(recipe)}>
             <View style={styles.recipeItemWrapper}>
               <Flex style={styles.recipeBox}>

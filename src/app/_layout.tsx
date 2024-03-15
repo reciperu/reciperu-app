@@ -10,10 +10,10 @@ import { SWRConfig } from 'swr';
 
 import { Constants } from '@/constants';
 import { AuthProvider, useAuthContext } from '@/context/authProvider';
-import { PageWholeLoader } from '@/features/chore/PageWholeLoader';
-import { NotoText } from '@/features/chore/Text';
-import { ToastWrapper } from '@/features/chore/Toast';
-import { AppIcon } from '@/features/chore/icons';
+import { PageWholeLoader } from '@/cores/components/PageWholeLoader';
+import { NotoText } from '@/cores/components/Text';
+import { ToastWrapper } from '@/cores/components/Toast';
+import { AppIcon } from '@/cores/components/icons';
 import { client } from '@/lib/axios';
 
 SplashScreen.preventAutoHideAsync();

@@ -1,6 +1,6 @@
 import { Text, View } from 'react-native';
 
-import { Container } from '@/features/chore/Container';
+import { Container } from '@/cores/components/Container';
 
 export default function RecipePage() {
   return (

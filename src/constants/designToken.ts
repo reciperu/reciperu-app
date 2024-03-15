@@ -2,9 +2,9 @@ import { ColorData, ColorVariable } from '@/types/color';
 import { RadiusData, RadiusVariable } from '@/types/radius';
 import { SpacingData, SpacingVariable } from '@/types/spacing';
 
-const colors = require('./Color.json');
-const radius = require('./Radius.json');
-const spacing = require('./Spacing.json');
+const colors = require('./styles/Color.json');
+const radius = require('./styles/Radius.json');
+const spacing = require('./styles/Spacing.json');
 
 export class Constants {
   private static _colors = colors;

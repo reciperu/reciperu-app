@@ -15,4 +15,5 @@ export const ICON_NAME_LIST = [
   'pencil',
   'new-window-arrow',
   'close-circle',
+  'emoji-sad',
 ] as const;

@@ -2,7 +2,7 @@ import { Stack } from 'expo-router';
 import { Text } from 'react-native';
 
 import { Constants } from '@/constants';
-import { Container } from '@/features/chore/Container';
+import { Container } from '@/cores/components/Container';
 
 export default function WithdrawPage() {
   return (

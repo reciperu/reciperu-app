@@ -4,7 +4,7 @@ import { View, Dimensions, StyleSheet, TouchableOpacity } from 'react-native';
 import Carousel from 'react-native-snap-carousel';
 
 import { Constants } from '@/constants';
-import { NotoText } from '@/features/chore/Text';
+import { NotoText } from '@/cores/components/Text';
 
 const { width: SLIDER_WIDTH } = Dimensions.get('window');
 const ITEM_WIDTH = SLIDER_WIDTH;

@@ -8,12 +8,12 @@ import { AVATAR_SIZE, Constants } from '@/constants';
 import { Validation } from '@/constants/validation';
 import { useFetchMyProfile } from '@/features/User/apis/getMyProfile';
 import { usePatchMyProfile } from '@/features/User/apis/patchMyProfile';
-import { Button } from '@/features/chore/Button';
-import { InputLabel } from '@/features/chore/InputLabel';
-import { Spacer } from '@/features/chore/Spacer';
-import { NotoText } from '@/features/chore/Text';
-import { TextInput } from '@/features/chore/TextInput';
-import { AppIcon } from '@/features/chore/icons';
+import { Button } from '@/cores/components/Button';
+import { InputLabel } from '@/cores/components/InputLabel';
+import { Spacer } from '@/cores/components/Spacer';
+import { NotoText } from '@/cores/components/Text';
+import { TextInput } from '@/cores/components/TextInput';
+import { AppIcon } from '@/cores/components/icons';
 import { convertToBase64FromModule } from '@/utils/image';
 
 const Avatar01 = require('assets/avatar/avatar01.png') as string;

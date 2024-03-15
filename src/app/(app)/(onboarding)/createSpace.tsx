@@ -3,9 +3,9 @@ import { StyleSheet, View } from 'react-native';
 
 import { Constants } from '@/constants';
 import { OnboardingCarousel } from '@/features/Onboarding/Carousel';
-import { Button } from '@/features/chore/Button';
-import { Spacer } from '@/features/chore/Spacer';
-import { NotoText } from '@/features/chore/Text';
+import { Button } from '@/cores/components/Button';
+import { Spacer } from '@/cores/components/Spacer';
+import { NotoText } from '@/cores/components/Text';
 const Instruction01 = require('assets/instructions/instruction-1.png') as string;
 const Instruction02 = require('assets/instructions/instruction-2.png') as string;
 const Instruction03 = require('assets/instructions/instruction-3.png') as string;
