@@ -6,7 +6,7 @@ import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { Dimensions, FlatList, Pressable, StyleSheet, Text, View } from 'react-native';
 import Toast from 'react-native-toast-message';
 
-import { AVATAR_SIZE, Constants, APP_NAME } from '@/constants';
+import { AVATAR_SIZE, Constants, APP_NAME, BOTTOM_SHEET_STYLE } from '@/constants';
 import { UserInfo } from '@/features/MyPage/components/UserInfo';
 import { useFetchMyProfile } from '@/features/User/apis/getMyProfile';
 import { usePatchMyProfile } from '@/features/User/apis/patchMyProfile';
@@ -354,17 +354,7 @@ export default function MyPagePage() {
         ref={bottomSheetModalRef}
         index={0}
         snapPoints={snapPoints}
-        style={{
-          shadowColor: '#000',
-          shadowOffset: {
-            width: 0,
-            height: 8,
-          },
-          shadowOpacity: 0.44,
-          shadowRadius: 10.32,
-
-          elevation: 16,
-        }}>
+        style={BOTTOM_SHEET_STYLE}>
         <View style={{ marginTop: 16 }}>
           <Text style={{ paddingHorizontal: 16 }}>画像を選択してください</Text>
           <FlatList

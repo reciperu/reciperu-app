@@ -1,11 +1,12 @@
+import { Image } from 'expo-image';
+import { memo } from 'react';
+import { ActivityIndicator, Pressable, Text, View } from 'react-native';
+
 import { Constants } from '@/constants';
 import { Flex } from '@/cores/components/Flex';
 import { Spacer } from '@/cores/components/Spacer';
 import { NotoText } from '@/cores/components/Text';
 import { AppIcon } from '@/cores/components/icons';
-import { Image } from 'expo-image';
-import { memo } from 'react';
-import { Pressable, Text, View } from 'react-native';
 
 export const RecentMenuSection = memo(() => {
   return (
@@ -16,7 +17,7 @@ export const RecentMenuSection = memo(() => {
           style={{ width: 24, height: 24 }}
           contentFit="contain"
         />
-        <NotoText fw="bold" style={{ fontSize: 16, lineHeight: 24 }}>
+        <NotoText fw="bold" style={{ fontSize: 14, lineHeight: 24 }}>
           最近の献立
         </NotoText>
         <Spacer />
@@ -43,6 +44,7 @@ export const RecentMenuSection = memo(() => {
       </Flex>
       <View style={{ paddingVertical: 16 }}>
         {/* 取得中 */}
+        {/* <ActivityIndicator color={Constants.colors.primitive.pink[400]} /> */}
         {/* データがない場合 */}
         <Flex style={{ flexDirection: 'column', alignItems: 'center', gap: 8, marginTop: 16 }}>
           <AppIcon
@@ -60,16 +62,6 @@ export const RecentMenuSection = memo(() => {
             {`食べたい料理は未登録です
 レシピ集に登録された料理から食べたい料理を選びましょう`}
           </NotoText>
-          <Pressable>
-            <Text
-              style={{
-                color: Constants.colors.primitive.blue[400],
-                fontSize: 14,
-                textDecorationLine: 'underline',
-              }}>
-              料理を探す
-            </Text>
-          </Pressable>
         </Flex>
         {/* データがある場合 */}
       </View>

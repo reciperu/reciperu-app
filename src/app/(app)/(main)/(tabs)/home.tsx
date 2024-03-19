@@ -1,20 +1,18 @@
 import { Image } from 'expo-image';
 import { Tabs, useRouter } from 'expo-router';
 import { useMemo } from 'react';
-import { Dimensions, Pressable, Text, View } from 'react-native';
+import { Dimensions, Pressable, ScrollView, View } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 
 import { Constants } from '@/constants';
-import { useFetchSpace } from '@/features/Space/apis/getSpace';
-import { useFetchMyProfile } from '@/features/User/apis/getMyProfile';
 import { Container } from '@/cores/components/Container';
 import { Flex } from '@/cores/components/Flex';
-import { Spacer } from '@/cores/components/Spacer';
 import { NotoText } from '@/cores/components/Text';
-import { AppIcon } from '@/cores/components/icons';
-import { TodayMenuSection } from '@/features/Home/components/TodayMenuSection';
 import { RecentMenuSection } from '@/features/Home/components/RecentMenuSection';
+import { TodayMenuSection } from '@/features/Home/components/TodayMenuSection';
 import { UserEatingListSection } from '@/features/Home/components/UserEatingListSection';
+import { useFetchSpace } from '@/features/Space/apis/getSpace';
+import { useFetchMyProfile } from '@/features/User/apis/getMyProfile';
 
 const { width } = Dimensions.get('window');
 
@@ -33,9 +31,9 @@ export default function HomePage() {
           headerTitle: spaceName,
         }}
       />
-      <View style={{ flex: 1, backgroundColor: 'white' }}>
+      <ScrollView style={{ flex: 1, backgroundColor: Constants.colors.primitive.pink['50'] }}>
         {/* ユーザー情報 */}
-        <View style={{ marginBottom: 48 }}>
+        <View style={{ paddingBottom: 48, backgroundColor: 'white' }}>
           <LinearGradient
             colors={['#FFF5F7', '#FED7E2']}
             style={{ width: '100%', height: imageHeight }}>
@@ -87,12 +85,12 @@ export default function HomePage() {
         </View>
         <Container needBottomPadding>
           {/* 今日の献立 */}
-          <View style={{ marginBottom: 40 }}>
+          <View style={{ marginBottom: 64 }}>
             <TodayMenuSection />
           </View>
           {/* パートナーの食べたい料理 */}
           {/* 自分の食べたい料理 */}
-          <View style={{ marginBottom: 40 }}>
+          <View style={{ marginBottom: 64 }}>
             <UserEatingListSection
               avatar={data?.imageUrl}
               name={data?.name}
@@ -106,9 +104,7 @@ export default function HomePage() {
             <RecentMenuSection />
           </View>
         </Container>
-      </View>
+      </ScrollView>
     </>
   );
 }
-
-// linear-gradient(180deg, #FFF5F7 0%, #FFF5F7 38.36%, #FED7E2 100%);

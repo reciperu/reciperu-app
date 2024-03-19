@@ -4,9 +4,9 @@ import { Alert } from 'react-native';
 
 import { AUTH_ERROR_MESSAGE } from '@/constants';
 import { useAuthContext } from '@/context/authProvider';
+import { PageWholeLoader } from '@/cores/components/PageWholeLoader';
 import { useFetchMyProfile } from '@/features/User/apis/getMyProfile';
 import { UserStatus } from '@/features/User/types';
-import { PageWholeLoader } from '@/cores/components/PageWholeLoader';
 
 export default function MainLayout() {
   const authContext = useAuthContext();
