@@ -1,8 +1,11 @@
 import { memo } from 'react';
 
+import { Add } from './components/Add';
 import { Alert } from './components/Alert';
 import { ArrowBack } from './components/ArrowBack';
 import { Bell } from './components/Bell';
+import { Bookmark } from './components/Bookmark';
+import { BookmarkOutline } from './components/BookmarkOutline';
 import { Calendar } from './components/Calendar';
 import { Camera } from './components/Camera';
 import { Checkmark } from './components/Checkmark';
@@ -12,15 +15,14 @@ import { FilledClose } from './components/FilledClose';
 import { GoogleLogo } from './components/Google';
 import { Home } from './components/Home';
 import { InfoCircle } from './components/InfoCircle';
+import { List } from './components/List';
 import { ListCheck } from './components/ListCheck';
 import { NewWindowArrow } from './components/NewWindowArrow';
 import { Pencil } from './components/Pencil';
 import { Recipe } from './components/Recipe';
+import { Search } from './components/Search';
 import { Warning } from './components/Warning';
 import { AppIconNames, IconProps } from './types';
-import { List } from './components/List';
-import { Bookmark } from './components/Bookmark';
-import { BookmarkOutline } from './components/BookmarkOutline';
 
 interface Props extends IconProps {
   name: AppIconNames;
@@ -67,6 +69,10 @@ export const AppIcon = memo<Props>(({ name, ...rest }) => {
     return <Bookmark {...rest} />;
   } else if (name === 'bookmark-outline') {
     return <BookmarkOutline {...rest} />;
+  } else if (name === 'search') {
+    return <Search {...rest} />;
+  } else if (name === 'add') {
+    return <Add {...rest} />;
   }
   return <></>;
 });

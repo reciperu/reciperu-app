@@ -1,11 +1,14 @@
-import { Text, View } from 'react-native';
-
-import { NotoText } from '@/cores/components/Text';
-
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
+import { Dimensions, Text, View } from 'react-native';
+import { ScrollView } from 'react-native-gesture-handler';
+
 import { Constants } from '@/constants';
-import { AppIcon } from '@/cores/components/icons';
 import { Flex } from '@/cores/components/Flex';
+import { NotoText } from '@/cores/components/Text';
+import { AppIcon } from '@/cores/components/icons';
+import { FloatingButton } from '@/features/FloatingButton/components';
+
+const { height } = Dimensions.get('window');
 
 const Tab = createMaterialTopTabNavigator();
 
@@ -18,7 +21,7 @@ const SettingsScreen = () => <NotoText>SettingsScreen</NotoText>;
 
 export default function RecipePage() {
   return (
-    <View style={{ flex: 1, backgroundColor: 'white' }}>
+    <ScrollView style={{ flex: 1, backgroundColor: 'white' }}>
       <NotoText fw="bold" style={{ fontSize: 20, paddingHorizontal: 16, paddingTop: 12 }}>
         レシピ一覧
       </NotoText>
@@ -71,6 +74,9 @@ export default function RecipePage() {
           component={SettingsScreen}
         />
       </Tab.Navigator>
-    </View>
+      <View style={{ position: 'absolute', top: height - 260, right: 24 }}>
+        <FloatingButton onPress={() => {}} />
+      </View>
+    </ScrollView>
   );
 }

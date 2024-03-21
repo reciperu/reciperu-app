@@ -19,4 +19,6 @@ export const ICON_NAME_LIST = [
   'list',
   'bookmark',
   'bookmark-outline',
+  'search',
+  'add',
 ] as const;
