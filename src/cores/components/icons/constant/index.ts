@@ -16,4 +16,7 @@ export const ICON_NAME_LIST = [
   'new-window-arrow',
   'close-circle',
   'emoji-sad',
+  'list',
+  'bookmark',
+  'bookmark-outline',
 ] as const;

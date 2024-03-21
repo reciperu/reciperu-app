@@ -18,6 +18,9 @@ import { Pencil } from './components/Pencil';
 import { Recipe } from './components/Recipe';
 import { Warning } from './components/Warning';
 import { AppIconNames, IconProps } from './types';
+import { List } from './components/List';
+import { Bookmark } from './components/Bookmark';
+import { BookmarkOutline } from './components/BookmarkOutline';
 
 interface Props extends IconProps {
   name: AppIconNames;
@@ -58,6 +61,12 @@ export const AppIcon = memo<Props>(({ name, ...rest }) => {
     return <CloseCircle {...rest} />;
   } else if (name === 'emoji-sad') {
     return <EmojiSad {...rest} />;
+  } else if (name === 'list') {
+    return <List {...rest} />;
+  } else if (name === 'bookmark') {
+    return <Bookmark {...rest} />;
+  } else if (name === 'bookmark-outline') {
+    return <BookmarkOutline {...rest} />;
   }
   return <></>;
 });

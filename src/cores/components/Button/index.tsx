@@ -2,8 +2,8 @@ import React, { memo } from 'react';
 import { ActivityIndicator, Pressable, StyleSheet, View } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 
-import { NotoText } from '@/cores/components/Text';
 import { Constants } from '@/constants';
+import { NotoText } from '@/cores/components/Text';
 
 interface Props {
   leftIcon?: React.ReactNode;

@@ -21,6 +21,7 @@ client.interceptors.request.use(
   async (config) => {
     if (!config.headers['token']) {
       const token = await secureStoreService.getValueFor(StoreKeyEnum.TOKEN);
+      console.log(`token: ${token}`);
       if (!token) {
         // note: 今のところ認証必須
         return Promise.reject(new Error(AUTH_ERROR_MESSAGE));
@@ -38,6 +39,7 @@ client.interceptors.response.use(
     return response;
   },
   async (error) => {
+    console.log(`error: ${JSON.stringify(error)}`);
     if (error.response?.status === 401) {
       // リトライ処理
       if (!error.config.retry) {

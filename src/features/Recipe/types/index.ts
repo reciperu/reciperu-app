@@ -19,3 +19,16 @@ export interface MetaData {
   appName: string;
   faviconUrl: string;
 }
+
+export interface SpaceRecipe extends Recipe {
+  spaceId: string;
+  userId: string;
+  isFavorite: boolean;
+  createdAt: string;
+  requesters: string[];
+}
+
+export interface RecipesResponse {
+  recipes: SpaceRecipe[];
+  nextCursor: string;
+}

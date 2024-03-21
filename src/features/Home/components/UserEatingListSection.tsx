@@ -9,6 +9,8 @@ import { NotoText } from '@/cores/components/Text';
 import { AppIcon } from '@/cores/components/icons';
 import { RecipeCard, RecipeItem } from '@/features/Recipe/components/RecipeItem';
 import { BottomSheetModal } from '@gorhom/bottom-sheet';
+import { LinkButton } from '@/cores/components/LinkButton';
+import { noop } from '@/functions/utils';
 
 const windowWidth = Dimensions.get('window').width;
 
@@ -83,7 +85,7 @@ export const UserEatingListSection = memo<Props>(({ avatar, name, list, loading,
             contentFit="contain"
           />
           <NotoText fw="bold" style={{ fontSize: 14, lineHeight: 24 }}>
-            {name}さんの食べたい料理
+            あなたの食べたい料理
           </NotoText>
           <Spacer />
           {type === 'mine' && (
@@ -152,6 +154,9 @@ export const UserEatingListSection = memo<Props>(({ avatar, name, list, loading,
               style={{ position: 'absolute', top: 0, left: -16 }}
             />
           </View>
+          <Flex style={{ justifyContent: 'center', marginTop: 40 }}>
+            <LinkButton onPress={noop}>すべて見る</LinkButton>
+          </Flex>
         </View>
       </View>
       <BottomSheetModal
