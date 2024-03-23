@@ -23,6 +23,7 @@ import { Recipe } from './components/Recipe';
 import { Search } from './components/Search';
 import { Warning } from './components/Warning';
 import { AppIconNames, IconProps } from './types';
+import { Close } from './components/Close';
 
 interface Props extends IconProps {
   name: AppIconNames;
@@ -73,6 +74,8 @@ export const AppIcon = memo<Props>(({ name, ...rest }) => {
     return <Search {...rest} />;
   } else if (name === 'add') {
     return <Add {...rest} />;
+  } else if (name === 'close') {
+    return <Close {...rest} />;
   }
   return <></>;
 });

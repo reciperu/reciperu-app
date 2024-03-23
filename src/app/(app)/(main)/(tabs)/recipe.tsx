@@ -1,38 +1,37 @@
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
-import { Dimensions, Text, View } from 'react-native';
-import { ScrollView } from 'react-native-gesture-handler';
+import { Dimensions, Pressable, Text, View, ScrollView, TextInput } from 'react-native';
 
 import { Constants } from '@/constants';
 import { Flex } from '@/cores/components/Flex';
 import { NotoText } from '@/cores/components/Text';
 import { AppIcon } from '@/cores/components/icons';
 import { FloatingButton } from '@/features/FloatingButton/components';
+import { useState } from 'react';
+import { AllRecipeTab } from '@/features/RecipePage/components/AllRecipeTab';
+import { FavoriteRecipeTab } from '@/features/RecipePage/components/FavoriteRecipeTab';
+import { SearchInput } from '@/features/RecipePage/components/SearchInput';
 
 const { height } = Dimensions.get('window');
 
 const Tab = createMaterialTopTabNavigator();
 
-const HomeScreen = () => (
-  <View style={{ flex: 1, backgroundColor: 'white' }}>
-    <NotoText>Home</NotoText>
-  </View>
-);
-const SettingsScreen = () => <NotoText>SettingsScreen</NotoText>;
-
 export default function RecipePage() {
+  const [search, setSearch] = useState('');
   return (
-    <ScrollView style={{ flex: 1, backgroundColor: 'white' }}>
+    <View style={{ flex: 1, position: 'relative', backgroundColor: 'white' }}>
       <NotoText fw="bold" style={{ fontSize: 20, paddingHorizontal: 16, paddingTop: 12 }}>
         レシピ一覧
       </NotoText>
-      {/* <View style={{ marginVertical: 8 }}>検索</View> */}
+      <View style={{ marginVertical: 12, marginHorizontal: 16 }}>
+        <SearchInput search={search} setSearch={setSearch} />
+      </View>
       <Tab.Navigator
         screenOptions={{
           tabBarIndicatorStyle: { backgroundColor: Constants.colors.primitive.pink[400] },
           tabBarStyle: { backgroundColor: 'white' },
         }}>
         <Tab.Screen
-          name="Home"
+          name="AllRecipe"
           options={{
             tabBarLabel: ({ focused }) => (
               <Flex style={{ alignItems: 'center', gap: 6 }}>
@@ -50,10 +49,10 @@ export default function RecipePage() {
               </Flex>
             ),
           }}
-          component={HomeScreen}
+          component={() => <AllRecipeTab search={search} />}
         />
         <Tab.Screen
-          name="Settings"
+          name="FavoriteRecipe"
           options={{
             tabBarLabel: ({ focused }) => (
               <Flex style={{ alignItems: 'center', gap: 6 }}>
@@ -71,12 +70,12 @@ export default function RecipePage() {
               </Flex>
             ),
           }}
-          component={SettingsScreen}
+          component={() => <FavoriteRecipeTab search={search} />}
         />
       </Tab.Navigator>
       <View style={{ position: 'absolute', top: height - 260, right: 24 }}>
         <FloatingButton onPress={() => {}} />
       </View>
-    </ScrollView>
+    </View>
   );
 }

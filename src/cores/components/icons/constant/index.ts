@@ -21,4 +21,5 @@ export const ICON_NAME_LIST = [
   'bookmark-outline',
   'search',
   'add',
+  'close',
 ] as const;

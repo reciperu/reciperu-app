@@ -1,8 +1,8 @@
 import { AxiosError } from 'axios';
 import useSWR from 'swr';
 
-import { SpaceUser } from '@/features/User/types';
+import { RecipesResponse } from '../types';
 
 export const useFetchRecipes = (cursor?: string) => {
-  return useSWR<SpaceUser[], AxiosError>(cursor ? `/recipes?cursor=${cursor}` : '/recipes');
+  return useSWR<RecipesResponse, AxiosError>(cursor ? `/recipes?cursor=${cursor}` : '/recipes');
 };
