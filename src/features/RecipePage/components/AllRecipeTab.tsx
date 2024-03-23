@@ -31,12 +31,16 @@ export const AllRecipeTab = memo<Props>(({ search }) => {
     setIsEndReachedLoading(false);
   };
 
+  console.log(`data.recipes: ${data?.recipes.map((o) => o.title)}`);
+  console.log(`nextCursor: ${data?.nextCursor}`);
+
   useEffect(() => {
     // データがなければ新規追加
     if (displayData.length === 0 && data?.recipes.length) {
       console.log('data.recipes update1');
       setDisplayData([...data.recipes]);
     }
+    console.log(`data.recipes: ${data?.recipes.map((o) => o.title)}`);
     // データがあれば更新
     if (data?.recipes.length && !displayData.map((o) => o.id).includes(data.recipes[0]?.id)) {
       setDisplayData([...displayData, ...data.recipes]);
