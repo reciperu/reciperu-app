@@ -34,12 +34,11 @@ export const UserInfo = memo<Props>(({ data, openSheet, closeSheet }) => {
 
   return (
     <>
-      <Flex style={{ alignItems: 'center', gap: 12 }}>
+      <Flex style={{ alignItems: 'center', gap: 4 }}>
         <Pressable onPress={openSheet}>
           <View
             style={{
               width: 40,
-
               height: 40,
               borderRadius: 20,
               overflow: 'hidden',
@@ -61,19 +60,26 @@ export const UserInfo = memo<Props>(({ data, openSheet, closeSheet }) => {
             </View>
           </View>
         </Pressable>
-        <Flex style={{ gap: 4, alignItems: 'center' }}>
+        <Flex style={{ gap: 4, alignItems: 'center', position: 'relative' }}>
           <TextInput
             value={name}
             onChangeText={(text) => setName(text)}
-            style={{ fontWeight: 'bold' }}
+            style={{
+              fontWeight: 'bold',
+              paddingVertical: 8,
+              paddingLeft: 8,
+              paddingRight: 24,
+            }}
             onBlur={handleOnBlur}
           />
-          <AppIcon
-            name="pencil"
-            width={16}
-            height={16}
-            color={Constants.colors.primitive.gray[400]}
-          />
+          <View style={{ position: 'absolute', right: 4, zIndex: -1 }}>
+            <AppIcon
+              name="pencil"
+              width={16}
+              height={16}
+              color={Constants.colors.primitive.gray[400]}
+            />
+          </View>
         </Flex>
       </Flex>
     </>
