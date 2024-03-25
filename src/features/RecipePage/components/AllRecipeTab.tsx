@@ -8,7 +8,7 @@ import { SpaceRecipe } from '@/features/Recipe/types';
 import { useUpdateEffect } from '@/hooks/useUpdateEffect';
 import { sleep } from '@/utils/sleep';
 import { memo, useEffect, useState } from 'react';
-import { ActivityIndicator, Pressable, TouchableOpacity, View } from 'react-native';
+import { ActivityIndicator, Pressable, Text, TouchableOpacity, View } from 'react-native';
 import { FlatList } from 'react-native-gesture-handler';
 
 interface Props {
@@ -16,34 +16,40 @@ interface Props {
 }
 
 export const AllRecipeTab = memo<Props>(({ search }) => {
-  const [cursor, setCursor] = useState<string | undefined>(undefined);
+  const [cursor, setCursor] = useState<string | undefined>();
   const [displayData, setDisplayData] = useState<SpaceRecipe[]>([]);
   const [isEndReachedLoading, setIsEndReachedLoading] = useState(false);
+  const [endReached, setEndReached] = useState(false);
   const { data, isLoading, error } = useFetchRecipes(cursor);
   const handleEndReached = async () => {
-    console.log('handleEndReached');
-    if (isEndReachedLoading || !data?.nextCursor) return;
+    if (isEndReachedLoading || endReached) return;
     setIsEndReachedLoading(true);
-    console.log(`nextCursor: ${data?.nextCursor}`);
     // 2秒待機
     await sleep(2000);
-    setCursor(data?.nextCursor);
+    // 最後のデータのidをcursorに設定
+    if (displayData.length) {
+      const _cursor = displayData[displayData.length - 1]?.id;
+      if (_cursor && _cursor !== cursor) {
+        setCursor(_cursor);
+      }
+    }
     setIsEndReachedLoading(false);
   };
-
-  console.log(`data.recipes: ${data?.recipes.map((o) => o.title)}`);
-  console.log(`nextCursor: ${data?.nextCursor}`);
 
   useEffect(() => {
     // データがなければ新規追加
     if (displayData.length === 0 && data?.recipes.length) {
-      console.log('data.recipes update1');
       setDisplayData([...data.recipes]);
     }
-    console.log(`data.recipes: ${data?.recipes.map((o) => o.title)}`);
-    // データがあれば更新
-    if (data?.recipes.length && !displayData.map((o) => o.id).includes(data.recipes[0]?.id)) {
+    // データがあれば更新（重複は無視）
+    else if (
+      !!data?.recipes.length &&
+      !displayData.map((o) => o.id).includes(data.recipes[0]?.id)
+    ) {
       setDisplayData([...displayData, ...data.recipes]);
+    }
+    if (displayData.length > 0 && (!data?.recipes || data?.recipes.length < 5)) {
+      setEndReached(true);
     }
   }, [data]);
 
@@ -61,7 +67,7 @@ export const AllRecipeTab = memo<Props>(({ search }) => {
       ) : (
         <>
           {/* データがない場合 */}
-          {data?.recipes.length === 0 ? (
+          {displayData.length === 0 ? (
             <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
               <NotoText
                 style={{
@@ -106,11 +112,26 @@ export const AllRecipeTab = memo<Props>(({ search }) => {
                 </Flex>
               )}
               onEndReached={handleEndReached}
-              ListFooterComponent={() =>
-                isEndReachedLoading ? (
-                  <ActivityIndicator color={Constants.colors.primitive.gray[400]} />
-                ) : null
-              }
+              ListFooterComponent={() => (
+                <View style={{ paddingVertical: 12 }}>
+                  {endReached ? (
+                    <NotoText
+                      style={{
+                        fontSize: 12,
+                        color: Constants.colors.primitive.gray[400],
+                        textAlign: 'center',
+                      }}>
+                      すべてのレシピを取得しました
+                    </NotoText>
+                  ) : (
+                    <>
+                      {isEndReachedLoading ? (
+                        <ActivityIndicator color={Constants.colors.primitive.gray[400]} />
+                      ) : null}
+                    </>
+                  )}
+                </View>
+              )}
             />
           )}
         </>
