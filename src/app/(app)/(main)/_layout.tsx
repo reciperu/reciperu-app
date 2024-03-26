@@ -63,6 +63,13 @@ const MainContent = memo(() => {
           presentation: 'modal',
         }}
       />
+      <Stack.Screen
+        name="recipe_webview"
+        options={{
+          headerShown: true,
+          presentation: 'modal',
+        }}
+      />
     </Stack>
   );
 });
