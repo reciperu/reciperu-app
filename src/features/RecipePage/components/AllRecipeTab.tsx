@@ -7,6 +7,7 @@ import { RecipeItem } from '@/features/Recipe/components/RecipeItem';
 import { SpaceRecipe } from '@/features/Recipe/types';
 import { useUpdateEffect } from '@/hooks/useUpdateEffect';
 import { sleep } from '@/utils/sleep';
+import { useRouter } from 'expo-router';
 import { memo, useEffect, useState } from 'react';
 import { ActivityIndicator, Pressable, Text, TouchableOpacity, View } from 'react-native';
 import { FlatList } from 'react-native-gesture-handler';
@@ -16,6 +17,7 @@ interface Props {
 }
 
 export const AllRecipeTab = memo<Props>(({ search }) => {
+  const router = useRouter();
   const [cursor, setCursor] = useState<string | undefined>();
   const [displayData, setDisplayData] = useState<SpaceRecipe[]>([]);
   const [isEndReachedLoading, setIsEndReachedLoading] = useState(false);
@@ -56,7 +58,6 @@ export const AllRecipeTab = memo<Props>(({ search }) => {
   useUpdateEffect(() => {
     setDisplayData([]);
   }, [search]);
-
   return (
     <View style={{ flex: 1, backgroundColor: 'white' }}>
       {/* ローディング中 */}
@@ -85,7 +86,9 @@ export const AllRecipeTab = memo<Props>(({ search }) => {
               keyExtractor={(item) => item.id}
               renderItem={({ item }) => (
                 <Flex style={{ paddingVertical: 8, gap: 4 }}>
-                  <Pressable style={{ flex: 1 }} onPress={() => console.log('call')}>
+                  <Pressable
+                    style={{ flex: 1 }}
+                    onPress={() => router.push({ pathname: `recipe/${item.id}`, params: item })}>
                     <RecipeItem data={item} />
                   </Pressable>
                   <View>

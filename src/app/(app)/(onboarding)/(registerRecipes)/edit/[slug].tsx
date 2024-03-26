@@ -133,12 +133,10 @@ export default function Modal() {
   const fetchRecipeDataFromMetaData = useCallback(async () => {
     if (!isFocused && isValidUrl(url) && targetRecipe?.recipeUrl !== url) {
       const result = await fetchMetaData(url);
-      console.log(`result: ${JSON.stringify(result?.data)}`);
       if (result?.data) {
         const { title, thumbnailUrl, appName, faviconUrl } = result.data;
         if (title) setRecipeName(title);
         if (thumbnailUrl) setThumbnail(thumbnailUrl);
-        console.log(`appName: ${appName}`);
         if (appName) setAppName(appName);
         if (faviconUrl) setFaviconUrl(faviconUrl);
       }

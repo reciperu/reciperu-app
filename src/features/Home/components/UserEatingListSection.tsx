@@ -1,5 +1,5 @@
 import { Image } from 'expo-image';
-import { memo, useMemo, useRef } from 'react';
+import { memo, useMemo, useRef, useState } from 'react';
 import { ActivityIndicator, Dimensions, FlatList, Pressable, Text, View } from 'react-native';
 
 import { BOTTOM_SHEET_STYLE, Constants } from '@/constants';
@@ -11,6 +11,11 @@ import { RecipeCard, RecipeItem } from '@/features/Recipe/components/RecipeItem'
 import { BottomSheetModal } from '@gorhom/bottom-sheet';
 import { LinkButton } from '@/cores/components/LinkButton';
 import { noop } from '@/functions/utils';
+import { Container } from '@/cores/components/Container';
+import { RecipeDetail } from '@/features/Recipe/components/RecipeDetail';
+import { Button } from '@/cores/components/Button';
+import { SpaceRecipe } from '@/features/Recipe/types';
+import { RecipeWebviewLink } from '@/features/Recipe/components/RecipeWebViewLink';
 
 const windowWidth = Dimensions.get('window').width;
 
@@ -60,19 +65,28 @@ const data = [
 
 export const UserEatingListSection = memo<Props>(({ avatar, name, list, loading, type }) => {
   const bottomSheetModalRef = useRef<BottomSheetModal>(null);
-  const snapPoints = useMemo(() => ['72%'], []);
+  const snapPoints = useMemo(() => ['80%'], []);
 
-  const handleOpenSheet = () => {
+  const [targetId, setTargetId] = useState<string | null>(null);
+
+  const handleOpenSheet = (id: string) => {
     if (bottomSheetModalRef.current) {
       bottomSheetModalRef.current?.present();
+      setTargetId(id);
     }
   };
 
   const handleCloseSheet = () => {
     if (bottomSheetModalRef.current) {
       bottomSheetModalRef.current?.close();
+      setTargetId(null);
     }
   };
+
+  const targetData = useMemo(
+    () => data.find((item) => item.id === targetId) as any as SpaceRecipe,
+    [targetId]
+  );
 
   if (!avatar || !name) return null;
   return (
@@ -144,7 +158,7 @@ export const UserEatingListSection = memo<Props>(({ avatar, name, list, loading,
               data={data}
               renderItem={({ item }) => (
                 <View style={{ paddingLeft: 16 }}>
-                  <Pressable onPress={handleOpenSheet}>
+                  <Pressable onPress={() => handleOpenSheet(item.id)}>
                     <RecipeCard data={item} />
                   </Pressable>
                 </View>
@@ -164,7 +178,23 @@ export const UserEatingListSection = memo<Props>(({ avatar, name, list, loading,
         index={0}
         snapPoints={snapPoints}
         style={BOTTOM_SHEET_STYLE}>
-        <Text>aaa</Text>
+        {targetData && (
+          <Container>
+            <RecipeDetail data={targetData} />
+            <Spacer />
+            <Button onPress={noop}>この料理を献立にする</Button>
+            <View style={{ marginTop: 8 }}>
+              <RecipeWebviewLink
+                id={targetData.id}
+                recipeUrl={targetData.recipeUrl}
+                title={targetData.title}>
+                <Button variant="primary" scheme="text">
+                  レシピを見る
+                </Button>
+              </RecipeWebviewLink>
+            </View>
+          </Container>
+        )}
       </BottomSheetModal>
     </>
   );

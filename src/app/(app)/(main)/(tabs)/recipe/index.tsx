@@ -10,6 +10,7 @@ import { useState } from 'react';
 import { AllRecipeTab } from '@/features/RecipePage/components/AllRecipeTab';
 import { FavoriteRecipeTab } from '@/features/RecipePage/components/FavoriteRecipeTab';
 import { SearchInput } from '@/features/RecipePage/components/SearchInput';
+import { useRouter } from 'expo-router';
 
 const { height } = Dimensions.get('window');
 
@@ -17,6 +18,7 @@ const Tab = createMaterialTopTabNavigator();
 
 export default function RecipePage() {
   const [search, setSearch] = useState('');
+  const router = useRouter();
   return (
     <View style={{ flex: 1, position: 'relative', backgroundColor: 'white' }}>
       <NotoText fw="bold" style={{ fontSize: 20, paddingHorizontal: 16, paddingTop: 12 }}>
@@ -74,7 +76,7 @@ export default function RecipePage() {
         />
       </Tab.Navigator>
       <View style={{ position: 'absolute', top: height - 260, right: 24 }}>
-        <FloatingButton onPress={() => {}} />
+        <FloatingButton onPress={() => router.push('/recipe/create')} />
       </View>
     </View>
   );

@@ -1,16 +1,19 @@
 import { Image } from 'expo-image';
 import { memo } from 'react';
-import { Dimensions, View } from 'react-native';
+import { Dimensions, Pressable, View } from 'react-native';
 
 import { Constants } from '@/constants';
 import { Flex } from '@/cores/components/Flex';
 import { NotoText } from '@/cores/components/Text';
-import { Recipe } from '@/features/Recipe/types';
+import { Recipe, SpaceRecipe } from '@/features/Recipe/types';
+import { AppIcon } from '@/cores/components/icons';
+import { useRouter } from 'expo-router';
+import { RecipeWebviewLink } from '../RecipeWebViewLink';
 
 const windowWidth = Dimensions.get('window').width;
 
 interface Props {
-  data: Omit<Recipe, 'id'> | Recipe;
+  data: Omit<Recipe, 'id'> | SpaceRecipe;
 }
 
 export const RecipeItem = memo<Props>(({ data }) => {
@@ -66,6 +69,7 @@ export const RecipeCard = memo<Props>(({ data }) => {
 });
 
 export const CompactRecipeItem = memo<Props>(({ data }) => {
+  const router = useRouter();
   return (
     <Flex style={{ gap: 8, alignItems: 'center' }}>
       <Image
@@ -81,6 +85,28 @@ export const CompactRecipeItem = memo<Props>(({ data }) => {
           </NotoText>
         </Flex>
       </View>
+      {data.recipeUrl.length > 0 && (
+        <RecipeWebviewLink
+          id={(data as SpaceRecipe).id}
+          title={data.title}
+          recipeUrl={data.recipeUrl}>
+          <Pressable>
+            <Flex
+              style={{
+                flexDirection: 'column',
+                alignItems: 'center',
+                padding: 6,
+                backgroundColor: Constants.colors.primitive.pink[50],
+                borderRadius: Constants.radius['xl'],
+              }}>
+              <AppIcon name="new-window-arrow" width={14} height={14} />
+              <NotoText style={{ fontSize: 8, color: Constants.colors.primitive.pink[500] }}>
+                レシピ
+              </NotoText>
+            </Flex>
+          </Pressable>
+        </RecipeWebviewLink>
+      )}
     </Flex>
   );
 });

@@ -1,6 +1,6 @@
 import { BottomSheetModal } from '@gorhom/bottom-sheet';
 import { Image } from 'expo-image';
-import { Fragment, memo, useMemo, useRef } from 'react';
+import { Fragment, memo, useMemo, useRef, useState } from 'react';
 import { ActivityIndicator, Pressable, Text, View } from 'react-native';
 
 import { BOTTOM_SHEET_STYLE, Constants } from '@/constants';
@@ -9,6 +9,12 @@ import { Spacer } from '@/cores/components/Spacer';
 import { NotoText } from '@/cores/components/Text';
 import { AppIcon } from '@/cores/components/icons';
 import { CompactRecipeItem } from '@/features/Recipe/components/RecipeItem';
+import { RecipeDetail } from '@/features/Recipe/components/RecipeDetail';
+import { SpaceRecipe } from '@/features/Recipe/types';
+import { Container } from '@/cores/components/Container';
+import { Button } from '@/cores/components/Button';
+import { noop } from '@/functions/utils';
+import { RecipeWebviewLink } from '@/features/Recipe/components/RecipeWebViewLink';
 
 const data = [
   {
@@ -38,19 +44,28 @@ const data = [
 
 export const TodayMenuSection = memo(() => {
   const bottomSheetModalRef = useRef<BottomSheetModal>(null);
-  const snapPoints = useMemo(() => ['92%'], []);
+  const snapPoints = useMemo(() => ['80%'], []);
 
-  const handleOpenSheet = () => {
+  const [targetId, setTargetId] = useState<string | null>(null);
+
+  const handleOpenSheet = (id: string) => {
     if (bottomSheetModalRef.current) {
-      bottomSheetModalRef.current?.present();
+      bottomSheetModalRef.current.present();
+      setTargetId(id);
     }
   };
 
   const handleCloseSheet = () => {
     if (bottomSheetModalRef.current) {
-      bottomSheetModalRef.current?.close();
+      bottomSheetModalRef.current.close();
+      setTargetId(null);
     }
   };
+
+  const targetData = useMemo(
+    () => data.find((item) => item.id === targetId) as any as SpaceRecipe,
+    [targetId]
+  );
 
   return (
     <>
@@ -111,7 +126,7 @@ export const TodayMenuSection = memo(() => {
           <Flex style={{ flexDirection: 'column', gap: 12, marginTop: 16 }}>
             {data.map((item) => (
               <Fragment key={item.id}>
-                <Pressable onPress={() => handleOpenSheet()}>
+                <Pressable onPress={() => handleOpenSheet(item.id)}>
                   <CompactRecipeItem data={item} />
                 </Pressable>
               </Fragment>
@@ -124,7 +139,23 @@ export const TodayMenuSection = memo(() => {
         index={0}
         snapPoints={snapPoints}
         style={BOTTOM_SHEET_STYLE}>
-        <Text>aaa</Text>
+        {targetData && (
+          <Container>
+            <RecipeDetail data={targetData} />
+            <Spacer />
+            <Button onPress={noop}>献立から外す</Button>
+            <View style={{ marginTop: 8 }}>
+              <RecipeWebviewLink
+                id={targetData.id}
+                recipeUrl={targetData.recipeUrl}
+                title={targetData.title}>
+                <Button variant="primary" scheme="text">
+                  レシピを見る
+                </Button>
+              </RecipeWebviewLink>
+            </View>
+          </Container>
+        )}
       </BottomSheetModal>
     </>
   );
