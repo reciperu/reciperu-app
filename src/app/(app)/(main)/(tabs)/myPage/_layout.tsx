@@ -3,8 +3,8 @@ import { memo } from 'react';
 import { Text, View } from 'react-native';
 
 import { Constants, APP_NAME } from '@/constants';
-import { HeaderAppIcon } from '@/cores/components/Header/AppIcon';
-import { HeaderNotificationIcon } from '@/cores/components/Header/NotificationIcon';
+import { HeaderAppIcon } from '@/features/Header/AppIcon';
+import { HeaderNotificationIcon } from '@/features/Header/NotificationIcon';
 
 const HeaderRightIcon = memo(() => (
   <View style={{ marginTop: 10 }}>

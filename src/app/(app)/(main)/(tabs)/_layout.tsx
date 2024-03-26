@@ -5,8 +5,8 @@ import { Dimensions, View } from 'react-native';
 
 import { Constants } from '@/constants';
 import { useFetchMyProfile } from '@/features/User/apis/getMyProfile';
-import { HeaderAppIcon } from '@/cores/components/Header/AppIcon';
-import { HeaderNotificationIcon } from '@/cores/components/Header/NotificationIcon';
+import { HeaderAppIcon } from '@/features/Header/AppIcon';
+import { HeaderNotificationIcon } from '@/features/Header/NotificationIcon';
 import { AppIcon } from '@/cores/components/icons';
 
 const { height: windowHeight } = Dimensions.get('window');

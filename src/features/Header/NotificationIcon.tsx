@@ -2,7 +2,7 @@ import { useRouter } from 'expo-router';
 import { memo } from 'react';
 import { Pressable, StyleSheet, View } from 'react-native';
 
-import { AppIcon } from '../icons';
+import { AppIcon } from '../../cores/components/icons';
 
 import { Constants } from '@/constants';
 

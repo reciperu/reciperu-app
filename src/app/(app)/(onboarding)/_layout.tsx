@@ -4,7 +4,7 @@ import { View } from 'react-native';
 import { Constants } from '@/constants';
 import { useFetchMyProfile } from '@/features/User/apis/getMyProfile';
 import { UserStatus } from '@/features/User/types';
-import { HeaderAppIcon } from '@/cores/components/Header/AppIcon';
+import { HeaderAppIcon } from '@/features/Header/AppIcon';
 
 export default function OnboardingLayout() {
   const { data } = useFetchMyProfile();
