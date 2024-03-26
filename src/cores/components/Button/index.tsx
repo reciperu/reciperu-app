@@ -11,7 +11,7 @@ interface Props {
   scheme?: 'filled' | 'text';
   children: string;
   disabled?: boolean;
-  onPress: () => void;
+  onPress?: () => void;
   bgColor?: string;
   textStyle?: any;
   loading?: boolean;
@@ -75,7 +75,9 @@ export const Button = memo<Props>(
         ) : (
           <View style={styles.container}>
             {loading ? <ActivityIndicator size="small" /> : leftIcon && leftIcon}
-            <NotoText style={[styles.text, textStyle]} fw="bold">
+            <NotoText
+              style={[styles.text, textStyle, variant === 'primary' && styles.textButtonTextStyle]}
+              fw="bold">
               {children}
             </NotoText>
           </View>
@@ -101,9 +103,12 @@ const styles = StyleSheet.create({
     overflow: 'hidden',
   },
   text: {
-    fontSize: 16,
+    fontSize: 14,
     fontWeight: 'bold',
     color: '#000',
+  },
+  textButtonTextStyle: {
+    color: Constants.colors.primitive.pink[400],
   },
   primaryText: {
     color: '#fff',
