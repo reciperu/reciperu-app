@@ -2,14 +2,16 @@ import { Constants } from '@/constants';
 import { Flex } from '@/cores/components/Flex';
 import { NotoText } from '@/cores/components/Text';
 import { AppIcon } from '@/cores/components/icons';
+import { useDeleteRecipeRequest } from '@/features/Recipe/apis/deleteRecipeRequest';
 import { useFetchRecipes } from '@/features/Recipe/apis/getRecipes';
+import { usePostRecipeRequest } from '@/features/Recipe/apis/putRecipeRequest';
 import { RecipeItem } from '@/features/Recipe/components/RecipeItem';
 import { SpaceRecipe } from '@/features/Recipe/types';
 import { useUpdateEffect } from '@/hooks/useUpdateEffect';
 import { sleep } from '@/utils/sleep';
 import { useRouter } from 'expo-router';
-import { memo, useEffect, useState } from 'react';
-import { ActivityIndicator, Pressable, Text, TouchableOpacity, View } from 'react-native';
+import { memo, useCallback, useEffect, useState } from 'react';
+import { ActivityIndicator, Pressable, TouchableOpacity, View } from 'react-native';
 import { FlatList } from 'react-native-gesture-handler';
 
 interface Props {
@@ -18,11 +20,22 @@ interface Props {
 
 export const AllRecipeTab = memo<Props>(({ search }) => {
   const router = useRouter();
-  const [cursor, setCursor] = useState<string | undefined>();
+  const [params, setParams] = useState<{
+    cursor?: string;
+    title?: string;
+  }>({
+    cursor: undefined,
+    title: search,
+  });
+  const [requestPending, setRequestPending] = useState(false);
   const [displayData, setDisplayData] = useState<SpaceRecipe[]>([]);
   const [isEndReachedLoading, setIsEndReachedLoading] = useState(false);
   const [endReached, setEndReached] = useState(false);
-  const { data, isLoading, error } = useFetchRecipes(cursor);
+  const deleteMutation = useDeleteRecipeRequest();
+  const postMutation = usePostRecipeRequest();
+
+  const { data, isLoading } = useFetchRecipes(params);
+
   const handleEndReached = async () => {
     if (isEndReachedLoading || endReached) return;
     setIsEndReachedLoading(true);
@@ -31,12 +44,38 @@ export const AllRecipeTab = memo<Props>(({ search }) => {
     // 最後のデータのidをcursorに設定
     if (displayData.length) {
       const _cursor = displayData[displayData.length - 1]?.id;
-      if (_cursor && _cursor !== cursor) {
-        setCursor(_cursor);
+      if (_cursor && _cursor !== params.cursor) {
+        setParams((prev) => ({ ...prev, cursor: _cursor }));
       }
     }
     setIsEndReachedLoading(false);
   };
+
+  // 「食べたい」のステートを入れ替える
+  const toggleRequest = useCallback(
+    async (id: string) => {
+      if (requestPending) return;
+      setRequestPending(true);
+      console.log('toggle!');
+      const target = displayData.find((o) => o.id === id);
+      if (target) {
+        const isFavorite = target.isFavorite;
+        if (isFavorite) {
+          const result = await deleteMutation.deleteRecipeRequest(id);
+          if (result?.data.success) {
+            setDisplayData(displayData.map((o) => (o.id === id ? { ...o, isFavorite: false } : o)));
+          }
+        } else {
+          const result = await postMutation.postRecipeRequest(id);
+          if (result?.data.success) {
+            setDisplayData(displayData.map((o) => (o.id === id ? { ...o, isFavorite: true } : o)));
+          }
+        }
+      }
+      setRequestPending(false);
+    },
+    [displayData]
+  );
 
   useEffect(() => {
     // データがなければ新規追加
@@ -57,7 +96,12 @@ export const AllRecipeTab = memo<Props>(({ search }) => {
 
   useUpdateEffect(() => {
     setDisplayData([]);
+    setParams({
+      cursor: undefined,
+      title: search,
+    });
   }, [search]);
+
   return (
     <View style={{ flex: 1, backgroundColor: 'white' }}>
       {/* ローディング中 */}
@@ -92,7 +136,7 @@ export const AllRecipeTab = memo<Props>(({ search }) => {
                     <RecipeItem data={item} />
                   </Pressable>
                   <View>
-                    <TouchableOpacity onPress={() => console.log('call favorite')}>
+                    <TouchableOpacity onPress={() => toggleRequest(item.id)}>
                       <View
                         style={{
                           padding: 8,
