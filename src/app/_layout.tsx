@@ -18,7 +18,8 @@ import { client } from '@/lib/axios';
 
 SplashScreen.preventAutoHideAsync();
 
-const toastConfig: ToastConfig = {
+// NOTE: 設定の置く場所を後で変える
+export const toastConfig: ToastConfig = {
   successToast: ({ text1, text2 }) => (
     <ToastWrapper style={{ borderColor: Constants.colors.primitive.green[300] }}>
       <AppIcon

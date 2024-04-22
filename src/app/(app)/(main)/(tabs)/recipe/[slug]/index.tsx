@@ -1,32 +1,37 @@
 import { Stack, router, useLocalSearchParams, useRouter } from 'expo-router';
-import { useCallback, useMemo, useRef, useState } from 'react';
-import { Alert, Pressable, StyleSheet, TouchableOpacity, View } from 'react-native';
+import { useCallback, useMemo, useState } from 'react';
+import { ActivityIndicator, Alert, StyleSheet, TouchableOpacity, View } from 'react-native';
+import Toast from 'react-native-toast-message';
 
-import { BOTTOM_SHEET_STYLE, Constants } from '@/constants';
-import { useFetchMetaData } from '@/features/Recipe/apis/getMetaData';
+import { Constants } from '@/constants';
 import { Container } from '@/cores/components/Container';
 import { NotoText } from '@/cores/components/Text';
 import { HeaderLeftBackButton } from '@/cores/components/icons/components/HeaderLeftBackButton';
 import { RecipeDetail } from '@/features/Recipe/components/RecipeDetail';
-import { SpaceRecipe } from '@/features/Recipe/types';
+import { RecipeRequest, SpaceRecipe } from '@/features/Recipe/types';
 import { Spacer } from '@/cores/components/Spacer';
 import { Button } from '@/cores/components/Button';
-import { Flex } from '@/cores/components/Flex';
-import { noop } from '@/functions/utils';
-import { BottomSheetModal } from '@gorhom/bottom-sheet';
-import { AppIcon } from '@/cores/components/icons';
 import { AppModal } from '@/cores/components/Modal';
 import { useModal } from '@/cores/components/Modal/useModal';
 import { InputLabel } from '@/cores/components/InputLabel';
 import { TextInput } from '@/cores/components/TextInput';
+import { EditRecipe } from '@/features/Recipe/components/EditRecipe';
+import { usePutRecipe } from '@/features/Recipe/apis/putRecipe';
+import { Flex } from '@/cores/components/Flex';
+import { useEditRecipe } from '@/features/Recipe/hooks/useEdiRecipe';
+import { convertImageToBase64FromUri } from '@/utils/image';
+import { isValidUrl } from '@/utils/validation';
+import { toastConfig } from '@/app/_layout';
 
 export default function Modal() {
   const isPresented = router.canGoBack();
   const { isVisible, openModal, closeModal } = useModal();
   const { push } = useRouter();
   const [isEditing, setIsEditing] = useState(false);
+  const [isEditPending, setIsEditPending] = useState(false);
   const [date, setDate] = useState<string>(new Date().toISOString());
   const params = useLocalSearchParams();
+  const putMutation = usePutRecipe();
   const data = useMemo(() => {
     if (params) {
       return {
@@ -39,14 +44,14 @@ export default function Modal() {
         appName: params.appName,
         spaceId: params.spaceId,
         userId: params.userId,
-        isFavorite: Boolean(params.isFavorite),
       } as SpaceRecipe;
     }
     return null;
   }, [params]);
+  const editRecipeService = useEditRecipe(data);
   const toggleMode = useCallback(() => {
     if (isEditing) {
-      setIsEditing(false);
+      handleUpdate(() => setIsEditing(false));
     } else {
       setIsEditing(true);
     }
@@ -68,6 +73,56 @@ export default function Modal() {
     ]);
   }, []);
 
+  const handleUpdate = useCallback(
+    async (callback: () => void) => {
+      console.log('isEditPending', isEditPending ? 'true' : 'false');
+      if (isEditPending) return;
+      if (typeof params.id === 'string') {
+        setIsEditPending(true);
+        console.log('call2');
+        if (editRecipeService.validate()) {
+          const updatedRecipe: RecipeRequest = {
+            title: editRecipeService.recipeName,
+            thumbnailUrl: editRecipeService.thumbnail,
+            recipeUrl: editRecipeService.url,
+            memo: editRecipeService.memo,
+            imageUrls: editRecipeService.images,
+            appName: editRecipeService.appName,
+            faviconUrl: editRecipeService.faviconUrl,
+          };
+          // TODO: レシピURLが変わっていればOGP情報の更新
+          // サムネイル
+          if (editRecipeService.thumbnail.length > 0 && !isValidUrl(editRecipeService.thumbnail)) {
+            const base64 = await convertImageToBase64FromUri(editRecipeService.thumbnail);
+            if (base64) {
+              updatedRecipe.thumbnailUrl = base64;
+            }
+          }
+          // レシピ画像
+          const imageUrls = await editRecipeService.processImages(editRecipeService.images);
+          updatedRecipe.imageUrls = imageUrls;
+          try {
+            const response = await putMutation.putRecipe(params.id, updatedRecipe);
+            if (response?.data) {
+              Toast.show({
+                type: 'successToast',
+                text1: 'レシピを更新しました',
+                visibilityTime: 3000,
+                autoHide: true,
+                topOffset: 60,
+              });
+              callback();
+            }
+          } catch (error) {
+            console.error(error);
+          }
+        }
+        setIsEditPending(false);
+      }
+    },
+    [params]
+  );
+
   return (
     <>
       <Stack.Screen
@@ -77,17 +132,20 @@ export default function Modal() {
           headerShadowVisible: false,
           headerLeft: isPresented ? () => <HeaderLeftBackButton /> : undefined,
           headerRight: () => (
-            <TouchableOpacity onPress={toggleMode}>
-              <NotoText fw="bold" style={styles.headerUpdateButton}>
-                {isEditing ? '保存' : '編集'}
-              </NotoText>
-            </TouchableOpacity>
+            <Flex style={{ gap: 8, alignItems: 'center' }}>
+              {isEditPending && <ActivityIndicator color={Constants.colors.primitive.blue[400]} />}
+              <TouchableOpacity onPress={toggleMode}>
+                <NotoText fw="bold" style={styles.headerUpdateButton}>
+                  {isEditing ? '保存' : '編集'}
+                </NotoText>
+              </TouchableOpacity>
+            </Flex>
           ),
         }}
       />
       <Container>
         {isEditing ? (
-          <></>
+          <>{data && <EditRecipe {...editRecipeService} recipeUrl={data.recipeUrl} />}</>
         ) : data ? (
           <View style={{ flex: 1 }}>
             <RecipeDetail data={data} />
@@ -139,6 +197,7 @@ export default function Modal() {
           <Button onPress={closeModal}>決定</Button>
         </View>
       </AppModal>
+      <Toast config={toastConfig} />
     </>
   );
 }

@@ -28,6 +28,17 @@ export interface SpaceRecipe extends Recipe {
   requesters: string[];
 }
 
+export interface RecipeRequest {
+  title: string;
+  isFavorite: true;
+  thumbnailUrl: string;
+  imageUrls: string[];
+  memo: string;
+  recipeUrl: string;
+  faviconUrl: string;
+  appName: string;
+}
+
 export interface RecipesResponse {
   recipes: SpaceRecipe[];
   nextCursor: string;
