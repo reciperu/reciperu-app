@@ -6,6 +6,7 @@ import { useDeleteRecipeRequest } from '@/features/Recipe/apis/deleteRecipeReque
 import { useFetchRecipes } from '@/features/Recipe/apis/getRecipes';
 import { usePostRecipeRequest } from '@/features/Recipe/apis/putRecipeRequest';
 import { RecipeItem } from '@/features/Recipe/components/RecipeItem';
+import { useRecipes } from '@/features/Recipe/hooks/useRecipes';
 import { SpaceRecipe } from '@/features/Recipe/types';
 import { useUpdateEffect } from '@/hooks/useUpdateEffect';
 import { sleep } from '@/utils/sleep';
@@ -20,6 +21,7 @@ interface Props {
 
 export const AllRecipeTab = memo<Props>(({ search }) => {
   const router = useRouter();
+  const { getFavorite, addRequester, removeRequester } = useRecipes();
   const [params, setParams] = useState<{
     cursor?: string;
     title?: string;
@@ -53,23 +55,29 @@ export const AllRecipeTab = memo<Props>(({ search }) => {
 
   // 「食べたい」のステートを入れ替える
   const toggleRequest = useCallback(
-    async (id: string) => {
+    async (item: SpaceRecipe) => {
       if (requestPending) return;
       setRequestPending(true);
-      console.log('toggle!');
-      const target = displayData.find((o) => o.id === id);
-      if (target) {
-        const isFavorite = target.isFavorite;
-        if (isFavorite) {
-          const result = await deleteMutation.deleteRecipeRequest(id);
-          if (result?.data.success) {
-            setDisplayData(displayData.map((o) => (o.id === id ? { ...o, isFavorite: false } : o)));
-          }
-        } else {
-          const result = await postMutation.postRecipeRequest(id);
-          if (result?.data.success) {
-            setDisplayData(displayData.map((o) => (o.id === id ? { ...o, isFavorite: true } : o)));
-          }
+      const isFavorite = getFavorite(item.requesters);
+      if (isFavorite) {
+        const result = await deleteMutation.deleteRecipeRequest(item.id);
+        // TODO: successが返るようになったら確認
+        if (result?.data.success) {
+          setDisplayData(
+            displayData.map((o) =>
+              o.id === item.id ? { ...o, reqduesters: removeRequester(o.requesters) } : o
+            )
+          );
+        }
+      } else {
+        const result = await postMutation.postRecipeRequest(item.id);
+        console.log(`log: ${JSON.stringify(result?.data)}`);
+        if (result?.data.success) {
+          setDisplayData(
+            displayData.map((o) =>
+              o.id === item.id ? { ...o, requesters: addRequester(o.requesters) } : o
+            )
+          );
         }
       }
       setRequestPending(false);
@@ -136,7 +144,7 @@ export const AllRecipeTab = memo<Props>(({ search }) => {
                     <RecipeItem data={item} />
                   </Pressable>
                   <View>
-                    <TouchableOpacity onPress={() => toggleRequest(item.id)}>
+                    <TouchableOpacity onPress={() => toggleRequest(item)}>
                       <View
                         style={{
                           padding: 8,
@@ -148,7 +156,7 @@ export const AllRecipeTab = memo<Props>(({ search }) => {
                           width={16}
                           height={16}
                           color={
-                            item.isFavorite
+                            getFavorite(item.requesters)
                               ? Constants.colors.primitive.pink[400]
                               : Constants.colors.primitive.gray[300]
                           }

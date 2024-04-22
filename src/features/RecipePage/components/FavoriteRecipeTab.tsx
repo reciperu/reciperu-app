@@ -2,13 +2,16 @@ import { Constants } from '@/constants';
 import { Flex } from '@/cores/components/Flex';
 import { NotoText } from '@/cores/components/Text';
 import { AppIcon } from '@/cores/components/icons';
+import { useDeleteRecipeRequest } from '@/features/Recipe/apis/deleteRecipeRequest';
 import { useFetchRecipes } from '@/features/Recipe/apis/getRecipes';
+import { usePostRecipeRequest } from '@/features/Recipe/apis/putRecipeRequest';
 import { RecipeItem } from '@/features/Recipe/components/RecipeItem';
+import { useRecipes } from '@/features/Recipe/hooks/useRecipes';
 import { SpaceRecipe } from '@/features/Recipe/types';
 import { useUpdateEffect } from '@/hooks/useUpdateEffect';
 import { sleep } from '@/utils/sleep';
 import { useRouter } from 'expo-router';
-import { memo, useEffect, useState } from 'react';
+import { memo, useCallback, useEffect, useState } from 'react';
 import { ActivityIndicator, FlatList, Pressable, TouchableOpacity, View } from 'react-native';
 
 interface Props {
@@ -26,10 +29,14 @@ export const FavoriteRecipeTab = memo<Props>(({ search }) => {
     isRequested: true,
     title: search,
   });
+  const [requestPending, setRequestPending] = useState(false);
   const [displayData, setDisplayData] = useState<SpaceRecipe[]>([]);
   const [isEndReachedLoading, setIsEndReachedLoading] = useState(false);
+  const { getFavorite } = useRecipes();
   const [endReached, setEndReached] = useState(false);
   const { data, isLoading, error } = useFetchRecipes(params);
+  const deleteMutation = useDeleteRecipeRequest();
+  const postMutation = usePostRecipeRequest();
 
   const handleEndReached = async () => {
     if (isEndReachedLoading || endReached) return;
@@ -45,6 +52,24 @@ export const FavoriteRecipeTab = memo<Props>(({ search }) => {
     }
     setIsEndReachedLoading(false);
   };
+
+  // 「食べたい」のステートを入れ替える
+  const toggleRequest = useCallback(
+    async (item: SpaceRecipe) => {
+      if (requestPending) return;
+      setRequestPending(true);
+      const isFavorite = getFavorite(item.requesters);
+      if (isFavorite) {
+        const result = await deleteMutation.deleteRecipeRequest(item.id);
+        if (result?.data.success) {
+          console.log('delete success');
+          setDisplayData(displayData.filter((o) => o.id !== item.id));
+        }
+      }
+      setRequestPending(false);
+    },
+    [displayData]
+  );
 
   useEffect(() => {
     // データがなければ新規追加
@@ -105,7 +130,7 @@ export const FavoriteRecipeTab = memo<Props>(({ search }) => {
                     <RecipeItem data={item} />
                   </Pressable>
                   <View>
-                    <TouchableOpacity onPress={() => console.log('call favorite')}>
+                    <TouchableOpacity onPress={() => toggleRequest(item)}>
                       <View
                         style={{
                           padding: 8,
@@ -117,7 +142,7 @@ export const FavoriteRecipeTab = memo<Props>(({ search }) => {
                           width={16}
                           height={16}
                           color={
-                            item.isFavorite
+                            getFavorite(item.requesters)
                               ? Constants.colors.primitive.pink[400]
                               : Constants.colors.primitive.gray[300]
                           }
