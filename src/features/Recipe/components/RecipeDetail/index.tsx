@@ -73,7 +73,7 @@ export const RecipeDetail = memo<Props>(({ data }) => {
           </Flex>
         </Flex>
         {/* 更新者（あれば） */}
-        <Flex
+        {/* <Flex
           style={{
             gap: 8,
             alignItems: 'center',
@@ -85,7 +85,7 @@ export const RecipeDetail = memo<Props>(({ data }) => {
           <Flex style={{ alignItems: 'center' }}>
             <NotoText style={{ fontSize: 12 }}>ハナコ</NotoText>
           </Flex>
-        </Flex>
+        </Flex> */}
         {/* レシピ（あれば） */}
         {data.recipeUrl.length > 0 && (
           <Flex
