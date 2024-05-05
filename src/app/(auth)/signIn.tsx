@@ -89,6 +89,7 @@ export default function SignInPage() {
               scheme="text"
               loading={authContext.googleAuthPending}
               leftIcon={<AppIcon name="google-logo" width={16} height={16} />}
+              textStyle={{ color: 'black' }}
               onPress={() => checkAgreementCallback(authContext.signInWithGoogle)}>
               Googleでサインイン
             </Button>

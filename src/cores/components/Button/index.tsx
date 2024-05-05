@@ -76,7 +76,7 @@ export const Button = memo<Props>(
           <View style={styles.container}>
             {loading ? <ActivityIndicator size="small" /> : leftIcon && leftIcon}
             <NotoText
-              style={[styles.text, textStyle, variant === 'primary' && styles.textButtonTextStyle]}
+              style={[styles.text, variant === 'primary' && styles.textButtonTextStyle, textStyle]}
               fw="bold">
               {children}
             </NotoText>
