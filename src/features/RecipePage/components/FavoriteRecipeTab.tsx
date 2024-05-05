@@ -13,6 +13,7 @@ import { sleep } from '@/utils/sleep';
 import { useRouter } from 'expo-router';
 import { memo, useCallback, useEffect, useState } from 'react';
 import { ActivityIndicator, FlatList, Pressable, TouchableOpacity, View } from 'react-native';
+import { useRecipeRequest } from '../hooks/useRecipeRequest';
 
 interface Props {
   search: string;
@@ -29,14 +30,12 @@ export const FavoriteRecipeTab = memo<Props>(({ search }) => {
     isRequested: true,
     title: search,
   });
-  const [requestPending, setRequestPending] = useState(false);
+  const recipeRequestService = useRecipeRequest();
   const [displayData, setDisplayData] = useState<SpaceRecipe[]>([]);
   const [isEndReachedLoading, setIsEndReachedLoading] = useState(false);
   const { getFavorite } = useRecipes();
   const [endReached, setEndReached] = useState(false);
-  const { data, isLoading, error } = useFetchRecipes(params);
-  const deleteMutation = useDeleteRecipeRequest();
-  const postMutation = usePostRecipeRequest();
+  const { data, isLoading } = useFetchRecipes(params);
 
   const handleEndReached = async () => {
     if (isEndReachedLoading || endReached) return;
@@ -53,20 +52,12 @@ export const FavoriteRecipeTab = memo<Props>(({ search }) => {
     setIsEndReachedLoading(false);
   };
 
-  // 「食べたい」のステートを入れ替える
-  const toggleRequest = useCallback(
+  // 「食べたい」のステートを解除
+  const removeRequest = useCallback(
     async (item: SpaceRecipe) => {
-      if (requestPending) return;
-      setRequestPending(true);
-      const isFavorite = getFavorite(item.requesters);
-      if (isFavorite) {
-        const result = await deleteMutation.deleteRecipeRequest(item.id);
-        if (result?.data.success) {
-          console.log('delete success');
-          setDisplayData(displayData.filter((o) => o.id !== item.id));
-        }
-      }
-      setRequestPending(false);
+      recipeRequestService.remove(item, () =>
+        setDisplayData(displayData.filter((o) => o.id !== item.id))
+      );
     },
     [displayData]
   );
@@ -130,7 +121,7 @@ export const FavoriteRecipeTab = memo<Props>(({ search }) => {
                     <RecipeItem data={item} />
                   </Pressable>
                   <View>
-                    <TouchableOpacity onPress={() => toggleRequest(item)}>
+                    <TouchableOpacity onPress={() => removeRequest(item)}>
                       <View
                         style={{
                           padding: 8,

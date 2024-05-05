@@ -14,6 +14,7 @@ import { useRouter } from 'expo-router';
 import { memo, useCallback, useEffect, useState } from 'react';
 import { ActivityIndicator, Pressable, TouchableOpacity, View } from 'react-native';
 import { FlatList } from 'react-native-gesture-handler';
+import { useRecipeRequest } from '../hooks/useRecipeRequest';
 
 interface Props {
   search: string;
@@ -29,13 +30,10 @@ export const AllRecipeTab = memo<Props>(({ search }) => {
     cursor: undefined,
     title: search,
   });
-  const [requestPending, setRequestPending] = useState(false);
+  const recipeRequestService = useRecipeRequest();
   const [displayData, setDisplayData] = useState<SpaceRecipe[]>([]);
   const [isEndReachedLoading, setIsEndReachedLoading] = useState(false);
   const [endReached, setEndReached] = useState(false);
-  const deleteMutation = useDeleteRecipeRequest();
-  const postMutation = usePostRecipeRequest();
-
   const { data, isLoading } = useFetchRecipes(params);
 
   const handleEndReached = async () => {
@@ -54,40 +52,25 @@ export const AllRecipeTab = memo<Props>(({ search }) => {
   };
 
   // 「食べたい」のステートを入れ替える
-  const toggleRequest = useCallback(
-    async (item: SpaceRecipe) => {
-      if (requestPending) return;
-      setRequestPending(true);
-      const isFavorite = getFavorite(item.requesters);
-      if (isFavorite) {
-        const result = await deleteMutation.deleteRecipeRequest(item.id);
-        // TODO: successが返るようになったら確認
-        if (result?.data.success) {
-          setDisplayData(
-            displayData.map((o) =>
-              o.id === item.id ? { ...o, reqduesters: removeRequester(o.requesters) } : o
-            )
-          );
-        }
-      } else {
-        const result = await postMutation.postRecipeRequest(item.id);
-        console.log(`log: ${JSON.stringify(result?.data)}`);
-        if (result?.data.success) {
-          setDisplayData(
-            displayData.map((o) =>
-              o.id === item.id ? { ...o, requesters: addRequester(o.requesters) } : o
-            )
-          );
-        }
-      }
-      setRequestPending(false);
-    },
-    [displayData]
-  );
+  const toggleRequest = useCallback(async (item: SpaceRecipe) => {
+    const handleSuccessAdd = () => {
+      setDisplayData((prev) =>
+        prev.map((o) => (o.id === item.id ? { ...o, requesters: addRequester(o.requesters) } : o))
+      );
+    };
+    const handleSuccessRemove = () => {
+      setDisplayData((prev) =>
+        prev.map((o) =>
+          o.id === item.id ? { ...o, requesters: removeRequester(o.requesters) } : o
+        )
+      );
+    };
+    recipeRequestService.toggle(item, handleSuccessAdd, handleSuccessRemove);
+  }, []);
 
   useEffect(() => {
     // データがなければ新規追加
-    if (displayData.length === 0 && data?.recipes.length) {
+    if (!displayData?.length && data?.recipes.length) {
       setDisplayData([...data.recipes]);
     }
     // データがあれば更新（重複は無視）
@@ -135,12 +118,20 @@ export const AllRecipeTab = memo<Props>(({ search }) => {
             <FlatList
               data={displayData}
               contentContainerStyle={{ paddingHorizontal: 16, paddingVertical: 16 }}
-              keyExtractor={(item) => item.id}
+              keyExtractor={(item) => `${item.id}-${item.requesters.join('-')}`}
               renderItem={({ item }) => (
                 <Flex style={{ paddingVertical: 8, gap: 4 }}>
                   <Pressable
                     style={{ flex: 1 }}
-                    onPress={() => router.push({ pathname: `recipe/${item.id}`, params: item })}>
+                    onPress={() =>
+                      router.push({
+                        pathname: `recipe/${item.id}`,
+                        params: {
+                          ...item,
+                          requesters: JSON.stringify(item.requesters),
+                        },
+                      })
+                    }>
                     <RecipeItem data={item} />
                   </Pressable>
                   <View>

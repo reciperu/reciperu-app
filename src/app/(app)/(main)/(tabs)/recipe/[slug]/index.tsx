@@ -35,6 +35,7 @@ export default function Modal() {
   const data = useMemo(() => {
     if (params) {
       return {
+        id: params.id,
         title: params.title,
         thumbnailUrl: params.thumbnailUrl,
         imageUrls: params.imageUrls,
@@ -44,6 +45,7 @@ export default function Modal() {
         appName: params.appName,
         spaceId: params.spaceId,
         userId: params.userId,
+        requesters: typeof params.requesters === 'string' ? JSON.parse(params.requesters) : [],
       } as SpaceRecipe;
     }
     return null;

@@ -1,4 +1,4 @@
-import { memo } from 'react';
+import { memo, useCallback, useState } from 'react';
 import { SpaceRecipe } from '../../types';
 import { Image } from 'expo-image';
 import { NotoText } from '@/cores/components/Text';
@@ -6,6 +6,8 @@ import { Dimensions, TouchableOpacity, View } from 'react-native';
 import { Constants } from '@/constants';
 import { Flex } from '@/cores/components/Flex';
 import { AppIcon } from '@/cores/components/icons';
+import { useRecipes } from '../../hooks/useRecipes';
+import { useRecipeRequest } from '@/features/RecipePage/hooks/useRecipeRequest';
 
 interface Props {
   data: SpaceRecipe;
@@ -14,11 +16,24 @@ interface Props {
 const { width } = Dimensions.get('window');
 
 export const RecipeDetail = memo<Props>(({ data }) => {
+  const [recipeData, setRecipeData] = useState<SpaceRecipe>(data);
+  const { getFavorite, addRequester, removeRequester } = useRecipes();
+  const recipeRequestService = useRecipeRequest();
+  // 「食べたい」のステートを入れ替える
+  const toggleRequest = useCallback(async () => {
+    const handleSuccessAdd = () => {
+      setRecipeData((prev) => ({ ...prev, requesters: addRequester(prev.requesters) }));
+    };
+    const handleSuccessRemove = () => {
+      setRecipeData((prev) => ({ ...prev, requesters: removeRequester(prev.requesters) }));
+    };
+    recipeRequestService.toggle(recipeData, handleSuccessAdd, handleSuccessRemove);
+  }, [recipeData, recipeRequestService]);
   return (
     <View>
       <Image
-        source={{ uri: data.thumbnailUrl }}
-        alt={data.title}
+        source={{ uri: recipeData.thumbnailUrl }}
+        alt={recipeData.title}
         style={{
           width: width - 32,
           height: ((width - 32) / 16) * 9,
@@ -30,9 +45,9 @@ export const RecipeDetail = memo<Props>(({ data }) => {
           marginTop: 8,
           justifyContent: 'space-between',
         }}>
-        <NotoText fw="bold">{data.title}</NotoText>
+        <NotoText fw="bold">{recipeData.title}</NotoText>
         <View>
-          <TouchableOpacity onPress={() => console.log('call favorite')}>
+          <TouchableOpacity onPress={toggleRequest}>
             <View
               style={{
                 padding: 8,
@@ -44,7 +59,7 @@ export const RecipeDetail = memo<Props>(({ data }) => {
                 width={16}
                 height={16}
                 color={
-                  data.isFavorite
+                  getFavorite(recipeData.requesters)
                     ? Constants.colors.primitive.pink[400]
                     : Constants.colors.primitive.gray[300]
                 }
@@ -87,7 +102,7 @@ export const RecipeDetail = memo<Props>(({ data }) => {
           </Flex>
         </Flex> */}
         {/* レシピ（あれば） */}
-        {data.recipeUrl.length > 0 && (
+        {recipeData.recipeUrl.length > 0 && (
           <Flex
             style={{
               gap: 8,
@@ -99,10 +114,10 @@ export const RecipeDetail = memo<Props>(({ data }) => {
             <NotoText style={{ fontSize: 12, width: 48 }}>レシピ</NotoText>
             <Flex style={{ alignItems: 'center', gap: 4 }}>
               <Image
-                source={{ uri: data.faviconUrl }}
+                source={{ uri: recipeData.faviconUrl }}
                 style={{ width: 20, height: 20, borderRadius: 10 }}
               />
-              <NotoText style={{ fontSize: 12 }}>{data.appName}</NotoText>
+              <NotoText style={{ fontSize: 12 }}>{recipeData.appName}</NotoText>
             </Flex>
           </Flex>
         )}
