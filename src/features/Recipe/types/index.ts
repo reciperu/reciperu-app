@@ -1,3 +1,5 @@
+import { SpaceUser } from '@/features/User/types';
+
 export interface Recipe {
   id: string;
   title: string;
@@ -26,11 +28,11 @@ export interface SpaceRecipe extends Recipe {
   isFavorite: boolean;
   createdAt: string;
   requesters: string[];
+  user: SpaceUser;
 }
 
-export interface RecipeRequest {
+export interface RecipeRequestBody {
   title: string;
-  isFavorite: true;
   thumbnailUrl: string;
   imageUrls: string[];
   memo: string;

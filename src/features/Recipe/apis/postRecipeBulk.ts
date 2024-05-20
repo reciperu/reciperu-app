@@ -1,25 +1,18 @@
-import { useSWRConfig } from 'swr';
-
+import { useMutation, UseMutationOptions } from '@tanstack/react-query';
+import { client } from '@/lib/axios';
 import { Recipe } from '../types';
 
-import { client } from '@/lib/axios';
+export const postRecipeBulk = async (data: Omit<Recipe, 'id'>[]): Promise<Recipe[]> => {
+  return await client.post('/auth', data);
+};
 
-const postRecipeBulk = async (body: Omit<Recipe, 'id'>[]) =>
-  await client.post<Recipe[]>(`/recipes/bulk`, body);
+type UsePostRecipeBulk = {
+  config?: UseMutationOptions<Recipe[], unknown, Omit<Recipe, 'id'>[], unknown>;
+};
 
-export const usePostRecipeBulk = () => {
-  const { mutate } = useSWRConfig();
-  const postRecipeBulkData = (body: Omit<Recipe, 'id'>[]) => {
-    return mutate('/recipes', () => postRecipeBulk(body), {
-      populateCache: (updatedRecipes, currentRecipes) => {
-        if (!currentRecipes?.length) {
-          return { ...updatedRecipes.data };
-        } else {
-          return { ...currentRecipes, ...updatedRecipes.data };
-        }
-      },
-      revalidate: false,
-    });
-  };
-  return { postRecipeBulkData };
+export const usePostRecipeBulk = ({ config }: UsePostRecipeBulk) => {
+  return useMutation({
+    ...config,
+    mutationFn: postRecipeBulk,
+  });
 };

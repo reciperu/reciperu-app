@@ -1,8 +1,25 @@
-import { AxiosError } from 'axios';
-import useSWR from 'swr';
+import { useQuery } from '@tanstack/react-query';
 
-import { Space } from '@/features/Space/types';
+import { client } from '@/lib/axios';
+import { ExtractFnReturnType, QueryConfig } from '@/lib/react-query';
+import { Space } from '../types';
 
-export const useFetchSpace = (id: string) => {
-  return useSWR<Space, AxiosError>(`/spaces/${id}`);
+export const getSpaces = async (id: string): Promise<Space | null> => {
+  if (!id) return null;
+  return await client.get(`/spaces/${id}`);
+};
+
+type QueryFnType = typeof getSpaces;
+
+type UseGetSpacesOptions = {
+  id: string;
+  config?: QueryConfig<QueryFnType>;
+};
+
+export const useFetchSpace = ({ id, config }: UseGetSpacesOptions) => {
+  return useQuery<ExtractFnReturnType<QueryFnType>>({
+    queryKey: ['spaces', id],
+    queryFn: () => getSpaces(id),
+    ...config,
+  });
 };

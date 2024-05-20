@@ -8,7 +8,7 @@ export type UseRecipes = () => {
 };
 
 export const useRecipes: UseRecipes = () => {
-  const { data: account } = useFetchMyProfile();
+  const { data: account } = useFetchMyProfile({});
   const getFavorite = useCallback(
     (requesters: string[]) => {
       return requesters.includes(account?.id || '');
@@ -17,7 +17,7 @@ export const useRecipes: UseRecipes = () => {
   );
   const addRequester = useCallback(
     (requesters: string[]) => {
-      if (account?.id && !requesters.includes(account.id)) {
+      if (requesters && account?.id && !requesters.includes(account.id)) {
         return [...requesters, account.id];
       }
       return requesters;
@@ -25,7 +25,7 @@ export const useRecipes: UseRecipes = () => {
     [account?.id]
   );
   const removeRequester = useCallback((requesters: string[]) => {
-    if (account?.id && requesters.includes(account.id)) {
+    if (requesters && account?.id && requesters.includes(account.id)) {
       return requesters.filter((o) => o !== account.id);
     }
     return requesters;

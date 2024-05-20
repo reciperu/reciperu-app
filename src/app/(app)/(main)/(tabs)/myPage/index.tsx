@@ -16,6 +16,7 @@ import { Flex } from '@/cores/components/Flex';
 import { AppIcon } from '@/cores/components/icons';
 import { openURL } from '@/functions/utils';
 import { convertToBase64FromModule } from '@/utils/image';
+import { useQueryClient } from '@tanstack/react-query';
 
 const Avatar01 = require('assets/avatar/avatar01.png') as string;
 const Avatar02 = require('assets/avatar/avatar02.png') as string;
@@ -38,10 +39,11 @@ const ImageList = [
 const { width } = Dimensions.get('window');
 
 export default function MyPagePage() {
-  const { data } = useFetchMyProfile();
+  const { data } = useFetchMyProfile({});
   const [image, setImage] = useState(data?.imageUrl || '');
+  const queryClient = useQueryClient();
   const [pending, setPending] = useState(false);
-  const { updateProfile } = usePatchMyProfile();
+  const mutation = usePatchMyProfile({});
   const [tmpImage, setTmpImage] = useState('');
   const bottomSheetModalRef = useRef<BottomSheetModal>(null);
   const [imageKey, setImageKey] = useState<string | null>(null);
@@ -93,25 +95,39 @@ export default function MyPagePage() {
 
   useEffect(() => {
     if (data?.imageUrl) {
-      setImage(data?.imageUrl);
+      setImage(data.imageUrl);
     }
   }, [data?.imageUrl]);
 
   const updateImage = useCallback(async () => {
     if (data && tmpImage && data.imageUrl !== tmpImage) {
       setPending(true);
-      await updateProfile(data?.id, { ...data, imageUrl: tmpImage });
-      Toast.show({
-        type: 'successToast',
-        text1: 'プロフィール画像を変更しました',
-        visibilityTime: 3000,
-        autoHide: true,
-        topOffset: 60,
-      });
+      mutation.mutate(
+        {
+          id: data.id || '',
+          data: { ...data, imageUrl: tmpImage },
+        },
+        {
+          onSuccess: () => {
+            queryClient.invalidateQueries({
+              queryKey: ['profile'],
+            });
+            Toast.show({
+              type: 'successToast',
+              text1: 'プロフィール画像を変更しました',
+              visibilityTime: 3000,
+              autoHide: true,
+              topOffset: 60,
+            });
+          },
+          onSettled: () => {
+            setPending(false);
+            handleCloseSheet();
+          },
+        }
+      );
     }
-    setPending(false);
-    handleCloseSheet();
-  }, [data, tmpImage, updateProfile]);
+  }, [data, tmpImage, mutation]);
 
   return (
     <Container bgColor={Constants.colors.primitive.pink[50]}>

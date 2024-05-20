@@ -12,32 +12,28 @@ import { CompactImageUploadArea } from '@/cores/components/ImageUploadArea/compa
 import { RecipeForm } from '../../hooks/useEdiRecipe';
 
 interface Props extends RecipeForm {
-  recipeUrl: string;
+  oldRecipeUrl: string;
 }
 
 export const EditRecipe = memo<Props>(
   ({
     thumbnail,
     setThumbnail,
-    url,
-    setUrl,
+    recipeUrl,
+    setRecipeUrl,
     recipeName,
     setRecipeName,
-    appName,
     setAppName,
-    faviconUrl,
     setFaviconUrl,
     memo,
     setMemo,
     images,
     setImages,
     urlFormErrorMessage,
-    setUrlFormErrorMessage,
     recipeNameFormErrorMessage,
-    setRecipeNameFormErrorMessage,
-    recipeUrl,
+    oldRecipeUrl,
   }) => {
-    const { fetchMetaData } = useFetchMetaData();
+    const mutation = useFetchMetaData({});
     const [isFocused, setIsFocused] = useState(false);
 
     // レシピ画像の更新
@@ -62,20 +58,20 @@ export const EditRecipe = memo<Props>(
       setIsFocused(true);
     }, []);
     const fetchRecipeDataFromMetaData = useCallback(async () => {
-      if (!isFocused && isValidUrl(url) && recipeUrl !== url) {
-        const result = await fetchMetaData(url);
-        if (result?.data) {
-          const { title, thumbnailUrl, appName, faviconUrl } = result.data;
+      if (!isFocused && isValidUrl(recipeUrl) && recipeUrl !== oldRecipeUrl) {
+        const result = await mutation.mutateAsync(recipeUrl);
+        if (result) {
+          const { title, thumbnailUrl, appName, faviconUrl } = result;
           if (title) setRecipeName(title);
           if (thumbnailUrl) setThumbnail(thumbnailUrl);
           if (appName) setAppName(appName);
           if (faviconUrl) setFaviconUrl(faviconUrl);
         }
       }
-    }, [fetchMetaData, isFocused, url]);
+    }, [mutation, isFocused, recipeUrl]);
     useEffect(() => {
       fetchRecipeDataFromMetaData();
-    }, [url, isFocused]);
+    }, [recipeUrl, isFocused]);
     return (
       <ScrollView>
         <View style={styles.containerWrapper}>
@@ -85,10 +81,10 @@ export const EditRecipe = memo<Props>(
           <View style={styles.inputWrapper}>
             <InputLabel>レシピURL</InputLabel>
             <TextInput
-              value={url}
+              value={recipeUrl}
               onFocus={handleFocus}
               onBlur={handleBlur}
-              onChange={(text) => setUrl(text)}
+              onChange={(text) => setRecipeUrl(text)}
               errorMessage={urlFormErrorMessage}
               description="レシピサイト、Instagram、YouTubeなどのURL"
             />

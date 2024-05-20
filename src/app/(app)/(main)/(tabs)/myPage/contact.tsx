@@ -11,7 +11,7 @@ import { Spacer } from '@/cores/components/Spacer';
 import { TextInput } from '@/cores/components/TextInput';
 
 export default function ContactPage() {
-  const { postContactData } = usePostContact();
+  const mutation = usePostContact({});
   const [pending, setPending] = useState(false);
   const [email, setEmail] = useState('');
   const [content, setContent] = useState('');
@@ -40,21 +40,25 @@ export default function ContactPage() {
     setPending(true);
     if (validate()) {
       // 送信処理
-      const result = await postContactData({ email, content });
-      if (result?.data.success) {
-        setEmail('');
-        setContent('');
-        Toast.show({
-          type: 'successToast',
-          text1: '送信しました',
-          visibilityTime: 3000,
-          autoHide: true,
-          topOffset: 60,
-        });
-      }
+      const result = await mutation.mutateAsync(
+        { email, content },
+        {
+          onSuccess: () => {
+            setEmail('');
+            setContent('');
+            Toast.show({
+              type: 'successToast',
+              text1: '送信しました',
+              visibilityTime: 3000,
+              autoHide: true,
+              topOffset: 60,
+            });
+          },
+          onSettled: () => setPending(false),
+        }
+      );
     }
-    setPending(false);
-  }, [content, email, postContactData, validate]);
+  }, [content, email, mutation, validate]);
 
   return (
     <Container>

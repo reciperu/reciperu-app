@@ -1,5 +1,5 @@
 import { useDeleteRecipeRequest } from '@/features/Recipe/apis/deleteRecipeRequest';
-import { usePostRecipeRequest } from '@/features/Recipe/apis/putRecipeRequest';
+import { usePostRecipeRequest } from '@/features/Recipe/apis/postRecipeRequest';
 import { useRecipes } from '@/features/Recipe/hooks/useRecipes';
 import { SpaceRecipe } from '@/features/Recipe/types';
 import { useCallback, useState } from 'react';
@@ -16,8 +16,8 @@ export type UseRecipeRequest = () => {
 
 export const useRecipeRequest: UseRecipeRequest = () => {
   const [pending, setPending] = useState(false);
-  const deleteMutation = useDeleteRecipeRequest();
-  const postMutation = usePostRecipeRequest();
+  const deleteMutation = useDeleteRecipeRequest({});
+  const postMutation = usePostRecipeRequest({});
   const { getFavorite } = useRecipes();
   // 「食べたい」のステートを入れ替える
   const toggle = useCallback(
@@ -31,13 +31,21 @@ export const useRecipeRequest: UseRecipeRequest = () => {
         setPending(true);
         const isFavorite = getFavorite(item.requesters);
         if (isFavorite) {
-          const result = await deleteMutation.deleteRecipeRequest(item.id);
-          if (result?.data.success && onSuccessRemoveCallback) {
+          const result = await deleteMutation.mutateAsync({
+            data: {
+              id: item.id,
+            },
+          });
+          if (result?.success && onSuccessRemoveCallback) {
             onSuccessRemoveCallback();
           }
         } else {
-          const result = await postMutation.postRecipeRequest(item.id);
-          if (result?.data.success && onSuccessAddCallback) {
+          const result = await postMutation.mutateAsync({
+            data: {
+              recipeId: item.id,
+            },
+          });
+          if (result?.success && onSuccessAddCallback) {
             onSuccessAddCallback();
           }
         }
@@ -57,8 +65,12 @@ export const useRecipeRequest: UseRecipeRequest = () => {
       setPending(true);
       const isFavorite = getFavorite(item.requesters);
       if (isFavorite) {
-        const result = await deleteMutation.deleteRecipeRequest(item.id);
-        if (result?.data.success && onSuccessCallback) {
+        const result = await deleteMutation.mutateAsync({
+          data: {
+            id: item.id,
+          },
+        });
+        if (result?.success && onSuccessCallback) {
           onSuccessCallback();
         }
       }

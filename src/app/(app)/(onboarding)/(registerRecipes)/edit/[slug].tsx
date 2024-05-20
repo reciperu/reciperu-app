@@ -20,7 +20,7 @@ import { isValidUrl } from '@/utils/validation';
 export default function Modal() {
   const isPresented = router.canGoBack();
   const { slug } = useLocalSearchParams();
-  const { fetchMetaData } = useFetchMetaData();
+  const mutation = useFetchMetaData({});
   const navigation = useNavigation();
 
   const [isFocused, setIsFocused] = useState(false);
@@ -89,8 +89,7 @@ export default function Modal() {
         appName,
         faviconUrl,
       };
-      // TODO: レシピURLが変わっていればOGP情報の更新
-      // サムネイル
+      // レシピURLが変わっていればOGP情報の更新
       if (thumbnail.length > 0 && !isValidUrl(thumbnail)) {
         const base64 = await convertImageToBase64FromUri(thumbnail);
         if (base64) {
@@ -98,8 +97,10 @@ export default function Modal() {
         }
       }
       // レシピ画像
-      const imageUrls = await processImages(images);
-      newRecipe.imageUrls = imageUrls;
+      if (images.length > 0) {
+        const imageUrls = await processImages(images);
+        newRecipe.imageUrls = imageUrls;
+      }
       updateSelectedRecipe(newRecipe);
       navigation.goBack();
     }
@@ -132,16 +133,16 @@ export default function Modal() {
   }, [targetRecipe]);
   const fetchRecipeDataFromMetaData = useCallback(async () => {
     if (!isFocused && isValidUrl(url) && targetRecipe?.recipeUrl !== url) {
-      const result = await fetchMetaData(url);
-      if (result?.data) {
-        const { title, thumbnailUrl, appName, faviconUrl } = result.data;
+      const result = await mutation.mutateAsync(url);
+      if (result) {
+        const { title, thumbnailUrl, appName, faviconUrl } = result;
         if (title) setRecipeName(title);
         if (thumbnailUrl) setThumbnail(thumbnailUrl);
         if (appName) setAppName(appName);
         if (faviconUrl) setFaviconUrl(faviconUrl);
       }
     }
-  }, [fetchMetaData, isFocused, url]);
+  }, [mutation, isFocused, url]);
   useEffect(() => {
     fetchRecipeDataFromMetaData();
   }, [url, isFocused]);

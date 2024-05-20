@@ -11,27 +11,43 @@ import { Button } from '@/cores/components/Button';
 import { Spacer } from '@/cores/components/Spacer';
 import { NotoText } from '@/cores/components/Text';
 import { APP_NAME } from '@/constants';
+import { useQueryClient } from '@tanstack/react-query';
 
 const { height, width } = Dimensions.get('window');
 
 export default function OnboardingRegisterRecipesCompletePage() {
+  const queryClient = useQueryClient();
   const [loading, setLoading] = useState(false);
   const confettiRef = useRef<Confetti>(null);
   const router = useRouter();
-  const { updateProfile } = usePatchMyProfile();
-  const { data } = useFetchMyProfile();
+  const mutation = usePatchMyProfile({});
+  const { data } = useFetchMyProfile({});
   const handleStart = useCallback(async () => {
     if (data) {
       setLoading(true);
-      await updateProfile(data.id, {
-        name: data.name,
-        imageUrl: data.imageUrl,
-        activeStatus: UserStatus.JOINED_SPACE,
-      });
-      router.push('/(main)/(tabs)/home');
-      setLoading(false);
+      mutation.mutate(
+        {
+          id: data.id,
+          data: {
+            name: data.name,
+            imageUrl: data.imageUrl,
+            activeStatus: UserStatus.JOINED_SPACE,
+          },
+        },
+        {
+          onSuccess: () => {
+            queryClient.invalidateQueries({
+              queryKey: ['profile'],
+            });
+            router.push('/(main)/(tabs)/home');
+          },
+          onSettled: () => {
+            setLoading(false);
+          },
+        }
+      );
     }
-  }, [data, router, updateProfile]);
+  }, [data, router, mutation]);
 
   useEffect(() => {
     if (confettiRef.current) {

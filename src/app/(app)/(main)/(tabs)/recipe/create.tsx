@@ -1,13 +1,10 @@
 import { View, TouchableOpacity, StyleSheet } from 'react-native';
 
 import { Constants } from '@/constants';
-import { Flex } from '@/cores/components/Flex';
 import { NotoText } from '@/cores/components/Text';
-import { AppIcon } from '@/cores/components/icons';
-import { useState } from 'react';
 import { Stack, router } from 'expo-router';
 import { HeaderLeftBackButton } from '@/cores/components/icons/components/HeaderLeftBackButton';
-import { noop } from 'swr/_internal';
+import { noop } from '@/functions/utils';
 
 export default function RecipeCreatePage() {
   const isPresented = router.canGoBack();

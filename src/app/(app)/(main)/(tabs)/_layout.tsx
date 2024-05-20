@@ -24,7 +24,7 @@ const HeaderLeftIcon = memo(() => (
 ));
 
 export default function TabLayout() {
-  const { data } = useFetchMyProfile();
+  const { data } = useFetchMyProfile({});
   return (
     <View style={{ minHeight: windowHeight }}>
       <Tabs

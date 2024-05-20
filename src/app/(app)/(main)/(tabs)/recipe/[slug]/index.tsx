@@ -1,5 +1,5 @@
 import { Stack, router, useLocalSearchParams, useRouter } from 'expo-router';
-import { useCallback, useMemo, useState } from 'react';
+import { useCallback, useState } from 'react';
 import { ActivityIndicator, Alert, StyleSheet, TouchableOpacity, View } from 'react-native';
 import Toast from 'react-native-toast-message';
 
@@ -8,7 +8,7 @@ import { Container } from '@/cores/components/Container';
 import { NotoText } from '@/cores/components/Text';
 import { HeaderLeftBackButton } from '@/cores/components/icons/components/HeaderLeftBackButton';
 import { RecipeDetail } from '@/features/Recipe/components/RecipeDetail';
-import { RecipeRequest, SpaceRecipe } from '@/features/Recipe/types';
+import { RecipeRequestBody, SpaceRecipe } from '@/features/Recipe/types';
 import { Spacer } from '@/cores/components/Spacer';
 import { Button } from '@/cores/components/Button';
 import { AppModal } from '@/cores/components/Modal';
@@ -21,7 +21,9 @@ import { Flex } from '@/cores/components/Flex';
 import { useEditRecipe } from '@/features/Recipe/hooks/useEdiRecipe';
 import { convertImageToBase64FromUri } from '@/utils/image';
 import { isValidUrl } from '@/utils/validation';
-import { toastConfig } from '@/app/_layout';
+import { useStore } from '@/store';
+import { toastConfig } from '@/lib/ToastConfig';
+import { useQueryClient } from '@tanstack/react-query';
 
 export default function Modal() {
   const isPresented = router.canGoBack();
@@ -31,33 +33,23 @@ export default function Modal() {
   const [isEditPending, setIsEditPending] = useState(false);
   const [date, setDate] = useState<string>(new Date().toISOString());
   const params = useLocalSearchParams();
-  const putMutation = usePutRecipe();
-  const data = useMemo(() => {
-    if (params) {
-      return {
-        id: params.id,
-        title: params.title,
-        thumbnailUrl: params.thumbnailUrl,
-        imageUrls: params.imageUrls,
-        memo: params.memo,
-        recipeUrl: params.recipeUrl,
-        faviconUrl: params.faviconUrl,
-        appName: params.appName,
-        spaceId: params.spaceId,
-        userId: params.userId,
-        requesters: typeof params.requesters === 'string' ? JSON.parse(params.requesters) : [],
-      } as SpaceRecipe;
-    }
-    return null;
-  }, [params]);
+  const mutation = usePutRecipe({});
+  const queryClient = useQueryClient();
+  const setNeedUpdate = useStore((state) => state.setNeedUpdate);
+  const [data, setData] = useState<SpaceRecipe>({
+    id: params.id,
+    title: params.title,
+    thumbnailUrl: params.thumbnailUrl,
+    imageUrls: params.imageUrls,
+    memo: params.memo,
+    recipeUrl: params.recipeUrl,
+    faviconUrl: params.faviconUrl,
+    appName: params.appName,
+    spaceId: params.spaceId,
+    userId: params.userId,
+    requesters: typeof params.requesters === 'string' ? JSON.parse(params.requesters) : [],
+  } as SpaceRecipe);
   const editRecipeService = useEditRecipe(data);
-  const toggleMode = useCallback(() => {
-    if (isEditing) {
-      handleUpdate(() => setIsEditing(false));
-    } else {
-      setIsEditing(true);
-    }
-  }, [isEditing]);
 
   const confirmDelete = useCallback(() => {
     Alert.alert('レシピを削除しますか？', '', [
@@ -77,23 +69,20 @@ export default function Modal() {
 
   const handleUpdate = useCallback(
     async (callback: () => void) => {
-      console.log('isEditPending', isEditPending ? 'true' : 'false');
       if (isEditPending) return;
       if (typeof params.id === 'string') {
         setIsEditPending(true);
-        console.log('call2');
-        if (editRecipeService.validate()) {
-          const updatedRecipe: RecipeRequest = {
+        if (editRecipeService.validate() && data) {
+          const updatedRecipe: RecipeRequestBody = {
             title: editRecipeService.recipeName,
-            thumbnailUrl: editRecipeService.thumbnail,
-            recipeUrl: editRecipeService.url,
+            thumbnailUrl: data.thumbnailUrl,
+            recipeUrl: editRecipeService.recipeUrl,
             memo: editRecipeService.memo,
-            imageUrls: editRecipeService.images,
+            imageUrls: data.imageUrls,
             appName: editRecipeService.appName,
             faviconUrl: editRecipeService.faviconUrl,
           };
-          // TODO: レシピURLが変わっていればOGP情報の更新
-          // サムネイル
+          // レシピURLが変わっていればOGP情報の更新
           if (editRecipeService.thumbnail.length > 0 && !isValidUrl(editRecipeService.thumbnail)) {
             const base64 = await convertImageToBase64FromUri(editRecipeService.thumbnail);
             if (base64) {
@@ -101,20 +90,37 @@ export default function Modal() {
             }
           }
           // レシピ画像
-          const imageUrls = await editRecipeService.processImages(editRecipeService.images);
-          updatedRecipe.imageUrls = imageUrls;
+          if (editRecipeService.images.length > 0) {
+            const imageUrls = await editRecipeService.processImages(editRecipeService.images);
+            updatedRecipe.imageUrls = imageUrls;
+          }
           try {
-            const response = await putMutation.putRecipe(params.id, updatedRecipe);
-            if (response?.data) {
-              Toast.show({
-                type: 'successToast',
-                text1: 'レシピを更新しました',
-                visibilityTime: 3000,
-                autoHide: true,
-                topOffset: 60,
-              });
-              callback();
-            }
+            mutation.mutate(
+              {
+                id: params.id,
+                data: updatedRecipe,
+              },
+              {
+                onSuccess: (result) => {
+                  queryClient.invalidateQueries({
+                    queryKey: ['recipes'],
+                  });
+                  Toast.show({
+                    type: 'successToast',
+                    text1: 'レシピを更新しました',
+                    visibilityTime: 3000,
+                    autoHide: true,
+                    topOffset: 0,
+                  });
+                  setData({
+                    ...result.data,
+                    requesters: result.data.requesters?.length ? result.data.requesters : [],
+                  });
+                  setNeedUpdate(true);
+                  callback();
+                },
+              }
+            );
           } catch (error) {
             console.error(error);
           }
@@ -122,19 +128,33 @@ export default function Modal() {
         setIsEditPending(false);
       }
     },
-    [params]
+    [params, data, editRecipeService, isEditPending, mutation]
   );
+
+  const toggleMode = useCallback(() => {
+    if (isEditing) {
+      handleUpdate(() => setIsEditing(false));
+    } else {
+      setIsEditing(true);
+    }
+  }, [isEditing, handleUpdate]);
 
   return (
     <>
       <Stack.Screen
         options={{
-          title: typeof params.title === 'string' ? params.title : '',
+          title: typeof data.title === 'string' ? data.title : '',
           headerTitleStyle: { color: 'black' },
           headerShadowVisible: false,
           headerLeft: isPresented ? () => <HeaderLeftBackButton /> : undefined,
           headerRight: () => (
-            <Flex style={{ gap: 8, alignItems: 'center' }}>
+            <Flex
+              style={{
+                gap: 8,
+                alignItems: 'center',
+                width: 60,
+                justifyContent: 'flex-end',
+              }}>
               {isEditPending && <ActivityIndicator color={Constants.colors.primitive.blue[400]} />}
               <TouchableOpacity onPress={toggleMode}>
                 <NotoText fw="bold" style={styles.headerUpdateButton}>
@@ -147,7 +167,7 @@ export default function Modal() {
       />
       <Container>
         {isEditing ? (
-          <>{data && <EditRecipe {...editRecipeService} recipeUrl={data.recipeUrl} />}</>
+          <>{data && <EditRecipe {...editRecipeService} oldRecipeUrl={data.recipeUrl} />}</>
         ) : data ? (
           <View style={{ flex: 1 }}>
             <RecipeDetail data={data} />
@@ -205,7 +225,10 @@ export default function Modal() {
 }
 
 const styles = StyleSheet.create({
-  headerUpdateButton: { color: Constants.colors.primitive.blue[400], fontSize: 16 },
+  headerUpdateButton: {
+    color: Constants.colors.primitive.blue[400],
+    fontSize: 16,
+  },
   container: {
     flex: 1,
     backgroundColor: 'green',

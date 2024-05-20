@@ -18,11 +18,14 @@ export default function MainLayout() {
 
 const MainContent = memo(() => {
   const authContext = useAuthContext();
-  const { data, isLoading, error, mutate } = useFetchMyProfile();
+  const { data, isLoading, error, refetch } = useFetchMyProfile({});
   const router = useRouter();
   useEffect(() => {
     if (error) {
-      if (error.status === 401) {
+      console.log('error ==================');
+      console.log(error);
+      console.log('========================');
+      if (error.message === '401') {
         Alert.alert('エラー', AUTH_ERROR_MESSAGE, [
           {
             text: 'ログインする',
@@ -34,7 +37,7 @@ const MainContent = memo(() => {
         ]);
       } else {
         Alert.alert('エラー', 'エラーが発生しました。', [
-          { text: 'もう一度試す', onPress: () => mutate() },
+          { text: 'もう一度試す', onPress: () => refetch() },
         ]);
       }
     }

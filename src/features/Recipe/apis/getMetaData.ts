@@ -1,18 +1,18 @@
-import { useSWRConfig } from 'swr';
-
+import { useMutation, UseMutationOptions } from '@tanstack/react-query';
+import { client } from '@/lib/axios';
 import { MetaData } from '../types';
 
-import { client } from '@/lib/axios';
+export const fetchMetaData = async (url: string): Promise<MetaData> => {
+  return await client.get(`/recipes/meta-data?recipeUrl=${url}`);
+};
 
-const getMetaData = async (url: string) =>
-  await client.get<MetaData>(`/recipes/meta-data?recipeUrl=${url}`);
+type UseFetchMetaData = {
+  config?: UseMutationOptions<MetaData, unknown, string, unknown>;
+};
 
-export const useFetchMetaData = () => {
-  const { mutate } = useSWRConfig();
-  const fetchMetaData = (url: string) => {
-    return mutate('/recipes/meta-data', () => getMetaData(url), {
-      revalidate: false,
-    });
-  };
-  return { fetchMetaData };
+export const useFetchMetaData = ({ config }: UseFetchMetaData) => {
+  return useMutation({
+    ...config,
+    mutationFn: fetchMetaData,
+  });
 };

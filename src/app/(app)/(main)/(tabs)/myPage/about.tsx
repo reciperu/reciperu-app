@@ -27,7 +27,7 @@ const DEVELOPER_LIST = [
 ];
 
 export default function AboutPage() {
-  const { data } = useFetchRoadmap();
+  const { data } = useFetchRoadmap({});
   const displayData = useMemo(() => {
     if (data) {
       // statusを対応中、未対応、対応済みに分ける

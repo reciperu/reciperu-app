@@ -7,8 +7,8 @@ import { convertImageToBase64FromUri } from '@/utils/image';
 export interface RecipeForm {
   thumbnail: string;
   setThumbnail: (thumbnail: string) => void;
-  url: string;
-  setUrl: (url: string) => void;
+  recipeUrl: string;
+  setRecipeUrl: (url: string) => void;
   recipeName: string;
   setRecipeName: (recipeName: string) => void;
   appName: string;
@@ -31,7 +31,7 @@ export type UseEditRecipe = (data: SpaceRecipe | null) => RecipeForm;
 
 export const useEditRecipe: UseEditRecipe = (data) => {
   const [thumbnail, setThumbnail] = useState(data?.thumbnailUrl || '');
-  const [url, setUrl] = useState(data?.recipeUrl || '');
+  const [recipeUrl, setRecipeUrl] = useState(data?.recipeUrl || '');
   const [recipeName, setRecipeName] = useState(data?.title || '');
   const [appName, setAppName] = useState(data?.appName || '');
   const [faviconUrl, setFaviconUrl] = useState(data?.faviconUrl || '');
@@ -44,7 +44,7 @@ export const useEditRecipe: UseEditRecipe = (data) => {
     setRecipeNameFormErrorMessage('');
     let returnValue = true;
     // URLかどうか
-    const isUrl = isValidUrl(url);
+    const isUrl = isValidUrl(recipeUrl);
     if (!isUrl) {
       setUrlFormErrorMessage('URLの形式が正しくありません');
       returnValue = false;
@@ -55,7 +55,7 @@ export const useEditRecipe: UseEditRecipe = (data) => {
       returnValue = false;
     }
     return returnValue;
-  }, [recipeName, url]);
+  }, [recipeName, recipeUrl]);
 
   const processImages = async (images: string[]) => {
     const imageUrls = await Promise.all(
@@ -67,8 +67,8 @@ export const useEditRecipe: UseEditRecipe = (data) => {
   return {
     thumbnail,
     setThumbnail,
-    url,
-    setUrl,
+    recipeUrl,
+    setRecipeUrl,
     recipeName,
     setRecipeName,
     appName,

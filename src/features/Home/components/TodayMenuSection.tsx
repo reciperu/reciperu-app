@@ -27,6 +27,7 @@ const data = [
     recipeUrl: 'https://recipe.rakuten.co.jp/recipe/1160000135/',
     faviconUrl: 'https://recipe.rakuten.co.jp/favicon.ico',
     appName: '楽天レシピ',
+    requesters: [],
   },
   {
     id: '2',
@@ -39,6 +40,7 @@ const data = [
     faviconUrl:
       'http://www.google.com/s2/favicons?domain=https://www.kurashiru.com/recipes/82b3201b-29f4-4db9-9fbb-82a1ce16d247',
     appName: 'クラシル',
+    requesters: [],
   },
 ];
 
@@ -119,7 +121,7 @@ export const TodayMenuSection = memo(() => {
                 color: Constants.colors.primitive.gray[600],
               }}>
               {`食べたい料理は未登録です
-      に登録された料理から食べたい料理を選びましょう`}
+レシピ集に登録された料理から食べたい料理を選びましょう`}
             </NotoText>
           </Flex>
           {/* データがある場合 */}

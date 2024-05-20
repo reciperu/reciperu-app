@@ -1,14 +1,30 @@
-import { useSWRConfig } from 'swr';
+import { useMutation, UseMutationOptions } from '@tanstack/react-query';
 
 import { client } from '@/lib/axios';
 
-const _deleteRecipeRequest = async (id: string) =>
-  await client.delete<{ success: boolean }>(`/recipes/${id}/requests`);
+interface RecipeRequestRequestBody {
+  id: string;
+}
 
-export const useDeleteRecipeRequest = () => {
-  const { mutate } = useSWRConfig();
-  const deleteRecipeRequest = (id: string) => {
-    return mutate(`/recipes_${id}_requests`, () => _deleteRecipeRequest(id));
-  };
-  return { deleteRecipeRequest };
+interface DeleteRecipeRequestResponse {
+  success: boolean;
+}
+
+interface Params {
+  data: RecipeRequestRequestBody;
+}
+
+export const deleteRecipeRequest = async (params: Params): Promise<DeleteRecipeRequestResponse> => {
+  return await client.delete(`/recipes/${params.data.id}/requests`);
+};
+
+type UseDeleteRecipeRequest = {
+  config?: UseMutationOptions<DeleteRecipeRequestResponse, unknown, Params, unknown>;
+};
+
+export const useDeleteRecipeRequest = ({ config }: UseDeleteRecipeRequest) => {
+  return useMutation({
+    ...config,
+    mutationFn: deleteRecipeRequest,
+  });
 };

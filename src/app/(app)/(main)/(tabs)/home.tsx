@@ -17,8 +17,10 @@ import { useFetchMyProfile } from '@/features/User/apis/getMyProfile';
 const { width } = Dimensions.get('window');
 
 export default function HomePage() {
-  const { data } = useFetchMyProfile();
-  const { data: space } = useFetchSpace(data?.spaceId || '');
+  const { data } = useFetchMyProfile({});
+  const { data: space } = useFetchSpace({
+    id: data?.spaceId || '',
+  });
   const router = useRouter();
   const imageHeight = (width / 390) * 103;
   const spaceName = useMemo(() => {

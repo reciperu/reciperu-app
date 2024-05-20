@@ -1,19 +1,21 @@
 import { Constants } from '@/constants';
 import { Flex } from '@/cores/components/Flex';
-import { NotoText } from '@/cores/components/Text';
 import { AppIcon } from '@/cores/components/icons';
-import { useDeleteRecipeRequest } from '@/features/Recipe/apis/deleteRecipeRequest';
 import { useFetchRecipes } from '@/features/Recipe/apis/getRecipes';
-import { usePostRecipeRequest } from '@/features/Recipe/apis/putRecipeRequest';
 import { RecipeItem } from '@/features/Recipe/components/RecipeItem';
 import { useRecipes } from '@/features/Recipe/hooks/useRecipes';
 import { SpaceRecipe } from '@/features/Recipe/types';
 import { useUpdateEffect } from '@/hooks/useUpdateEffect';
 import { sleep } from '@/utils/sleep';
 import { useRouter } from 'expo-router';
-import { memo, useCallback, useEffect, useState } from 'react';
-import { ActivityIndicator, FlatList, Pressable, TouchableOpacity, View } from 'react-native';
+import { memo, useCallback, useMemo, useState } from 'react';
+import { FlatList, Pressable, RefreshControl, TouchableOpacity, View } from 'react-native';
 import { useRecipeRequest } from '../hooks/useRecipeRequest';
+import { useQueryClient } from '@tanstack/react-query';
+import { ListFooterView } from './ListFooterView';
+import { PendingLoader } from './PendingLoader';
+import { ErrorView } from './ErrorView';
+import { EmptyView } from './EmptyView';
 
 interface Props {
   search: string;
@@ -21,6 +23,9 @@ interface Props {
 
 export const FavoriteRecipeTab = memo<Props>(({ search }) => {
   const router = useRouter();
+  const queryClient = useQueryClient();
+  const [refreshing, setRefreshing] = useState(false);
+  const { getFavorite, removeRequester } = useRecipes();
   const [params, setParams] = useState<{
     cursor?: string;
     isRequested?: boolean;
@@ -31,140 +36,151 @@ export const FavoriteRecipeTab = memo<Props>(({ search }) => {
     title: search,
   });
   const recipeRequestService = useRecipeRequest();
-  const [displayData, setDisplayData] = useState<SpaceRecipe[]>([]);
-  const [isEndReachedLoading, setIsEndReachedLoading] = useState(false);
-  const { getFavorite } = useRecipes();
-  const [endReached, setEndReached] = useState(false);
-  const { data, isLoading } = useFetchRecipes(params);
+  const {
+    data,
+    error,
+    fetchNextPage,
+    hasNextPage,
+    isFetching,
+    isFetchingNextPage,
+    status,
+    refetch,
+    isRefetching,
+  } = useFetchRecipes({ params });
 
-  const handleEndReached = async () => {
-    if (isEndReachedLoading || endReached) return;
-    setIsEndReachedLoading(true);
-    // 2秒待機
-    await sleep(2000);
-    // 最後のデータのidをcursorに設定
-    if (displayData.length) {
-      const _cursor = displayData[displayData.length - 1]?.id;
-      if (_cursor && _cursor !== params.cursor) {
-        setParams((prev) => ({ ...prev, cursor: _cursor }));
+  // 表示データ一覧
+  const displayData = useMemo(() => {
+    const arr = [];
+    if (data?.pages) {
+      for (const page of data.pages) {
+        arr.push(...page.recipes);
       }
     }
-    setIsEndReachedLoading(false);
-  };
+    return arr;
+  }, [data]);
+
+  // 次のページを取得
+  const handleEndReached = useCallback(async () => {
+    if (!isFetching) {
+      // 2秒待機
+      await sleep(2000);
+      fetchNextPage();
+    }
+  }, [isFetching, fetchNextPage]);
 
   // 「食べたい」のステートを解除
   const removeRequest = useCallback(
     async (item: SpaceRecipe) => {
-      recipeRequestService.remove(item, () =>
-        setDisplayData(displayData.filter((o) => o.id !== item.id))
-      );
+      recipeRequestService.remove(item, () => {
+        queryClient.setQueryData(
+          ['recipes', { isRequested: true, title: params.title }],
+          (data: any) => ({
+            pages: data.pages.map((page: any) => {
+              return {
+                ...page,
+                recipes: page.recipes.map((recipe: any) => {
+                  if (recipe.id === item.id) {
+                    return {
+                      ...recipe,
+                      requesters: removeRequester(recipe.requesters),
+                    };
+                  }
+                  return recipe;
+                }),
+              };
+            }),
+            pageParams: data.pageParams,
+          })
+        );
+      });
     },
     [displayData]
   );
 
-  useEffect(() => {
-    // データがなければ新規追加
-    if (displayData.length === 0 && data?.recipes.length) {
-      setDisplayData([...data.recipes]);
-    }
-    // データがあれば更新（重複は無視）
-    else if (
-      !!data?.recipes.length &&
-      !displayData.map((o) => o.id).includes(data.recipes[0]?.id)
-    ) {
-      setDisplayData([...displayData, ...data.recipes]);
-    }
-    if (displayData.length > 0 && (!data?.recipes || data?.recipes.length < 5)) {
-      setEndReached(true);
-    }
-  }, [data]);
+  const onRefresh = useCallback(async () => {
+    if (isRefetching) return;
+    console.log('refetch start');
+    setRefreshing(true);
+    // 2秒待機
+    await sleep(2000);
+    refetch();
+    console.log('refetch stop');
+    setRefreshing(false);
+  }, [isRefetching]);
 
   useUpdateEffect(() => {
-    setDisplayData([]);
-    setParams({
-      cursor: undefined,
-      title: search,
-    });
+    if (params.title !== search) {
+      setParams({ ...params, title: search });
+    }
   }, [search]);
 
   return (
     <View style={{ flex: 1, backgroundColor: 'white' }}>
       {/* ローディング中 */}
-      {isLoading && !displayData.length ? (
-        <View style={{ paddingTop: 40 }}>
-          <ActivityIndicator color={Constants.colors.primitive.gray[400]} />
-        </View>
+      {status === 'pending' ? (
+        <PendingLoader />
       ) : (
         <>
-          {/* データがない場合 */}
-          {displayData.length === 0 ? (
-            <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-              <NotoText
-                style={{
-                  fontSize: 14,
-                  paddingTop: 40,
-                  color: Constants.colors.primitive.gray[600],
-                }}>
-                「食べたい」に設定されたレシピがありません
-              </NotoText>
-            </View>
+          {status === 'error' ? (
+            <ErrorView value={error?.message} />
           ) : (
-            <FlatList
-              data={displayData}
-              contentContainerStyle={{ paddingHorizontal: 16, paddingVertical: 16 }}
-              keyExtractor={(item) => item.id}
-              renderItem={({ item }) => (
-                <Flex style={{ paddingVertical: 8, gap: 4 }}>
-                  <Pressable
-                    style={{ flex: 1 }}
-                    onPress={() => router.push({ pathname: `recipe/${item.id}`, params: item })}>
-                    <RecipeItem data={item} />
-                  </Pressable>
-                  <View>
-                    <TouchableOpacity onPress={() => removeRequest(item)}>
-                      <View
-                        style={{
-                          padding: 8,
-                          backgroundColor: 'white',
-                          borderRadius: 24,
-                        }}>
-                        <AppIcon
-                          name="bookmark"
-                          width={16}
-                          height={16}
-                          color={
-                            getFavorite(item.requesters)
-                              ? Constants.colors.primitive.pink[400]
-                              : Constants.colors.primitive.gray[300]
-                          }
-                        />
+            <>
+              {displayData.length === 0 ? (
+                <EmptyView />
+              ) : (
+                <FlatList
+                  data={displayData}
+                  contentContainerStyle={{ paddingHorizontal: 16, paddingVertical: 16 }}
+                  keyExtractor={(item) => item.id}
+                  refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />}
+                  renderItem={({ item }) => (
+                    <Flex style={{ paddingVertical: 8, gap: 4 }}>
+                      <Pressable
+                        style={{ flex: 1 }}
+                        onPress={() =>
+                          router.push({
+                            pathname: `recipe/${item.id}`,
+                            params: {
+                              ...item,
+                              requesters: JSON.stringify(item.requesters),
+                            },
+                          })
+                        }>
+                        <RecipeItem data={item} />
+                      </Pressable>
+                      <View>
+                        <TouchableOpacity onPress={() => removeRequest(item)}>
+                          <View
+                            style={{
+                              padding: 8,
+                              backgroundColor: 'white',
+                              borderRadius: 24,
+                            }}>
+                            <AppIcon
+                              name="bookmark"
+                              width={16}
+                              height={16}
+                              color={
+                                getFavorite(item.requesters)
+                                  ? Constants.colors.primitive.pink[400]
+                                  : Constants.colors.primitive.gray[300]
+                              }
+                            />
+                          </View>
+                        </TouchableOpacity>
                       </View>
-                    </TouchableOpacity>
-                  </View>
-                </Flex>
-              )}
-              onEndReached={handleEndReached}
-              ListFooterComponent={() => (
-                <View style={{ paddingVertical: 12 }}>
-                  {endReached ? (
-                    <NotoText
-                      style={{
-                        fontSize: 12,
-                        color: Constants.colors.primitive.gray[400],
-                        textAlign: 'center',
-                      }}>
-                      すべてのレシピを取得しました
-                    </NotoText>
-                  ) : (
-                    <>
-                      {isEndReachedLoading ? (
-                        <ActivityIndicator color={Constants.colors.primitive.gray[400]} />
-                      ) : null}
-                    </>
+                    </Flex>
                   )}
-                </View>
+                  onEndReached={handleEndReached}
+                  ListFooterComponent={() => (
+                    <ListFooterView
+                      hasNextPage={hasNextPage}
+                      isFetchingNextPage={isFetchingNextPage}
+                    />
+                  )}
+                />
               )}
-            />
+            </>
           )}
         </>
       )}

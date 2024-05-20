@@ -1,0 +1,22 @@
+import React from 'react';
+import { useFocusEffect } from '@react-navigation/native';
+
+/**
+ * 画面フォーカス時に更新する
+ * https://tanstack.com/query/latest/docs/framework/react/react-native#refresh-on-screen-focus
+ */
+
+export function useRefreshOnFocus<T>(refetch: () => Promise<T>) {
+  const firstTimeRef = React.useRef(true);
+
+  useFocusEffect(
+    React.useCallback(() => {
+      if (firstTimeRef.current) {
+        firstTimeRef.current = false;
+        return;
+      }
+
+      refetch();
+    }, [refetch])
+  );
+}

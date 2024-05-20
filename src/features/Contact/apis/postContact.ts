@@ -1,16 +1,25 @@
-import { useSWRConfig } from 'swr';
-
+import { useMutation, UseMutationOptions } from '@tanstack/react-query';
 import { client } from '@/lib/axios';
 
-const postContact = async (body: { email?: string; content: string }) =>
-  await client.post<{ success: boolean }>(`/contact`, body);
+interface ContactRequest {
+  email?: string;
+  content: string;
+}
+interface ContactResponse {
+  success: boolean;
+}
 
-export const usePostContact = () => {
-  const { mutate } = useSWRConfig();
-  const postContactData = (body: { email?: string; content: string }) => {
-    return mutate('/contact', () => postContact(body), {
-      revalidate: false,
-    });
-  };
-  return { postContactData };
+export const postContact = async (data: ContactRequest): Promise<ContactResponse> => {
+  return await client.post('/contact', data);
+};
+
+type UsePostContact = {
+  config?: UseMutationOptions<ContactResponse, unknown, ContactRequest, unknown>;
+};
+
+export const usePostContact = ({ config }: UsePostContact) => {
+  return useMutation({
+    ...config,
+    mutationFn: postContact,
+  });
 };

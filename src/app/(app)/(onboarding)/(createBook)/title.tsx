@@ -10,23 +10,39 @@ import { Button } from '@/cores/components/Button';
 import { Spacer } from '@/cores/components/Spacer';
 import { NotoText } from '@/cores/components/Text';
 import { TextInput } from '@/cores/components/TextInput';
+import { useQueryClient } from '@tanstack/react-query';
 
 const getDefaultTitle = (name: string) => `${name}さんのスペース`;
 
 export default function OnboardingCreateBookTitlePage() {
-  const { data } = useFetchMyProfile();
-  const { putSpace } = usePutSpace(data?.spaceId || '');
+  const queryClient = useQueryClient();
+  const { data } = useFetchMyProfile({});
+  const mutation = usePutSpace({});
   const router = useRouter();
   const [spaceName, setSpaceName] = useState(getDefaultTitle(data?.name || ''));
 
   const handlePress = useCallback(async () => {
     try {
-      await putSpace(spaceName);
-      router.push('/(onboarding)/(registerRecipes)/select');
+      mutation.mutate(
+        {
+          id: data?.spaceId || '',
+          data: {
+            name: spaceName,
+          },
+        },
+        {
+          onSuccess: () => {
+            queryClient.invalidateQueries({
+              queryKey: ['spaces'],
+            });
+            router.push('/(onboarding)/(registerRecipes)/select');
+          },
+        }
+      );
     } catch (error) {
       console.log(`error: ${error}`);
     }
-  }, [spaceName, putSpace, router]);
+  }, [spaceName, mutation, router]);
   return (
     <>
       <View style={styles.container}>

@@ -1,15 +1,24 @@
-import { useSWRConfig } from 'swr';
-
+import { useMutation, UseMutationOptions } from '@tanstack/react-query';
 import { client } from '@/lib/axios';
-import { Recipe, RecipeRequest } from '../types';
+import { AxiosResponse } from 'axios';
+import { RecipeRequestBody, SpaceRecipe } from '../types';
 
-const _putRecipe = async (id: string, body: RecipeRequest) =>
-  await client.put<Recipe>(`/recipes/${id}`, body);
+interface Params {
+  id: string;
+  data: RecipeRequestBody;
+}
 
-export const usePutRecipe = () => {
-  const { mutate } = useSWRConfig();
-  const putRecipe = (id: string, body: RecipeRequest) => {
-    return mutate(`/recipes_${id}_requests`, () => _putRecipe(id, body));
-  };
-  return { putRecipe };
+export const putRecipe = async (params: Params) => {
+  return await client.put<SpaceRecipe>(`/recipes/${params.id}`, params.data);
+};
+
+type UsePutRecipe = {
+  config?: UseMutationOptions<AxiosResponse<SpaceRecipe, any>, unknown, Params, unknown>;
+};
+
+export const usePutRecipe = ({ config }: UsePutRecipe) => {
+  return useMutation({
+    ...config,
+    mutationFn: putRecipe,
+  });
 };

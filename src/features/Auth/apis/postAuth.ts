@@ -1,19 +1,18 @@
-import { useSWRConfig } from 'swr';
-
-import { SpaceUser } from '@/features/User/types';
+import { useMutation, UseMutationOptions } from '@tanstack/react-query';
 import { client } from '@/lib/axios';
+import { SpaceUser } from '@/features/User/types';
 
-const postAuthApi = async () => await client.post<SpaceUser>('/auth');
+export const postAuth = async (): Promise<SpaceUser> => {
+  return await client.post('/auth');
+};
 
-export const usePostAuth = () => {
-  const { mutate } = useSWRConfig();
-  const postAuth = () => {
-    return mutate('/users/profile', () => postAuthApi(), {
-      populateCache: (updatedProfile, currentProfile) => {
-        return { ...currentProfile, ...updatedProfile.data };
-      },
-      revalidate: false,
-    });
-  };
-  return { postAuth };
+type UsePostAuth = {
+  config?: UseMutationOptions<SpaceUser, unknown, {}, unknown>;
+};
+
+export const usePostAuth = ({ config }: UsePostAuth) => {
+  return useMutation({
+    ...config,
+    mutationFn: postAuth,
+  });
 };

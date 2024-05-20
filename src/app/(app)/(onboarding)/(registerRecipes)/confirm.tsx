@@ -10,24 +10,32 @@ import { Flex } from '@/cores/components/Flex';
 import { Spacer } from '@/cores/components/Spacer';
 import { NotoText } from '@/cores/components/Text';
 import { useStore } from '@/store';
+import { useQueryClient } from '@tanstack/react-query';
 
 export default function OnboardingRegisterRecipesConfirmPage() {
+  const queryClient = useQueryClient();
   const selectedRecipes = useStore((state) => state.onboardingSelectedRecipeList);
   const [pending, setPending] = useState(false);
   const { height } = useWindowDimensions();
-  const { postRecipeBulkData } = usePostRecipeBulk();
+  const mutation = usePostRecipeBulk({});
   const router = useRouter();
   const handlePress = useCallback(async () => {
     if (pending) return;
     setPending(true);
     try {
-      await postRecipeBulkData(selectedRecipes);
-      router.push('/(onboarding)/(registerRecipes)/complete');
+      mutation.mutate(selectedRecipes, {
+        onSuccess: () => {
+          queryClient.invalidateQueries({
+            queryKey: ['recipes'],
+          });
+          router.push('/(onboarding)/(registerRecipes)/complete');
+        },
+        onSettled: () => setPending(false),
+      });
     } catch (err) {
       console.log(err);
     }
-    setPending(false);
-  }, [router, pending, selectedRecipes, postRecipeBulkData]);
+  }, [router, pending, selectedRecipes, mutation]);
   const handleEdit = useCallback(
     (idx: number) => {
       if (pending) return;

@@ -1,20 +1,23 @@
-import { useSWRConfig } from 'swr';
-
-import { SpaceUser, UpdatedUserBody } from '@/features/User/types';
+import { useMutation, UseMutationOptions } from '@tanstack/react-query';
 import { client } from '@/lib/axios';
+import { SpaceUser, UpdatedUserBody } from '../types';
 
-const patchMyProfile = async (id: string, updatedProfile: UpdatedUserBody) =>
-  await client.patch<SpaceUser>(`users/${id}`, updatedProfile);
+interface Params {
+  id: string;
+  data: UpdatedUserBody;
+}
 
-export const usePatchMyProfile = () => {
-  const { mutate } = useSWRConfig();
-  const updateProfile = (id: string, updatedProfile: UpdatedUserBody) => {
-    return mutate('/users/profile', () => patchMyProfile(id, updatedProfile), {
-      populateCache: (updatedProfile, currentProfile) => {
-        return { ...currentProfile, ...updatedProfile.data };
-      },
-      revalidate: false,
-    });
-  };
-  return { updateProfile };
+export const patchMyProfile = async (params: Params): Promise<SpaceUser> => {
+  return await client.patch(`users/${params.id}`, params.data);
+};
+
+type UsePatchMyProfile = {
+  config?: UseMutationOptions<SpaceUser, unknown, Params, unknown>;
+};
+
+export const usePatchMyProfile = ({ config }: UsePatchMyProfile) => {
+  return useMutation({
+    ...config,
+    mutationFn: patchMyProfile,
+  });
 };

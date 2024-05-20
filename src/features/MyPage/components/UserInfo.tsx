@@ -8,6 +8,7 @@ import { AppIcon } from '@/cores/components/icons';
 import { Constants } from '@/constants';
 import { usePatchMyProfile } from '@/features/User/apis/patchMyProfile';
 import { SpaceUser } from '@/features/User/types';
+import { useQueryClient } from '@tanstack/react-query';
 
 interface Props {
   data?: SpaceUser;
@@ -15,22 +16,32 @@ interface Props {
   closeSheet: () => void;
 }
 
-export const UserInfo = memo<Props>(({ data, openSheet, closeSheet }) => {
-  const { updateProfile } = usePatchMyProfile();
+export const UserInfo = memo<Props>(({ data, openSheet }) => {
+  const queryClient = useQueryClient();
+  const mutation = usePatchMyProfile({});
   const [name, setName] = useState(data?.name || '');
 
   const handleOnBlur = useCallback(async () => {
     if (data && data.name !== name) {
-      await updateProfile(data?.id, { ...data, name });
-      Toast.show({
-        type: 'successToast',
-        text1: 'ユーザー名を変更しました',
-        visibilityTime: 3000,
-        autoHide: true,
-        topOffset: 60,
-      });
+      mutation.mutate(
+        { id: data?.id, data: { ...data, name } },
+        {
+          onSuccess: () => {
+            queryClient.invalidateQueries({
+              queryKey: ['profile'],
+            });
+            Toast.show({
+              type: 'successToast',
+              text1: 'ユーザー名を変更しました',
+              visibilityTime: 3000,
+              autoHide: true,
+              topOffset: 60,
+            });
+          },
+        }
+      );
     }
-  }, [data, name, updateProfile]);
+  }, [data, name, mutation]);
 
   return (
     <>

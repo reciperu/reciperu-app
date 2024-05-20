@@ -15,6 +15,7 @@ import { NotoText } from '@/cores/components/Text';
 import { TextInput } from '@/cores/components/TextInput';
 import { AppIcon } from '@/cores/components/icons';
 import { convertToBase64FromModule } from '@/utils/image';
+import { useQueryClient } from '@tanstack/react-query';
 
 const Avatar01 = require('assets/avatar/avatar01.png') as string;
 const Avatar02 = require('assets/avatar/avatar02.png') as string;
@@ -36,14 +37,15 @@ const ImageList = [
 const { width } = Dimensions.get('window');
 
 export default function OnboardingTopPage() {
+  const queryClient = useQueryClient();
   const [image, setImage] = useState<string | null>(null);
   const [imageKey, setImageKey] = useState<string | null>(null);
   const [username, setUsername] = useState('');
   const disabled = useMemo(() => {
     return !username || !image;
   }, [username, image]);
-  const { data } = useFetchMyProfile();
-  const { updateProfile } = usePatchMyProfile();
+  const { data } = useFetchMyProfile({});
+  const mutation = usePatchMyProfile({});
   const pickImage = useCallback(async () => {
     // No permissions request is necessary for launching the image library
     const result = await ImagePicker.launchImageLibraryAsync({
@@ -76,17 +78,29 @@ export default function OnboardingTopPage() {
   const handlePress = useCallback(async () => {
     if (username && image && data?.id) {
       try {
-        await updateProfile(data.id, {
-          name: username,
-          imageUrl: image,
-          activeStatus: data?.activeStatus,
-        });
-        router.push('/(onboarding)/createSpace');
+        mutation.mutate(
+          {
+            id: data.id,
+            data: {
+              name: username,
+              imageUrl: image,
+              activeStatus: data?.activeStatus,
+            },
+          },
+          {
+            onSuccess: () => {
+              queryClient.invalidateQueries({
+                queryKey: ['profile'],
+              });
+              router.push('/(onboarding)/createSpace');
+            },
+          }
+        );
       } catch (e) {
         console.error(e);
       }
     }
-  }, [username, image, data?.id, data?.activeStatus, updateProfile]);
+  }, [username, image, data, mutation]);
   useEffect(() => {
     if (data) {
       if (!image) setImage(data.imageUrl);
