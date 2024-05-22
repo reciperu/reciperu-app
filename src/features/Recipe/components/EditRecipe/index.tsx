@@ -70,9 +70,19 @@ export const EditRecipe = memo<Props>(
           if (faviconUrl) setFaviconUrl(faviconUrl);
         }
       }
-    }, [mutation, isFocused, recipeUrl]);
+    }, [
+      mutation,
+      isFocused,
+      recipeUrl,
+      oldRecipeUrl,
+      setRecipeName,
+      setThumbnail,
+      setAppName,
+      setFaviconUrl,
+    ]);
     useEffect(() => {
       fetchRecipeDataFromMetaData();
+      // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [recipeUrl, isFocused]);
     return (
       <ScrollView>

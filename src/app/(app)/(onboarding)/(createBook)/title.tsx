@@ -42,7 +42,7 @@ export default function OnboardingCreateBookTitlePage() {
     } catch (error) {
       console.log(`error: ${error}`);
     }
-  }, [spaceName, mutation, router]);
+  }, [spaceName, mutation, router, data, queryClient]);
   return (
     <>
       <View style={styles.container}>

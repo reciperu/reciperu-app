@@ -1,5 +1,4 @@
 import { useMutation, UseMutationOptions } from '@tanstack/react-query';
-import { AxiosResponse } from 'axios';
 
 import { RecipeRequestBody, SpaceRecipe } from '../types';
 
@@ -10,12 +9,12 @@ interface Params {
   data: RecipeRequestBody;
 }
 
-export const putRecipe = async (params: Params) => {
-  return await client.put<SpaceRecipe>(`/recipes/${params.id}`, params.data);
+export const putRecipe = async (params: Params): Promise<SpaceRecipe> => {
+  return await client.put(`/recipes/${params.id}`, params.data);
 };
 
 type UsePutRecipe = {
-  config?: UseMutationOptions<AxiosResponse<SpaceRecipe, any>, unknown, Params, unknown>;
+  config?: UseMutationOptions<SpaceRecipe, unknown, Params, unknown>;
 };
 
 export const usePutRecipe = ({ config }: UsePutRecipe) => {

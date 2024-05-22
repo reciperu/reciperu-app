@@ -57,7 +57,7 @@ export const useRecipeRequest: UseRecipeRequest = () => {
         setPending(false);
       }
     },
-    [pending]
+    [pending, getFavorite, deleteMutation, postMutation]
   );
   // 「食べたい」を解除する
   const remove = useCallback(
@@ -77,7 +77,7 @@ export const useRecipeRequest: UseRecipeRequest = () => {
       }
       setPending(false);
     },
-    [pending]
+    [pending, getFavorite, deleteMutation]
   );
   return {
     toggle,

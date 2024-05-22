@@ -117,7 +117,7 @@ export const AllRecipeTab = memo<Props>(({ search }) => {
       };
       recipeRequestService.toggle(item, handleSuccessAdd, handleSuccessRemove);
     },
-    [recipeRequestService, addRequester, removeRequester, params.title]
+    [recipeRequestService, addRequester, removeRequester, params.title, queryClient]
   );
 
   const onRefresh = useCallback(async () => {
@@ -129,7 +129,7 @@ export const AllRecipeTab = memo<Props>(({ search }) => {
     refetch();
     console.log('refetch stop');
     setRefreshing(false);
-  }, [isRefetching]);
+  }, [isRefetching, refetch]);
 
   useUpdateEffect(() => {
     if (params.title !== search) {
