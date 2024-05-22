@@ -1,5 +1,6 @@
 import { useQueryClient } from '@tanstack/react-query';
-import { Stack, router, useLocalSearchParams, useRouter } from 'expo-router';
+import { AxiosError } from 'axios';
+import { Stack, router, useLocalSearchParams } from 'expo-router';
 import { useCallback, useState } from 'react';
 import { ActivityIndicator, Alert, StyleSheet, TouchableOpacity, View } from 'react-native';
 import Toast from 'react-native-toast-message';
@@ -18,24 +19,21 @@ import { HeaderLeftBackButton } from '@/cores/components/icons/components/Header
 import { usePutRecipe } from '@/features/Recipe/apis/putRecipe';
 import { EditRecipe } from '@/features/Recipe/components/EditRecipe';
 import { RecipeDetail } from '@/features/Recipe/components/RecipeDetail';
-import { RecipeRequestBody, SpaceRecipe } from '@/features/Recipe/types';
 import { useEditRecipe } from '@/features/Recipe/hooks/useEdiRecipe';
+import { RecipeRequestBody, SpaceRecipe } from '@/features/Recipe/types';
 import { toastConfig } from '@/lib/ToastConfig';
-import { useStore } from '@/store';
 import { convertImageToBase64FromUri } from '@/utils/image';
 import { isValidUrl } from '@/utils/validation';
 
 export default function Modal() {
   const isPresented = router.canGoBack();
   const { isVisible, openModal, closeModal } = useModal();
-  const { push } = useRouter();
   const [isEditing, setIsEditing] = useState(false);
   const [isEditPending, setIsEditPending] = useState(false);
   const [date, setDate] = useState<string>(new Date().toISOString());
   const params = useLocalSearchParams();
   const mutation = usePutRecipe({});
   const queryClient = useQueryClient();
-  const setNeedUpdate = useStore((state) => state.setNeedUpdate);
   const [data, setData] = useState<SpaceRecipe>({
     id: params.id,
     title: params.title,
@@ -47,6 +45,7 @@ export default function Modal() {
     appName: params.appName,
     spaceId: params.spaceId,
     userId: params.userId,
+    user: typeof params.user === 'string' ? JSON.parse(params.user) : undefined,
     requesters: typeof params.requesters === 'string' ? JSON.parse(params.requesters) : [],
   } as SpaceRecipe);
   const editRecipeService = useEditRecipe(data);
@@ -112,12 +111,26 @@ export default function Modal() {
                     autoHide: true,
                     topOffset: 0,
                   });
+
+                  console.log(JSON.stringify(result, null, 2));
+
                   setData({
-                    ...result.data,
-                    requesters: result.data.requesters?.length ? result.data.requesters : [],
+                    ...result,
+                    requesters: result.requesters?.length ? result.requesters : [],
                   });
-                  setNeedUpdate(true);
                   callback();
+                },
+                onError: (error) => {
+                  console.log('on Error');
+                  Toast.show({
+                    type: 'errorToast',
+                    text1: 'エラーが発生しました',
+                    text2: error instanceof AxiosError ? error.message : '',
+                    visibilityTime: 3000,
+                    autoHide: true,
+                    topOffset: 0,
+                  });
+                  console.error(error);
                 },
               }
             );
@@ -128,7 +141,7 @@ export default function Modal() {
         setIsEditPending(false);
       }
     },
-    [params, data, editRecipeService, isEditPending, mutation]
+    [params, data, editRecipeService, isEditPending, mutation, queryClient]
   );
 
   const toggleMode = useCallback(() => {
@@ -172,23 +185,14 @@ export default function Modal() {
           <View style={{ flex: 1 }}>
             <RecipeDetail data={data} />
             <Spacer />
-            <Button
-              onPress={() =>
-                push({
-                  pathname: `recipe/${params.slug}/webview`,
-                  params: { title: params.title, recipeUrl: params.recipeUrl },
-                })
-              }>
-              レシピを見る
+            <Button variant="primary" onPress={openModal}>
+              献立にする
             </Button>
-            <View style={{ marginTop: 10 }}>
-              <Button variant="primary" scheme="text" onPress={openModal}>
-                献立にする
+            <View style={{ marginTop: 12 }}>
+              <Button variant="primary" scheme="text" onPress={confirmDelete}>
+                レシピを削除
               </Button>
             </View>
-            <Button variant="primary" scheme="text" onPress={confirmDelete}>
-              レシピを削除
-            </Button>
           </View>
         ) : null}
       </Container>

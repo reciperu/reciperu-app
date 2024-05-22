@@ -1,12 +1,15 @@
+import { useQueryClient } from '@tanstack/react-query';
 import { Image } from 'expo-image';
+import { useRouter } from 'expo-router';
 import { memo, useCallback, useState } from 'react';
-import { Dimensions, TouchableOpacity, View } from 'react-native';
+import { Dimensions, Pressable, Text, TouchableOpacity, View } from 'react-native';
 
 import { useRecipes } from '../../hooks/useRecipes';
 import { SpaceRecipe } from '../../types';
 
 import { Constants } from '@/constants';
 import { Flex } from '@/cores/components/Flex';
+import { Spacer } from '@/cores/components/Spacer';
 import { NotoText } from '@/cores/components/Text';
 import { AppIcon } from '@/cores/components/icons';
 import { useRecipeRequest } from '@/features/RecipePage/hooks/useRecipeRequest';
@@ -18,20 +21,28 @@ interface Props {
 const { width } = Dimensions.get('window');
 
 export const RecipeDetail = memo<Props>(({ data }) => {
+  const router = useRouter();
+  const queryClient = useQueryClient();
   const [recipeData, setRecipeData] = useState<SpaceRecipe>(data);
   const { getFavorite, addRequester, removeRequester } = useRecipes();
-  console.log(`recipeData: ${JSON.stringify(recipeData)}`);
+  console.log(`recipeData: ${JSON.stringify(Object.keys(recipeData))}`);
   const recipeRequestService = useRecipeRequest();
   // 「食べたい」のステートを入れ替える
   const toggleRequest = useCallback(async () => {
     const handleSuccessAdd = () => {
       setRecipeData((prev) => ({ ...prev, requesters: addRequester(prev.requesters) }));
+      queryClient.invalidateQueries({
+        queryKey: ['recipes'],
+      });
     };
     const handleSuccessRemove = () => {
       setRecipeData((prev) => ({ ...prev, requesters: removeRequester(prev.requesters) }));
+      queryClient.invalidateQueries({
+        queryKey: ['recipes'],
+      });
     };
     recipeRequestService.toggle(recipeData, handleSuccessAdd, handleSuccessRemove);
-  }, [recipeData, recipeRequestService]);
+  }, [recipeData, recipeRequestService, addRequester, removeRequester, queryClient]);
   return (
     <View>
       <Image
@@ -45,10 +56,12 @@ export const RecipeDetail = memo<Props>(({ data }) => {
       />
       <Flex
         style={{
-          marginTop: 8,
+          marginTop: 4,
           justifyContent: 'space-between',
         }}>
-        <NotoText fw="bold">{recipeData.title}</NotoText>
+        <NotoText fw="bold" style={{ fontSize: 16, paddingTop: 4 }}>
+          {recipeData.title}
+        </NotoText>
         <View>
           <TouchableOpacity onPress={toggleRequest}>
             <View
@@ -81,13 +94,17 @@ export const RecipeDetail = memo<Props>(({ data }) => {
           style={{
             gap: 8,
             alignItems: 'center',
-            paddingVertical: 8,
+            paddingVertical: 12,
             borderBottomWidth: 1,
             borderBottomColor: Constants.colors.primitive.gray[200],
           }}>
           <NotoText style={{ fontSize: 12, width: 48 }}>登録者</NotoText>
-          <Flex style={{ alignItems: 'center' }}>
-            <NotoText style={{ fontSize: 12 }}>ハナコ</NotoText>
+          <Flex style={{ alignItems: 'center', gap: 4 }}>
+            <Image
+              source={{ uri: recipeData.user.imageUrl }}
+              style={{ width: 20, height: 20, borderRadius: 10 }}
+            />
+            <NotoText style={{ fontSize: 12 }}>{data.user.name}</NotoText>
           </Flex>
         </Flex>
         {/* 更新者（あれば） */}
@@ -122,7 +139,63 @@ export const RecipeDetail = memo<Props>(({ data }) => {
               />
               <NotoText style={{ fontSize: 12 }}>{recipeData.appName}</NotoText>
             </Flex>
+            <Spacer />
+            <Pressable
+              onPress={() =>
+                router.push({
+                  pathname: `recipe/${data.id}/webview`,
+                  params: { title: data.title, recipeUrl: data.recipeUrl },
+                })
+              }>
+              <Flex
+                style={{
+                  gap: 8,
+                  paddingHorizontal: 16,
+                  paddingVertical: 8,
+                  alignItems: 'center',
+                  backgroundColor: Constants.colors.primitive.gray[50],
+                  borderRadius: 24,
+                }}>
+                <AppIcon
+                  name="window-open"
+                  width={18}
+                  height={18}
+                  color={Constants.colors.primitive.gray[600]}
+                />
+                <NotoText style={{ fontSize: 12 }}>レシピを見る</NotoText>
+              </Flex>
+            </Pressable>
           </Flex>
+        )}
+        {/* {data.imageUrls?.length && (
+          <View style={{ paddingVertical: 12 }}>
+            {data.imageUrls.map((url, index) => (
+              <Image
+                key={index}
+                source={{ uri: url }}
+                alt={data.title}
+                style={{
+                  width: width - 32,
+                  height: ((width - 32) / 16) * 9,
+                  borderRadius: Constants.radius.lg,
+                  marginVertical: 8,
+                }}
+              />
+            ))}
+          </View>
+        )} */}
+        {!!data.memo?.length && (
+          <View style={{ paddingVertical: 12 }}>
+            <View
+              style={{
+                paddingVertical: 12,
+                paddingHorizontal: 16,
+                backgroundColor: Constants.colors.primitive.gray[50],
+                borderRadius: Constants.radius.md,
+              }}>
+              <NotoText>{data.memo}</NotoText>
+            </View>
+          </View>
         )}
       </View>
     </View>
