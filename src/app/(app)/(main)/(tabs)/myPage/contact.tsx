@@ -40,7 +40,7 @@ export default function ContactPage() {
     setPending(true);
     if (validate()) {
       // 送信処理
-      const result = await mutation.mutateAsync(
+      mutation.mutate(
         { email, content },
         {
           onSuccess: () => {

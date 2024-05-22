@@ -109,9 +109,7 @@ export default function MyPagePage() {
         },
         {
           onSuccess: () => {
-            queryClient.invalidateQueries({
-              queryKey: ['profile'],
-            });
+            queryClient.setQueryData(['profile'], (data: any) => ({ ...data, imageUrl: tmpImage }));
             Toast.show({
               type: 'successToast',
               text1: 'プロフィール画像を変更しました',
@@ -127,7 +125,7 @@ export default function MyPagePage() {
         }
       );
     }
-  }, [data, tmpImage, mutation]);
+  }, [data, tmpImage, mutation, queryClient]);
 
   return (
     <Container bgColor={Constants.colors.primitive.pink[50]}>

@@ -27,9 +27,7 @@ export const UserInfo = memo<Props>(({ data, openSheet }) => {
         { id: data?.id, data: { ...data, name } },
         {
           onSuccess: () => {
-            queryClient.invalidateQueries({
-              queryKey: ['profile'],
-            });
+            queryClient.setQueryData(['profile'], (data: any) => ({ ...data, name }));
             Toast.show({
               type: 'successToast',
               text1: 'ユーザー名を変更しました',
@@ -41,7 +39,7 @@ export const UserInfo = memo<Props>(({ data, openSheet }) => {
         }
       );
     }
-  }, [data, name, mutation]);
+  }, [data, name, mutation, queryClient]);
 
   return (
     <>

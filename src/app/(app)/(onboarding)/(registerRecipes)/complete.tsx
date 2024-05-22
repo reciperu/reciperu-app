@@ -36,8 +36,20 @@ export default function OnboardingRegisterRecipesCompletePage() {
         },
         {
           onSuccess: () => {
-            queryClient.invalidateQueries({
-              queryKey: ['profile'],
+            queryClient.setQueryData(['profile'], (data: any) => {
+              if (data) {
+                return {
+                  ...data,
+                  name: data.name,
+                  imageUrl: data.imageUrl,
+                  activeStatus: UserStatus.JOINED_SPACE,
+                };
+              }
+              return {
+                name: data.name,
+                imageUrl: data.imageUrl,
+                activeStatus: UserStatus.JOINED_SPACE,
+              };
             });
             router.push('/(main)/(tabs)/home');
           },
@@ -47,7 +59,7 @@ export default function OnboardingRegisterRecipesCompletePage() {
         }
       );
     }
-  }, [data, router, mutation]);
+  }, [data, router, mutation, queryClient]);
 
   useEffect(() => {
     if (confettiRef.current) {

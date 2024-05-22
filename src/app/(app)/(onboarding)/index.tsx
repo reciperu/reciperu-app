@@ -89,8 +89,20 @@ export default function OnboardingTopPage() {
           },
           {
             onSuccess: () => {
-              queryClient.invalidateQueries({
-                queryKey: ['profile'],
+              queryClient.setQueryData(['profile'], (data: any) => {
+                if (data) {
+                  return {
+                    ...data,
+                    name: username,
+                    imageUrl: image,
+                    activeStatus: data?.activeStatus,
+                  };
+                }
+                return {
+                  name: username,
+                  imageUrl: image,
+                  activeStatus: data?.activeStatus,
+                };
               });
               router.push('/(onboarding)/createSpace');
             },
@@ -100,12 +112,13 @@ export default function OnboardingTopPage() {
         console.error(e);
       }
     }
-  }, [username, image, data, mutation]);
+  }, [username, image, data, mutation, queryClient]);
   useEffect(() => {
     if (data) {
       if (!image) setImage(data.imageUrl);
       if (!username) setUsername(data.name);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [data]);
   return (
     <View style={styles.container}>
