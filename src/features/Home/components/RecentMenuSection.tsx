@@ -1,9 +1,10 @@
 import { Image } from 'expo-image';
 import { memo } from 'react';
-import { ActivityIndicator, Pressable, Text, View } from 'react-native';
+import { Pressable, Text, View } from 'react-native';
 
 import { Constants } from '@/constants';
 import { Flex } from '@/cores/components/Flex';
+import { FoodImage } from '@/cores/components/FoodImage';
 import { Spacer } from '@/cores/components/Spacer';
 import { NotoText } from '@/cores/components/Text';
 import { AppIcon } from '@/cores/components/icons';
@@ -47,12 +48,7 @@ export const RecentMenuSection = memo(() => {
         {/* <ActivityIndicator color={Constants.colors.primitive.pink[400]} /> */}
         {/* データがない場合 */}
         <Flex style={{ flexDirection: 'column', alignItems: 'center', gap: 8, marginTop: 16 }}>
-          <AppIcon
-            name="emoji-sad"
-            width={20}
-            height={20}
-            color={Constants.colors.primitive.gray[400]}
-          />
+          <FoodImage />
           <NotoText
             style={{
               textAlign: 'center',
