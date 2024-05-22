@@ -1,7 +1,8 @@
-import { Constants } from '@/constants';
-import { NotoText } from '@/cores/components/Text';
 import { memo } from 'react';
 import { View } from 'react-native';
+
+import { Constants } from '@/constants';
+import { NotoText } from '@/cores/components/Text';
 
 export const EmptyView = memo(() => {
   return (

@@ -1,6 +1,7 @@
-import { Constants } from '@/constants';
 import { memo } from 'react';
 import { ActivityIndicator, View } from 'react-native';
+
+import { Constants } from '@/constants';
 
 export const PendingLoader = memo(() => {
   return (

@@ -1,6 +1,8 @@
 import { useMutation, UseMutationOptions } from '@tanstack/react-query';
-import { client } from '@/lib/axios';
+
 import { MetaData } from '../types';
+
+import { client } from '@/lib/axios';
 
 export const fetchMetaData = async (url: string): Promise<MetaData> => {
   return await client.get(`/recipes/meta-data?recipeUrl=${url}`);

@@ -1,14 +1,14 @@
+import { useQueryClient } from '@tanstack/react-query';
 import { Image } from 'expo-image';
 import { memo, useCallback, useState } from 'react';
 import { Pressable, Text, TextInput, View } from 'react-native';
 import Toast from 'react-native-toast-message';
 
+import { Constants } from '@/constants';
 import { Flex } from '@/cores/components/Flex';
 import { AppIcon } from '@/cores/components/icons';
-import { Constants } from '@/constants';
 import { usePatchMyProfile } from '@/features/User/apis/patchMyProfile';
 import { SpaceUser } from '@/features/User/types';
-import { useQueryClient } from '@tanstack/react-query';
 
 interface Props {
   data?: SpaceUser;

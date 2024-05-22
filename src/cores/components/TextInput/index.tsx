@@ -3,9 +3,9 @@ import { TextInput as RNTextInput, StyleProp, StyleSheet, View, ViewStyle } from
 
 import { Spacer } from '../Spacer';
 
+import { Constants } from '@/constants';
 import { Flex } from '@/cores/components/Flex';
 import { NotoText } from '@/cores/components/Text';
-import { Constants } from '@/constants';
 
 interface Props {
   style?: StyleProp<ViewStyle>;

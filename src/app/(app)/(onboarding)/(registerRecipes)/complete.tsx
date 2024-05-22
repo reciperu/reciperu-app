@@ -1,17 +1,17 @@
+import { useQueryClient } from '@tanstack/react-query';
 import { useRouter } from 'expo-router';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { Dimensions, ScrollView, StyleSheet, View } from 'react-native';
 import Confetti from 'react-native-confetti';
 
+import { APP_NAME } from '@/constants';
+import { Button } from '@/cores/components/Button';
+import { Spacer } from '@/cores/components/Spacer';
+import { NotoText } from '@/cores/components/Text';
 import { SharingPromotionCard } from '@/features/Promotion/components/sharing';
 import { useFetchMyProfile } from '@/features/User/apis/getMyProfile';
 import { usePatchMyProfile } from '@/features/User/apis/patchMyProfile';
 import { UserStatus } from '@/features/User/types';
-import { Button } from '@/cores/components/Button';
-import { Spacer } from '@/cores/components/Spacer';
-import { NotoText } from '@/cores/components/Text';
-import { APP_NAME } from '@/constants';
-import { useQueryClient } from '@tanstack/react-query';
 
 const { height, width } = Dimensions.get('window');
 

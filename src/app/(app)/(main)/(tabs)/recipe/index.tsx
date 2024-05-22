@@ -1,4 +1,6 @@
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
+import { useRouter } from 'expo-router';
+import { useState } from 'react';
 import { Dimensions, Pressable, Text, View, ScrollView, TextInput } from 'react-native';
 
 import { Constants } from '@/constants';
@@ -6,11 +8,9 @@ import { Flex } from '@/cores/components/Flex';
 import { NotoText } from '@/cores/components/Text';
 import { AppIcon } from '@/cores/components/icons';
 import { FloatingButton } from '@/features/FloatingButton/components';
-import { useState } from 'react';
 import { AllRecipeTab } from '@/features/RecipePage/components/AllRecipeTab';
 import { FavoriteRecipeTab } from '@/features/RecipePage/components/FavoriteRecipeTab';
 import { SearchInput } from '@/features/RecipePage/components/SearchInput';
-import { useRouter } from 'expo-router';
 
 const { height } = Dimensions.get('window');
 

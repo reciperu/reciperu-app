@@ -1,9 +1,9 @@
 import { Stack, router, useLocalSearchParams } from 'expo-router';
 import { StyleSheet } from 'react-native';
+import WebView from 'react-native-webview';
 
 import { Constants } from '@/constants';
 import { HeaderLeftBackButton } from '@/cores/components/icons/components/HeaderLeftBackButton';
-import WebView from 'react-native-webview';
 
 export default function Modal() {
   const isPresented = router.canGoBack();

@@ -6,7 +6,6 @@ export const useUpdateEffect: typeof useEffect = (effect, deps) => {
   useEffect(() => {
     if (isFirst.current) {
       isFirst.current = false;
-      return;
     }
   }, []);
 

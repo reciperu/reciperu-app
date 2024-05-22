@@ -3,12 +3,12 @@ import { StyleSheet, Text, View } from 'react-native';
 import Toast from 'react-native-toast-message';
 
 import { Constants, APP_NAME } from '@/constants';
-import { usePostContact } from '@/features/Contact/apis/postContact';
 import { Button } from '@/cores/components/Button';
 import { Container } from '@/cores/components/Container';
 import { InputLabel } from '@/cores/components/InputLabel';
 import { Spacer } from '@/cores/components/Spacer';
 import { TextInput } from '@/cores/components/TextInput';
+import { usePostContact } from '@/features/Contact/apis/postContact';
 
 export default function ContactPage() {
   const mutation = usePostContact({});

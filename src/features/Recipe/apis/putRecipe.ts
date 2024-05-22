@@ -1,7 +1,9 @@
 import { useMutation, UseMutationOptions } from '@tanstack/react-query';
-import { client } from '@/lib/axios';
 import { AxiosResponse } from 'axios';
+
 import { RecipeRequestBody, SpaceRecipe } from '../types';
+
+import { client } from '@/lib/axios';
 
 interface Params {
   id: string;

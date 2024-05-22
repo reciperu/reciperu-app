@@ -1,15 +1,17 @@
 import { Fragment, memo, useCallback, useEffect, useState } from 'react';
 import { Dimensions, ScrollView, StyleSheet, View } from 'react-native';
-import { Constants } from '@/constants';
-import { Flex } from '@/cores/components/Flex';
-import { Validation } from '@/constants/validation';
-import { isValidUrl } from '@/utils/validation';
+
 import { useFetchMetaData } from '../../apis/getMetaData';
+import { RecipeForm } from '../../hooks/useEdiRecipe';
+
+import { Constants } from '@/constants';
+import { Validation } from '@/constants/validation';
+import { Flex } from '@/cores/components/Flex';
 import { ImageUploadArea } from '@/cores/components/ImageUploadArea';
+import { CompactImageUploadArea } from '@/cores/components/ImageUploadArea/compact';
 import { InputLabel } from '@/cores/components/InputLabel';
 import { TextInput } from '@/cores/components/TextInput';
-import { CompactImageUploadArea } from '@/cores/components/ImageUploadArea/compact';
-import { RecipeForm } from '../../hooks/useEdiRecipe';
+import { isValidUrl } from '@/utils/validation';
 
 interface Props extends RecipeForm {
   oldRecipeUrl: string;

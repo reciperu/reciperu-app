@@ -1,8 +1,9 @@
 import { useInfiniteQuery } from '@tanstack/react-query';
+import { AxiosResponse } from 'axios';
+
+import { RecipesResponse } from '../types';
 
 import { client } from '@/lib/axios';
-import { RecipesResponse } from '../types';
-import { AxiosResponse } from 'axios';
 
 interface Params {
   cursor?: string;

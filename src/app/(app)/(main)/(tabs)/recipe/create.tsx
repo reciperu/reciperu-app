@@ -1,8 +1,8 @@
+import { Stack, router } from 'expo-router';
 import { View, TouchableOpacity, StyleSheet } from 'react-native';
 
 import { Constants } from '@/constants';
 import { NotoText } from '@/cores/components/Text';
-import { Stack, router } from 'expo-router';
 import { HeaderLeftBackButton } from '@/cores/components/icons/components/HeaderLeftBackButton';
 import { noop } from '@/functions/utils';
 

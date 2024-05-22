@@ -1,9 +1,10 @@
+import { View } from 'react-native';
+import { ToastConfig } from 'react-native-toast-message';
+
 import { Constants } from '@/constants';
 import { NotoText } from '@/cores/components/Text';
 import { ToastWrapper } from '@/cores/components/Toast';
 import { AppIcon } from '@/cores/components/icons';
-import { View } from 'react-native';
-import { ToastConfig } from 'react-native-toast-message';
 
 export const toastConfig: ToastConfig = {
   successToast: ({ text1, text2 }) => (

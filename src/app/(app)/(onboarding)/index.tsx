@@ -1,3 +1,4 @@
+import { useQueryClient } from '@tanstack/react-query';
 import { Image } from 'expo-image';
 import * as ImagePicker from 'expo-image-picker';
 import { Stack, router } from 'expo-router';
@@ -6,16 +7,15 @@ import { Dimensions, StyleSheet, View, Pressable, FlatList } from 'react-native'
 
 import { AVATAR_SIZE, Constants } from '@/constants';
 import { Validation } from '@/constants/validation';
-import { useFetchMyProfile } from '@/features/User/apis/getMyProfile';
-import { usePatchMyProfile } from '@/features/User/apis/patchMyProfile';
 import { Button } from '@/cores/components/Button';
 import { InputLabel } from '@/cores/components/InputLabel';
 import { Spacer } from '@/cores/components/Spacer';
 import { NotoText } from '@/cores/components/Text';
 import { TextInput } from '@/cores/components/TextInput';
 import { AppIcon } from '@/cores/components/icons';
+import { useFetchMyProfile } from '@/features/User/apis/getMyProfile';
+import { usePatchMyProfile } from '@/features/User/apis/patchMyProfile';
 import { convertToBase64FromModule } from '@/utils/image';
-import { useQueryClient } from '@tanstack/react-query';
 
 const Avatar01 = require('assets/avatar/avatar01.png') as string;
 const Avatar02 = require('assets/avatar/avatar02.png') as string;

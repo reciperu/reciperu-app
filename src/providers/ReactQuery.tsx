@@ -1,8 +1,8 @@
 import { QueryClientProvider, focusManager } from '@tanstack/react-query';
 import { PropsWithChildren, memo, useEffect } from 'react';
+import { AppState, AppStateStatus, Platform } from 'react-native';
 
 import { queryClient } from '@/lib/react-query';
-import { AppState, AppStateStatus, Platform } from 'react-native';
 
 if (__DEV__) {
   import('react-query-native-devtools').then(({ addPlugin }) => {

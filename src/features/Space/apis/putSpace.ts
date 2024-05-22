@@ -1,7 +1,9 @@
 import { useMutation, UseMutationOptions } from '@tanstack/react-query';
-import { client } from '@/lib/axios';
 import { AxiosResponse } from 'axios';
+
 import { Space } from '../types';
+
+import { client } from '@/lib/axios';
 
 interface PutSpaceRequestBody {
   name: string;

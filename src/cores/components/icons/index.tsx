@@ -9,6 +9,7 @@ import { BookmarkOutline } from './components/BookmarkOutline';
 import { Calendar } from './components/Calendar';
 import { Camera } from './components/Camera';
 import { Checkmark } from './components/Checkmark';
+import { Close } from './components/Close';
 import { CloseCircle } from './components/CloseCircle';
 import { EmojiSad } from './components/EmojiSad';
 import { FilledClose } from './components/FilledClose';
@@ -23,7 +24,6 @@ import { Recipe } from './components/Recipe';
 import { Search } from './components/Search';
 import { Warning } from './components/Warning';
 import { AppIconNames, IconProps } from './types';
-import { Close } from './components/Close';
 
 interface Props extends IconProps {
   name: AppIconNames;

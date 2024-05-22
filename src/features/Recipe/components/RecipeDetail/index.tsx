@@ -1,12 +1,14 @@
-import { memo, useCallback, useState } from 'react';
-import { SpaceRecipe } from '../../types';
 import { Image } from 'expo-image';
-import { NotoText } from '@/cores/components/Text';
+import { memo, useCallback, useState } from 'react';
 import { Dimensions, TouchableOpacity, View } from 'react-native';
+
+import { useRecipes } from '../../hooks/useRecipes';
+import { SpaceRecipe } from '../../types';
+
 import { Constants } from '@/constants';
 import { Flex } from '@/cores/components/Flex';
+import { NotoText } from '@/cores/components/Text';
 import { AppIcon } from '@/cores/components/icons';
-import { useRecipes } from '../../hooks/useRecipes';
 import { useRecipeRequest } from '@/features/RecipePage/hooks/useRecipeRequest';
 
 interface Props {

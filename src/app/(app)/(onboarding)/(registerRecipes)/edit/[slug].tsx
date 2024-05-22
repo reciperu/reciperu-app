@@ -4,7 +4,6 @@ import { ScrollView, StyleSheet, TouchableOpacity, View } from 'react-native';
 
 import { Constants } from '@/constants';
 import { Validation } from '@/constants/validation';
-import { useFetchMetaData } from '@/features/Recipe/apis/getMetaData';
 import { Container } from '@/cores/components/Container';
 import { Flex } from '@/cores/components/Flex';
 import { ImageUploadArea } from '@/cores/components/ImageUploadArea';
@@ -13,6 +12,7 @@ import { InputLabel } from '@/cores/components/InputLabel';
 import { NotoText } from '@/cores/components/Text';
 import { TextInput } from '@/cores/components/TextInput';
 import { HeaderLeftBackButton } from '@/cores/components/icons/components/HeaderLeftBackButton';
+import { useFetchMetaData } from '@/features/Recipe/apis/getMetaData';
 import { useStore } from '@/store';
 import { convertImageToBase64FromUri } from '@/utils/image';
 import { isValidUrl } from '@/utils/validation';

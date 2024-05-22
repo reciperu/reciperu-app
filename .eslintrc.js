@@ -1,8 +1,6 @@
 module.exports = {
   root: true,
-  extends: [
-    'universe/native',
-  ],
+  extends: ['universe/native'],
   rules: {
     'react/react-in-jsx-scope': 'off',
     'react/display-name': 'off',

@@ -4,10 +4,10 @@ import { memo } from 'react';
 import { Dimensions, View } from 'react-native';
 
 import { Constants } from '@/constants';
-import { useFetchMyProfile } from '@/features/User/apis/getMyProfile';
+import { AppIcon } from '@/cores/components/icons';
 import { HeaderAppIcon } from '@/features/Header/AppIcon';
 import { HeaderNotificationIcon } from '@/features/Header/NotificationIcon';
-import { AppIcon } from '@/cores/components/icons';
+import { useFetchMyProfile } from '@/features/User/apis/getMyProfile';
 
 const { height: windowHeight } = Dimensions.get('window');
 

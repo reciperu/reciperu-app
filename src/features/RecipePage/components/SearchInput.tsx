@@ -1,8 +1,9 @@
+import { memo, useCallback, useState } from 'react';
+import { Pressable, TextInput, View } from 'react-native';
+
 import { Constants } from '@/constants';
 import { Flex } from '@/cores/components/Flex';
 import { AppIcon } from '@/cores/components/icons';
-import { memo, useCallback, useState } from 'react';
-import { Pressable, TextInput, View } from 'react-native';
 
 interface Props {
   search: string;

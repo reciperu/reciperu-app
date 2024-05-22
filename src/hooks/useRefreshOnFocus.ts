@@ -1,5 +1,5 @@
-import React from 'react';
 import { useFocusEffect } from '@react-navigation/native';
+import React from 'react';
 
 /**
  * 画面フォーカス時に更新する

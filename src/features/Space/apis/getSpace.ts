@@ -1,8 +1,9 @@
 import { useQuery } from '@tanstack/react-query';
 
+import { Space } from '../types';
+
 import { client } from '@/lib/axios';
 import { ExtractFnReturnType, QueryConfig } from '@/lib/react-query';
-import { Space } from '../types';
 
 export const getSpaces = async (id: string): Promise<Space | null> => {
   if (!id) return null;

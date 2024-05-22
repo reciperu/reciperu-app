@@ -2,9 +2,9 @@ import { Image } from 'expo-image';
 import { memo } from 'react';
 import { StyleSheet, View } from 'react-native';
 
+import { Constants } from '@/constants';
 import { Button } from '@/cores/components/Button';
 import { NotoText } from '@/cores/components/Text';
-import { Constants } from '@/constants';
 import { noop } from '@/functions/utils';
 
 export const SharingPromotionCard = memo(() => {

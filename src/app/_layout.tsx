@@ -9,9 +9,8 @@ import Toast from 'react-native-toast-message';
 
 import { AuthProvider, useAuthContext } from '@/context/authProvider';
 import { PageWholeLoader } from '@/cores/components/PageWholeLoader';
-
-import { ReactQueryClientProvider } from '@/providers/ReactQuery';
 import { toastConfig } from '@/lib/ToastConfig';
+import { ReactQueryClientProvider } from '@/providers/ReactQuery';
 
 SplashScreen.preventAutoHideAsync();
 

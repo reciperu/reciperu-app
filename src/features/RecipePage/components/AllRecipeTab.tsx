@@ -1,3 +1,14 @@
+import { useQueryClient } from '@tanstack/react-query';
+import { useRouter } from 'expo-router';
+import { memo, useCallback, useMemo, useState } from 'react';
+import { Pressable, RefreshControl, TouchableOpacity, View, FlatList } from 'react-native';
+
+import { EmptyView } from './EmptyView';
+import { ErrorView } from './ErrorView';
+import { ListFooterView } from './ListFooterView';
+import { PendingLoader } from './PendingLoader';
+import { useRecipeRequest } from '../hooks/useRecipeRequest';
+
 import { Constants } from '@/constants';
 import { Flex } from '@/cores/components/Flex';
 import { AppIcon } from '@/cores/components/icons';
@@ -5,17 +16,8 @@ import { useFetchRecipes } from '@/features/Recipe/apis/getRecipes';
 import { RecipeItem } from '@/features/Recipe/components/RecipeItem';
 import { useRecipes } from '@/features/Recipe/hooks/useRecipes';
 import { SpaceRecipe } from '@/features/Recipe/types';
-import { useRouter } from 'expo-router';
-import { memo, useCallback, useMemo, useState } from 'react';
-import { Pressable, RefreshControl, TouchableOpacity, View, FlatList } from 'react-native';
-import { useRecipeRequest } from '../hooks/useRecipeRequest';
-import { sleep } from '@/utils/sleep';
-import { useQueryClient } from '@tanstack/react-query';
 import { useUpdateEffect } from '@/hooks/useUpdateEffect';
-import { ListFooterView } from './ListFooterView';
-import { PendingLoader } from './PendingLoader';
-import { ErrorView } from './ErrorView';
-import { EmptyView } from './EmptyView';
+import { sleep } from '@/utils/sleep';
 
 interface Props {
   search: string;
@@ -115,7 +117,7 @@ export const AllRecipeTab = memo<Props>(({ search }) => {
       };
       recipeRequestService.toggle(item, handleSuccessAdd, handleSuccessRemove);
     },
-    [recipeRequestService, addRequester, removeRequester]
+    [recipeRequestService, addRequester, removeRequester, params.title]
   );
 
   const onRefresh = useCallback(async () => {

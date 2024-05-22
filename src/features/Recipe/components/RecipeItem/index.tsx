@@ -1,14 +1,15 @@
 import { Image } from 'expo-image';
+import { useRouter } from 'expo-router';
 import { memo } from 'react';
 import { Dimensions, Pressable, View } from 'react-native';
+
+import { RecipeWebviewLink } from '../RecipeWebViewLink';
 
 import { Constants } from '@/constants';
 import { Flex } from '@/cores/components/Flex';
 import { NotoText } from '@/cores/components/Text';
-import { Recipe, SpaceRecipe } from '@/features/Recipe/types';
 import { AppIcon } from '@/cores/components/icons';
-import { useRouter } from 'expo-router';
-import { RecipeWebviewLink } from '../RecipeWebViewLink';
+import { Recipe, SpaceRecipe } from '@/features/Recipe/types';
 
 const windowWidth = Dimensions.get('window').width;
 

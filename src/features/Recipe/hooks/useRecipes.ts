@@ -1,5 +1,6 @@
-import { useFetchMyProfile } from '@/features/User/apis/getMyProfile';
 import { useCallback } from 'react';
+
+import { useFetchMyProfile } from '@/features/User/apis/getMyProfile';
 
 export type UseRecipes = () => {
   getFavorite: (requesters: string[]) => boolean;

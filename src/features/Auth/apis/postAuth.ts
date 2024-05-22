@@ -1,13 +1,14 @@
 import { useMutation, UseMutationOptions } from '@tanstack/react-query';
-import { client } from '@/lib/axios';
+
 import { SpaceUser } from '@/features/User/types';
+import { client } from '@/lib/axios';
 
 export const postAuth = async (): Promise<SpaceUser> => {
   return await client.post('/auth');
 };
 
 type UsePostAuth = {
-  config?: UseMutationOptions<SpaceUser, unknown, {}, unknown>;
+  config?: UseMutationOptions<SpaceUser, unknown, object, unknown>;
 };
 
 export const usePostAuth = ({ config }: UsePostAuth) => {

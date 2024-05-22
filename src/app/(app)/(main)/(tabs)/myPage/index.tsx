@@ -1,4 +1,5 @@
 import { BottomSheetModal } from '@gorhom/bottom-sheet';
+import { useQueryClient } from '@tanstack/react-query';
 import { Image } from 'expo-image';
 import * as ImagePicker from 'expo-image-picker';
 import { Link } from 'expo-router';
@@ -7,16 +8,15 @@ import { Dimensions, FlatList, Pressable, StyleSheet, Text, View } from 'react-n
 import Toast from 'react-native-toast-message';
 
 import { AVATAR_SIZE, Constants, APP_NAME, BOTTOM_SHEET_STYLE } from '@/constants';
-import { UserInfo } from '@/features/MyPage/components/UserInfo';
-import { useFetchMyProfile } from '@/features/User/apis/getMyProfile';
-import { usePatchMyProfile } from '@/features/User/apis/patchMyProfile';
 import { Button } from '@/cores/components/Button';
 import { Container } from '@/cores/components/Container';
 import { Flex } from '@/cores/components/Flex';
 import { AppIcon } from '@/cores/components/icons';
+import { UserInfo } from '@/features/MyPage/components/UserInfo';
+import { useFetchMyProfile } from '@/features/User/apis/getMyProfile';
+import { usePatchMyProfile } from '@/features/User/apis/patchMyProfile';
 import { openURL } from '@/functions/utils';
 import { convertToBase64FromModule } from '@/utils/image';
-import { useQueryClient } from '@tanstack/react-query';
 
 const Avatar01 = require('assets/avatar/avatar01.png') as string;
 const Avatar02 = require('assets/avatar/avatar02.png') as string;

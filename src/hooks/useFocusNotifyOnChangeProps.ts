@@ -1,6 +1,6 @@
-import React from 'react';
-import { NotifyOnChangeProps } from '@tanstack/query-core';
 import { useFocusEffect } from '@react-navigation/native';
+import { NotifyOnChangeProps } from '@tanstack/query-core';
+import React from 'react';
 
 /**
  * 焦点が合っていない画面で再レンダリングを無効にする

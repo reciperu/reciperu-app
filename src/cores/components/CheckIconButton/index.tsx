@@ -1,8 +1,8 @@
 import { memo } from 'react';
 import { View } from 'react-native';
 
-import { AppIcon } from '@/cores/components/icons';
 import { Constants } from '@/constants';
+import { AppIcon } from '@/cores/components/icons';
 
 interface Props {
   checked: boolean;
