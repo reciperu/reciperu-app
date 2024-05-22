@@ -23,6 +23,7 @@ import { Pencil } from './components/Pencil';
 import { Recipe } from './components/Recipe';
 import { Search } from './components/Search';
 import { Warning } from './components/Warning';
+import { WindowOpen } from './components/WindowOpen';
 import { AppIconNames, IconProps } from './types';
 
 interface Props extends IconProps {
@@ -76,6 +77,8 @@ export const AppIcon = memo<Props>(({ name, ...rest }) => {
     return <Add {...rest} />;
   } else if (name === 'close') {
     return <Close {...rest} />;
+  } else if (name === 'window-open') {
+    return <WindowOpen {...rest} />;
   }
   return <></>;
 });
