@@ -2,7 +2,7 @@ import { useQueryClient } from '@tanstack/react-query';
 import { AxiosError } from 'axios';
 import { Stack, router, useLocalSearchParams } from 'expo-router';
 import { useCallback, useState } from 'react';
-import { ActivityIndicator, Alert, StyleSheet, TouchableOpacity, View } from 'react-native';
+import { ActivityIndicator, StyleSheet, TouchableOpacity, View } from 'react-native';
 import Toast from 'react-native-toast-message';
 
 import { Constants } from '@/constants';
@@ -50,21 +50,19 @@ export default function Modal() {
   } as SpaceRecipe);
   const editRecipeService = useEditRecipe(data);
 
-  const confirmDelete = useCallback(() => {
-    Alert.alert('レシピを削除しますか？', '', [
-      {
-        text: 'キャンセル',
-        style: 'cancel',
-      },
-      {
-        text: '削除',
-        style: 'destructive',
-        onPress: () => {
-          console.log('削除');
-        },
-      },
-    ]);
-  }, []);
+  // const confirmDelete = useCallback(() => {
+  //   Alert.alert('レシピを削除しますか？', '', [
+  //     {
+  //       text: 'キャンセル',
+  //       style: 'cancel',
+  //     },
+  //     {
+  //       text: '削除',
+  //       style: 'destructive',
+  //       onPress: () => {},
+  //     },
+  //   ]);
+  // }, []);
 
   const handleUpdate = useCallback(
     async (callback: () => void) => {
@@ -94,6 +92,7 @@ export default function Modal() {
             updatedRecipe.imageUrls = imageUrls;
           }
           try {
+            // TODO: レシピ画像のアップロードが改善されたら動作確認
             mutation.mutate(
               {
                 id: params.id,
@@ -121,7 +120,6 @@ export default function Modal() {
                   callback();
                 },
                 onError: (error) => {
-                  console.log('on Error');
                   Toast.show({
                     type: 'errorToast',
                     text1: 'エラーが発生しました',
@@ -188,11 +186,12 @@ export default function Modal() {
             <Button variant="primary" onPress={openModal}>
               献立にする
             </Button>
-            <View style={{ marginTop: 12 }}>
+            {/* // TODO: v1では削除 */}
+            {/* <View style={{ marginTop: 12 }}>
               <Button variant="primary" scheme="text" onPress={confirmDelete}>
                 レシピを削除
               </Button>
-            </View>
+            </View> */}
           </View>
         ) : null}
       </Container>

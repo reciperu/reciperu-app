@@ -16,11 +16,16 @@ export const LineText = memo<PropsWithChildren<LineProps>>(
 interface NotoProps {
   style?: StyleProp<TextStyle>;
   fw?: 'regular' | 'bold' | 'black';
+  numberOfLines?: number;
 }
 
 export const NotoText = memo<PropsWithChildren<NotoProps>>(
-  ({ children, fw = 'regular', style }) => {
+  ({ children, fw = 'regular', style, numberOfLines }) => {
     const fontFamily = useMemo(() => 'noto-sans-' + fw, [fw]);
-    return <RNText style={[{ fontFamily }, style]}>{children}</RNText>;
+    return (
+      <RNText style={[{ fontFamily }, style]} numberOfLines={numberOfLines} ellipsizeMode="tail">
+        {children}
+      </RNText>
+    );
   }
 );

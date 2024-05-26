@@ -85,7 +85,6 @@ export default function Modal() {
         recipeUrl: url,
         title: recipeName,
         memo,
-        imageUrls: images,
         appName,
         faviconUrl,
       };
@@ -142,9 +141,10 @@ export default function Modal() {
         if (faviconUrl) setFaviconUrl(faviconUrl);
       }
     }
-  }, [mutation, isFocused, url]);
+  }, [mutation, isFocused, url, targetRecipe?.recipeUrl]);
   useEffect(() => {
     fetchRecipeDataFromMetaData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [url, isFocused]);
   return (
     <ScrollView style={styles.container}>

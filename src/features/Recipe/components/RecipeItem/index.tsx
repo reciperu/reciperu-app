@@ -25,7 +25,9 @@ export const RecipeItem = memo<Props>(({ data }) => {
         style={{ width: 114, height: 64, borderRadius: Constants.radius.base }}
       />
       <View style={{ flex: 1 }}>
-        <NotoText style={{ fontSize: 14 }}>{data.title}</NotoText>
+        <NotoText style={{ fontSize: 14 }} numberOfLines={2}>
+          {data.title}
+        </NotoText>
         <Flex style={{ alignItems: 'center', gap: 4, marginTop: 4 }}>
           <Image source={data.faviconUrl} style={{ width: 12, height: 12 }} />
           <NotoText style={{ fontSize: 10, color: Constants.colors.primitive.gray['600'] }}>
@@ -57,7 +59,9 @@ export const RecipeCard = memo<Props>(({ data }) => {
         />
       </View>
       <View>
-        <NotoText style={{ fontSize: 14 }}>{data.title}</NotoText>
+        <NotoText style={{ fontSize: 14 }} numberOfLines={2}>
+          {data.title}
+        </NotoText>
         <Flex style={{ alignItems: 'center', gap: 4, marginTop: 2 }}>
           <Image source={data.faviconUrl} style={{ width: 12, height: 12 }} />
           <NotoText style={{ fontSize: 10, color: Constants.colors.primitive.gray['600'] }}>
@@ -78,7 +82,9 @@ export const CompactRecipeItem = memo<Props>(({ data }) => {
         style={{ width: 40, height: 40, borderRadius: Constants.radius.lg }}
       />
       <View style={{ flex: 1 }}>
-        <NotoText style={{ fontSize: 14 }}>{data.title}</NotoText>
+        <NotoText style={{ fontSize: 14 }} numberOfLines={2}>
+          {data.title}
+        </NotoText>
         <Flex style={{ alignItems: 'center', gap: 4, marginTop: 2 }}>
           <Image source={data.faviconUrl} style={{ width: 12, height: 12 }} />
           <NotoText style={{ fontSize: 10, color: Constants.colors.primitive.gray['600'] }}>
