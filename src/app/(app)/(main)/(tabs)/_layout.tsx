@@ -37,7 +37,9 @@ export default function TabLayout() {
           tabBarLabelStyle: { fontFamily: 'noto-sans-bold', fontSize: 10 },
           headerShadowVisible: false,
           headerTitle: '',
-          headerRight: () => <HeaderRightIcon />,
+          // 次のバージョン
+          // headerRight: () => <HeaderRightIcon />,
+          headerRight: () => <></>,
           headerLeft: () => <HeaderLeftIcon />,
         }}>
         <Tabs.Screen

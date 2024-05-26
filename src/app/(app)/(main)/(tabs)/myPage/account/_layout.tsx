@@ -1,14 +1,4 @@
 import { Stack } from 'expo-router';
-import { memo } from 'react';
-import { View } from 'react-native';
-
-import { HeaderNotificationIcon } from '@/features/Header/NotificationIcon';
-
-const HeaderRightIcon = memo(() => (
-  <View style={{ marginTop: 10 }}>
-    <HeaderNotificationIcon />
-  </View>
-));
 
 export default function AccountLayout() {
   return (

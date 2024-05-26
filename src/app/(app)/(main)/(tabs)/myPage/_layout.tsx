@@ -24,7 +24,9 @@ export default function MyPageLayout() {
     <Stack
       screenOptions={{
         headerShadowVisible: false,
-        headerRight: () => <HeaderRightIcon />,
+        // 次のバージョン
+        // headerRight: () => <HeaderRightIcon />,
+        headerRight: () => <></>,
         headerLeft: () => <HeaderLeftIcon />,
         headerTitleStyle: {
           fontWeight: 'bold',
