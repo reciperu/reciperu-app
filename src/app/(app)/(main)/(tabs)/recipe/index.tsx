@@ -1,7 +1,7 @@
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 import { useRouter } from 'expo-router';
 import { useState } from 'react';
-import { Dimensions, Pressable, Text, View, ScrollView, TextInput } from 'react-native';
+import { Dimensions, Text, View } from 'react-native';
 
 import { Constants } from '@/constants';
 import { Flex } from '@/cores/components/Flex';
