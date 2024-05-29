@@ -62,7 +62,7 @@ export default function ContactPage() {
 
   return (
     <Container>
-      <Text style={styles.description}>{`いつも${APP_NAME}をご利用いただきありがとうございます。
+      <Text style={styles.description}>{`いつも${APP_NAME}をご利用いただきありがとうございます。\n
 皆様からのお問い合わせをもとに、より良いアプリに改善をしていきます。不具合のご報告や改善のご要望など、なんでもお問い合わせください！`}</Text>
       <View style={styles.inputWrapper}>
         <InputLabel>ご連絡先（メールアドレス）</InputLabel>
@@ -93,8 +93,7 @@ export default function ContactPage() {
 
 const styles = StyleSheet.create({
   description: {
-    marginTop: 16,
-    marginBottom: 8,
+    marginVertical: 16,
     lineHeight: 20,
   },
   inputWrapper: {

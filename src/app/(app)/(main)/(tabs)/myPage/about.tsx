@@ -117,7 +117,7 @@ export default function AboutPage() {
         )}
         <Text
           style={{
-            color: Constants.colors.primitive.gray[400],
+            color: Constants.colors.primitive.pink[300],
             textAlign: 'center',
             marginTop: 20,
             marginBottom: 40,
