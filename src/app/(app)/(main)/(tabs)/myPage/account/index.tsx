@@ -1,3 +1,4 @@
+import { useQueryClient } from '@tanstack/react-query';
 import { Link, useRouter } from 'expo-router';
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { Alert, Pressable, Text, View } from 'react-native';
@@ -11,6 +12,7 @@ import asyncStorage from '@/lib/asyncStorage';
 
 export default function AccountPage() {
   const authContext = useAuthContext();
+  const queryClient = useQueryClient();
   const [loginMethod, setLoginMethod] = useState('');
   const router = useRouter();
   const email = useMemo(() => {
@@ -31,10 +33,12 @@ export default function AccountPage() {
         onPress: async () => {
           await authContext.signOut();
           router.push('/(auth)/signIn');
+          // クエリキャッシュをクリア
+          queryClient.clear();
         },
       },
     ]);
-  }, [authContext]);
+  }, [authContext, router, queryClient]);
   useEffect(() => {
     const fetchLoginMethod = async () => {
       const loginMethod = await asyncStorage.getValueFor('last_login_method');
