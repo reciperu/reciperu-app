@@ -59,7 +59,14 @@ export const RecipeDetail = memo<Props>(({ data }) => {
           marginTop: 4,
           justifyContent: 'space-between',
         }}>
-        <NotoText fw="bold" style={{ fontSize: 16, paddingTop: 4 }}>
+        <NotoText
+          fw="bold"
+          style={{
+            fontSize: 16,
+            paddingTop: 4,
+            flex: 1,
+            color: Constants.colors.primitive['gray']['600'],
+          }}>
           {recipeData.title}
         </NotoText>
         <View>
@@ -152,8 +159,8 @@ export const RecipeDetail = memo<Props>(({ data }) => {
               <Flex
                 style={{
                   gap: 8,
-                  paddingHorizontal: 16,
-                  paddingVertical: 8,
+                  paddingHorizontal: 10,
+                  paddingVertical: 10,
                   alignItems: 'center',
                   backgroundColor: Constants.colors.primitive.gray[50],
                   borderRadius: 24,
@@ -162,9 +169,8 @@ export const RecipeDetail = memo<Props>(({ data }) => {
                   name="window-open"
                   width={18}
                   height={18}
-                  color={Constants.colors.primitive.gray[600]}
+                  color={Constants.colors.primitive.gray[500]}
                 />
-                <NotoText style={{ fontSize: 12 }}>レシピを見る</NotoText>
               </Flex>
             </Pressable>
           </Flex>

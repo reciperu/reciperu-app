@@ -6,8 +6,7 @@ import LinearGradient from 'react-native-linear-gradient';
 
 import { Constants } from '@/constants';
 import { Container } from '@/cores/components/Container';
-import { RecentMenuSection } from '@/features/Home/components/RecentMenuSection';
-import { TodayMenuSection } from '@/features/Home/components/TodayMenuSection';
+import { PlannedMenuSection } from '@/features/Home/components/PlannedMenuSection';
 import { UserEatingListSection } from '@/features/Home/components/UserEatingListSection';
 import { UserIconList } from '@/features/Home/components/UserIconList';
 import { useFetchSpace } from '@/features/Space/apis/getSpace';
@@ -58,13 +57,13 @@ export default function HomePage() {
           </View>
         </View>
         <Container needBottomPadding>
-          {/* 今日の献立 */}
-          <View style={{ marginBottom: 64 }}>
-            <TodayMenuSection />
+          {/* 計画中の献立 */}
+          <View style={{ marginBottom: 72 }}>
+            <PlannedMenuSection />
           </View>
           {/* パートナーの食べたい料理 */}
           {/* 自分の食べたい料理 */}
-          <View style={{ marginBottom: 64 }}>
+          <View>
             <UserEatingListSection
               avatar={data?.imageUrl}
               name={data?.name}
@@ -72,10 +71,6 @@ export default function HomePage() {
               loading={false}
               type="mine"
             />
-          </View>
-          {/* 最近の献立 */}
-          <View style={{ marginBottom: 40 }}>
-            <RecentMenuSection />
           </View>
         </Container>
       </ScrollView>

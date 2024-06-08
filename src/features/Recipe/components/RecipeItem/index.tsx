@@ -24,7 +24,9 @@ export const RecipeItem = memo<Props>(({ data }) => {
         style={{ width: 114, height: 64, borderRadius: Constants.radius.base }}
       />
       <View style={{ flex: 1 }}>
-        <NotoText style={{ fontSize: 14 }} numberOfLines={2}>
+        <NotoText
+          style={{ fontSize: 14, color: Constants.colors.primitive.gray['700'] }}
+          numberOfLines={2}>
           {data.title}
         </NotoText>
         <Flex style={{ alignItems: 'center', gap: 4, marginTop: 4 }}>
@@ -101,11 +103,16 @@ export const CompactRecipeItem = memo<Props>(({ data }) => {
                 flexDirection: 'column',
                 alignItems: 'center',
                 padding: 6,
-                backgroundColor: Constants.colors.primitive.pink[50],
+                backgroundColor: Constants.colors.primitive.gray[50],
                 borderRadius: Constants.radius['xl'],
               }}>
-              <AppIcon name="new-window-arrow" width={14} height={14} />
-              <NotoText style={{ fontSize: 8, color: Constants.colors.primitive.pink[500] }}>
+              <AppIcon
+                name="window-open"
+                width={14}
+                height={14}
+                color={Constants.colors.primitive.gray[500]}
+              />
+              <NotoText style={{ fontSize: 8, color: Constants.colors.primitive.gray[600] }}>
                 レシピ
               </NotoText>
             </Flex>

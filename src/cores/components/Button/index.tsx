@@ -1,6 +1,5 @@
 import React, { memo } from 'react';
 import { ActivityIndicator, Pressable, StyleSheet, View } from 'react-native';
-import LinearGradient from 'react-native-linear-gradient';
 
 import { Constants } from '@/constants';
 import { NotoText } from '@/cores/components/Text';
@@ -69,7 +68,7 @@ export const Button = memo<Props>(
             )}
           </>
         ) : (
-          <View style={styles.container}>
+          <View style={[styles.container, styles.schemeTextContainer]}>
             {loading ? <ActivityIndicator size="small" /> : leftIcon && leftIcon}
             <NotoText
               style={[styles.text, variant === 'primary' && styles.textButtonTextStyle, textStyle]}
@@ -98,6 +97,9 @@ const styles = StyleSheet.create({
     borderRadius: Constants.radius['3xl'],
     backgroundColor: Constants.colors.primitive.pink[400],
     overflow: 'hidden',
+  },
+  schemeTextContainer: {
+    backgroundColor: 'transparent',
   },
   text: {
     fontSize: 14,
