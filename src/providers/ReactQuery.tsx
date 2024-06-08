@@ -4,12 +4,6 @@ import { AppState, AppStateStatus, Platform } from 'react-native';
 
 import { queryClient } from '@/lib/react-query';
 
-if (__DEV__) {
-  import('react-query-native-devtools').then(({ addPlugin }) => {
-    addPlugin({ queryClient });
-  });
-}
-
 function onAppStateChange(status: AppStateStatus) {
   if (Platform.OS !== 'web') {
     focusManager.setFocused(status === 'active');

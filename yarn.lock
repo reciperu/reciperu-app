@@ -7297,7 +7297,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"flatted@npm:^3.2.4, flatted@npm:^3.2.9":
+"flatted@npm:^3.2.9":
   version: 3.3.1
   resolution: "flatted@npm:3.3.1"
   checksum: 10c0/324166b125ee07d4ca9bcf3a5f98d915d5db4f39d711fba640a3178b959919aae1f7cfd8aabcfef5826ed8aa8a2aa14cc85b2d7d18ff638ddf4ae3df39573eaf
@@ -11392,16 +11392,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-native-flipper@npm:^0.212.0":
-  version: 0.212.0
-  resolution: "react-native-flipper@npm:0.212.0"
-  peerDependencies:
-    react: ^16.8.0 || ^17.0.0 || ^18.0.0
-    react-native: ">0.62.0"
-  checksum: 10c0/15b7cdecba9cf38f903bbe769944c9b1389b21b1a86161bdac47dad9028b756c3c0eb432c741b42699ebd6573cb78c88b8d2ef674e34aa8e73641397822f50cc
-  languageName: node
-  linkType: hard
-
 "react-native-gesture-handler@npm:~2.12.0":
   version: 2.12.1
   resolution: "react-native-gesture-handler@npm:2.12.1"
@@ -11669,18 +11659,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-query-native-devtools@npm:^4.0.0":
-  version: 4.0.0
-  resolution: "react-query-native-devtools@npm:4.0.0"
-  dependencies:
-    flatted: "npm:^3.2.4"
-  peerDependencies:
-    react-native-flipper: ^0.127.0
-    react-query: ^3.34.6
-  checksum: 10c0/10b89bbb671b673acbb143d4069d2beac2bc22f6a2b1f9ab5a6ac7f5bf0797acf9432466c81988300deb65764a7923d89e88a17b3e5e42247175126a96cb6906
-  languageName: node
-  linkType: hard
-
 "react-refresh@npm:^0.14.0":
   version: 0.14.2
   resolution: "react-refresh@npm:0.14.2"
@@ -11882,7 +11860,6 @@ __metadata:
     react-native: "npm:0.72.5"
     react-native-confetti: "npm:^0.1.0"
     react-native-date-picker: "npm:^5.0.0"
-    react-native-flipper: "npm:^0.212.0"
     react-native-gesture-handler: "npm:~2.12.0"
     react-native-linear-gradient: "npm:^2.8.3"
     react-native-modal: "npm:^13.0.1"
@@ -11896,7 +11873,6 @@ __metadata:
     react-native-toast-message: "npm:^2.2.0"
     react-native-url-polyfill: "npm:^2.0.0"
     react-native-webview: "npm:13.2.2"
-    react-query-native-devtools: "npm:^4.0.0"
     react-use: "npm:^17.5.0"
     typescript: "npm:^5.1.3"
     zustand: "npm:^4.4.3"
