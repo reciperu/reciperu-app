@@ -103,7 +103,7 @@ export const PlannedMenuSection = memo(() => {
             </NotoText>
           </Flex>
           <Flex style={{ justifyContent: 'center', marginTop: 24 }}>
-            <LinkButton onPress={() => router.push('(app)/(main)/(tabs)/recipe')}>
+            <LinkButton onPress={() => router.push('(app)/(main)/(tabs)/recipe?route=AllRecipe')}>
               料理を探す
             </LinkButton>
           </Flex>

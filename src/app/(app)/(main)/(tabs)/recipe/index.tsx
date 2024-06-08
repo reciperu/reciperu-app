@@ -1,6 +1,7 @@
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
-import { useRouter } from 'expo-router';
-import { useState } from 'react';
+import { useNavigation } from '@react-navigation/native';
+import { useLocalSearchParams, useRouter } from 'expo-router';
+import { useEffect, useState } from 'react';
 import { Dimensions, Text, View } from 'react-native';
 
 import { Constants } from '@/constants';
@@ -11,7 +12,6 @@ import { FloatingButton } from '@/features/FloatingButton/components';
 import { AllRecipeTab } from '@/features/RecipePage/components/AllRecipeTab';
 import { FavoriteRecipeTab } from '@/features/RecipePage/components/FavoriteRecipeTab';
 import { SearchInput } from '@/features/RecipePage/components/SearchInput';
-
 const { height } = Dimensions.get('window');
 
 const Tab = createMaterialTopTabNavigator();
@@ -19,6 +19,16 @@ const Tab = createMaterialTopTabNavigator();
 export default function RecipePage() {
   const [search, setSearch] = useState('');
   const router = useRouter();
+  const params = useLocalSearchParams();
+  const navigation = useNavigation();
+  useEffect(() => {
+    if (params.route) {
+      console.log('call A');
+      console.log('params.route: ', params.route);
+      navigation.navigate(params.route);
+    }
+  }, [params.route]);
+
   return (
     <View style={{ flex: 1, position: 'relative', backgroundColor: 'white' }}>
       <NotoText fw="bold" style={{ fontSize: 20, paddingHorizontal: 16, paddingTop: 12 }}>

@@ -122,7 +122,7 @@ export const UserEatingListSection = memo<Props>(({ avatar, name, list, loading,
             </NotoText>
           </Flex>
           <Flex style={{ justifyContent: 'center', marginTop: 24 }}>
-            <LinkButton onPress={() => router.push('(app)/(main)/(tabs)/recipe')}>
+            <LinkButton onPress={() => router.push('(app)/(main)/(tabs)?route=AllRecipe')}>
               料理を探す
             </LinkButton>
           </Flex>
@@ -149,7 +149,8 @@ export const UserEatingListSection = memo<Props>(({ avatar, name, list, loading,
             />
           </View>
           <Flex style={{ justifyContent: 'center', marginTop: 40 }}>
-            <LinkButton onPress={() => router.push('(app)/(main)/(tabs)/recipe')}>
+            <LinkButton
+              onPress={() => router.push('(app)/(main)/(tabs)/recipe?route=FavoriteRecipe')}>
               すべて見る
             </LinkButton>
           </Flex>
