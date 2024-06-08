@@ -45,7 +45,7 @@ export const UserIconList = memo<Props>(({ myProfile, partnerProfile }) => {
             style={{ width: 48, height: 48, borderRadius: 24 }}
           />
           <NotoText fw="bold" style={{ fontSize: 12, textAlign: 'center' }}>
-            パートナー
+            {partnerProfile.name}さん
           </NotoText>
         </Flex>
       ) : (

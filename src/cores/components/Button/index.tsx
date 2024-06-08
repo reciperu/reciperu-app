@@ -34,16 +34,12 @@ export const Button = memo<Props>(
         {scheme === 'filled' ? (
           <>
             {variant === 'primary' ? (
-              <LinearGradient
-                start={{ x: 0, y: 0 }}
-                end={{ x: 1.0, y: 1.0 }}
-                locations={[0, 0.6, 1]}
+              <View
                 style={[
                   styles.container,
                   (disabled || loading) && styles.disabledContainer,
                   (disabled || loading) && styles.disabledTextContainer,
-                ]}
-                colors={['#FF8753', '#ED64A6', '#ED64A6']}>
+                ]}>
                 {loading ? (
                   <ActivityIndicator size="small" color="#FFFFFF" />
                 ) : (
@@ -52,7 +48,7 @@ export const Button = memo<Props>(
                 <NotoText style={[styles.text, styles.primaryText, textStyle]} fw="bold">
                   {children}
                 </NotoText>
-              </LinearGradient>
+              </View>
             ) : (
               <View
                 style={[
@@ -100,6 +96,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     padding: 12,
     borderRadius: Constants.radius['3xl'],
+    backgroundColor: Constants.colors.primitive.pink[400],
     overflow: 'hidden',
   },
   text: {

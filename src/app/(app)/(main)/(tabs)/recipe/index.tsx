@@ -47,7 +47,9 @@ export default function RecipePage() {
                       : Constants.colors.primitive.gray[400]
                   }
                 />
-                <Text style={{ color: focused ? 'black' : 'gray' }}>すべて</Text>
+                <Text style={{ color: focused ? Constants.colors.primitive.pink[500] : 'gray' }}>
+                  すべて
+                </Text>
               </Flex>
             ),
           }}
@@ -68,7 +70,9 @@ export default function RecipePage() {
                       : Constants.colors.primitive.gray[400]
                   }
                 />
-                <Text style={{ color: focused ? 'black' : 'gray' }}>食べたい</Text>
+                <Text style={{ color: focused ? Constants.colors.primitive.pink[500] : 'gray' }}>
+                  食べたい
+                </Text>
               </Flex>
             ),
           }}

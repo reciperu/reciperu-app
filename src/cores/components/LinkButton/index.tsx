@@ -19,8 +19,9 @@ export const LinkButton = memo<PropsWithChildren<Props>>(
         <Flex
           style={{
             alignItems: 'center',
-            paddingHorizontal: 16,
-            paddingVertical: 8,
+            paddingHorizontal: 24,
+            paddingVertical: 12,
+            paddingBottom: 14,
             borderRadius: 24,
             backgroundColor: Constants.colors.primitive.pink[50],
             gap: 12,
