@@ -1,16 +1,15 @@
 import { Image } from 'expo-image';
-import { Tabs, useRouter } from 'expo-router';
+import { Tabs } from 'expo-router';
 import { useMemo } from 'react';
-import { Dimensions, Pressable, ScrollView, View } from 'react-native';
+import { Dimensions, ScrollView, View } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 
 import { Constants } from '@/constants';
 import { Container } from '@/cores/components/Container';
-import { Flex } from '@/cores/components/Flex';
-import { NotoText } from '@/cores/components/Text';
 import { RecentMenuSection } from '@/features/Home/components/RecentMenuSection';
 import { TodayMenuSection } from '@/features/Home/components/TodayMenuSection';
 import { UserEatingListSection } from '@/features/Home/components/UserEatingListSection';
+import { UserIconList } from '@/features/Home/components/UserIconList';
 import { useFetchSpace } from '@/features/Space/apis/getSpace';
 import { useFetchMyProfile } from '@/features/User/apis/getMyProfile';
 
@@ -21,7 +20,16 @@ export default function HomePage() {
   const { data: space } = useFetchSpace({
     id: data?.spaceId || '',
   });
-  const router = useRouter();
+  const myProfile = useMemo(() => {
+    const id = data?.id || '';
+    const targetUser = space?.users.find((user) => user.id === id) || null;
+    return targetUser;
+  }, [data, space]);
+  const partnerProfile = useMemo(() => {
+    const id = data?.id || '';
+    const targetUser = space?.users.find((user) => user.id !== id) || null;
+    return targetUser;
+  }, [data, space]);
   const imageHeight = (width / 390) * 103;
   const spaceName = useMemo(() => {
     return space?.name || '';
@@ -45,45 +53,9 @@ export default function HomePage() {
               contentFit="contain"
             />
           </LinearGradient>
-          <Flex
-            style={{
-              justifyContent: 'center',
-              alignItems: 'flex-end',
-              width: '100%',
-              gap: 64,
-              marginTop: -40,
-            }}>
-            {/* 自分 */}
-            <Pressable onPress={() => router.push('/myPage')}>
-              <Flex style={{ flexDirection: 'column', alignItems: 'center', gap: 4 }}>
-                <Image
-                  source={data?.imageUrl}
-                  style={{ width: 48, height: 48, borderRadius: 24 }}
-                />
-                <NotoText fw="bold" style={{ fontSize: 12, textAlign: 'center' }}>
-                  あなた
-                </NotoText>
-              </Flex>
-            </Pressable>
-            {/* パートナー */}
-            {/* いない場合 */}
-            {/* // TODO: ここ後で実装 */}
-            <Flex style={{ flexDirection: 'column', alignItems: 'center', gap: 4 }}>
-              <Image
-                source={require('assets/noUserIcon.png')}
-                style={{ width: 48, height: 48, borderRadius: 24 }}
-              />
-              <NotoText
-                fw="bold"
-                style={{
-                  fontSize: 12,
-                  textAlign: 'center',
-                  color: Constants.colors.primitive.gray[500],
-                }}>
-                招待する
-              </NotoText>
-            </Flex>
-          </Flex>
+          <View style={{ marginTop: -24 }}>
+            <UserIconList myProfile={myProfile} partnerProfile={partnerProfile} />
+          </View>
         </View>
         <Container needBottomPadding>
           {/* 今日の献立 */}

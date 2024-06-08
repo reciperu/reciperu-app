@@ -103,7 +103,6 @@ const useAuthProvider = () => {
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
-      console.log(`currentUser: ${JSON.stringify(currentUser)}`);
       if (currentUser) {
         const newToken = await currentUser.getIdToken(true);
         await secureStoreService.save(StoreKeyEnum.TOKEN, newToken);

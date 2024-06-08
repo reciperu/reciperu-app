@@ -65,7 +65,6 @@ export default function MyPageLayout() {
             color: 'black',
           },
           headerTitle: () => {
-            console.log(pathname);
             if (pathname === '/myPage/account/withdraw') {
               return <Text style={{ fontWeight: 'bold', fontSize: 16 }}>退会する</Text>;
             }

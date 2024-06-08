@@ -25,14 +25,18 @@ export const AppModal = memo<Props>(({ isVisible, close, title, children }) => {
       backdropOpacity={0.6}>
       <View
         style={{ padding: 16, borderRadius: 16, backgroundColor: 'white', position: 'relative' }}>
-        <Pressable onPress={close} style={{ position: 'absolute', top: 8, right: 8 }}>
-          <AppIcon
-            name="close-circle"
-            width={20}
-            height={20}
-            color={Constants.colors.primitive.gray[400]}
-          />
-        </Pressable>
+        <View style={{ position: 'absolute', top: 0, right: 0 }}>
+          <Pressable onPress={close}>
+            <View style={{ padding: 8 }}>
+              <AppIcon
+                name="close-circle"
+                width={20}
+                height={20}
+                color={Constants.colors.primitive.gray[400]}
+              />
+            </View>
+          </Pressable>
+        </View>
         {/* タイトル */}
         <Flex style={{ justifyContent: 'center', paddingTop: 8, marginBottom: 24 }}>{title}</Flex>
         {/* 中身 */}

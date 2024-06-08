@@ -73,7 +73,7 @@ export const TodayMenuSection = memo(() => {
   return (
     <>
       <View>
-        <Flex style={{ gap: 8, alignItems: 'center' }}>
+        <Flex style={{ gap: 8, alignItems: 'center', justifyContent: 'center' }}>
           <Image
             source={require('assets/menu_section_icon.svg')}
             style={{ width: 24, height: 24 }}
@@ -82,27 +82,6 @@ export const TodayMenuSection = memo(() => {
           <NotoText fw="bold" style={{ fontSize: 14, lineHeight: 24 }}>
             今日の献立
           </NotoText>
-          <Spacer />
-          <Pressable>
-            <Flex style={{ gap: 4, alignItems: 'center' }}>
-              <Text
-                style={{
-                  color: Constants.colors.primitive.blue[400],
-                  fontSize: 12,
-                  textDecorationLine: 'underline',
-                }}>
-                すべての献立を見る
-              </Text>
-              <View style={{ transform: 'rotate(180deg)' }}>
-                <AppIcon
-                  name="arrow-back"
-                  color={Constants.colors.primitive.blue[400]}
-                  width={12}
-                  height={12}
-                />
-              </View>
-            </Flex>
-          </Pressable>
         </Flex>
         <View style={{ paddingVertical: 16 }}>
           {/* 取得中 */}
@@ -114,10 +93,11 @@ export const TodayMenuSection = memo(() => {
               style={{
                 textAlign: 'center',
                 fontSize: 12,
+                lineHeight: 24,
                 color: Constants.colors.primitive.gray[600],
               }}>
-              {`食べたい料理は未登録です
-レシピ集に登録された料理から食べたい料理を選びましょう`}
+              {`今日の献立は決まっていません
+レシピ集に登録された料理から献立を設定しましょう`}
             </NotoText>
           </Flex>
           {/* データがある場合 */}

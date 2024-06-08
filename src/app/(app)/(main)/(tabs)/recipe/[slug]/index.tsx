@@ -1,17 +1,23 @@
+import { BottomSheetModal, BottomSheetModalProvider, BottomSheetView } from '@gorhom/bottom-sheet';
 import { useQueryClient } from '@tanstack/react-query';
 import { AxiosError } from 'axios';
 import { Stack, router, useLocalSearchParams } from 'expo-router';
-import { useCallback, useState } from 'react';
-import { ActivityIndicator, StyleSheet, TouchableOpacity, View } from 'react-native';
+import { memo, useCallback, useRef, useState } from 'react';
+import {
+  ActivityIndicator,
+  Dimensions,
+  Pressable,
+  StyleSheet,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 import Toast from 'react-native-toast-message';
 
-import { Constants } from '@/constants';
+import { BOTTOM_SHEET_STYLE, Constants } from '@/constants';
 import { Button } from '@/cores/components/Button';
 import { Container } from '@/cores/components/Container';
 import { Flex } from '@/cores/components/Flex';
 import { InputLabel } from '@/cores/components/InputLabel';
-import { AppModal } from '@/cores/components/Modal';
-import { useModal } from '@/cores/components/Modal/useModal';
 import { Spacer } from '@/cores/components/Spacer';
 import { NotoText } from '@/cores/components/Text';
 import { TextInput } from '@/cores/components/TextInput';
@@ -24,13 +30,26 @@ import { RecipeRequestBody, SpaceRecipe } from '@/features/Recipe/types';
 import { toastConfig } from '@/lib/ToastConfig';
 import { convertImageToBase64FromUri } from '@/utils/image';
 import { isValidUrl } from '@/utils/validation';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
+
+const { width, height } = Dimensions.get('window');
+
+const Overlay = memo<{ visible: boolean; onPress: () => void }>(({ visible, onPress }) => {
+  if (!visible) return null;
+  return (
+    <Pressable onPress={onPress} style={styles.overlay}>
+      <View />
+    </Pressable>
+  );
+});
 
 export default function Modal() {
+  const insets = useSafeAreaInsets();
   const isPresented = router.canGoBack();
-  const { isVisible, openModal, closeModal } = useModal();
   const [isEditing, setIsEditing] = useState(false);
   const [isEditPending, setIsEditPending] = useState(false);
   const [date, setDate] = useState<string>(new Date().toISOString());
+  const bottomSheetModalRef = useRef<BottomSheetModal>(null);
   const params = useLocalSearchParams();
   const mutation = usePutRecipe({});
   const queryClient = useQueryClient();
@@ -49,7 +68,7 @@ export default function Modal() {
     requesters: typeof params.requesters === 'string' ? JSON.parse(params.requesters) : [],
   } as SpaceRecipe);
   const editRecipeService = useEditRecipe(data);
-
+  const [isSheetOpen, setIsSheetOpen] = useState(false);
   // const confirmDelete = useCallback(() => {
   //   Alert.alert('レシピを削除しますか？', '', [
   //     {
@@ -63,6 +82,20 @@ export default function Modal() {
   //     },
   //   ]);
   // }, []);
+
+  const handleOpenSheet = () => {
+    if (bottomSheetModalRef.current) {
+      setIsSheetOpen(true);
+      bottomSheetModalRef.current?.present();
+    }
+  };
+
+  const handleCloseSheet = () => {
+    if (bottomSheetModalRef.current) {
+      setIsSheetOpen(false);
+      bottomSheetModalRef.current?.close();
+    }
+  };
 
   const handleUpdate = useCallback(
     async (callback: () => void) => {
@@ -111,8 +144,6 @@ export default function Modal() {
                     topOffset: 0,
                   });
 
-                  console.log(JSON.stringify(result, null, 2));
-
                   setData({
                     ...result,
                     requesters: result.requesters?.length ? result.requesters : [],
@@ -151,7 +182,7 @@ export default function Modal() {
   }, [isEditing, handleUpdate]);
 
   return (
-    <>
+    <BottomSheetModalProvider>
       <Stack.Screen
         options={{
           title: typeof data.title === 'string' ? data.title : '',
@@ -183,7 +214,7 @@ export default function Modal() {
           <View style={{ flex: 1 }}>
             <RecipeDetail data={data} />
             <Spacer />
-            <Button variant="primary" onPress={openModal}>
+            <Button variant="primary" onPress={handleOpenSheet}>
               献立にする
             </Button>
             {/* // TODO: v1では削除 */}
@@ -195,35 +226,47 @@ export default function Modal() {
           </View>
         ) : null}
       </Container>
-      <AppModal
-        isVisible={isVisible}
-        close={closeModal}
-        title={
-          <NotoText fw="bold" style={{ fontSize: 14 }}>
+      <Overlay visible={isSheetOpen} onPress={handleCloseSheet} />
+      <BottomSheetModal
+        onDismiss={() => handleCloseSheet()}
+        ref={bottomSheetModalRef}
+        index={0}
+        snapPoints={[320]}
+        style={{ ...BOTTOM_SHEET_STYLE, zIndex: 999 }}>
+        <BottomSheetView
+          style={{
+            paddingHorizontal: 16,
+            paddingTop: 8,
+            height: '100%',
+            display: 'flex',
+            flexDirection: 'column',
+          }}>
+          <NotoText fw="bold" style={{ fontSize: 14, textAlign: 'center' }}>
             献立に設定
           </NotoText>
-        }>
-        <View>
-          <InputLabel required>食べる日</InputLabel>
-          <TextInput
-            value={date}
-            onChange={(text) => setDate(text)}
-            // errorMessage={emailFormErrorMessage}
-          />
-          <NotoText
-            style={{
-              fontSize: 12,
-              color: Constants.colors.primitive.gray[600],
-              marginTop: 4,
-              marginBottom: 40,
-            }}>
-            後で設定・変更することができます
-          </NotoText>
-          <Button onPress={closeModal}>決定</Button>
-        </View>
-      </AppModal>
+          <View style={{ marginTop: 8, flex: 1, paddingBottom: insets.bottom }}>
+            <InputLabel required>食べる日</InputLabel>
+            <TextInput
+              value={date}
+              onChange={(text) => setDate(text)}
+              // errorMessage={emailFormErrorMessage}
+            />
+            <NotoText
+              style={{
+                fontSize: 12,
+                color: Constants.colors.primitive.gray[600],
+                marginTop: 4,
+                marginBottom: 40,
+              }}>
+              後で設定・変更することができます
+            </NotoText>
+            <Spacer />
+            <Button onPress={handleCloseSheet}>決定</Button>
+          </View>
+        </BottomSheetView>
+      </BottomSheetModal>
       <Toast config={toastConfig} />
-    </>
+    </BottomSheetModalProvider>
   );
 }
 
@@ -235,5 +278,16 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: 'green',
+  },
+  overlay: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    backgroundColor: 'rgba(0,0,0,0.2)',
+    width,
+    height,
+    zIndex: 0,
   },
 });

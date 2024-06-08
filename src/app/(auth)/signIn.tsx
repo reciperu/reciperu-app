@@ -54,17 +54,18 @@ export default function SignInPage() {
             />
           </Flex>
           <NotoText style={{ textAlign: 'center' }}>
-            パートナーとレシピを共有して献立を決めよう
+            {`作ったレシピを保存して
+パートナーとシェアしましょう`}
           </NotoText>
           <Spacer />
           <Flex
             style={{ alignItems: 'center', gap: 4, justifyContent: 'center', marginBottom: 24 }}>
-            <Pressable style={{ padding: 4 }} onPress={() => setChecked((prev) => !prev)}>
-              <CheckIconButton checked={checked} size={12} />
+            <Pressable style={{ padding: 2 }} onPress={() => setChecked((prev) => !prev)}>
+              <CheckIconButton checked={checked} size={16} />
             </Pressable>
             <NotoText
               style={{
-                fontSize: 10,
+                fontSize: 12,
                 color: Constants.colors.primitive.gray[600],
               }}>
               <Link href="terms">
@@ -74,7 +75,7 @@ export default function SignInPage() {
               <Link href="privacyPolicy">
                 <NotoText fw="bold"> プライパシーポリシー </NotoText>
               </Link>
-              を読んだ上で同意しました
+              に同意します
             </NotoText>
           </Flex>
           <AppleAuthentication.AppleAuthenticationButton
