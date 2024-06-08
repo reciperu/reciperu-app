@@ -1,5 +1,4 @@
 import { Image } from 'expo-image';
-import { useRouter } from 'expo-router';
 import { memo } from 'react';
 import { Dimensions, Pressable, View } from 'react-native';
 
@@ -74,12 +73,11 @@ export const RecipeCard = memo<Props>(({ data }) => {
 });
 
 export const CompactRecipeItem = memo<Props>(({ data }) => {
-  const router = useRouter();
   return (
     <Flex style={{ gap: 8, alignItems: 'center' }}>
       <Image
         source={data.thumbnailUrl}
-        style={{ width: 40, height: 40, borderRadius: Constants.radius.lg }}
+        style={{ width: 48, height: 48, borderRadius: Constants.radius.lg }}
       />
       <View style={{ flex: 1 }}>
         <NotoText style={{ fontSize: 14 }} numberOfLines={2}>

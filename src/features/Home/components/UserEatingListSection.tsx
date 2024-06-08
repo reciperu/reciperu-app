@@ -1,7 +1,8 @@
 import { BottomSheetModal } from '@gorhom/bottom-sheet';
 import { Image } from 'expo-image';
+import { useRouter } from 'expo-router';
 import { memo, useMemo, useRef, useState } from 'react';
-import { Dimensions, FlatList, Pressable, Text, View } from 'react-native';
+import { Dimensions, FlatList, Pressable, View } from 'react-native';
 
 import { BOTTOM_SHEET_STYLE, Constants } from '@/constants';
 import { Button } from '@/cores/components/Button';
@@ -11,7 +12,6 @@ import { FoodImage } from '@/cores/components/FoodImage';
 import { LinkButton } from '@/cores/components/LinkButton';
 import { Spacer } from '@/cores/components/Spacer';
 import { NotoText } from '@/cores/components/Text';
-import { AppIcon } from '@/cores/components/icons';
 import { RecipeDetail } from '@/features/Recipe/components/RecipeDetail';
 import { RecipeCard } from '@/features/Recipe/components/RecipeItem';
 import { RecipeWebviewLink } from '@/features/Recipe/components/RecipeWebViewLink';
@@ -67,6 +67,7 @@ const data = [
 export const UserEatingListSection = memo<Props>(({ avatar, name, list, loading, type }) => {
   const bottomSheetModalRef = useRef<BottomSheetModal>(null);
   const snapPoints = useMemo(() => ['80%'], []);
+  const router = useRouter();
 
   const [targetId, setTargetId] = useState<string | null>(null);
 
@@ -93,38 +94,15 @@ export const UserEatingListSection = memo<Props>(({ avatar, name, list, loading,
   return (
     <>
       <View>
-        <Flex style={{ gap: 8, alignItems: 'center' }}>
+        <Flex style={{ gap: 8, alignItems: 'center', justifyContent: 'center' }}>
           <Image
             source={avatar}
             style={{ width: 24, height: 24, borderRadius: 12 }}
             contentFit="contain"
           />
-          <NotoText fw="bold" style={{ fontSize: 14, lineHeight: 24 }}>
+          <NotoText fw="bold" style={{ fontSize: 16, lineHeight: 24 }}>
             あなたの食べたい料理
           </NotoText>
-          <Spacer />
-          {type === 'mine' && (
-            <Pressable>
-              <Flex style={{ gap: 4, alignItems: 'center' }}>
-                <Text
-                  style={{
-                    color: Constants.colors.primitive.blue[400],
-                    fontSize: 12,
-                    textDecorationLine: 'underline',
-                  }}>
-                  変更する
-                </Text>
-                <View style={{ transform: 'rotate(180deg)' }}>
-                  <AppIcon
-                    name="arrow-back"
-                    color={Constants.colors.primitive.blue[400]}
-                    width={12}
-                    height={12}
-                  />
-                </View>
-              </Flex>
-            </Pressable>
-          )}
         </Flex>
         <View style={{ paddingVertical: 16 }}>
           {/* 取得中 */}
@@ -136,11 +114,17 @@ export const UserEatingListSection = memo<Props>(({ avatar, name, list, loading,
               style={{
                 textAlign: 'center',
                 fontSize: 12,
+                lineHeight: 24,
                 color: Constants.colors.primitive.gray[600],
               }}>
               {`食べたい料理は未登録です
-      に登録された料理から食べたい料理を選びましょう`}
+食べたい料理の「」をタップしましょう`}
             </NotoText>
+          </Flex>
+          <Flex style={{ justifyContent: 'center', marginTop: 24 }}>
+            <LinkButton onPress={() => router.push('(app)/(main)/(tabs)/recipe')}>
+              料理を探す
+            </LinkButton>
           </Flex>
           {/* データがある場合 */}
           <View
@@ -165,7 +149,9 @@ export const UserEatingListSection = memo<Props>(({ avatar, name, list, loading,
             />
           </View>
           <Flex style={{ justifyContent: 'center', marginTop: 40 }}>
-            <LinkButton onPress={noop}>すべて見る</LinkButton>
+            <LinkButton onPress={() => router.push('(app)/(main)/(tabs)/recipe')}>
+              すべて見る
+            </LinkButton>
           </Flex>
         </View>
       </View>

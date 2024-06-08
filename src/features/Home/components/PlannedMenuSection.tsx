@@ -10,12 +10,13 @@ import { Flex } from '@/cores/components/Flex';
 import { FoodImage } from '@/cores/components/FoodImage';
 import { Spacer } from '@/cores/components/Spacer';
 import { NotoText } from '@/cores/components/Text';
-import { AppIcon } from '@/cores/components/icons';
 import { RecipeDetail } from '@/features/Recipe/components/RecipeDetail';
 import { CompactRecipeItem } from '@/features/Recipe/components/RecipeItem';
 import { RecipeWebviewLink } from '@/features/Recipe/components/RecipeWebViewLink';
 import { SpaceRecipe } from '@/features/Recipe/types';
 import { noop } from '@/functions/utils';
+import { LinkButton } from '@/cores/components/LinkButton';
+import { useRouter } from 'expo-router';
 
 const data = [
   {
@@ -45,7 +46,8 @@ const data = [
   },
 ];
 
-export const TodayMenuSection = memo(() => {
+export const PlannedMenuSection = memo(() => {
+  const router = useRouter();
   const bottomSheetModalRef = useRef<BottomSheetModal>(null);
   const snapPoints = useMemo(() => ['80%'], []);
 
@@ -79,8 +81,8 @@ export const TodayMenuSection = memo(() => {
             style={{ width: 24, height: 24 }}
             contentFit="contain"
           />
-          <NotoText fw="bold" style={{ fontSize: 14, lineHeight: 24 }}>
-            今日の献立
+          <NotoText fw="bold" style={{ fontSize: 16, lineHeight: 24 }}>
+            計画中の献立
           </NotoText>
         </Flex>
         <View style={{ paddingVertical: 16 }}>
@@ -96,12 +98,17 @@ export const TodayMenuSection = memo(() => {
                 lineHeight: 24,
                 color: Constants.colors.primitive.gray[600],
               }}>
-              {`今日の献立は決まっていません
-レシピ集に登録された料理から献立を設定しましょう`}
+              {`計画中の献立はありません
+レシピに登録された料理から献立を設定しましょう`}
             </NotoText>
           </Flex>
+          <Flex style={{ justifyContent: 'center', marginTop: 24 }}>
+            <LinkButton onPress={() => router.push('(app)/(main)/(tabs)/recipe')}>
+              料理を探す
+            </LinkButton>
+          </Flex>
           {/* データがある場合 */}
-          <Flex style={{ flexDirection: 'column', gap: 12, marginTop: 16 }}>
+          <Flex style={{ flexDirection: 'column', gap: 16, marginTop: 24 }}>
             {data.map((item) => (
               <Fragment key={item.id}>
                 <Pressable onPress={() => handleOpenSheet(item.id)}>
@@ -121,7 +128,7 @@ export const TodayMenuSection = memo(() => {
           <Container>
             <RecipeDetail data={targetData} />
             <Spacer />
-            <Button onPress={noop}>献立から外す</Button>
+            <Button onPress={noop}>献立から削除</Button>
             <View style={{ marginTop: 8 }}>
               <RecipeWebviewLink
                 id={targetData.id}

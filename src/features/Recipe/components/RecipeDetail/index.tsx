@@ -90,23 +90,25 @@ export const RecipeDetail = memo<Props>(({ data }) => {
           width: '100%',
         }}>
         {/* 登録者 */}
-        <Flex
-          style={{
-            gap: 8,
-            alignItems: 'center',
-            paddingVertical: 12,
-            borderBottomWidth: 1,
-            borderBottomColor: Constants.colors.primitive.gray[200],
-          }}>
-          <NotoText style={{ fontSize: 12, width: 48 }}>登録者</NotoText>
-          <Flex style={{ alignItems: 'center', gap: 4 }}>
-            <Image
-              source={{ uri: recipeData.user.imageUrl }}
-              style={{ width: 20, height: 20, borderRadius: 10 }}
-            />
-            <NotoText style={{ fontSize: 12 }}>{data.user.name}</NotoText>
+        {recipeData.user && (
+          <Flex
+            style={{
+              gap: 8,
+              alignItems: 'center',
+              paddingVertical: 12,
+              borderBottomWidth: 1,
+              borderBottomColor: Constants.colors.primitive.gray[200],
+            }}>
+            <NotoText style={{ fontSize: 12, width: 48 }}>登録者</NotoText>
+            <Flex style={{ alignItems: 'center', gap: 4 }}>
+              <Image
+                source={{ uri: recipeData.user.imageUrl }}
+                style={{ width: 20, height: 20, borderRadius: 10 }}
+              />
+              <NotoText style={{ fontSize: 12 }}>{data.user.name}</NotoText>
+            </Flex>
           </Flex>
-        </Flex>
+        )}
         {/* 更新者（あれば） */}
         {/* <Flex
           style={{
