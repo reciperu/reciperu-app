@@ -19,6 +19,7 @@ interface Props {
   multiline?: boolean;
   numberOfLines?: number;
   description?: string;
+  readOnly?: boolean;
 }
 
 export const TextInput = memo<PropsWithChildren<Props>>(
@@ -34,6 +35,7 @@ export const TextInput = memo<PropsWithChildren<Props>>(
     multiline,
     numberOfLines = 1,
     description,
+    readOnly,
   }) => {
     const [isFocused, setIsFocused] = useState(false);
     const [isError, setIsError] = useState(false);
@@ -74,15 +76,29 @@ export const TextInput = memo<PropsWithChildren<Props>>(
             isError && styles.inputError, // エラー時にスタイルを適用
             style,
           ]}
-          onChangeText={onChange}
+          onChangeText={() => {
+            if (!readOnly) {
+              onChange(value);
+            }
+          }}
           value={value}
           placeholder={placeholder}
           maxLength={maxLength}
-          onFocus={handleFocus}
-          onBlur={handleBlur}
+          onFocus={() => {
+            if (!readOnly) {
+              handleFocus();
+            }
+          }}
+          onBlur={() => {
+            if (!readOnly) {
+              handleBlur();
+            }
+          }}
+          editable={Boolean(!readOnly)}
           autoCapitalize="none"
           multiline={multiline}
           numberOfLines={numberOfLines}
+          pointerEvents={readOnly ? 'none' : 'auto'}
         />
         {(typeof maxLength === 'number' || typeof description === 'string') && (
           <Flex style={{ justifyContent: 'space-between', marginTop: 4 }}>

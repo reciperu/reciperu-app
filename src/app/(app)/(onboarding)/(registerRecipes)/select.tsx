@@ -29,7 +29,7 @@ export default function OnboardingRegisterRecipesSelectPage() {
       <View style={styles.titleWrapper}>
         <NotoText style={styles.stepper}>4/4</NotoText>
         <NotoText fw="bold" style={styles.pageTitle}>
-          スペースに料理を登録しましょう
+          最後にスペースに料理を登録しましょう
         </NotoText>
         <NotoText style={{ color: Constants.colors.primitive['black alpha'][700] }}>
           登録したい料理を１つ以上選択してください
@@ -82,7 +82,7 @@ const styles = StyleSheet.create({
     marginVertical: 2,
   },
   contentWrapper: { marginTop: 36 },
-  recipeItemWrapper: { paddingVertical: 4, marginVertical: 2 },
+  recipeItemWrapper: { paddingVertical: 4, marginVertical: 4 },
   recipeBox: {
     alignItems: 'center',
     justifyContent: 'space-between',
