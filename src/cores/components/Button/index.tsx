@@ -33,12 +33,7 @@ export const Button = memo<Props>(
         {scheme === 'filled' ? (
           <>
             {variant === 'primary' ? (
-              <View
-                style={[
-                  styles.container,
-                  (disabled || loading) && styles.disabledContainer,
-                  (disabled || loading) && styles.disabledTextContainer,
-                ]}>
+              <View style={[styles.container, (disabled || loading) && styles.disabledContainer]}>
                 {loading ? (
                   <ActivityIndicator size="small" color="#FFFFFF" />
                 ) : (
@@ -53,7 +48,6 @@ export const Button = memo<Props>(
                 style={[
                   styles.container,
                   { backgroundColor: bgColor },
-                  (disabled || loading) && styles.disabledContainer,
                   (disabled || loading) && styles.disabledTextContainer,
                 ]}>
                 {loading ? (

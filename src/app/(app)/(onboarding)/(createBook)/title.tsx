@@ -49,7 +49,7 @@ export default function OnboardingCreateBookTitlePage() {
         <View style={styles.titleWrapper}>
           <NotoText style={styles.stepper}>3/4</NotoText>
           <NotoText fw="bold" style={styles.pageTitle}>
-            スペースに名前をつけましょう
+            あなたのスペースの名前を教えてください
           </NotoText>
         </View>
         <TextInput

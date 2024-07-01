@@ -53,7 +53,7 @@ export default function OnboardingCreateSpacePage() {
           <Button
             variant="others"
             onPress={() => router.push('/(onboarding)/(joinBook)/description')}>
-            他の人が作ったスペースに参加する
+            別のスペースに参加する
           </Button>
         </View>
       </View>

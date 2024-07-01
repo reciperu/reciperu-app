@@ -75,7 +75,7 @@ export default function OnboardingRegisterRecipesCompletePage() {
   return (
     <ScrollView style={styles.container}>
       <View style={{ position: 'absolute', top: -40, left: 0, width, height }}>
-        <Confetti ref={confettiRef} bsize={0} untilStopped />
+        <Confetti ref={confettiRef} />
       </View>
       <View style={{ minHeight: height - 144 }}>
         <View style={styles.titleWrapper}>
@@ -86,8 +86,12 @@ export default function OnboardingRegisterRecipesCompletePage() {
         <SharingPromotionCard />
         <Spacer />
         <View style={styles.actionButtonWrapper}>
+          {/* // TODO: 後で対応 */}
           <Button onPress={handleStart} loading={loading}>
-            さっそく始める
+            招待する
+          </Button>
+          <Button onPress={handleStart} scheme="text" loading={loading}>
+            招待せず始める
           </Button>
         </View>
       </View>

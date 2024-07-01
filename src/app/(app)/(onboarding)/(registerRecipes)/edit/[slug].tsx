@@ -150,9 +150,10 @@ export default function Modal() {
     <ScrollView style={styles.container}>
       <Stack.Screen
         options={{
-          title: targetRecipe?.title || '',
           headerTitleStyle: { color: 'black' },
           headerShadowVisible: false,
+          title: targetRecipe?.title || '',
+          headerTitle: targetRecipe?.title || '',
           headerLeft: isPresented ? () => <HeaderLeftBackButton /> : undefined,
           headerRight: () => (
             <TouchableOpacity onPress={handleUpdate}>

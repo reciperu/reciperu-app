@@ -3,9 +3,9 @@ import { memo } from 'react';
 import { StyleSheet, View } from 'react-native';
 
 import { Constants } from '@/constants';
-import { Button } from '@/cores/components/Button';
+import { Flex } from '@/cores/components/Flex';
 import { NotoText } from '@/cores/components/Text';
-import { noop } from '@/functions/utils';
+import { AppIcon } from '@/cores/components/icons';
 
 export const SharingPromotionCard = memo(() => {
   return (
@@ -13,9 +13,16 @@ export const SharingPromotionCard = memo(() => {
       <NotoText fw="bold" style={styles.cardTitle}>
         スペースにパートナーを招待しませんか？
       </NotoText>
-      {/* // TODO: 後で検討 */}
-      <View style={styles.cardActionButton}>
-        <Button onPress={noop}>共有する</Button>
+      <View style={{ marginVertical: 24 }}>
+        <NotoText>パートナーを招待すると...</NotoText>
+        <Flex style={{ gap: 8, marginTop: 12 }}>
+          <AppIcon name="check-mark" color={Constants.colors.primitive.pink[400]} />
+          <NotoText fw="bold">同じレシピを見ることができます！</NotoText>
+        </Flex>
+        <Flex style={{ gap: 8, marginTop: 12 }}>
+          <AppIcon name="check-mark" color={Constants.colors.primitive.pink[400]} />
+          <NotoText fw="bold">食べたい料理をお互いに共有することができます！</NotoText>
+        </Flex>
       </View>
       <Image
         contentFit="contain"

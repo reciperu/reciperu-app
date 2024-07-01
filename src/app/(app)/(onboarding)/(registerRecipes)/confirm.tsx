@@ -60,7 +60,7 @@ export default function OnboardingRegisterRecipesConfirmPage() {
             <View style={{ paddingVertical: 4, marginVertical: 2 }} key={recipe.idx}>
               <Flex
                 style={{
-                  alignItems: 'flex-start',
+                  alignItems: 'center',
                   justifyContent: 'space-between',
                 }}>
                 <View style={{ flex: 1 }}>

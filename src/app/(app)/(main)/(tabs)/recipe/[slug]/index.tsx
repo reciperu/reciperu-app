@@ -11,6 +11,8 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
+import DatePicker from 'react-native-date-picker';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import Toast from 'react-native-toast-message';
 
 import { BOTTOM_SHEET_STYLE, Constants } from '@/constants';
@@ -22,15 +24,17 @@ import { Spacer } from '@/cores/components/Spacer';
 import { NotoText } from '@/cores/components/Text';
 import { TextInput } from '@/cores/components/TextInput';
 import { HeaderLeftBackButton } from '@/cores/components/icons/components/HeaderLeftBackButton';
+import { usePostMenu } from '@/features/Menu/apis/postMenu';
 import { usePutRecipe } from '@/features/Recipe/apis/putRecipe';
 import { EditRecipe } from '@/features/Recipe/components/EditRecipe';
 import { RecipeDetail } from '@/features/Recipe/components/RecipeDetail';
 import { useEditRecipe } from '@/features/Recipe/hooks/useEdiRecipe';
 import { RecipeRequestBody, SpaceRecipe } from '@/features/Recipe/types';
+import { noop } from '@/functions/utils';
 import { toastConfig } from '@/lib/ToastConfig';
+import dayjs from '@/lib/dayjs';
 import { convertImageToBase64FromUri } from '@/utils/image';
 import { isValidUrl } from '@/utils/validation';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 const { width, height } = Dimensions.get('window');
 
@@ -48,10 +52,13 @@ export default function Modal() {
   const isPresented = router.canGoBack();
   const [isEditing, setIsEditing] = useState(false);
   const [isEditPending, setIsEditPending] = useState(false);
-  const [date, setDate] = useState<string>(new Date().toISOString());
+  const [isMenuPending, setIsMenuPending] = useState(false);
+  const [date, setDate] = useState<Date>();
+  const [open, setOpen] = useState(false);
   const bottomSheetModalRef = useRef<BottomSheetModal>(null);
   const params = useLocalSearchParams();
   const mutation = usePutRecipe({});
+  const postMenuMutation = usePostMenu({});
   const queryClient = useQueryClient();
   const [data, setData] = useState<SpaceRecipe>({
     id: params.id,
@@ -173,6 +180,37 @@ export default function Modal() {
     [params, data, editRecipeService, isEditPending, mutation, queryClient]
   );
 
+  const handleAddMenu = useCallback(() => {
+    if (date && !isMenuPending) {
+      setIsMenuPending(true);
+      postMenuMutation.mutate(
+        {
+          recipeId: data.id,
+          scheduledAt: date.toISOString(),
+        },
+        {
+          onSuccess: () => {
+            queryClient.invalidateQueries({
+              queryKey: ['menus'],
+            });
+            Toast.show({
+              type: 'successToast',
+              text1: '献立に登録しました',
+              visibilityTime: 3000,
+              autoHide: true,
+              topOffset: 0,
+            });
+            setDate(undefined);
+            handleCloseSheet();
+          },
+          onSettled: () => {
+            setIsMenuPending(false);
+          },
+        }
+      );
+    }
+  }, [data, date, isMenuPending, postMenuMutation, queryClient]);
+
   const toggleMode = useCallback(() => {
     if (isEditing) {
       handleUpdate(() => setIsEditing(false));
@@ -246,11 +284,14 @@ export default function Modal() {
           </NotoText>
           <View style={{ marginTop: 8, flex: 1, paddingBottom: insets.bottom }}>
             <InputLabel required>食べる日</InputLabel>
-            <TextInput
-              value={date}
-              onChange={(text) => setDate(text)}
-              // errorMessage={emailFormErrorMessage}
-            />
+            <Pressable onPress={() => setOpen(true)}>
+              <TextInput
+                value={date ? dayjs(date).format('YYYY/M/D') : ''}
+                placeholder="YYYY/MM/DD"
+                onChange={noop}
+                readOnly
+              />
+            </Pressable>
             <NotoText
               style={{
                 fontSize: 12,
@@ -261,11 +302,29 @@ export default function Modal() {
               後で設定・変更することができます
             </NotoText>
             <Spacer />
-            <Button onPress={handleCloseSheet}>決定</Button>
+            <Button onPress={handleAddMenu} disabled={date === undefined} loading={isMenuPending}>
+              決定
+            </Button>
           </View>
         </BottomSheetView>
       </BottomSheetModal>
       <Toast config={toastConfig} />
+      <DatePicker
+        modal
+        open={open}
+        date={date || new Date()}
+        minimumDate={new Date()}
+        confirmText="決定"
+        cancelText="キャンセル"
+        mode="date"
+        onConfirm={(date) => {
+          setOpen(false);
+          setDate(date);
+        }}
+        onCancel={() => {
+          setOpen(false);
+        }}
+      />
     </BottomSheetModalProvider>
   );
 }
