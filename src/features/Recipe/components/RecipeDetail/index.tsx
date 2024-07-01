@@ -2,7 +2,7 @@ import { useQueryClient } from '@tanstack/react-query';
 import { Image } from 'expo-image';
 import { useRouter } from 'expo-router';
 import { memo, useCallback, useState } from 'react';
-import { Dimensions, Pressable, Text, TouchableOpacity, View } from 'react-native';
+import { Dimensions, Pressable, TouchableOpacity, View } from 'react-native';
 
 import { useRecipes } from '../../hooks/useRecipes';
 import { SpaceRecipe } from '../../types';
@@ -16,16 +16,16 @@ import { useRecipeRequest } from '@/features/RecipePage/hooks/useRecipeRequest';
 
 interface Props {
   data: SpaceRecipe;
+  showRecipeDetail?: boolean;
 }
 
 const { width } = Dimensions.get('window');
 
-export const RecipeDetail = memo<Props>(({ data }) => {
+export const RecipeDetail = memo<Props>(({ data, showRecipeDetail = true }) => {
   const router = useRouter();
   const queryClient = useQueryClient();
   const [recipeData, setRecipeData] = useState<SpaceRecipe>(data);
   const { getFavorite, addRequester, removeRequester } = useRecipes();
-  // console.log(`recipeData: ${JSON.stringify(Object.keys(recipeData))}`);
   const recipeRequestService = useRecipeRequest();
   // 「食べたい」のステートを入れ替える
   const toggleRequest = useCallback(async () => {
@@ -101,6 +101,7 @@ export const RecipeDetail = memo<Props>(({ data }) => {
           <Flex
             style={{
               gap: 8,
+              height: 48,
               alignItems: 'center',
               paddingVertical: 12,
               borderBottomWidth: 1,
@@ -135,6 +136,7 @@ export const RecipeDetail = memo<Props>(({ data }) => {
           <Flex
             style={{
               gap: 8,
+              height: 48,
               alignItems: 'center',
               paddingVertical: 8,
               borderBottomWidth: 1,
@@ -149,30 +151,32 @@ export const RecipeDetail = memo<Props>(({ data }) => {
               <NotoText style={{ fontSize: 12 }}>{recipeData.appName}</NotoText>
             </Flex>
             <Spacer />
-            <Pressable
-              onPress={() =>
-                router.push({
-                  pathname: `recipe/${data.id}/webview`,
-                  params: { title: data.title, recipeUrl: data.recipeUrl },
-                })
-              }>
-              <Flex
-                style={{
-                  gap: 8,
-                  paddingHorizontal: 10,
-                  paddingVertical: 10,
-                  alignItems: 'center',
-                  backgroundColor: Constants.colors.primitive.gray[50],
-                  borderRadius: 24,
-                }}>
-                <AppIcon
-                  name="window-open"
-                  width={18}
-                  height={18}
-                  color={Constants.colors.primitive.gray[500]}
-                />
-              </Flex>
-            </Pressable>
+            {showRecipeDetail && (
+              <Pressable
+                onPress={() =>
+                  router.push({
+                    pathname: `recipe/${data.id}/webview`,
+                    params: { title: data.title, recipeUrl: data.recipeUrl },
+                  })
+                }>
+                <Flex
+                  style={{
+                    gap: 8,
+                    paddingHorizontal: 10,
+                    paddingVertical: 10,
+                    alignItems: 'center',
+                    backgroundColor: Constants.colors.primitive.gray[50],
+                    borderRadius: 24,
+                  }}>
+                  <AppIcon
+                    name="window-open"
+                    width={18}
+                    height={18}
+                    color={Constants.colors.primitive.gray[500]}
+                  />
+                </Flex>
+              </Pressable>
+            )}
           </Flex>
         )}
         {/* {data.imageUrls?.length && (

@@ -2,7 +2,7 @@ import { BottomSheetModal } from '@gorhom/bottom-sheet';
 import { Image } from 'expo-image';
 import { useRouter } from 'expo-router';
 import { Fragment, memo, useMemo, useRef, useState } from 'react';
-import { Pressable, View } from 'react-native';
+import { ActivityIndicator, Pressable, View } from 'react-native';
 
 import { BOTTOM_SHEET_STYLE, Constants } from '@/constants';
 import { Button } from '@/cores/components/Button';
@@ -12,42 +12,21 @@ import { FoodRandomImage } from '@/cores/components/FoodRandomImage';
 import { LinkButton } from '@/cores/components/LinkButton';
 import { Spacer } from '@/cores/components/Spacer';
 import { NotoText } from '@/cores/components/Text';
+import { useFetchMenus } from '@/features/Menu/apis/getMenus';
+import { CompactMenuItem } from '@/features/Menu/components/MenuItem';
+import { MenuStatus } from '@/features/Menu/types';
 import { RecipeDetail } from '@/features/Recipe/components/RecipeDetail';
-import { CompactRecipeItem } from '@/features/Recipe/components/RecipeItem';
 import { RecipeWebviewLink } from '@/features/Recipe/components/RecipeWebViewLink';
 import { SpaceRecipe } from '@/features/Recipe/types';
 import { noop } from '@/functions/utils';
 
-const data = [
-  {
-    id: '1',
-    title: 'ハンバーグ',
-    thumbnailUrl:
-      'https://recipe.r10s.jp/recipe-space/d/strg/ctrl/3/874b2417ce9cbb455d5ab3150a47f2424e9f29db.57.1.3.2.jpg?interpolation=lanczos-none&fit=around|716:716&crop=716:716;*,*',
-    imageUrls: [],
-    memo: '',
-    recipeUrl: 'https://recipe.rakuten.co.jp/recipe/1160000135/',
-    faviconUrl: 'https://recipe.rakuten.co.jp/favicon.ico',
-    appName: '楽天レシピ',
-    requesters: [],
-  },
-  {
-    id: '2',
-    title: '基本の肉じゃが 作り方・レシピ | クラシル',
-    thumbnailUrl:
-      'https://video.kurashiru.com/production/videos/82b3201b-29f4-4db9-9fbb-82a1ce16d247/compressed_thumbnail_square_large.jpg?1685351324',
-    imageUrls: [],
-    memo: '',
-    recipeUrl: 'https://www.kurashiru.com/recipes/82b3201b-29f4-4db9-9fbb-82a1ce16d247',
-    faviconUrl:
-      'http://www.google.com/s2/favicons?domain=https://www.kurashiru.com/recipes/82b3201b-29f4-4db9-9fbb-82a1ce16d247',
-    appName: 'クラシル',
-    requesters: [],
-  },
-];
-
 export const PlannedMenuSection = memo(() => {
   const router = useRouter();
+  const { data, isFetching } = useFetchMenus({
+    params: {
+      statuses: [MenuStatus.PENDING],
+    },
+  });
   const bottomSheetModalRef = useRef<BottomSheetModal>(null);
   const snapPoints = useMemo(() => ['80%'], []);
 
@@ -60,16 +39,20 @@ export const PlannedMenuSection = memo(() => {
     }
   };
 
-  const handleCloseSheet = () => {
-    if (bottomSheetModalRef.current) {
-      bottomSheetModalRef.current.close();
-      setTargetId(null);
+  // 表示データ一覧
+  const displayData = useMemo(() => {
+    const arr = [];
+    if (data?.pages) {
+      for (const page of data.pages) {
+        arr.push(...page.menus);
+      }
     }
-  };
+    return arr.slice(0, 5);
+  }, [data]);
 
   const targetData = useMemo(
-    () => data.find((item) => item.id === targetId) as any as SpaceRecipe,
-    [targetId]
+    () => displayData.find((item) => item.id === targetId) as any as SpaceRecipe,
+    [targetId, displayData]
   );
 
   return (
@@ -87,36 +70,55 @@ export const PlannedMenuSection = memo(() => {
         </Flex>
         <View style={{ paddingVertical: 16 }}>
           {/* 取得中 */}
-          {/* <ActivityIndicator color={Constants.colors.primitive.pink[400]} /> */}
-          {/* データがない場合 */}
-          <Flex style={{ flexDirection: 'column', alignItems: 'center', gap: 8, marginTop: 16 }}>
-            <FoodRandomImage />
-            <NotoText
-              style={{
-                textAlign: 'center',
-                fontSize: 12,
-                lineHeight: 24,
-                color: Constants.colors.primitive.gray[600],
-              }}>
-              {`計画中の献立はありません
+          {isFetching ? (
+            <ActivityIndicator color={Constants.colors.primitive.pink[400]} />
+          ) : (
+            <>
+              {/* // データがある場合 */}
+              {displayData.length === 0 ? (
+                <>
+                  <Flex
+                    style={{
+                      flexDirection: 'column',
+                      alignItems: 'center',
+                      gap: 8,
+                      marginTop: 16,
+                    }}>
+                    <FoodRandomImage />
+                    <NotoText
+                      style={{
+                        textAlign: 'center',
+                        fontSize: 12,
+                        lineHeight: 24,
+                        color: Constants.colors.primitive.gray[600],
+                      }}>
+                      {`計画中の献立はありません
 レシピに登録された料理から献立を設定しましょう`}
-            </NotoText>
-          </Flex>
-          <Flex style={{ justifyContent: 'center', marginTop: 24 }}>
-            <LinkButton onPress={() => router.push('(app)/(main)/(tabs)/recipe?route=AllRecipe')}>
-              料理を探す
-            </LinkButton>
-          </Flex>
-          {/* データがある場合 */}
-          <Flex style={{ flexDirection: 'column', gap: 16, marginTop: 24 }}>
-            {data.map((item) => (
-              <Fragment key={item.id}>
-                <Pressable onPress={() => handleOpenSheet(item.id)}>
-                  <CompactRecipeItem data={item} />
-                </Pressable>
-              </Fragment>
-            ))}
-          </Flex>
+                    </NotoText>
+                  </Flex>
+                  <Flex style={{ justifyContent: 'center', marginTop: 24 }}>
+                    <LinkButton
+                      onPress={() => router.push('(app)/(main)/(tabs)/recipe?route=AllRecipe')}>
+                      料理を探す
+                    </LinkButton>
+                  </Flex>
+                </>
+              ) : (
+                // データがある場合
+                <>
+                  <Flex style={{ flexDirection: 'column', gap: 16, marginTop: 24 }}>
+                    {displayData.map((item) => (
+                      <Fragment key={item.id}>
+                        <Pressable onPress={() => handleOpenSheet(item.id)}>
+                          <CompactMenuItem data={item} />
+                        </Pressable>
+                      </Fragment>
+                    ))}
+                  </Flex>
+                </>
+              )}
+            </>
+          )}
         </View>
       </View>
       <BottomSheetModal
