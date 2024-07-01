@@ -8,7 +8,7 @@ import { BOTTOM_SHEET_STYLE, Constants } from '@/constants';
 import { Button } from '@/cores/components/Button';
 import { Container } from '@/cores/components/Container';
 import { Flex } from '@/cores/components/Flex';
-import { FoodImage } from '@/cores/components/FoodImage';
+import { FoodRandomImage } from '@/cores/components/FoodRandomImage';
 import { LinkButton } from '@/cores/components/LinkButton';
 import { Spacer } from '@/cores/components/Spacer';
 import { NotoText } from '@/cores/components/Text';
@@ -90,7 +90,7 @@ export const PlannedMenuSection = memo(() => {
           {/* <ActivityIndicator color={Constants.colors.primitive.pink[400]} /> */}
           {/* データがない場合 */}
           <Flex style={{ flexDirection: 'column', alignItems: 'center', gap: 8, marginTop: 16 }}>
-            <FoodImage />
+            <FoodRandomImage />
             <NotoText
               style={{
                 textAlign: 'center',

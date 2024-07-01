@@ -23,7 +23,7 @@ const assets = [
   require('assets/food/sushi.webp'),
 ];
 
-export const FoodImage = memo<Props>(({ width = 48, height = 48 }) => {
+export const FoodRandomImage = memo<Props>(({ width = 48, height = 48 }) => {
   const [index, setIndex] = useState(0);
   useFocusEffect(() => {
     const randomIndex = Math.floor(Math.random() * assets.length);

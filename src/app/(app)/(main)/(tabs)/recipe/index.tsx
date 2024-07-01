@@ -23,11 +23,10 @@ export default function RecipePage() {
   const navigation = useNavigation();
   useEffect(() => {
     if (params.route) {
-      console.log('call A');
-      console.log('params.route: ', params.route);
+      // @ts-ignore
       navigation.navigate(params.route);
     }
-  }, [params.route]);
+  }, [params.route, navigation]);
 
   return (
     <View style={{ flex: 1, position: 'relative', backgroundColor: 'white' }}>

@@ -4,7 +4,7 @@ import { Pressable, Text, View } from 'react-native';
 
 import { Constants } from '@/constants';
 import { Flex } from '@/cores/components/Flex';
-import { FoodImage } from '@/cores/components/FoodImage';
+import { FoodRandomImage } from '@/cores/components/FoodRandomImage';
 import { Spacer } from '@/cores/components/Spacer';
 import { NotoText } from '@/cores/components/Text';
 import { AppIcon } from '@/cores/components/icons';
@@ -48,7 +48,7 @@ export const RecentMenuSection = memo(() => {
         {/* <ActivityIndicator color={Constants.colors.primitive.pink[400]} /> */}
         {/* データがない場合 */}
         <Flex style={{ flexDirection: 'column', alignItems: 'center', gap: 8, marginTop: 16 }}>
-          <FoodImage />
+          <FoodRandomImage />
           <NotoText
             style={{
               textAlign: 'center',
