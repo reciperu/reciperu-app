@@ -12,6 +12,7 @@ import { FoodImage } from '@/cores/components/FoodImage';
 import { LinkButton } from '@/cores/components/LinkButton';
 import { Spacer } from '@/cores/components/Spacer';
 import { NotoText } from '@/cores/components/Text';
+import { AppIcon } from '@/cores/components/icons';
 import { RecipeDetail } from '@/features/Recipe/components/RecipeDetail';
 import { RecipeCard } from '@/features/Recipe/components/RecipeItem';
 import { RecipeWebviewLink } from '@/features/Recipe/components/RecipeWebViewLink';
@@ -118,7 +119,11 @@ export const UserEatingListSection = memo<Props>(({ avatar, name, list, loading,
                 color: Constants.colors.primitive.gray[600],
               }}>
               {`食べたい料理は未登録です
-食べたい料理の「」をタップしましょう`}
+食べたい料理の`}
+              <View style={{ paddingHorizontal: 4, marginTop: -2 }}>
+                <AppIcon name="bookmark" width={20} height={20} />
+              </View>
+              をタップしましょう
             </NotoText>
           </Flex>
           <Flex style={{ justifyContent: 'center', marginTop: 24 }}>

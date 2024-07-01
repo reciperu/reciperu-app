@@ -1,11 +1,13 @@
-import { Constants } from '@/constants';
-import { Flex } from '@/cores/components/Flex';
-import { NotoText } from '@/cores/components/Text';
-import { SpaceUser } from '@/features/User/types';
 import { Image } from 'expo-image';
 import { useRouter } from 'expo-router';
 import { memo } from 'react';
 import { Pressable } from 'react-native';
+
+import { NoPartnerIcon } from './NoPartnerIcon';
+
+import { Flex } from '@/cores/components/Flex';
+import { NotoText } from '@/cores/components/Text';
+import { SpaceUser } from '@/features/User/types';
 
 interface Props {
   myProfile: SpaceUser | null;
@@ -49,22 +51,7 @@ export const UserIconList = memo<Props>(({ myProfile, partnerProfile }) => {
           </NotoText>
         </Flex>
       ) : (
-        // TODO: ここ後で実装
-        <Flex style={{ flexDirection: 'column', alignItems: 'center', gap: 4 }}>
-          <Image
-            source={require('assets/noUserIcon.png')}
-            style={{ width: 48, height: 48, borderRadius: 24 }}
-          />
-          <NotoText
-            fw="bold"
-            style={{
-              fontSize: 12,
-              textAlign: 'center',
-              color: Constants.colors.primitive.gray[500],
-            }}>
-            招待する
-          </NotoText>
-        </Flex>
+        <NoPartnerIcon />
       )}
     </Flex>
   );

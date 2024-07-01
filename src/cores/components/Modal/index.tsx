@@ -1,11 +1,14 @@
 import { memo } from 'react';
 import { Pressable, View } from 'react-native';
 import Modal from 'react-native-modal';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import Toast from 'react-native-toast-message';
 
 import { Flex } from '../Flex';
 import { AppIcon } from '../icons';
 
 import { Constants } from '@/constants';
+import { toastConfig } from '@/lib/ToastConfig';
 
 interface Props {
   isVisible: boolean;
@@ -15,14 +18,21 @@ interface Props {
 }
 
 export const AppModal = memo<Props>(({ isVisible, close, title, children }) => {
+  const insets = useSafeAreaInsets();
   return (
     <Modal
       isVisible={isVisible}
       useNativeDriver
-      animationInTiming={400}
-      animationOutTiming={400}
+      useNativeDriverForBackdrop
+      animationInTiming={600}
+      animationOutTiming={600}
       onBackdropPress={close}
-      backdropOpacity={0.6}>
+      backdropOpacity={0.4}
+      style={{
+        justifyContent: 'flex-end',
+        margin: 24,
+        marginBottom: 24 + insets.bottom,
+      }}>
       <View
         style={{ padding: 16, borderRadius: 16, backgroundColor: 'white', position: 'relative' }}>
         <View style={{ position: 'absolute', top: 0, right: 0 }}>
@@ -42,6 +52,7 @@ export const AppModal = memo<Props>(({ isVisible, close, title, children }) => {
         {/* 中身 */}
         <View style={{ width: '100%' }}>{children}</View>
       </View>
+      <Toast config={toastConfig} />
     </Modal>
   );
 });

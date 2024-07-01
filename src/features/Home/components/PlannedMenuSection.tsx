@@ -1,13 +1,15 @@
 import { BottomSheetModal } from '@gorhom/bottom-sheet';
 import { Image } from 'expo-image';
+import { useRouter } from 'expo-router';
 import { Fragment, memo, useMemo, useRef, useState } from 'react';
-import { Pressable, Text, View } from 'react-native';
+import { Pressable, View } from 'react-native';
 
 import { BOTTOM_SHEET_STYLE, Constants } from '@/constants';
 import { Button } from '@/cores/components/Button';
 import { Container } from '@/cores/components/Container';
 import { Flex } from '@/cores/components/Flex';
 import { FoodImage } from '@/cores/components/FoodImage';
+import { LinkButton } from '@/cores/components/LinkButton';
 import { Spacer } from '@/cores/components/Spacer';
 import { NotoText } from '@/cores/components/Text';
 import { RecipeDetail } from '@/features/Recipe/components/RecipeDetail';
@@ -15,8 +17,6 @@ import { CompactRecipeItem } from '@/features/Recipe/components/RecipeItem';
 import { RecipeWebviewLink } from '@/features/Recipe/components/RecipeWebViewLink';
 import { SpaceRecipe } from '@/features/Recipe/types';
 import { noop } from '@/functions/utils';
-import { LinkButton } from '@/cores/components/LinkButton';
-import { useRouter } from 'expo-router';
 
 const data = [
   {

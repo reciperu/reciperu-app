@@ -23,4 +23,6 @@ export const ICON_NAME_LIST = [
   'add',
   'close',
   'window-open',
+  'copy',
+  'reload',
 ] as const;

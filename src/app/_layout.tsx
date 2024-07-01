@@ -46,9 +46,9 @@ export default function RootLayout() {
               </WholeLayout>
             </View>
           </GestureHandlerRootView>
-          <Toast config={toastConfig} />
         </BottomSheetModalProvider>
       </AuthProvider>
+      <Toast config={toastConfig} />
     </ReactQueryClientProvider>
   );
 }

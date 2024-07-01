@@ -26,6 +26,7 @@ export const ToastWrapper = memo<PropsWithChildren<Props>>(({ children, style })
         shadowRadius: 5.62,
         elevation: 8,
         borderWidth: 1,
+        zIndex: 9999,
         ...(style as any),
       };
     }
@@ -45,6 +46,7 @@ export const ToastWrapper = memo<PropsWithChildren<Props>>(({ children, style })
       shadowRadius: 5.62,
       elevation: 8,
       borderWidth: 1,
+      zIndex: 9999,
     };
   }, [style]);
   return <Flex style={containerStyle}>{children}</Flex>;
