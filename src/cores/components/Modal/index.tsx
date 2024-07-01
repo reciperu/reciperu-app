@@ -24,8 +24,8 @@ export const AppModal = memo<Props>(({ isVisible, close, title, children }) => {
       isVisible={isVisible}
       useNativeDriver
       useNativeDriverForBackdrop
-      animationInTiming={600}
-      animationOutTiming={600}
+      animationInTiming={500}
+      animationOutTiming={800}
       onBackdropPress={close}
       backdropOpacity={0.4}
       style={{
