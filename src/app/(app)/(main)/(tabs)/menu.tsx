@@ -6,7 +6,7 @@ export default function MenuPage() {
   return (
     <Container>
       <NotoText fw="bold" style={{ fontSize: 20, paddingTop: 12 }}>
-        これまでの献立
+        献立
       </NotoText>
       <MenuList />
     </Container>

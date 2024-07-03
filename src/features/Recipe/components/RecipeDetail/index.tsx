@@ -30,13 +30,13 @@ export const RecipeDetail = memo<Props>(({ data, showRecipeDetail = true }) => {
   // 「食べたい」のステートを入れ替える
   const toggleRequest = useCallback(async () => {
     const handleSuccessAdd = () => {
-      setRecipeData((prev) => ({ ...prev, requesters: addRequester(prev.requesters) }));
+      setRecipeData((prev) => ({ ...prev, requesters: addRequester(prev.requesters) || [] }));
       queryClient.invalidateQueries({
         queryKey: ['recipes'],
       });
     };
     const handleSuccessRemove = () => {
-      setRecipeData((prev) => ({ ...prev, requesters: removeRequester(prev.requesters) }));
+      setRecipeData((prev) => ({ ...prev, requesters: removeRequester(prev.requesters) || [] }));
       queryClient.invalidateQueries({
         queryKey: ['recipes'],
       });

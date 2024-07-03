@@ -8,12 +8,16 @@ import { NotoText } from '../../Text';
 
 import { Constants } from '@/constants';
 
-export const HeaderLeftBackButton = memo(() => {
+interface Props {
+  onPress?: () => void;
+}
+
+export const HeaderLeftBackButton = memo<Props>(({ onPress }) => {
   const navigation = useNavigation();
   return (
     <Flex style={{ gap: 4, alignItems: 'center' }}>
       <AppIcon name="arrow-back" />
-      <TouchableOpacity onPress={() => navigation.goBack()}>
+      <TouchableOpacity onPress={() => (onPress ? onPress() : navigation.goBack())}>
         <NotoText style={{ color: Constants.colors.primitive.pink[400] }}>戻る</NotoText>
       </TouchableOpacity>
     </Flex>

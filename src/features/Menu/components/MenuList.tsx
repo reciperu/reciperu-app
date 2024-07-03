@@ -1,6 +1,6 @@
 import { useRouter } from 'expo-router';
 import { memo, useCallback, useMemo, useState } from 'react';
-import { FlatList, Pressable, RefreshControl } from 'react-native';
+import { FlatList, Pressable, RefreshControl, SectionList } from 'react-native';
 
 import { EmptyView } from './EmptyView';
 import { ErrorView } from './ErrorView';
@@ -11,6 +11,9 @@ import { MenuStatus } from '../types';
 
 import { Flex } from '@/cores/components/Flex';
 import { sleep } from '@/utils/sleep';
+import dayjs from '@/lib/dayjs';
+import { NotoText } from '@/cores/components/Text';
+import { RecipeItem } from '@/features/Recipe/components/RecipeItem';
 
 export const MenuList = memo(() => {
   const [refreshing, setRefreshing] = useState(false);
@@ -27,7 +30,7 @@ export const MenuList = memo(() => {
     isRefetching,
   } = useFetchMenus({
     params: {
-      statuses: [MenuStatus.CONFIRMED],
+      statuses: [MenuStatus.CONFIRMED, MenuStatus.PENDING],
     },
   });
 
@@ -36,7 +39,26 @@ export const MenuList = memo(() => {
     const arr = [];
     if (data?.pages) {
       for (const page of data.pages) {
-        arr.push(...page.menus);
+        const menus = page.menus;
+        for (const menu of menus) {
+          // 1/31（水）のフォーマットにする
+          let scheduleLabel = '';
+          const scheduledAt = dayjs(menu.scheduledAt);
+          if (scheduledAt.format('YYYY') === dayjs().format('YYYY')) {
+            scheduleLabel = scheduledAt.format('M/D（ddd）');
+          } else {
+            scheduleLabel = scheduledAt.format('YYYY/M/D（ddd）');
+          }
+          const targetIndex = arr.findIndex((item) => item.title === scheduleLabel);
+          if (targetIndex !== -1) {
+            arr[targetIndex].data.push(menu);
+          } else {
+            arr.push({
+              title: scheduleLabel,
+              data: [menu],
+            });
+          }
+        }
       }
     }
     return arr;
@@ -63,6 +85,8 @@ export const MenuList = memo(() => {
     setRefreshing(false);
   }, [isRefetching, refetch]);
 
+  // console.log(JSON.stringify(displayData, null, 2));
+
   return (
     <>
       {/* ローディング中 */}
@@ -79,10 +103,10 @@ export const MenuList = memo(() => {
               {!displayData?.length ? (
                 <EmptyView />
               ) : (
-                <FlatList
-                  data={displayData}
-                  contentContainerStyle={{ paddingHorizontal: 16, paddingVertical: 16 }}
+                <SectionList
+                  sections={displayData}
                   keyExtractor={(item, index) => `${item.id}-${index}`}
+                  contentContainerStyle={{ paddingVertical: 16 }}
                   refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />}
                   renderItem={({ item }) => (
                     <Flex style={{ paddingVertical: 8, gap: 4 }}>
@@ -90,7 +114,7 @@ export const MenuList = memo(() => {
                         style={{ flex: 1 }}
                         onPress={() =>
                           router.push({
-                            pathname: `recipe/${item.recipe.id}`,
+                            pathname: `/recipe/${item.recipe.id}`,
                             params: {
                               ...item.recipe,
                               requesters: JSON.stringify(item.recipe.requesters),
@@ -98,10 +122,14 @@ export const MenuList = memo(() => {
                             },
                           })
                         }>
-                        {/* // TODO: menuコンポーネントを追加 */}
-                        <></>
+                        <RecipeItem data={item.recipe} />
                       </Pressable>
                     </Flex>
+                  )}
+                  renderSectionHeader={({ section: { title } }) => (
+                    <NotoText style={{ fontSize: 16 }} fw="bold">
+                      {title}
+                    </NotoText>
                   )}
                   onEndReached={handleEndReached}
                   ListFooterComponent={() => (

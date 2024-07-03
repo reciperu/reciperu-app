@@ -1,5 +1,5 @@
 import { Image } from 'expo-image';
-import { memo } from 'react';
+import { memo, useCallback } from 'react';
 import { Pressable, View } from 'react-native';
 
 import { MenuItem } from '../types';
@@ -7,16 +7,90 @@ import { MenuItem } from '../types';
 import { Constants } from '@/constants';
 import { Flex } from '@/cores/components/Flex';
 import { NotoText } from '@/cores/components/Text';
-import { AppIcon } from '@/cores/components/icons';
-import { RecipeWebviewLink } from '@/features/Recipe/components/RecipeWebViewLink';
+import dayjs from '@/lib/dayjs';
 
 interface Props {
   data: MenuItem;
 }
 
 export const CompactMenuItem = memo<Props>(({ data }) => {
+  console.log(`date: ${dayjs(data.scheduledAt).format('YYYY/MM/DD')}`);
+  const renderMark = useCallback(() => {
+    const scheduledAt = dayjs(data.scheduledAt);
+    // 今日の場合
+    if (scheduledAt.isSame(dayjs(), 'day')) {
+      return (
+        <View
+          style={{
+            width: 40,
+            height: 40,
+            borderRadius: 20,
+            backgroundColor: Constants.colors.primitive.green[400],
+            justifyContent: 'center',
+          }}>
+          <NotoText fw="black" style={{ fontSize: 9, color: 'white', textAlign: 'center' }}>
+            今日の
+          </NotoText>
+          <NotoText
+            fw="black"
+            style={{ fontSize: 9, color: 'white', textAlign: 'center', marginTop: -2 }}>
+            献立
+          </NotoText>
+        </View>
+      );
+    }
+    // 明日の場合
+    if (scheduledAt.isSame(dayjs().add(1, 'day'), 'day')) {
+      return (
+        <View
+          style={{
+            width: 40,
+            height: 40,
+            borderRadius: 20,
+            backgroundColor: Constants.colors.primitive.blue[400],
+            justifyContent: 'center',
+          }}>
+          <NotoText fw="black" style={{ fontSize: 9, color: 'white', textAlign: 'center' }}>
+            明日の
+          </NotoText>
+          <NotoText
+            fw="black"
+            style={{ fontSize: 9, color: 'white', textAlign: 'center', marginTop: -2 }}>
+            献立
+          </NotoText>
+        </View>
+      );
+    }
+    // それ以外の場合
+    return (
+      <View
+        style={{
+          width: 40,
+          height: 40,
+          borderRadius: 20,
+          backgroundColor: Constants.colors.primitive.gray[50],
+          justifyContent: 'center',
+        }}>
+        <NotoText
+          fw="black"
+          style={{
+            fontSize: 12,
+            color: Constants.colors.primitive.gray[500],
+            textAlign: 'center',
+          }}>
+          {scheduledAt.format('M/D')}
+        </NotoText>
+        <NotoText
+          fw="black"
+          style={{ fontSize: 9, color: Constants.colors.primitive.gray[400], textAlign: 'center' }}>
+          予定
+        </NotoText>
+      </View>
+    );
+  }, [data.scheduledAt]);
   return (
     <Flex style={{ gap: 8, alignItems: 'center' }}>
+      {renderMark()}
       <Image
         source={data.recipe.thumbnailUrl}
         style={{ width: 48, height: 48, borderRadius: Constants.radius.lg }}
@@ -32,33 +106,6 @@ export const CompactMenuItem = memo<Props>(({ data }) => {
           </NotoText>
         </Flex>
       </View>
-      {data.recipe.recipeUrl.length > 0 && (
-        <RecipeWebviewLink
-          id={data.recipe.id}
-          title={data.recipe.title}
-          recipeUrl={data.recipe.recipeUrl}>
-          <Pressable>
-            <Flex
-              style={{
-                flexDirection: 'column',
-                alignItems: 'center',
-                padding: 6,
-                backgroundColor: Constants.colors.primitive.gray[50],
-                borderRadius: Constants.radius['xl'],
-              }}>
-              <AppIcon
-                name="window-open"
-                width={14}
-                height={14}
-                color={Constants.colors.primitive.gray[500]}
-              />
-              <NotoText style={{ fontSize: 8, color: Constants.colors.primitive.gray[600] }}>
-                レシピ
-              </NotoText>
-            </Flex>
-          </Pressable>
-        </RecipeWebviewLink>
-      )}
     </Flex>
   );
 });

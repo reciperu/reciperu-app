@@ -226,7 +226,9 @@ export default function Modal() {
           title: typeof data.title === 'string' ? data.title : '',
           headerTitleStyle: { color: 'black' },
           headerShadowVisible: false,
-          headerLeft: isPresented ? () => <HeaderLeftBackButton /> : undefined,
+          headerLeft: isPresented
+            ? () => <HeaderLeftBackButton onPress={() => router.push('/recipe')} />
+            : undefined,
           headerRight: () => (
             <Flex
               style={{
@@ -314,6 +316,7 @@ export default function Modal() {
         open={open}
         date={date || new Date()}
         minimumDate={new Date()}
+        title="食べる日を選択してください"
         confirmText="決定"
         cancelText="キャンセル"
         mode="date"

@@ -141,12 +141,18 @@ export const InviteModal = memo<Props>(({ isVisible, onClose }) => {
               {mutation.isPending ? (
                 <ActivityIndicator color={Constants.colors.primitive.gray[400]} />
               ) : (
-                <AppIcon name="reload" color={Constants.colors.primitive.gray[400]} />
+                <AppIcon
+                  name="reload"
+                  color={Constants.colors.primitive.gray[400]}
+                  width={18}
+                  height={18}
+                />
               )}
               <NotoText
                 style={{
                   color: Constants.colors.primitive.gray[500],
                   textDecorationLine: 'underline',
+                  fontSize: 12,
                 }}>
                 更新する
               </NotoText>

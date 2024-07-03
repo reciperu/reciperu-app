@@ -19,9 +19,11 @@ import { RecipeDetail } from '@/features/Recipe/components/RecipeDetail';
 import { RecipeWebviewLink } from '@/features/Recipe/components/RecipeWebViewLink';
 import { SpaceRecipe } from '@/features/Recipe/types';
 import { noop } from '@/functions/utils';
+import { MenuDetail } from '@/features/Menu/components/MenuDetail';
 
 export const PlannedMenuSection = memo(() => {
   const router = useRouter();
+  // TODO: /pendingの方が最適？
   const { data, isFetching } = useFetchMenus({
     params: {
       statuses: [MenuStatus.PENDING],
@@ -47,13 +49,19 @@ export const PlannedMenuSection = memo(() => {
         arr.push(...page.menus);
       }
     }
-    return arr.slice(0, 5);
+    // scheduledAtが今日以降のものを表示
+    // scheduledAtを今日から順に並び替える
+    return arr
+      .filter((item) => new Date(item.scheduledAt) >= new Date())
+      .sort((a, b) => new Date(a.scheduledAt).getTime() - new Date(b.scheduledAt).getTime());
   }, [data]);
 
   const targetData = useMemo(
-    () => displayData.find((item) => item.id === targetId) as any as SpaceRecipe,
+    () => displayData.find((item) => item.id === targetId),
     [targetId, displayData]
   );
+
+  console.log(JSON.stringify(targetData?.recipe, null, 2));
 
   return (
     <>
@@ -71,7 +79,7 @@ export const PlannedMenuSection = memo(() => {
         <View style={{ paddingVertical: 16 }}>
           {/* 取得中 */}
           {isFetching ? (
-            <ActivityIndicator color={Constants.colors.primitive.pink[400]} />
+            <ActivityIndicator />
           ) : (
             <>
               {/* // データがある場合 */}
@@ -128,19 +136,7 @@ export const PlannedMenuSection = memo(() => {
         style={BOTTOM_SHEET_STYLE}>
         {targetData && (
           <Container>
-            <RecipeDetail data={targetData} />
-            <Spacer />
-            <Button onPress={noop}>献立から削除</Button>
-            <View style={{ marginTop: 8 }}>
-              <RecipeWebviewLink
-                id={targetData.id}
-                recipeUrl={targetData.recipeUrl}
-                title={targetData.title}>
-                <Button variant="primary" scheme="text">
-                  レシピを見る
-                </Button>
-              </RecipeWebviewLink>
-            </View>
+            <MenuDetail data={targetData} />
           </Container>
         )}
       </BottomSheetModal>

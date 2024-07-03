@@ -15,10 +15,12 @@ export const getMenus = async ({ pageParam, queryKey }: any): Promise<MenusRespo
   if (pageParam.length) {
     url += `?cursor=${pageParam}`;
   }
-  // TODO: この形で渡すので良いか動作確認
   if (params.statuses) {
     url += url.includes('cursor') ? '&' : '?';
-    url += `statuses=${params.statuses}`;
+    for (const status of params.statuses) {
+      url += `statuses[]=${status}&`;
+    }
+    url = url.slice(0, -1);
   }
   return await client.get(url);
 };
