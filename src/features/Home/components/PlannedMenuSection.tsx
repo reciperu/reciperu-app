@@ -1,25 +1,19 @@
 import { BottomSheetModal } from '@gorhom/bottom-sheet';
 import { Image } from 'expo-image';
 import { useRouter } from 'expo-router';
-import { Fragment, memo, useMemo, useRef, useState } from 'react';
+import { Fragment, memo, useCallback, useMemo, useRef, useState } from 'react';
 import { ActivityIndicator, Pressable, View } from 'react-native';
 
 import { BOTTOM_SHEET_STYLE, Constants } from '@/constants';
-import { Button } from '@/cores/components/Button';
 import { Container } from '@/cores/components/Container';
 import { Flex } from '@/cores/components/Flex';
 import { FoodRandomImage } from '@/cores/components/FoodRandomImage';
 import { LinkButton } from '@/cores/components/LinkButton';
-import { Spacer } from '@/cores/components/Spacer';
 import { NotoText } from '@/cores/components/Text';
 import { useFetchMenus } from '@/features/Menu/apis/getMenus';
+import { MenuDetail } from '@/features/Menu/components/MenuDetail';
 import { CompactMenuItem } from '@/features/Menu/components/MenuItem';
 import { MenuStatus } from '@/features/Menu/types';
-import { RecipeDetail } from '@/features/Recipe/components/RecipeDetail';
-import { RecipeWebviewLink } from '@/features/Recipe/components/RecipeWebViewLink';
-import { SpaceRecipe } from '@/features/Recipe/types';
-import { noop } from '@/functions/utils';
-import { MenuDetail } from '@/features/Menu/components/MenuDetail';
 
 export const PlannedMenuSection = memo(() => {
   const router = useRouter();
@@ -41,6 +35,13 @@ export const PlannedMenuSection = memo(() => {
     }
   };
 
+  const handleCloseSheet = useCallback(() => {
+    if (bottomSheetModalRef.current) {
+      bottomSheetModalRef.current.dismiss();
+      setTargetId(null);
+    }
+  }, []);
+
   // 表示データ一覧
   const displayData = useMemo(() => {
     const arr = [];
@@ -60,8 +61,6 @@ export const PlannedMenuSection = memo(() => {
     () => displayData.find((item) => item.id === targetId),
     [targetId, displayData]
   );
-
-  console.log(JSON.stringify(targetData?.recipe, null, 2));
 
   return (
     <>
@@ -136,7 +135,7 @@ export const PlannedMenuSection = memo(() => {
         style={BOTTOM_SHEET_STYLE}>
         {targetData && (
           <Container>
-            <MenuDetail data={targetData} />
+            <MenuDetail data={targetData} onClose={handleCloseSheet} />
           </Container>
         )}
       </BottomSheetModal>

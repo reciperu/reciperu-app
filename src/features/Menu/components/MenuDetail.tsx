@@ -20,15 +20,18 @@ import { SpaceRecipe } from '@/features/Recipe/types';
 import { useRecipeRequest } from '@/features/RecipePage/hooks/useRecipeRequest';
 import { noop } from '@/functions/utils';
 import dayjs from '@/lib/dayjs';
+import { useDeleteMenu } from '../apis/deleteMenu';
 
 interface Props {
   data: MenuItem;
+  onClose: () => void;
 }
 
 const { width } = Dimensions.get('window');
 
-export const MenuDetail = memo<Props>(({ data }) => {
+export const MenuDetail = memo<Props>(({ data, onClose }) => {
   const mutation = usePutMenu({});
+  const deleteMutation = useDeleteMenu({});
   const queryClient = useQueryClient();
   const [recipeData, setRecipeData] = useState<SpaceRecipe>(data.recipe);
   const [date, setDate] = useState<Date | undefined>(
@@ -37,6 +40,41 @@ export const MenuDetail = memo<Props>(({ data }) => {
   const [open, setOpen] = useState(false);
   const { getFavorite, addRequester, removeRequester } = useRecipes();
   const recipeRequestService = useRecipeRequest();
+  // メニューを削除する
+  const deleteMenu = useCallback(() => {
+    deleteMutation.mutate(
+      {
+        id: data.id,
+      },
+      {
+        onSuccess: () => {
+          Toast.show({
+            type: 'successToast',
+            text1: '献立を削除しました',
+            visibilityTime: 3000,
+            autoHide: true,
+            topOffset: 60,
+          });
+          onClose();
+          queryClient.invalidateQueries({
+            queryKey: ['pending-menus'],
+          });
+          queryClient.invalidateQueries({
+            queryKey: ['menus'],
+          });
+        },
+        onError: () => {
+          Toast.show({
+            type: 'errorToast',
+            text1: '献立の削除に失敗しました',
+            visibilityTime: 3000,
+            autoHide: true,
+            topOffset: 60,
+          });
+        },
+      }
+    );
+  }, [data.id, deleteMutation, queryClient, onClose]);
   // 食べる日を更新する
   const updateSchedule = useCallback(
     async (updateDate: Date) => {
@@ -259,7 +297,9 @@ export const MenuDetail = memo<Props>(({ data }) => {
         </View>
       </View>
       <Spacer />
-      <Button onPress={noop}>献立から削除</Button>
+      <Button onPress={deleteMenu} loading={deleteMutation.isPending} disabled={mutation.isPending}>
+        献立から削除
+      </Button>
       <View style={{ marginTop: 8 }}>
         <RecipeWebviewLink
           id={data.recipe.id}

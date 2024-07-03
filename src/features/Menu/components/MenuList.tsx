@@ -1,6 +1,6 @@
 import { useRouter } from 'expo-router';
 import { memo, useCallback, useMemo, useState } from 'react';
-import { FlatList, Pressable, RefreshControl, SectionList } from 'react-native';
+import { Pressable, RefreshControl, SectionList } from 'react-native';
 
 import { EmptyView } from './EmptyView';
 import { ErrorView } from './ErrorView';
@@ -10,10 +10,10 @@ import { useFetchMenus } from '../apis/getMenus';
 import { MenuStatus } from '../types';
 
 import { Flex } from '@/cores/components/Flex';
-import { sleep } from '@/utils/sleep';
-import dayjs from '@/lib/dayjs';
 import { NotoText } from '@/cores/components/Text';
 import { RecipeItem } from '@/features/Recipe/components/RecipeItem';
+import dayjs from '@/lib/dayjs';
+import { sleep } from '@/utils/sleep';
 
 export const MenuList = memo(() => {
   const [refreshing, setRefreshing] = useState(false);

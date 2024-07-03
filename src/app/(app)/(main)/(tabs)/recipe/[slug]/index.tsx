@@ -2,15 +2,8 @@ import { BottomSheetModal, BottomSheetModalProvider, BottomSheetView } from '@go
 import { useQueryClient } from '@tanstack/react-query';
 import { AxiosError } from 'axios';
 import { Stack, router, useLocalSearchParams } from 'expo-router';
-import { memo, useCallback, useRef, useState } from 'react';
-import {
-  ActivityIndicator,
-  Dimensions,
-  Pressable,
-  StyleSheet,
-  TouchableOpacity,
-  View,
-} from 'react-native';
+import { useCallback, useRef, useState } from 'react';
+import { ActivityIndicator, Pressable, StyleSheet, TouchableOpacity, View } from 'react-native';
 import DatePicker from 'react-native-date-picker';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import Toast from 'react-native-toast-message';
@@ -20,6 +13,7 @@ import { Button } from '@/cores/components/Button';
 import { Container } from '@/cores/components/Container';
 import { Flex } from '@/cores/components/Flex';
 import { InputLabel } from '@/cores/components/InputLabel';
+import { Overlay } from '@/cores/components/Overlay';
 import { Spacer } from '@/cores/components/Spacer';
 import { NotoText } from '@/cores/components/Text';
 import { TextInput } from '@/cores/components/TextInput';
@@ -35,17 +29,6 @@ import { toastConfig } from '@/lib/ToastConfig';
 import dayjs from '@/lib/dayjs';
 import { convertImageToBase64FromUri } from '@/utils/image';
 import { isValidUrl } from '@/utils/validation';
-
-const { width, height } = Dimensions.get('window');
-
-const Overlay = memo<{ visible: boolean; onPress: () => void }>(({ visible, onPress }) => {
-  if (!visible) return null;
-  return (
-    <Pressable onPress={onPress} style={styles.overlay}>
-      <View />
-    </Pressable>
-  );
-});
 
 export default function Modal() {
   const insets = useSafeAreaInsets();
@@ -193,6 +176,9 @@ export default function Modal() {
             queryClient.invalidateQueries({
               queryKey: ['menus'],
             });
+            queryClient.invalidateQueries({
+              queryKey: ['pending-menus'],
+            });
             Toast.show({
               type: 'successToast',
               text1: '献立に登録しました',
@@ -255,7 +241,7 @@ export default function Modal() {
             <RecipeDetail data={data} />
             <Spacer />
             <Button variant="primary" onPress={handleOpenSheet}>
-              献立にする
+              献立として登録
             </Button>
             {/* // TODO: v1では削除 */}
             {/* <View style={{ marginTop: 12 }}>
@@ -340,16 +326,5 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: 'green',
-  },
-  overlay: {
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
-    backgroundColor: 'rgba(0,0,0,0.2)',
-    width,
-    height,
-    zIndex: 0,
   },
 });
