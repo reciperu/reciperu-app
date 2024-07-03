@@ -33,12 +33,9 @@ const windowWidth = Dimensions.get('window').width;
 interface Props {
   avatar?: string;
   name?: string;
-  list: string[];
-  loading: boolean;
-  type: 'mine' | 'other';
 }
 
-export const UserEatingListSection = memo<Props>(({ avatar, name, list, loading, type }) => {
+export const UserEatingListSection = memo<Props>(({ avatar, name }) => {
   const insets = useSafeAreaInsets();
   const postMenuMutation = usePostMenu({});
   const bottomSheetModalRef = useRef<BottomSheetModal>(null);
