@@ -89,7 +89,11 @@ export default function MyPagePage() {
       quality: 1,
     });
     if (!result.canceled) {
-      setTmpImage(result.assets[0].uri);
+      const imageUri = result.assets[0].uri;
+      const base64 = await convertToBase64FromModule(imageUri);
+      if (base64) {
+        setTmpImage(base64);
+      }
     }
   }, []);
 
