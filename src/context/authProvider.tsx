@@ -48,6 +48,7 @@ const useAuthProvider = () => {
   const [appleAuthPending, setAppleAuthPending] = useState(false);
   const [initialize, setInitialize] = useState(false);
   const mutation = usePostAuth({});
+  // パスのリダイレクト処理を行う
   useProtectedRoute(user);
   useEffect(() => {
     // googlesigninを行う場合に必須で呼び出すもの
@@ -162,7 +163,7 @@ const useAuthProvider = () => {
       });
       const result = await signInWithCredential(auth, credential);
       await handleCredentialResponseWithApple(result);
-      await mutation.mutate({});
+      await mutation.mutateAsync({});
       await AsyncStorage.save('last_login_method', 'apple');
       setAppleAuthPending(false);
       return true;

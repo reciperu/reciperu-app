@@ -12,6 +12,7 @@ import { SharingPromotionCard } from '@/features/Promotion/components/sharing';
 import { useFetchMyProfile } from '@/features/User/apis/getMyProfile';
 import { usePatchMyProfile } from '@/features/User/apis/patchMyProfile';
 import { UserStatus } from '@/features/User/types';
+import { noop } from '@/functions/utils';
 
 const { height, width } = Dimensions.get('window');
 
@@ -87,7 +88,7 @@ export default function OnboardingRegisterRecipesCompletePage() {
         <Spacer />
         <View style={styles.actionButtonWrapper}>
           {/* // TODO: 後で対応 */}
-          <Button onPress={handleStart} loading={loading}>
+          <Button onPress={noop} loading={loading}>
             招待する
           </Button>
           <Button onPress={handleStart} scheme="text" loading={loading}>
