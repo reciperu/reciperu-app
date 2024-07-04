@@ -144,6 +144,7 @@ export const FavoriteRecipeTab = memo<Props>(({ search }) => {
                             pathname: `recipe/${item.id}`,
                             params: {
                               ...item,
+                              imageUrls: JSON.stringify(item.imageUrls),
                               requesters: JSON.stringify(item.requesters),
                             },
                           })

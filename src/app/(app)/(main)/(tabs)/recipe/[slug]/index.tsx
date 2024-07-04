@@ -1,9 +1,16 @@
 import { BottomSheetModal, BottomSheetModalProvider, BottomSheetView } from '@gorhom/bottom-sheet';
 import { useQueryClient } from '@tanstack/react-query';
 import { AxiosError } from 'axios';
-import { Stack, router, useLocalSearchParams } from 'expo-router';
-import { useCallback, useRef, useState } from 'react';
-import { ActivityIndicator, Pressable, StyleSheet, TouchableOpacity, View } from 'react-native';
+import { Stack, router, useLocalSearchParams, useNavigation } from 'expo-router';
+import { useCallback, useEffect, useRef, useState } from 'react';
+import {
+  ActivityIndicator,
+  Pressable,
+  ScrollView,
+  StyleSheet,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 import DatePicker from 'react-native-date-picker';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import Toast from 'react-native-toast-message';
@@ -42,12 +49,13 @@ export default function Modal() {
   const params = useLocalSearchParams();
   const mutation = usePutRecipe({});
   const postMenuMutation = usePostMenu({});
+  const navigation = useNavigation();
   const queryClient = useQueryClient();
   const [data, setData] = useState<SpaceRecipe>({
     id: params.id,
     title: params.title,
     thumbnailUrl: params.thumbnailUrl,
-    imageUrls: params.imageUrls,
+    imageUrls: typeof params.imageUrls === 'string' ? JSON.parse(params.imageUrls) : [],
     memo: params.memo,
     recipeUrl: params.recipeUrl,
     faviconUrl: params.faviconUrl,
@@ -111,11 +119,10 @@ export default function Modal() {
           }
           // レシピ画像
           if (editRecipeService.images.length > 0) {
-            const imageUrls = await editRecipeService.processImages(editRecipeService.images);
-            updatedRecipe.imageUrls = imageUrls;
+            updatedRecipe.imageUrls = editRecipeService.images.filter((img) => img !== '');
+            console.log(updatedRecipe.imageUrls.map((img) => img.slice(0, 10)));
           }
           try {
-            // TODO: レシピ画像のアップロードが改善されたら動作確認
             mutation.mutate(
               {
                 id: params.id,
@@ -151,13 +158,15 @@ export default function Modal() {
                   });
                   console.error(error);
                 },
+                onSettled: () => {
+                  setIsEditPending(false);
+                },
               }
             );
           } catch (error) {
             console.error(error);
           }
         }
-        setIsEditPending(false);
       }
     },
     [params, data, editRecipeService, isEditPending, mutation, queryClient]
@@ -205,6 +214,35 @@ export default function Modal() {
     }
   }, [isEditing, handleUpdate]);
 
+  const renderHeaderRight = useCallback(() => {
+    return (
+      <Flex
+        style={{
+          gap: 8,
+          alignItems: 'center',
+          width: 60,
+          justifyContent: 'flex-end',
+        }}>
+        {isEditPending && <ActivityIndicator color={Constants.colors.primitive.blue[400]} />}
+        <TouchableOpacity onPress={toggleMode}>
+          <NotoText fw="bold" style={styles.headerUpdateButton}>
+            {isEditing ? '保存' : '編集'}
+          </NotoText>
+        </TouchableOpacity>
+      </Flex>
+    );
+  }, [isEditing, isEditPending, toggleMode]);
+
+  useEffect(() => {
+    console.log(
+      `isEditing: ${JSON.stringify(isEditing)}, isEditPending: ${JSON.stringify(isEditPending)}`
+    );
+    navigation.setOptions({
+      headerRight: () => renderHeaderRight(),
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isEditing, isEditPending]);
+
   return (
     <BottomSheetModalProvider>
       <Stack.Screen
@@ -215,27 +253,19 @@ export default function Modal() {
           headerLeft: isPresented
             ? () => <HeaderLeftBackButton onPress={() => router.push('/recipe')} />
             : undefined,
-          headerRight: () => (
-            <Flex
-              style={{
-                gap: 8,
-                alignItems: 'center',
-                width: 60,
-                justifyContent: 'flex-end',
-              }}>
-              {isEditPending && <ActivityIndicator color={Constants.colors.primitive.blue[400]} />}
-              <TouchableOpacity onPress={toggleMode}>
-                <NotoText fw="bold" style={styles.headerUpdateButton}>
-                  {isEditing ? '保存' : '編集'}
-                </NotoText>
-              </TouchableOpacity>
-            </Flex>
-          ),
+          headerRight: () => renderHeaderRight(),
         }}
       />
-      <Container>
+
+      <Container needBottomPadding={!isEditing}>
         {isEditing ? (
-          <>{data && <EditRecipe {...editRecipeService} oldRecipeUrl={data.recipeUrl} />}</>
+          <>
+            {data && (
+              <ScrollView>
+                <EditRecipe {...editRecipeService} oldRecipeUrl={data.recipeUrl} />
+              </ScrollView>
+            )}
+          </>
         ) : data ? (
           <View style={{ flex: 1 }}>
             <RecipeDetail data={data} />
@@ -245,10 +275,10 @@ export default function Modal() {
             </Button>
             {/* // TODO: v1では削除 */}
             {/* <View style={{ marginTop: 12 }}>
-              <Button variant="primary" scheme="text" onPress={confirmDelete}>
-                レシピを削除
-              </Button>
-            </View> */}
+                <Button variant="primary" scheme="text" onPress={confirmDelete}>
+                  レシピを削除
+                </Button>
+              </View> */}
           </View>
         ) : null}
       </Container>
@@ -325,6 +355,5 @@ const styles = StyleSheet.create({
   },
   container: {
     flex: 1,
-    backgroundColor: 'green',
   },
 });

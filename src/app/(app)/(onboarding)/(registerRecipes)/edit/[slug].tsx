@@ -45,7 +45,11 @@ export default function Modal() {
   // レシピ画像の削除
   const deleteRecipeImage = (idx: number) => {
     const newImages = images.filter((_, i) => i !== idx);
-    setImages([...newImages, '']);
+    const emptyImageIndex = newImages.findIndex((image) => image === '');
+    if (emptyImageIndex === -1) {
+      newImages.push('');
+    }
+    setImages([...newImages]);
   };
   const selectedRecipes = useStore((state) => state.onboardingSelectedRecipeList);
   const updateSelectedRecipe = useStore((state) => state.updateOnboardingSelectedRecipeList);

@@ -1,9 +1,7 @@
-import { useCallback, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 
 import { SpaceRecipe } from '../types';
 
-import { useStore } from '@/store';
-import { convertImageToBase64FromUri } from '@/utils/image';
 import { isValidUrl } from '@/utils/validation';
 
 export interface RecipeForm {
@@ -26,7 +24,6 @@ export interface RecipeForm {
   recipeNameFormErrorMessage: string;
   setRecipeNameFormErrorMessage: (recipeNameFormErrorMessage: string) => void;
   validate: () => boolean;
-  processImages: (images: string[]) => Promise<string[]>;
 }
 
 export type UseEditRecipe = (data: SpaceRecipe | null) => RecipeForm;
@@ -38,7 +35,13 @@ export const useEditRecipe: UseEditRecipe = (data) => {
   const [appName, setAppName] = useState(data?.appName || '');
   const [faviconUrl, setFaviconUrl] = useState(data?.faviconUrl || '');
   const [memo, setMemo] = useState(data?.memo || '');
-  const [images, setImages] = useState<string[]>(data?.imageUrls?.length ? data.imageUrls : ['']);
+  const [images, setImages] = useState<string[]>(
+    data?.imageUrls?.length
+      ? data.imageUrls.length >= 3
+        ? data.imageUrls
+        : [...data.imageUrls, '']
+      : ['']
+  );
   const [urlFormErrorMessage, setUrlFormErrorMessage] = useState('');
   const [recipeNameFormErrorMessage, setRecipeNameFormErrorMessage] = useState('');
   const validate = useCallback(() => {
@@ -59,13 +62,34 @@ export const useEditRecipe: UseEditRecipe = (data) => {
     return returnValue;
   }, [recipeName, recipeUrl]);
 
-  const processImages = async (images: string[]) => {
-    const imageUrls = await Promise.all(
-      images.filter((image) => image.length > 0).map((image) => convertImageToBase64FromUri(image))
-    );
+  useEffect(() => {
+    if (data?.thumbnailUrl && data.thumbnailUrl !== thumbnail) {
+      setThumbnail(data.thumbnailUrl);
+    }
+    if (data?.recipeUrl && data.recipeUrl !== recipeUrl) {
+      setRecipeUrl(data.recipeUrl);
+    }
+    if (data?.title && data.title !== recipeName) {
+      setRecipeName(data.title);
+    }
+    if (data?.appName && data.appName !== appName) {
+      setAppName(data.appName);
+    }
+    if (data?.faviconUrl && data.faviconUrl !== faviconUrl) {
+      setFaviconUrl(data.faviconUrl);
+    }
+    if (data?.memo && data.memo !== memo) {
+      setMemo(data.memo);
+    }
+    if (data?.imageUrls && data.imageUrls !== images) {
+      if (data.imageUrls.length >= 3) {
+        setImages(data.imageUrls);
+      } else {
+        setImages([...data.imageUrls, '']);
+      }
+    }
+  }, [data]);
 
-    return imageUrls.filter((image) => image !== undefined) as string[];
-  };
   return {
     thumbnail,
     setThumbnail,
@@ -86,6 +110,5 @@ export const useEditRecipe: UseEditRecipe = (data) => {
     recipeNameFormErrorMessage,
     setRecipeNameFormErrorMessage,
     validate,
-    processImages,
   };
 };
