@@ -92,5 +92,6 @@ const styles = StyleSheet.create({
     display: 'flex',
     flexDirection: 'column',
     gap: 16,
+    paddingBottom: 50,
   },
 });

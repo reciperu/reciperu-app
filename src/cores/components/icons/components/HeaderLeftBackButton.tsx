@@ -15,11 +15,13 @@ interface Props {
 export const HeaderLeftBackButton = memo<Props>(({ onPress }) => {
   const navigation = useNavigation();
   return (
-    <Flex style={{ gap: 4, alignItems: 'center' }}>
-      <AppIcon name="arrow-back" />
-      <TouchableOpacity onPress={() => (onPress ? onPress() : navigation.goBack())}>
-        <NotoText style={{ color: Constants.colors.primitive.pink[400] }}>戻る</NotoText>
-      </TouchableOpacity>
-    </Flex>
+    <TouchableOpacity onPress={() => (onPress ? onPress() : navigation.goBack())}>
+      <Flex style={{ gap: 2, alignItems: 'center', paddingRight: 4 }}>
+        <AppIcon name="arrow-back" width={18} height={18} />
+        <NotoText style={{ color: Constants.colors.primitive.pink[400], paddingBottom: 1 }}>
+          戻る
+        </NotoText>
+      </Flex>
+    </TouchableOpacity>
   );
 });

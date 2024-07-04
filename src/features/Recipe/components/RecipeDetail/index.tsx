@@ -179,34 +179,33 @@ export const RecipeDetail = memo<Props>(({ data, showRecipeDetail = true }) => {
             )}
           </Flex>
         )}
-        {/* {data.imageUrls?.length && (
-          <View style={{ paddingVertical: 12 }}>
+        {!!data.imageUrls?.length && (
+          <View style={{ paddingVertical: 12, flexDirection: 'row', gap: 12 }}>
+            {/* // TODO: クリックして詳細を確認できる  */}
             {data.imageUrls.map((url, index) => (
               <Image
                 key={index}
                 source={{ uri: url }}
                 alt={data.title}
                 style={{
-                  width: width - 32,
-                  height: ((width - 32) / 16) * 9,
+                  width: 72,
+                  height: 72,
                   borderRadius: Constants.radius.lg,
                   marginVertical: 8,
                 }}
               />
             ))}
           </View>
-        )} */}
+        )}
         {!!data.memo?.length && (
-          <View style={{ paddingVertical: 12 }}>
-            <View
-              style={{
-                paddingVertical: 12,
-                paddingHorizontal: 16,
-                backgroundColor: Constants.colors.primitive.gray[50],
-                borderRadius: Constants.radius.md,
-              }}>
-              <NotoText>{data.memo}</NotoText>
-            </View>
+          <View
+            style={{
+              paddingVertical: 12,
+              paddingHorizontal: 16,
+              backgroundColor: Constants.colors.primitive.gray[50],
+              borderRadius: Constants.radius.md,
+            }}>
+            <NotoText>{data.memo}</NotoText>
           </View>
         )}
       </View>

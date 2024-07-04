@@ -11,6 +11,7 @@ import { AVATAR_SIZE, Constants, APP_NAME, BOTTOM_SHEET_STYLE } from '@/constant
 import { Button } from '@/cores/components/Button';
 import { Container } from '@/cores/components/Container';
 import { Flex } from '@/cores/components/Flex';
+import { NotoText } from '@/cores/components/Text';
 import { AppIcon } from '@/cores/components/icons';
 import { UserInfo } from '@/features/MyPage/components/UserInfo';
 import { useFetchMyProfile } from '@/features/User/apis/getMyProfile';
@@ -121,6 +122,8 @@ export default function MyPagePage() {
               autoHide: true,
               topOffset: 60,
             });
+            setTmpImage('');
+            setImageKey(null);
           },
           onSettled: () => {
             setPending(false);
@@ -373,8 +376,8 @@ export default function MyPagePage() {
         index={0}
         snapPoints={snapPoints}
         style={BOTTOM_SHEET_STYLE}>
-        <View style={{ marginTop: 16 }}>
-          <Text style={{ paddingHorizontal: 16 }}>画像を選択してください</Text>
+        <View style={{ marginTop: 8 }}>
+          <NotoText style={{ paddingHorizontal: 16 }}>画像を選択してください</NotoText>
           <FlatList
             horizontal
             data={ImageList}
@@ -390,7 +393,7 @@ export default function MyPagePage() {
                   <Pressable onPress={pickImage}>
                     <View style={styles.noOutline}>
                       <View style={[styles.noImagePickerButton]}>
-                        {tmpImage && (
+                        {tmpImage && !imageKey && (
                           <>
                             <Image
                               contentFit="cover"
@@ -416,7 +419,7 @@ export default function MyPagePage() {
                             />
                           </>
                         )}
-                        <AppIcon name="camera" />
+                        {(!tmpImage || imageKey) && <AppIcon name="camera" />}
                       </View>
                     </View>
                   </Pressable>
@@ -436,7 +439,11 @@ export default function MyPagePage() {
             style={{ width, paddingVertical: 12, marginBottom: 16 }}
           />
           <View style={{ paddingHorizontal: 16 }}>
-            <Button onPress={updateImage} loading={pending} textStyle={{ fontSize: 14 }}>
+            <Button
+              onPress={updateImage}
+              disabled={!tmpImage}
+              loading={pending}
+              textStyle={{ fontSize: 14 }}>
               画像を変更
             </Button>
           </View>

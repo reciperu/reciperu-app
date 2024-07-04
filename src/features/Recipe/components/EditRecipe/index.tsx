@@ -1,5 +1,5 @@
 import { Fragment, memo, useCallback, useEffect, useState } from 'react';
-import { Dimensions, ScrollView, StyleSheet, View } from 'react-native';
+import { Dimensions, StyleSheet, View } from 'react-native';
 
 import { useFetchMetaData } from '../../apis/getMetaData';
 import { RecipeForm } from '../../hooks/useEdiRecipe';
@@ -11,6 +11,7 @@ import { ImageUploadArea } from '@/cores/components/ImageUploadArea';
 import { CompactImageUploadArea } from '@/cores/components/ImageUploadArea/compact';
 import { InputLabel } from '@/cores/components/InputLabel';
 import { TextInput } from '@/cores/components/TextInput';
+import { convertImageToBase64FromUri } from '@/utils/image';
 import { isValidUrl } from '@/utils/validation';
 
 interface Props extends RecipeForm {
@@ -39,9 +40,12 @@ export const EditRecipe = memo<Props>(
     const [isFocused, setIsFocused] = useState(false);
 
     // レシピ画像の更新
-    const updateRecipeImage = (image: string, idx: number) => {
+    const updateRecipeImage = async (image: string, idx: number) => {
       let newImages = [...images];
-      newImages[idx] = image;
+      const updatedImage = await convertImageToBase64FromUri(image);
+      if (updatedImage) {
+        newImages[idx] = updatedImage;
+      }
       if (images.length < Validation.RECIPE_IMAGES.COUNT.VALUE && idx === images.length - 1) {
         newImages = [...newImages, ''];
       }
@@ -50,7 +54,11 @@ export const EditRecipe = memo<Props>(
     // レシピ画像の削除
     const deleteRecipeImage = (idx: number) => {
       const newImages = images.filter((_, i) => i !== idx);
-      setImages([...newImages, '']);
+      const emptyImageIndex = newImages.findIndex((image) => image === '');
+      if (emptyImageIndex === -1) {
+        newImages.push('');
+      }
+      setImages([...newImages]);
     };
 
     const handleBlur = useCallback(() => {
@@ -85,7 +93,7 @@ export const EditRecipe = memo<Props>(
       // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [recipeUrl, isFocused]);
     return (
-      <ScrollView>
+      <>
         <View style={styles.containerWrapper}>
           {/* 画像 */}
           <ImageUploadArea image={thumbnail} setImage={setThumbnail} />
@@ -139,7 +147,7 @@ export const EditRecipe = memo<Props>(
             />
           </View>
         </View>
-      </ScrollView>
+      </>
     );
   }
 );
@@ -160,5 +168,6 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
+    paddingBottom: 20,
   },
 });

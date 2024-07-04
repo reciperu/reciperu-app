@@ -12,7 +12,10 @@ export const Container = memo<PropsWithChildren<Props>>(
       <View
         style={[
           styles.container,
-          { backgroundColor: bgColor, paddingBottom: needBottomPadding ? 50 : 0 },
+          {
+            backgroundColor: bgColor,
+            paddingBottom: needBottomPadding ? 50 : 0,
+          },
         ]}>
         {children}
       </View>

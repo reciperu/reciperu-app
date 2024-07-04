@@ -17,6 +17,7 @@ import { TextInput } from '@/cores/components/TextInput';
 import { HeaderLeftBackButton } from '@/cores/components/icons/components/HeaderLeftBackButton';
 import { useFetchMetaData } from '@/features/Recipe/apis/getMetaData';
 import { PostRecipeRequestBody, usePostRecipe } from '@/features/Recipe/apis/postRecipe';
+import { toastConfig } from '@/lib/ToastConfig';
 import { convertImageToBase64FromUri } from '@/utils/image';
 import { isValidUrl } from '@/utils/validation';
 
@@ -78,7 +79,11 @@ export default function RecipeCreatePage() {
   // レシピ画像の削除
   const deleteRecipeImage = (idx: number) => {
     const newImages = images.filter((_, i) => i !== idx);
-    setImages([...newImages, '']);
+    const emptyImageIndex = newImages.findIndex((image) => image === '');
+    if (emptyImageIndex === -1) {
+      newImages.push('');
+    }
+    setImages([...newImages]);
   };
 
   const handleBlur = useCallback(() => {
@@ -246,7 +251,7 @@ export default function RecipeCreatePage() {
           />
         </View>
         {/* メモ */}
-        <View style={styles.inputWrapper}>
+        <View style={[styles.inputWrapper, { paddingBottom: 50 }]}>
           <InputLabel>メモ</InputLabel>
           <TextInput
             value={memo}
@@ -258,13 +263,19 @@ export default function RecipeCreatePage() {
           />
         </View>
       </ScrollView>
+      <Toast config={toastConfig} />
     </>
   );
 }
 
 const styles = StyleSheet.create({
   headerUpdateButton: { color: Constants.colors.primitive.blue[400], fontSize: 16 },
-  container: { flex: 1, position: 'relative', backgroundColor: 'white', paddingHorizontal: 16 },
+  container: {
+    flex: 1,
+    position: 'relative',
+    backgroundColor: 'white',
+    paddingHorizontal: 16,
+  },
   inputWrapper: {
     paddingVertical: 12,
     width: Dimensions.get('window').width - 32,
