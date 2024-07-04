@@ -76,9 +76,9 @@ export const TextInput = memo<PropsWithChildren<Props>>(
             isError && styles.inputError, // エラー時にスタイルを適用
             style,
           ]}
-          onChangeText={() => {
+          onChangeText={(text) => {
             if (!readOnly) {
-              onChange(value);
+              onChange(text);
             }
           }}
           value={value}

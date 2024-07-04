@@ -46,6 +46,7 @@ export default function OnboardingTopPage() {
   }, [username, image]);
   const { data } = useFetchMyProfile({});
   const mutation = usePatchMyProfile({});
+
   const pickImage = useCallback(async () => {
     // No permissions request is necessary for launching the image library
     const result = await ImagePicker.launchImageLibraryAsync({
@@ -179,7 +180,9 @@ export default function OnboardingTopPage() {
           <InputLabel>お名前</InputLabel>
           <TextInput
             value={username}
-            onChange={(text) => setUsername(text)}
+            onChange={(text) => {
+              setUsername(text);
+            }}
             maxLength={Validation.USER_NAME.MAX_LENGTH.VALUE}
           />
         </View>
