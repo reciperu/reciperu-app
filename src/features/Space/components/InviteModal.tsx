@@ -69,7 +69,7 @@ export const InviteModal = memo<Props>(({ isVisible, onClose }) => {
     [mutation, code]
   );
   useEffect(() => {
-    if (!code.length) {
+    if (!code.length && isVisible) {
       fetchInvitationCode(false);
     }
   }, []);
