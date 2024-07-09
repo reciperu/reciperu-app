@@ -6,18 +6,20 @@ import Confetti from 'react-native-confetti';
 
 import { APP_NAME } from '@/constants';
 import { Button } from '@/cores/components/Button';
+import { useModal } from '@/cores/components/Modal/useModal';
 import { Spacer } from '@/cores/components/Spacer';
 import { NotoText } from '@/cores/components/Text';
 import { SharingPromotionCard } from '@/features/Promotion/components/sharing';
+import { InviteModal } from '@/features/Space/components/InviteModal';
 import { useFetchMyProfile } from '@/features/User/apis/getMyProfile';
 import { usePatchMyProfile } from '@/features/User/apis/patchMyProfile';
 import { UserStatus } from '@/features/User/types';
-import { noop } from '@/functions/utils';
 
 const { height, width } = Dimensions.get('window');
 
 export default function OnboardingRegisterRecipesCompletePage() {
   const queryClient = useQueryClient();
+  const { isVisible, closeModal, openModal } = useModal();
   const [loading, setLoading] = useState(false);
   const confettiRef = useRef<Confetti>(null);
   const router = useRouter();
@@ -74,29 +76,41 @@ export default function OnboardingRegisterRecipesCompletePage() {
   }, []);
 
   return (
-    <ScrollView style={styles.container}>
-      <View style={{ position: 'absolute', top: -40, left: 0, width, height }}>
-        <Confetti ref={confettiRef} />
-      </View>
-      <View style={{ minHeight: height - 144 }}>
-        <View style={styles.titleWrapper}>
-          <NotoText fw="bold" style={styles.pageTitle}>
-            {APP_NAME}を利用する準備が完了しました！
-          </NotoText>
+    <>
+      <ScrollView style={styles.container}>
+        <View style={{ position: 'absolute', top: -40, left: 0, width, height }}>
+          <Confetti ref={confettiRef} />
         </View>
-        <SharingPromotionCard />
-        <Spacer />
-        <View style={styles.actionButtonWrapper}>
-          {/* // TODO: 後で対応 */}
-          <Button onPress={noop} loading={loading}>
-            招待する
-          </Button>
-          <Button onPress={handleStart} scheme="text" loading={loading}>
-            招待せず始める
-          </Button>
+        <View style={{ minHeight: height - 144 }}>
+          <View style={styles.titleWrapper}>
+            <NotoText fw="bold" style={styles.pageTitle}>
+              {APP_NAME}を利用する準備が完了しました！
+            </NotoText>
+          </View>
+          <SharingPromotionCard />
+          <Spacer />
+          <View style={styles.actionButtonWrapper}>
+            <Button onPress={openModal} loading={loading}>
+              招待する
+            </Button>
+            <Button onPress={handleStart} scheme="text" loading={loading}>
+              招待せず始める
+            </Button>
+          </View>
         </View>
-      </View>
-    </ScrollView>
+      </ScrollView>
+      <InviteModal
+        isVisible={isVisible}
+        onClose={closeModal}
+        renderPrimaryButton={() => (
+          <View style={{ marginTop: 24 }}>
+            <Button onPress={handleStart} loading={loading}>
+              パートナーが参加しました
+            </Button>
+          </View>
+        )}
+      />
+    </>
   );
 }
 

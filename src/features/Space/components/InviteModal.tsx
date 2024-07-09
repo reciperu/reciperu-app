@@ -1,4 +1,5 @@
 import Clipboard from '@react-native-community/clipboard';
+import * as Haptics from 'expo-haptics';
 import { memo, useCallback, useEffect, useState } from 'react';
 import { ActivityIndicator, Pressable, View } from 'react-native';
 import Toast from 'react-native-toast-message';
@@ -10,19 +11,22 @@ import { Flex } from '@/cores/components/Flex';
 import { AppModal } from '@/cores/components/Modal';
 import { NotoText } from '@/cores/components/Text';
 import { AppIcon } from '@/cores/components/icons';
+import dayjs from '@/lib/dayjs';
 
 interface Props {
   isVisible: boolean;
   onClose: () => void;
+  renderPrimaryButton?: () => React.ReactNode;
 }
 
-export const InviteModal = memo<Props>(({ isVisible, onClose }) => {
+export const InviteModal = memo<Props>(({ isVisible, onClose, renderPrimaryButton }) => {
   const [code, setCode] = useState('');
-  //   const [expiredAt, setExpiredAt] = useState('2024-07-02 19:01');
+  const [expiredAt, setExpiredAt] = useState('');
   const mutation = usePostSpaceInvitation({});
   const copyToClipboard = useCallback(() => {
     try {
       Clipboard.setString('code');
+      Haptics.selectionAsync();
       Toast.show({
         type: 'successToast',
         text1: 'コピーしました',
@@ -42,9 +46,11 @@ export const InviteModal = memo<Props>(({ isVisible, onClose }) => {
   }, []);
   const fetchInvitationCode = useCallback(
     (showToast?: boolean) => {
+      console.log('call');
       mutation.mutate(undefined, {
         onSuccess: (res) => {
           setCode(res.token);
+          setExpiredAt(res.expiredAt);
           if (showToast && res.token !== code) {
             Toast.show({
               type: 'successToast',
@@ -69,10 +75,12 @@ export const InviteModal = memo<Props>(({ isVisible, onClose }) => {
     [mutation, code]
   );
   useEffect(() => {
+    console.log(`code.ength: ${code.length} isVisible: ${isVisible}`);
     if (!code.length && isVisible) {
       fetchInvitationCode(false);
     }
-  }, []);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isVisible, code]);
   return (
     <>
       <AppModal
@@ -121,43 +129,48 @@ export const InviteModal = memo<Props>(({ isVisible, onClose }) => {
             </View>
           )}
         </View>
-        {/* <NotoText
-          style={{
-            marginVertical: 16,
-            textAlign: 'center',
-            color: Constants.colors.primitive.gray[500],
-          }}>
-          有効期限：{expiredAt}まで
-        </NotoText> */}
+        {expiredAt.length > 0 && (
+          <NotoText
+            style={{
+              marginTop: 16,
+              textAlign: 'center',
+              color: Constants.colors.primitive.gray[500],
+            }}>
+            有効期限：{dayjs(expiredAt).format('YYYY/M/D H:mm')}まで
+          </NotoText>
+        )}
         <View style={{ marginVertical: 24 }}>
-          <Pressable onPress={() => fetchInvitationCode(true)}>
-            <Flex
-              style={{
-                gap: 8,
-                justifyContent: 'center',
-                alignItems: 'center',
-                height: 32,
-              }}>
-              {mutation.isPending ? (
-                <ActivityIndicator color={Constants.colors.primitive.gray[400]} />
-              ) : (
-                <AppIcon
-                  name="reload"
-                  color={Constants.colors.primitive.gray[400]}
-                  width={18}
-                  height={18}
-                />
-              )}
-              <NotoText
+          {dayjs(expiredAt).diff(dayjs(), 'second') < 0 && (
+            <Pressable onPress={() => fetchInvitationCode(true)}>
+              <Flex
                 style={{
-                  color: Constants.colors.primitive.gray[500],
-                  textDecorationLine: 'underline',
-                  fontSize: 12,
+                  gap: 8,
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                  height: 32,
                 }}>
-                更新する
-              </NotoText>
-            </Flex>
-          </Pressable>
+                {mutation.isPending ? (
+                  <ActivityIndicator color={Constants.colors.primitive.gray[400]} />
+                ) : (
+                  <AppIcon
+                    name="reload"
+                    color={Constants.colors.primitive.gray[400]}
+                    width={18}
+                    height={18}
+                  />
+                )}
+                <NotoText
+                  style={{
+                    color: Constants.colors.primitive.gray[500],
+                    textDecorationLine: 'underline',
+                    fontSize: 12,
+                  }}>
+                  更新する
+                </NotoText>
+              </Flex>
+            </Pressable>
+          )}
+          {renderPrimaryButton?.()}
         </View>
       </AppModal>
     </>
