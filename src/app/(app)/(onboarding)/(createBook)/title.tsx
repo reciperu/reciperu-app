@@ -12,7 +12,7 @@ import { TextInput } from '@/cores/components/TextInput';
 import { usePutSpace } from '@/features/Space/apis/putSpace';
 import { useFetchMyProfile } from '@/features/User/apis/getMyProfile';
 
-const getDefaultTitle = (name: string) => `${name}さんのスペース`;
+const getDefaultTitle = (name: string) => `${name}のスペース`;
 
 export default function OnboardingCreateBookTitlePage() {
   const queryClient = useQueryClient();
