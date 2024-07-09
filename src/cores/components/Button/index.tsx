@@ -1,4 +1,4 @@
-import React, { memo } from 'react';
+import React, { memo, useState } from 'react';
 import { ActivityIndicator, Pressable, StyleSheet, View } from 'react-native';
 
 import { Constants } from '@/constants';
@@ -28,12 +28,22 @@ export const Button = memo<Props>(
     bgColor,
     textStyle = {},
   }) => {
+    const [pressing, setPressing] = useState(false);
     return (
-      <Pressable disabled={disabled || loading} onPress={onPress}>
+      <Pressable
+        disabled={disabled || loading}
+        onPress={onPress}
+        onPressIn={() => setPressing(true)}
+        onPressOut={() => setPressing(false)}>
         {scheme === 'filled' ? (
           <>
             {variant === 'primary' ? (
-              <View style={[styles.container, (disabled || loading) && styles.disabledContainer]}>
+              <View
+                style={[
+                  styles.container,
+                  (disabled || loading) && styles.disabledContainer,
+                  pressing && { opacity: 0.7 },
+                ]}>
                 {loading ? (
                   <ActivityIndicator size="small" color="#FFFFFF" />
                 ) : (
@@ -49,6 +59,7 @@ export const Button = memo<Props>(
                   styles.container,
                   { backgroundColor: bgColor },
                   (disabled || loading) && styles.disabledTextContainer,
+                  pressing && { opacity: 0.7 },
                 ]}>
                 {loading ? (
                   <ActivityIndicator size="small" color="#FFFFFF" />
@@ -62,7 +73,17 @@ export const Button = memo<Props>(
             )}
           </>
         ) : (
-          <View style={[styles.container, styles.schemeTextContainer]}>
+          <View
+            style={[
+              styles.container,
+              styles.schemeTextContainer,
+              pressing && {
+                backgroundColor:
+                  variant === 'primary'
+                    ? Constants.colors.primitive.pink[50]
+                    : Constants.colors.primitive.gray[50],
+              },
+            ]}>
             {loading ? <ActivityIndicator size="small" /> : leftIcon && leftIcon}
             <NotoText
               style={[styles.text, variant === 'primary' && styles.textButtonTextStyle, textStyle]}
