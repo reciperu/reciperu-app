@@ -1,11 +1,9 @@
-import { useQueryClient } from '@tanstack/react-query';
 import { useRootNavigation, useRouter, useSegments } from 'expo-router';
 import { User } from 'firebase/auth';
 import { useEffect } from 'react';
 
 export const useProtectedRoute = (user: User | null) => {
   const segments = useSegments();
-  const queryClient = useQueryClient();
   const router = useRouter();
   const rootNavigation = useRootNavigation();
   useEffect(() => {
@@ -19,9 +17,6 @@ export const useProtectedRoute = (user: User | null) => {
       // Redirect to the sign-in page.
       router.replace('(auth)/signIn');
     } else if (user && inAuthGroup) {
-      queryClient.invalidateQueries({
-        queryKey: ['profile'],
-      });
       // Redirect away from the sign-in page.
       router.replace('(app)/(main)/(tabs)/home');
     }

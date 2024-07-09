@@ -1,5 +1,4 @@
-import { useQueryClient } from '@tanstack/react-query';
-import { Link, useRouter } from 'expo-router';
+import { Link } from 'expo-router';
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { Alert, Pressable, Text, View } from 'react-native';
 
@@ -8,20 +7,20 @@ import { useAuthContext } from '@/context/authProvider';
 import { Container } from '@/cores/components/Container';
 import { Flex } from '@/cores/components/Flex';
 import { AppIcon } from '@/cores/components/icons';
+import { useSignOut } from '@/hooks/useSignOut';
 import asyncStorage from '@/lib/asyncStorage';
 
 export default function AccountPage() {
   const authContext = useAuthContext();
-  const queryClient = useQueryClient();
+  const { handleSignOut } = useSignOut();
   const [loginMethod, setLoginMethod] = useState('');
-  const router = useRouter();
   const email = useMemo(() => {
     if (authContext.user) {
       return authContext.user.email;
     }
     return '';
   }, [authContext]);
-  const handleSignOut = useCallback(() => {
+  const onSignOut = useCallback(() => {
     Alert.alert('ログアウトしますか？', '', [
       {
         text: 'キャンセル',
@@ -31,14 +30,11 @@ export default function AccountPage() {
         text: 'ログアウト',
         style: 'destructive',
         onPress: async () => {
-          await authContext.signOut();
-          router.push('/(auth)/signIn');
-          // クエリキャッシュをクリア
-          queryClient.clear();
+          await handleSignOut();
         },
       },
     ]);
-  }, [authContext, router, queryClient]);
+  }, [handleSignOut]);
   useEffect(() => {
     const fetchLoginMethod = async () => {
       const loginMethod = await asyncStorage.getValueFor('last_login_method');
@@ -84,7 +80,7 @@ export default function AccountPage() {
           </Flex>
         </View>
         <View style={{ width: '100%', borderRadius: 8, overflow: 'hidden', marginTop: 24 }}>
-          <Pressable onPress={handleSignOut}>
+          <Pressable onPress={onSignOut}>
             <Flex
               style={{
                 padding: 16,

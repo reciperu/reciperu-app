@@ -1,13 +1,27 @@
+import axios from 'axios';
 import { Redirect, Stack } from 'expo-router';
+import { useEffect } from 'react';
 import { View } from 'react-native';
 
 import { Constants } from '@/constants';
 import { HeaderAppIcon } from '@/features/Header/AppIcon';
 import { useFetchMyProfile } from '@/features/User/apis/getMyProfile';
 import { UserStatus } from '@/features/User/types';
+import { useSignOut } from '@/hooks/useSignOut';
 
 export default function OnboardingLayout() {
-  const { data } = useFetchMyProfile({});
+  const { handleSignOut } = useSignOut();
+  const { data, error } = useFetchMyProfile({});
+  useEffect(() => {
+    if (axios.isAxiosError(error)) {
+      const statusCode = error.response?.status;
+      if (statusCode === 403) {
+        handleSignOut();
+      }
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [error]);
+
   if (!data) return <></>;
   if (data?.activeStatus === UserStatus.JOINED_SPACE) {
     return <Redirect href="/(main)/(tabs)/home" />;

@@ -1,10 +1,8 @@
-import { useQueryClient } from '@tanstack/react-query';
-import { Stack, useRouter } from 'expo-router';
+import { Stack } from 'expo-router';
 import { useCallback, useState } from 'react';
 import { Pressable, Text, View } from 'react-native';
 import Toast from 'react-native-toast-message';
 
-import { useAuthContext } from '@/context/authProvider';
 import { Button } from '@/cores/components/Button';
 import { CheckIconButton } from '@/cores/components/CheckIconButton';
 import { Container } from '@/cores/components/Container';
@@ -12,14 +10,13 @@ import { Flex } from '@/cores/components/Flex';
 import { NotoText } from '@/cores/components/Text';
 import { useDeleteUser } from '@/features/User/apis/deleteUser';
 import { useFetchMyProfile } from '@/features/User/apis/getMyProfile';
+import { useSignOut } from '@/hooks/useSignOut';
 
 export default function WithdrawPage() {
   const [checked, setChecked] = useState(false);
+  const { handleSignOut } = useSignOut();
   const { data } = useFetchMyProfile({});
   const mutation = useDeleteUser({});
-  const authContext = useAuthContext();
-  const router = useRouter();
-  const queryClient = useQueryClient();
   // 退会処理
   const handleWithdraw = useCallback(() => {
     const userId = data?.id;
@@ -36,15 +33,12 @@ export default function WithdrawPage() {
               topOffset: 60,
             });
             // ログアウト
-            await authContext.signOut();
-            router.push('/(auth)/signIn');
-            // クエリキャッシュをクリア
-            queryClient.clear();
+            await handleSignOut();
           },
         }
       );
     }
-  }, [data, mutation, router, authContext, queryClient]);
+  }, [data, mutation, handleSignOut]);
   return (
     <Container bgColor="white">
       <Stack.Screen

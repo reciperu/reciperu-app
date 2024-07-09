@@ -1,3 +1,4 @@
+import axios from 'axios';
 import { Redirect, Stack, useRouter } from 'expo-router';
 import { memo, useEffect } from 'react';
 import { Alert } from 'react-native';
@@ -7,6 +8,7 @@ import { useAuthContext } from '@/context/authProvider';
 import { PageWholeLoader } from '@/cores/components/PageWholeLoader';
 import { useFetchMyProfile } from '@/features/User/apis/getMyProfile';
 import { UserStatus } from '@/features/User/types';
+import { useSignOut } from '@/hooks/useSignOut';
 
 export default function MainLayout() {
   const authContext = useAuthContext();
@@ -18,13 +20,11 @@ export default function MainLayout() {
 
 const MainContent = memo(() => {
   const authContext = useAuthContext();
+  const { handleSignOut } = useSignOut();
   const { data, isLoading, error, refetch } = useFetchMyProfile({});
   const router = useRouter();
   useEffect(() => {
     if (error) {
-      console.log('error ==================');
-      console.log(error);
-      console.log('========================');
       if (error.message === '401') {
         Alert.alert('エラー', AUTH_ERROR_MESSAGE, [
           {
@@ -36,11 +36,18 @@ const MainContent = memo(() => {
           },
         ]);
       } else {
-        Alert.alert('エラー', 'エラーが発生しました。', [
-          { text: 'もう一度試す', onPress: () => refetch() },
-        ]);
+        // 400系エラーの場合はsignInにリダイレクト
+        if (axios.isAxiosError(error) && error.response?.status && error.response.status < 500) {
+          handleSignOut();
+        } else {
+          console.log(`error - : ${error?.message}`);
+          Alert.alert('エラー', 'エラーが発生しました。', [
+            { text: 'もう一度試す', onPress: () => refetch() },
+          ]);
+        }
       }
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [error]);
   // 取得中
   if (isLoading) {

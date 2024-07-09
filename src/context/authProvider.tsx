@@ -62,24 +62,29 @@ const useAuthProvider = () => {
   }, []);
   // Google の認証応答からの ID トークンを Firebase 認証情報と交換し、それを使用して Firebase での認証を行う
   const handleCredentialResponseWithGoogle = async (googleIdToken: string) => {
+    let user = null;
+
     const credential = GoogleAuthProvider.credential(googleIdToken);
 
     const result = await signInWithCredential(auth, credential);
     if (result) {
       const token = await result.user.getIdToken();
-      secureStoreService.save(StoreKeyEnum.TOKEN, token);
-      secureStoreService.save(StoreKeyEnum.REFRESH_TOKEN, result.user.refreshToken);
-      setUser(result.user);
+      await secureStoreService.save(StoreKeyEnum.TOKEN, token);
+      await secureStoreService.save(StoreKeyEnum.REFRESH_TOKEN, result.user.refreshToken);
+      user = result.user;
     }
+    return user;
   };
   // Apple の認証応答からの ID トークンを Firebase 認証情報と交換し、それを使用して Firebase での認証を行う
   const handleCredentialResponseWithApple = async (result: UserCredential) => {
+    let user = null;
     if (result) {
       const token = await result.user.getIdToken();
-      secureStoreService.save(StoreKeyEnum.TOKEN, token);
-      secureStoreService.save(StoreKeyEnum.REFRESH_TOKEN, result.user.refreshToken);
-      setUser(result.user);
+      await secureStoreService.save(StoreKeyEnum.TOKEN, token);
+      await secureStoreService.save(StoreKeyEnum.REFRESH_TOKEN, result.user.refreshToken);
+      user = result.user;
     }
+    return user;
   };
 
   const handleRedirect = useCallback(async () => {
@@ -88,7 +93,10 @@ const useAuthProvider = () => {
       // google側にログインしているユーザーの情報を取得する
       const userInfo = await GoogleSignin.signInSilently();
       if (userInfo && userInfo.idToken) {
-        await handleCredentialResponseWithGoogle(userInfo.idToken);
+        const user = await handleCredentialResponseWithGoogle(userInfo.idToken);
+        if (user) {
+          setUser(user);
+        }
       }
     }
     if (lastLoginMethod === 'apple') {
@@ -105,10 +113,15 @@ const useAuthProvider = () => {
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
       if (currentUser) {
-        const newToken = await currentUser.getIdToken(true);
-        await secureStoreService.save(StoreKeyEnum.TOKEN, newToken);
-        await secureStoreService.save(StoreKeyEnum.REFRESH_TOKEN, currentUser.refreshToken);
-        setUser(currentUser);
+        const currentToken = await secureStoreService.getValueFor(StoreKeyEnum.TOKEN);
+        const newToken = await currentUser.getIdToken();
+        if (newToken) {
+          await secureStoreService.save(StoreKeyEnum.TOKEN, newToken);
+          await secureStoreService.save(StoreKeyEnum.REFRESH_TOKEN, currentUser.refreshToken);
+          if (currentToken && !googleAuthPending && !appleAuthPending && !initialize) {
+            setUser(currentUser);
+          }
+        }
       } else {
         setUser(null);
       }
@@ -121,13 +134,17 @@ const useAuthProvider = () => {
 
   const signInWithGoogle = async (): Promise<boolean> => {
     setGoogleAuthPending(true);
+    let user = null;
     try {
       await GoogleSignin.hasPlayServices();
       const userInfo = await GoogleSignin.signIn();
       if (userInfo?.idToken) {
-        await handleCredentialResponseWithGoogle(userInfo.idToken);
+        user = await handleCredentialResponseWithGoogle(userInfo.idToken);
       }
       await mutation.mutateAsync({});
+      if (user) {
+        setUser(user);
+      }
       await AsyncStorage.save('last_login_method', 'google');
       setGoogleAuthPending(false);
       return true;
@@ -162,8 +179,11 @@ const useAuthProvider = () => {
         rawNonce: nonce,
       });
       const result = await signInWithCredential(auth, credential);
-      await handleCredentialResponseWithApple(result);
+      const user = await handleCredentialResponseWithApple(result);
       await mutation.mutateAsync({});
+      if (user) {
+        setUser(user);
+      }
       await AsyncStorage.save('last_login_method', 'apple');
       setAppleAuthPending(false);
       return true;
