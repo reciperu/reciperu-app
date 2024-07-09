@@ -4,6 +4,7 @@ import { client } from '@/lib/axios';
 
 interface PostSpaceInvitationResponseBody {
   token: string;
+  expiredAt: string;
 }
 
 export const postSpaceInvitation = async (): Promise<PostSpaceInvitationResponseBody> => {
