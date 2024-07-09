@@ -76,16 +76,12 @@ export const MenuList = memo(() => {
   // リフレッシュ
   const onRefresh = useCallback(async () => {
     if (isRefetching) return;
-    console.log('refetch start');
     setRefreshing(true);
     // 2秒待機
     await sleep(2000);
     refetch();
-    console.log('refetch stop');
     setRefreshing(false);
   }, [isRefetching, refetch]);
-
-  // console.log(JSON.stringify(displayData, null, 2));
 
   return (
     <>

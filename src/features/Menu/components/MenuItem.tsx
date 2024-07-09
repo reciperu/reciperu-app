@@ -14,7 +14,6 @@ interface Props {
 }
 
 export const CompactMenuItem = memo<Props>(({ data }) => {
-  console.log(`date: ${dayjs(data.scheduledAt).format('YYYY/MM/DD')}`);
   const renderMark = useCallback(() => {
     const scheduledAt = dayjs(data.scheduledAt);
     // 今日の場合

@@ -120,7 +120,6 @@ export default function Modal() {
           // レシピ画像
           if (editRecipeService.images.length > 0) {
             updatedRecipe.imageUrls = editRecipeService.images.filter((img) => img !== '');
-            console.log(updatedRecipe.imageUrls.map((img) => img.slice(0, 10)));
           }
           try {
             mutation.mutate(
@@ -234,9 +233,6 @@ export default function Modal() {
   }, [isEditing, isEditPending, toggleMode]);
 
   useEffect(() => {
-    console.log(
-      `isEditing: ${JSON.stringify(isEditing)}, isEditPending: ${JSON.stringify(isEditPending)}`
-    );
     navigation.setOptions({
       headerRight: () => renderHeaderRight(),
     });

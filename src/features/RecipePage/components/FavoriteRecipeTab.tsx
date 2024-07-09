@@ -101,12 +101,10 @@ export const FavoriteRecipeTab = memo<Props>(({ search }) => {
 
   const onRefresh = useCallback(async () => {
     if (isRefetching) return;
-    console.log('refetch start');
     setRefreshing(true);
     // 2秒待機
     await sleep(2000);
     refetch();
-    console.log('refetch stop');
     setRefreshing(false);
   }, [isRefetching]);
 
