@@ -1,5 +1,6 @@
 import { BottomSheetModal } from '@gorhom/bottom-sheet';
 import { useQueryClient } from '@tanstack/react-query';
+import * as Haptics from 'expo-haptics';
 import { Image } from 'expo-image';
 import * as ImagePicker from 'expo-image-picker';
 import { Link } from 'expo-router';
@@ -424,7 +425,11 @@ export default function MyPagePage() {
                     </View>
                   </Pressable>
                 ) : (
-                  <Pressable onPress={() => setDefaultAvatar(item.image, item.key)}>
+                  <Pressable
+                    onPress={() => {
+                      Haptics.selectionAsync();
+                      setDefaultAvatar(item.image, item.key);
+                    }}>
                     <View style={item.key === imageKey ? styles.outline : styles.noOutline}>
                       <View style={styles.imagePickerWrapper}>
                         <Image contentFit="cover" source={item.image} style={styles.avatarSize} />

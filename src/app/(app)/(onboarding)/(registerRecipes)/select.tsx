@@ -1,3 +1,4 @@
+import * as Haptics from 'expo-haptics';
 import { Stack, useRouter } from 'expo-router';
 import { useCallback } from 'react';
 import { Pressable, ScrollView, StyleSheet, View } from 'react-native';
@@ -37,7 +38,12 @@ export default function OnboardingRegisterRecipesSelectPage() {
       </View>
       <View style={styles.contentBox}>
         {ONBOARDING_RECIPE_LIST.map((recipe, idx) => (
-          <Pressable key={idx} onPress={() => setSelectedRecipes(recipe)}>
+          <Pressable
+            key={idx}
+            onPress={() => {
+              Haptics.selectionAsync();
+              setSelectedRecipes(recipe);
+            }}>
             <View style={styles.recipeItemWrapper}>
               <Flex style={styles.recipeBox}>
                 <View style={styles.recipeInnerContent}>

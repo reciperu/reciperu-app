@@ -1,4 +1,5 @@
 import { useQueryClient } from '@tanstack/react-query';
+import * as Haptics from 'expo-haptics';
 import { Image } from 'expo-image';
 import * as ImagePicker from 'expo-image-picker';
 import { Stack, router } from 'expo-router';
@@ -162,7 +163,11 @@ export default function OnboardingTopPage() {
                   paddingRight: index === ImageList.length - 1 ? 12 : 0,
                 },
               ]}>
-              <Pressable onPress={() => setDefaultAvatar(item.image, item.key)}>
+              <Pressable
+                onPress={() => {
+                  Haptics.selectionAsync();
+                  setDefaultAvatar(item.image, item.key);
+                }}>
                 <View style={item.key === imageKey ? styles.outline : styles.noOutline}>
                   <View style={styles.imagePickerWrapper}>
                     <Image contentFit="cover" source={item.image} style={styles.avatarSize} />
