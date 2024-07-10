@@ -1,8 +1,10 @@
 import { useQueryClient } from '@tanstack/react-query';
+import * as Haptics from 'expo-haptics';
 import { Image } from 'expo-image';
 import { useRouter } from 'expo-router';
 import { memo, useCallback, useState } from 'react';
 import { Dimensions, Pressable, TouchableOpacity, View } from 'react-native';
+import ImageView from 'react-native-image-viewing';
 
 import { useRecipes } from '../../hooks/useRecipes';
 import { SpaceRecipe } from '../../types';
@@ -23,6 +25,7 @@ const { width } = Dimensions.get('window');
 
 export const RecipeDetail = memo<Props>(({ data, showRecipeDetail = true }) => {
   const router = useRouter();
+  const [visibleIndex, setIsVisibleIndex] = useState<null | number>(null);
   const queryClient = useQueryClient();
   const [recipeData, setRecipeData] = useState<SpaceRecipe>(data);
   const { getFavorite, addRequester, removeRequester } = useRecipes();
@@ -180,22 +183,36 @@ export const RecipeDetail = memo<Props>(({ data, showRecipeDetail = true }) => {
           </Flex>
         )}
         {!!data.imageUrls?.length && (
-          <View style={{ paddingVertical: 12, flexDirection: 'row', gap: 12 }}>
-            {/* // TODO: クリックして詳細を確認できる  */}
-            {data.imageUrls.map((url, index) => (
-              <Image
-                key={index}
-                source={{ uri: url }}
-                alt={data.title}
-                style={{
-                  width: 72,
-                  height: 72,
-                  borderRadius: Constants.radius.lg,
-                  marginVertical: 8,
-                }}
-              />
-            ))}
-          </View>
+          <>
+            <View style={{ paddingVertical: 12, flexDirection: 'row', gap: 12 }}>
+              {/* // TODO: クリックして詳細を確認できる  */}
+              {data.imageUrls.map((url, index) => (
+                <Pressable
+                  key={index}
+                  onPress={() => {
+                    Haptics.selectionAsync();
+                    setIsVisibleIndex(index);
+                  }}>
+                  <Image
+                    source={{ uri: url }}
+                    alt={data.title}
+                    style={{
+                      width: 72,
+                      height: 72,
+                      borderRadius: Constants.radius.lg,
+                      marginVertical: 8,
+                    }}
+                  />
+                </Pressable>
+              ))}
+            </View>
+            <ImageView
+              images={data.imageUrls.map((url) => ({ uri: url }))}
+              imageIndex={visibleIndex || 0}
+              visible={visibleIndex !== null}
+              onRequestClose={() => setIsVisibleIndex(null)}
+            />
+          </>
         )}
         {!!data.memo?.length && (
           <View
