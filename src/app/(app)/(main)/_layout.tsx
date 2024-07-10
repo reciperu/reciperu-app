@@ -8,6 +8,7 @@ import { useAuthContext } from '@/context/authProvider';
 import { PageWholeLoader } from '@/cores/components/PageWholeLoader';
 import { useFetchMyProfile } from '@/features/User/apis/getMyProfile';
 import { UserStatus } from '@/features/User/types';
+import { usePushNotificationToken } from '@/hooks/usePushNotificationToken';
 import { useSignOut } from '@/hooks/useSignOut';
 
 export default function MainLayout() {
@@ -49,6 +50,10 @@ const MainContent = memo(() => {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [error]);
+
+  // プッシュ通知のトークン更新
+  usePushNotificationToken(data?.id);
+
   // 取得中
   if (isLoading) {
     return <PageWholeLoader />;

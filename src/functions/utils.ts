@@ -9,3 +9,7 @@ export const getRandomNumber = (count: number) => {
 export const openURL = (url: string) => {
   Linking.openURL(url);
 };
+
+export const openSettingApp = () => {
+  Linking.openSettings();
+};

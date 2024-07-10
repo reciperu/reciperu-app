@@ -7,6 +7,7 @@ import { Constants } from '@/constants';
 import { HeaderAppIcon } from '@/features/Header/AppIcon';
 import { useFetchMyProfile } from '@/features/User/apis/getMyProfile';
 import { UserStatus } from '@/features/User/types';
+import { usePushNotificationToken } from '@/hooks/usePushNotificationToken';
 import { useSignOut } from '@/hooks/useSignOut';
 
 export default function OnboardingLayout() {
@@ -21,6 +22,9 @@ export default function OnboardingLayout() {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [error]);
+
+  // プッシュ通知のトークン更新
+  usePushNotificationToken(data?.id);
 
   if (!data) return <></>;
   if (data?.activeStatus === UserStatus.JOINED_SPACE) {

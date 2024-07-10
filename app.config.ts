@@ -57,6 +57,11 @@ export default ({ config }: ConfigContext): ExpoConfig => {
     experiments: {
       tsconfigPaths: true,
     },
+    extra: {
+      eas: {
+        projectId: process.env.EXPO_PUBLIC_EAS_PROJECT_ID,
+      },
+    },
     scheme: process.env.EXPO_PUBLIC_SCHEME,
   };
 };

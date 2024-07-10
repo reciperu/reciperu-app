@@ -25,3 +25,13 @@ export interface UpdatedUserBody {
   imageUrl: string;
   activeStatus: UserStatus;
 }
+
+export interface UpdatedUserTokenRequestBody {
+  token: string;
+  deviceId: string;
+}
+
+export interface UpdatedUserTokenResponse {
+  token: string;
+  deviceId: string;
+}
