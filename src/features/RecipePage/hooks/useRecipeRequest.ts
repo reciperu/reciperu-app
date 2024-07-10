@@ -1,3 +1,4 @@
+import * as Haptics from 'expo-haptics';
 import { useCallback, useState } from 'react';
 
 import { useDeleteRecipeRequest } from '@/features/Recipe/apis/deleteRecipeRequest';
@@ -30,6 +31,7 @@ export const useRecipeRequest: UseRecipeRequest = () => {
       if (pending) return;
       try {
         setPending(true);
+        Haptics.selectionAsync();
         const isFavorite = getFavorite(item.requesters);
         if (isFavorite) {
           const result = await deleteMutation.mutateAsync({

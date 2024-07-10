@@ -156,12 +156,13 @@ export const RecipeDetail = memo<Props>(({ data, showRecipeDetail = true }) => {
             <Spacer />
             {showRecipeDetail && (
               <Pressable
-                onPress={() =>
+                onPress={() => {
+                  Haptics.selectionAsync();
                   router.push({
                     pathname: `recipe/${data.id}/webview`,
                     params: { title: data.title, recipeUrl: data.recipeUrl },
-                  })
-                }>
+                  });
+                }}>
                 <Flex
                   style={{
                     gap: 8,
