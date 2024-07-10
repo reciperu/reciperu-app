@@ -46,7 +46,6 @@ export const InviteModal = memo<Props>(({ isVisible, onClose, renderPrimaryButto
   }, []);
   const fetchInvitationCode = useCallback(
     (showToast?: boolean) => {
-      console.log('call');
       mutation.mutate(undefined, {
         onSuccess: (res) => {
           setCode(res.token);
@@ -75,7 +74,6 @@ export const InviteModal = memo<Props>(({ isVisible, onClose, renderPrimaryButto
     [mutation, code]
   );
   useEffect(() => {
-    console.log(`code.ength: ${code.length} isVisible: ${isVisible}`);
     if (!code.length && isVisible) {
       fetchInvitationCode(false);
     }
@@ -129,7 +127,7 @@ export const InviteModal = memo<Props>(({ isVisible, onClose, renderPrimaryButto
             </View>
           )}
         </View>
-        {expiredAt.length > 0 && (
+        {!!expiredAt?.length && (
           <NotoText
             style={{
               marginTop: 16,

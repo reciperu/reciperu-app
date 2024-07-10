@@ -48,8 +48,6 @@ export const usePushNotificationToken: UsePushNotificationToken = (userId) => {
       // NOTE: androidも含める際はApplication.androidIdを使用
       const deviceId = await Application.getIosIdForVendorAsync();
 
-      console.log('deviceId: ', deviceId);
-
       if (deviceId) {
         // サーバーにトークンを送信
         mutation.mutate({
