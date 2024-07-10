@@ -25,4 +25,6 @@ export const ICON_NAME_LIST = [
   'window-open',
   'copy',
   'reload',
+  'earth',
+  'safari',
 ] as const;

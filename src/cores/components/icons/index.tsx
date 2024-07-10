@@ -12,6 +12,7 @@ import { Checkmark } from './components/Checkmark';
 import { Close } from './components/Close';
 import { CloseCircle } from './components/CloseCircle';
 import { Copy } from './components/Copy';
+import { Earth } from './components/Earth';
 import { EmojiSad } from './components/EmojiSad';
 import { FilledClose } from './components/FilledClose';
 import { GoogleLogo } from './components/Google';
@@ -23,6 +24,7 @@ import { NewWindowArrow } from './components/NewWindowArrow';
 import { Pencil } from './components/Pencil';
 import { Recipe } from './components/Recipe';
 import { Reload } from './components/Reload';
+import { Safari } from './components/Safari';
 import { Search } from './components/Search';
 import { Warning } from './components/Warning';
 import { WindowOpen } from './components/WindowOpen';
@@ -85,6 +87,10 @@ export const AppIcon = memo<Props>(({ name, ...rest }) => {
     return <Copy {...rest} />;
   } else if (name === 'reload') {
     return <Reload {...rest} />;
+  } else if (name === 'earth') {
+    return <Earth {...rest} />;
+  } else if (name === 'safari') {
+    return <Safari {...rest} />;
   }
   return <></>;
 });
