@@ -41,7 +41,6 @@ const MainContent = memo(() => {
         if (axios.isAxiosError(error) && error.response?.status && error.response.status < 500) {
           handleSignOut();
         } else {
-          console.log(`error - : ${error?.message}`);
           Alert.alert('エラー', 'エラーが発生しました。', [
             { text: 'もう一度試す', onPress: () => refetch() },
           ]);

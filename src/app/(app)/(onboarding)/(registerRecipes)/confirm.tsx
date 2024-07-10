@@ -35,7 +35,7 @@ export default function OnboardingRegisterRecipesConfirmPage() {
     } catch (err) {
       console.log(err);
     }
-  }, [router, pending, selectedRecipes, mutation]);
+  }, [router, pending, selectedRecipes, mutation, queryClient]);
   const handleEdit = useCallback(
     (idx: number) => {
       if (pending) return;

@@ -162,16 +162,16 @@ export const RecipeDetail = memo<Props>(({ data, showRecipeDetail = true }) => {
                 <Flex
                   style={{
                     gap: 8,
-                    paddingHorizontal: 10,
-                    paddingVertical: 10,
+                    paddingHorizontal: 6,
+                    paddingVertical: 6,
                     alignItems: 'center',
                     backgroundColor: Constants.colors.primitive.gray[50],
                     borderRadius: 24,
                   }}>
                   <AppIcon
-                    name="window-open"
-                    width={18}
-                    height={18}
+                    name="safari"
+                    width={22}
+                    height={22}
                     color={Constants.colors.primitive.gray[500]}
                   />
                 </Flex>

@@ -16,11 +16,25 @@ export const SharingPromotionCard = memo(() => {
       <View style={{ marginVertical: 24 }}>
         <NotoText>パートナーを招待すると...</NotoText>
         <Flex style={{ gap: 8, marginTop: 12 }}>
-          <AppIcon name="check-mark" color={Constants.colors.primitive.pink[400]} />
+          <View style={{ marginTop: 2 }}>
+            <AppIcon
+              name="check-mark"
+              width={18}
+              height={18}
+              color={Constants.colors.primitive.pink[400]}
+            />
+          </View>
           <NotoText fw="bold">同じレシピを見ることができます！</NotoText>
         </Flex>
         <Flex style={{ gap: 8, marginTop: 12 }}>
-          <AppIcon name="check-mark" color={Constants.colors.primitive.pink[400]} />
+          <View style={{ marginTop: 2 }}>
+            <AppIcon
+              name="check-mark"
+              width={18}
+              height={18}
+              color={Constants.colors.primitive.pink[400]}
+            />
+          </View>
           <NotoText fw="bold">食べたい料理をお互いに共有することができます！</NotoText>
         </Flex>
       </View>

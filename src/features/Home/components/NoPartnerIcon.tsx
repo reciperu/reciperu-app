@@ -3,6 +3,7 @@ import { memo } from 'react';
 import { Pressable } from 'react-native';
 
 import { Constants } from '@/constants';
+import { Button } from '@/cores/components/Button';
 import { Flex } from '@/cores/components/Flex';
 import { useModal } from '@/cores/components/Modal/useModal';
 import { NotoText } from '@/cores/components/Text';
@@ -29,7 +30,15 @@ export const NoPartnerIcon = memo(() => {
           </NotoText>
         </Flex>
       </Pressable>
-      <InviteModal isVisible={isVisible} onClose={closeModal} />
+      <InviteModal
+        isVisible={isVisible}
+        onClose={closeModal}
+        renderPrimaryButton={() => (
+          <Button scheme="text" onPress={closeModal}>
+            閉じる
+          </Button>
+        )}
+      />
     </>
   );
 });
