@@ -144,6 +144,7 @@ export const FavoriteRecipeTab = memo<Props>(({ search }) => {
                               ...item,
                               imageUrls: JSON.stringify(item.imageUrls),
                               requesters: JSON.stringify(item.requesters),
+                              user: JSON.stringify(item.user),
                             },
                           })
                         }>
