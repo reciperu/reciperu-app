@@ -5,7 +5,7 @@ import { Recipe } from '../types';
 import { client } from '@/lib/axios';
 
 export const postRecipeBulk = async (data: Omit<Recipe, 'id'>[]): Promise<Recipe[]> => {
-  return await client.post('/auth', data);
+  return await client.post('/recipes/bulk', data);
 };
 
 type UsePostRecipeBulk = {
