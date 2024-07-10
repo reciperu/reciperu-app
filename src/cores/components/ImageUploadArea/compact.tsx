@@ -21,10 +21,8 @@ export const CompactImageUploadArea = memo<Props>(({ image, setImage, deleteImag
   const pickImage = useCallback(async () => {
     // No permissions request is necessary for launching the image library
     const result = await ImagePicker.launchImageLibraryAsync({
-      mediaTypes: ImagePicker.MediaTypeOptions.All,
-      allowsEditing: true,
-      aspect: [16, 9],
-      quality: 1,
+      mediaTypes: ImagePicker.MediaTypeOptions.Images,
+      allowsEditing: false,
     });
     if (!result.canceled) {
       setImage(result.assets[0].uri);
