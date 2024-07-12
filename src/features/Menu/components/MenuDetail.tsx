@@ -59,9 +59,9 @@ export const MenuDetail = memo<Props>(({ data, onClose }) => {
           queryClient.invalidateQueries({
             queryKey: ['pending-menus'],
           });
-          queryClient.invalidateQueries({
-            queryKey: ['menus'],
-          });
+          // queryClient.invalidateQueries({
+          //   queryKey: ['menus'],
+          // });
         },
         onError: () => {
           Toast.show({
@@ -99,9 +99,9 @@ export const MenuDetail = memo<Props>(({ data, onClose }) => {
             queryClient.invalidateQueries({
               queryKey: ['pending-menus'],
             });
-            queryClient.invalidateQueries({
-              queryKey: ['menus'],
-            });
+            // queryClient.invalidateQueries({
+            //   queryKey: ['menus'],
+            // });
           },
           onError: () => {
             Toast.show({

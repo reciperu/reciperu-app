@@ -181,9 +181,9 @@ export default function Modal() {
         },
         {
           onSuccess: () => {
-            queryClient.invalidateQueries({
-              queryKey: ['menus'],
-            });
+            // queryClient.invalidateQueries({
+            //   queryKey: ['menus'],
+            // });
             queryClient.invalidateQueries({
               queryKey: ['pending-menus'],
             });

@@ -75,7 +75,7 @@ export default function TabLayout() {
             ),
           }}
         />
-        <Tabs.Screen
+        {/* <Tabs.Screen
           name="menu"
           options={{
             title: '献立',
@@ -89,7 +89,7 @@ export default function TabLayout() {
               />
             ),
           }}
-        />
+        /> */}
         <Tabs.Screen
           name="myPage"
           options={{
