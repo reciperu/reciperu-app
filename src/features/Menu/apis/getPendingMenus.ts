@@ -15,7 +15,7 @@ type UseGetPendingMenusOptions = {
   config?: QueryConfig<QueryFnType>;
 };
 
-export const useFetchSpace = ({ config }: UseGetPendingMenusOptions) => {
+export const useFetchPendingMenus = ({ config }: UseGetPendingMenusOptions) => {
   return useQuery<ExtractFnReturnType<QueryFnType>>({
     queryKey: ['pending-menus'],
     queryFn: () => getPendingMenus(),

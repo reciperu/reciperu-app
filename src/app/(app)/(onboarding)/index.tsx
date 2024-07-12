@@ -90,7 +90,7 @@ export default function OnboardingTopPage() {
             },
           },
           {
-            onSuccess: () => {
+            onSuccess: (result) => {
               queryClient.setQueryData(['profile'], (data: any) => {
                 if (data) {
                   return {
@@ -106,6 +106,10 @@ export default function OnboardingTopPage() {
                   activeStatus: data?.activeStatus,
                 };
               });
+              if (result.imageUrl) {
+                setImage(result.imageUrl);
+                setImageKey(null);
+              }
               router.push('/(onboarding)/createSpace');
             },
           }
@@ -200,7 +204,7 @@ export default function OnboardingTopPage() {
             width,
           },
         ]}>
-        <Button disabled={disabled} onPress={handlePress}>
+        <Button disabled={disabled} loading={mutation.isPending} onPress={handlePress}>
           次に進む
         </Button>
       </View>

@@ -1,37 +1,56 @@
+import { useQueryClient } from '@tanstack/react-query';
 import { router } from 'expo-router';
+import { useCallback, useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 
 import { Constants } from '@/constants';
 import { Button } from '@/cores/components/Button';
+import { InputLabel } from '@/cores/components/InputLabel';
 import { Spacer } from '@/cores/components/Spacer';
 import { NotoText } from '@/cores/components/Text';
+import { TextInput } from '@/cores/components/TextInput';
+import { usePutSpaceJoin } from '@/features/Space/apis/putSpaceJoin';
 
 export default function OnboardingJoinBookTopPage() {
+  const [code, setCode] = useState('');
+  const mutation = usePutSpaceJoin({});
+  const queryClient = useQueryClient();
+  const handlePress = useCallback(async () => {
+    if (code.length) {
+      mutation.mutate(
+        { token: code },
+        {
+          onSuccess: async () => {
+            await queryClient.invalidateQueries({
+              queryKey: ['profile'],
+            });
+            router.push('/(onboarding)/(joinBook)/complete');
+          },
+          onSettled: () => {
+            router.push('/(onboarding)/(joinBook)/complete');
+          },
+        }
+      );
+    }
+  }, [code, mutation, queryClient]);
   return (
     <>
       <View style={styles.container}>
         <View style={styles.titleWrapper}>
-          <NotoText style={styles.stepper}>3/4</NotoText>
+          <NotoText style={styles.stepper}>3/3</NotoText>
           <NotoText fw="bold" style={styles.pageTitle}>
-            レシピ集を共有してもらいましょう
+            別のスペースに参加する
           </NotoText>
         </View>
-        <View style={styles.contentWrapper}>
-          <NotoText style={[styles.descriptionText, { marginBottom: 8 }]}>
-            レシピ集の共有には
-          </NotoText>
-          <View style={styles.colorBox}>
-            <NotoText style={styles.descriptionText}>1. QRコードを読み取る</NotoText>
-            <NotoText style={styles.descriptionText}>2. 招待リンクからアプリを開く</NotoText>
-          </View>
-          <NotoText style={[styles.descriptionText, { marginTop: 8 }]}>
-            のどちらかを行う必要があります
-          </NotoText>
-        </View>
+        <NotoText style={[styles.descriptionText]}>
+          パートナーから教えてもらった招待コードを入力してください
+        </NotoText>
+        <InputLabel required>招待コード</InputLabel>
+        <TextInput value={code} onChange={(text) => setCode(text)} />
         <Spacer />
         <View style={styles.actionButtonWrapper}>
-          <Button onPress={() => router.push('/(onboarding)/(joinBook)/readQR')}>
-            QRコードを読み取る
+          <Button loading={mutation.isPending} disabled={!code.length} onPress={handlePress}>
+            次に進む
           </Button>
         </View>
       </View>
@@ -50,18 +69,12 @@ const styles = StyleSheet.create({
   },
   pageTitle: {
     fontSize: 18,
-    marginVertical: 2,
+    marginTop: 2,
   },
-  contentWrapper: { marginTop: 36 },
   actionButtonWrapper: {
     display: 'flex',
     flexDirection: 'column',
     gap: 16,
   },
-  descriptionText: { fontSize: 16 },
-  colorBox: {
-    backgroundColor: '#EDF2F7',
-    paddingVertical: 12,
-    paddingHorizontal: 16,
-  },
+  descriptionText: { fontSize: 16, marginVertical: 24 },
 });

@@ -78,9 +78,6 @@ export default function OnboardingRegisterRecipesCompletePage() {
   return (
     <>
       <ScrollView style={styles.container}>
-        <View style={{ position: 'absolute', top: -40, left: 0, width, height }}>
-          <Confetti ref={confettiRef} />
-        </View>
         <View style={{ minHeight: height - 144 }}>
           <View style={styles.titleWrapper}>
             <NotoText fw="bold" style={styles.pageTitle}>
@@ -97,6 +94,11 @@ export default function OnboardingRegisterRecipesCompletePage() {
               招待せず始める
             </Button>
           </View>
+        </View>
+        <View
+          pointerEvents="none"
+          style={{ position: 'absolute', top: -40, left: 0, width, height }}>
+          <Confetti ref={confettiRef} />
         </View>
       </ScrollView>
       <InviteModal

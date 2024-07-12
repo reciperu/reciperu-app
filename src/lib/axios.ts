@@ -3,6 +3,7 @@ import qs, { parse } from 'qs';
 import Toast from 'react-native-toast-message';
 
 import { API_TIMEOUT, AUTH_ERROR_MESSAGE } from '@/constants';
+import { convertErrorMessage } from '@/functions/errorMessage';
 import secureStoreService, { StoreKeyEnum } from '@/lib/secureStore';
 
 const config = {
@@ -38,7 +39,6 @@ client.interceptors.response.use(
     return response.data;
   },
   async (error) => {
-    console.log(`error: ${JSON.stringify(error)}`);
     if (error.response?.status === 401) {
       // リトライ処理
       if (!error.config.retry) {
@@ -59,8 +59,7 @@ client.interceptors.response.use(
             }
           );
           const json = await response.json();
-          console.log(`json!!: ${JSON.stringify(json)}`);
-          await secureStoreService.save(StoreKeyEnum.TOKEN, json.id_token);
+          await secureStoreService.save(StoreKeyEnum.TOKEN, json.access_token);
           await secureStoreService.save(StoreKeyEnum.REFRESH_TOKEN, json.refresh_token);
         } catch (error) {
           console.log(error);
@@ -76,14 +75,14 @@ client.interceptors.response.use(
         Toast.show({
           type: 'errorToast',
           text1: 'エラーが発生しました',
-          text2: error.response?.data?.message || error.message,
+          text2: convertErrorMessage(error.response?.data?.message || error.message),
           visibilityTime: 3000,
           autoHide: true,
           topOffset: 60,
         });
       }
-      return Promise.reject(error);
     }
+    return Promise.reject(error);
   }
 );
 
