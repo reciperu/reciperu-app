@@ -20,7 +20,7 @@ Notifications.setNotificationHandler({
 export const usePushNotificationToken: UsePushNotificationToken = (userId) => {
   const mutation = usePutToken({});
   const registerForPushNotificationsAsync = useCallback(async () => {
-    if (Device.isDevice) {
+    if (Device?.isDevice) {
       const { status: existingStatus } = await Notifications.getPermissionsAsync();
       let finalStatus = existingStatus;
 
