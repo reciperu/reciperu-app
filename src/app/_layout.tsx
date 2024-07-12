@@ -1,3 +1,4 @@
+import { ActionSheetProvider } from '@expo/react-native-action-sheet';
 import { BottomSheetModalProvider } from '@gorhom/bottom-sheet';
 import { useFonts } from 'expo-font';
 import { Slot } from 'expo-router';
@@ -38,15 +39,17 @@ export default function RootLayout() {
   return (
     <ReactQueryClientProvider>
       <AuthProvider>
-        <BottomSheetModalProvider>
-          <GestureHandlerRootView style={{ flex: 1, flexGrow: 1 }}>
-            <View onLayout={onLayoutRootView}>
-              <WholeLayout>
-                <Slot />
-              </WholeLayout>
-            </View>
-          </GestureHandlerRootView>
-        </BottomSheetModalProvider>
+        <ActionSheetProvider>
+          <BottomSheetModalProvider>
+            <GestureHandlerRootView style={{ flex: 1, flexGrow: 1 }}>
+              <View onLayout={onLayoutRootView}>
+                <WholeLayout>
+                  <Slot />
+                </WholeLayout>
+              </View>
+            </GestureHandlerRootView>
+          </BottomSheetModalProvider>
+        </ActionSheetProvider>
       </AuthProvider>
       <Toast config={toastConfig} />
     </ReactQueryClientProvider>
