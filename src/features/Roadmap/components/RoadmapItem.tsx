@@ -43,7 +43,7 @@ export const RoadmapItem = memo<Props>((item) => {
         <NotoText style={{ fontSize: 14, lineHeight: 18 }}>{item.title}</NotoText>
         {item.description && (
           <NotoText
-            style={{ fontSize: 10, color: Constants.colors.primitive.gray[700], marginTop: 4 }}>
+            style={{ fontSize: 12, color: Constants.colors.primitive.gray[500], marginTop: 6 }}>
             {item.description}
           </NotoText>
         )}
@@ -61,7 +61,7 @@ export const RoadmapItem = memo<Props>((item) => {
           style={{
             fontSize: 12,
             lineHeight: 16,
-            color: Constants.colors.primitive.gray[600],
+            color: Constants.colors.primitive.gray[500],
           }}>
           {getStatusLabel(item.status[0])}
         </NotoText>

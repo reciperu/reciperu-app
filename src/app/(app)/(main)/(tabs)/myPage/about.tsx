@@ -70,7 +70,7 @@ export default function AboutPage() {
               }}>
               <Image source={item.image} style={{ width: 48, height: 48, borderRadius: 24 }} />
               <Flex style={{ flexDirection: 'column', gap: 4 }}>
-                <NotoText fw="bold" style={{ fontSize: 14, lineHeight: 16 }}>
+                <NotoText fw="bold" style={{ fontSize: 14, lineHeight: 16, marginTop: 4 }}>
                   {item.name}
                 </NotoText>
                 <NotoText
@@ -78,6 +78,7 @@ export default function AboutPage() {
                     fontSize: 12,
                     lineHeight: 14,
                     color: Constants.colors.primitive.gray[500],
+                    marginTop: 4,
                   }}>
                   Xで見る
                 </NotoText>
