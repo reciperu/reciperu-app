@@ -14,9 +14,10 @@ import { ArrowBack } from '@/cores/components/icons/components/ArrowBack';
 // import { PlannedMenuSection } from '@/features/Home/components/PlannedMenuSection';
 import { UserEatingListSection } from '@/features/Home/components/UserEatingListSection';
 import { UserIconList } from '@/features/Home/components/UserIconList';
+import { useRequestedRecipeByUser } from '@/features/Home/hooks/useRequestedRecipeByUser';
 import { useFetchSpace } from '@/features/Space/apis/getSpace';
 import { EditSpaceNameModal } from '@/features/Space/components/EditSpaceNameModal';
-import { useFetchMyProfile } from '@/features/User/apis/getMyProfile';
+import { useUser } from '@/features/User/hooks/useUser';
 
 const { width, height } = Dimensions.get('window');
 
@@ -24,6 +25,11 @@ export default function HomePage() {
   const [refreshing, setRefreshing] = useState(false);
   const [isEditSpaceNameModalVisible, setIsEditSpaceNameModalVisible] = useState(false);
   const { showActionSheetWithOptions } = useActionSheet();
+  const { myRequestedRecipes, partnerRequestedRecipes } = useRequestedRecipeByUser();
+  const { myInfo, partnerInfo } = useUser();
+  const { data: space } = useFetchSpace({
+    id: myInfo?.spaceId,
+  });
   const queryClient = useQueryClient();
   const onRefresh = useCallback(async () => {
     setRefreshing(true);
@@ -38,26 +44,12 @@ export default function HomePage() {
     // });
     setRefreshing(false);
   }, [queryClient]);
-  const { data } = useFetchMyProfile({});
-  const { data: space } = useFetchSpace({
-    id: data?.spaceId || '',
-  });
-  const myProfile = useMemo(() => {
-    const id = data?.id || '';
-    const targetUser = space?.users.find((user) => user.id === id) || null;
-    return targetUser;
-  }, [data, space]);
-  const partnerProfile = useMemo(() => {
-    const id = data?.id || '';
-    const targetUser = space?.users.find((user) => user.id !== id) || null;
-    return targetUser;
-  }, [data, space]);
   const imageHeight = (width / 390) * 103;
   const spaceName = useMemo(() => {
     return space?.name || '';
   }, [space]);
   const handlePressTitle = useCallback(() => {
-    const isOwner = data?.spaceRole === 'OWNER';
+    const isOwner = myInfo?.spaceRole === 'OWNER';
     const hasMultipleUsers = space?.users && space.users.length > 1;
     let options: string[] = [];
     if (isOwner) {
@@ -98,7 +90,7 @@ export default function HomePage() {
         }
       }
     );
-  }, [showActionSheetWithOptions, data, space]);
+  }, [showActionSheetWithOptions, space, myInfo]);
   const renderHeaderTitle = useCallback(() => {
     return (
       <Pressable onPress={handlePressTitle}>
@@ -135,7 +127,7 @@ export default function HomePage() {
             />
           </LinearGradient>
           <View style={{ marginTop: -24 }}>
-            <UserIconList myProfile={myProfile} partnerProfile={partnerProfile} />
+            <UserIconList myProfile={myInfo} partnerProfile={partnerInfo} />
           </View>
         </View>
         <Container needBottomPadding style={{ minHeight: height - 376, paddingTop: 24 }}>
@@ -146,8 +138,24 @@ export default function HomePage() {
           {/* // todo: パートナーの食べたい料理 */}
           {/* 自分の食べたい料理 */}
           <View>
-            <UserEatingListSection avatar={data?.imageUrl} name={data?.name} />
+            <UserEatingListSection
+              avatar={myInfo?.imageUrl}
+              name={myInfo?.name}
+              isPartner={false}
+              recipes={myRequestedRecipes}
+            />
           </View>
+          {/* パートナーの食べたい料理 */}
+          {partnerInfo && (
+            <View>
+              <UserEatingListSection
+                avatar={partnerInfo?.imageUrl}
+                name={partnerInfo?.name}
+                isPartner
+                recipes={partnerRequestedRecipes}
+              />
+            </View>
+          )}
         </Container>
       </ScrollView>
       <EditSpaceNameModal
