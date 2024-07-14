@@ -5,6 +5,7 @@ import { Dimensions, Pressable, TouchableOpacity, View } from 'react-native';
 import DatePicker from 'react-native-date-picker';
 import Toast from 'react-native-toast-message';
 
+import { useDeleteMenu } from '../apis/deleteMenu';
 import { usePutMenu } from '../apis/putMenu';
 import { MenuItem } from '../types';
 
@@ -16,11 +17,10 @@ import { NotoText } from '@/cores/components/Text';
 import { AppIcon } from '@/cores/components/icons';
 import { RecipeWebviewLink } from '@/features/Recipe/components/RecipeWebViewLink';
 import { useRecipes } from '@/features/Recipe/hooks/useRecipes';
-import { SpaceRecipe } from '@/features/Recipe/types';
+import { RequestedRecipesResponse, SpaceRecipe } from '@/features/Recipe/types';
 import { useRecipeRequest } from '@/features/RecipePage/hooks/useRecipeRequest';
-import { noop } from '@/functions/utils';
+import { useUser } from '@/features/User/hooks/useUser';
 import dayjs from '@/lib/dayjs';
-import { useDeleteMenu } from '../apis/deleteMenu';
 
 interface Props {
   data: MenuItem;
@@ -32,6 +32,7 @@ const { width } = Dimensions.get('window');
 export const MenuDetail = memo<Props>(({ data, onClose }) => {
   const mutation = usePutMenu({});
   const deleteMutation = useDeleteMenu({});
+  const { myInfo } = useUser();
   const queryClient = useQueryClient();
   const [recipeData, setRecipeData] = useState<SpaceRecipe>(data.recipe);
   const [date, setDate] = useState<Date | undefined>(
@@ -120,19 +121,48 @@ export const MenuDetail = memo<Props>(({ data, onClose }) => {
   // 「食べたい」のステートを入れ替える
   const toggleRequest = useCallback(async () => {
     const handleSuccessAdd = () => {
-      setRecipeData((prev) => ({ ...prev, requesters: addRequester(prev.requesters) || [] }));
+      const newRequesters = addRequester(recipeData.requesters) || [];
+      setRecipeData((prev) => ({ ...prev, requesters: newRequesters }));
       queryClient.invalidateQueries({
         queryKey: ['recipes'],
+      });
+      queryClient.setQueryData(['requested-recipes'], (data: RequestedRecipesResponse) => {
+        const userId = myInfo?.id;
+        if (userId && data.data[userId]) {
+          return {
+            data: {
+              ...data.data,
+              [userId]: data.data[userId].push({
+                ...recipeData,
+                requesters: newRequesters,
+              }),
+            },
+          };
+        }
+        return data;
       });
     };
     const handleSuccessRemove = () => {
-      setRecipeData((prev) => ({ ...prev, requesters: removeRequester(prev.requesters) || [] }));
+      const newRequesters = removeRequester(recipeData.requesters) || [];
+      setRecipeData((prev) => ({ ...prev, requesters: newRequesters }));
       queryClient.invalidateQueries({
         queryKey: ['recipes'],
       });
+      queryClient.setQueryData(['requested-recipes'], (data: RequestedRecipesResponse) => {
+        const userId = myInfo?.id;
+        if (userId && data.data[userId]) {
+          return {
+            data: {
+              ...data.data,
+              [userId]: data.data[userId].filter((recipe) => recipe.id !== recipeData.id),
+            },
+          };
+        }
+        return data;
+      });
     };
     recipeRequestService.toggle(recipeData, handleSuccessAdd, handleSuccessRemove);
-  }, [recipeData, recipeRequestService, addRequester, removeRequester, queryClient]);
+  }, [recipeData, recipeRequestService, addRequester, removeRequester, queryClient, myInfo]);
   return (
     <>
       <View>

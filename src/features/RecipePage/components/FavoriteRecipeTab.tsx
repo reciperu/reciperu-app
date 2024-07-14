@@ -15,7 +15,8 @@ import { AppIcon } from '@/cores/components/icons';
 import { useFetchRecipes } from '@/features/Recipe/apis/getRecipes';
 import { RecipeItem } from '@/features/Recipe/components/RecipeItem';
 import { useRecipes } from '@/features/Recipe/hooks/useRecipes';
-import { SpaceRecipe } from '@/features/Recipe/types';
+import { RequestedRecipesResponse, SpaceRecipe } from '@/features/Recipe/types';
+import { useUser } from '@/features/User/hooks/useUser';
 import { useUpdateEffect } from '@/hooks/useUpdateEffect';
 import { sleep } from '@/utils/sleep';
 
@@ -26,6 +27,7 @@ interface Props {
 export const FavoriteRecipeTab = memo<Props>(({ search }) => {
   const router = useRouter();
   const queryClient = useQueryClient();
+  const { myInfo } = useUser();
   const [refreshing, setRefreshing] = useState(false);
   const { getFavorite, removeRequester } = useRecipes();
   const [params, setParams] = useState<{
@@ -94,9 +96,21 @@ export const FavoriteRecipeTab = memo<Props>(({ search }) => {
             pageParams: data.pageParams,
           })
         );
+        queryClient.setQueryData(['requested-recipes'], (data: RequestedRecipesResponse) => {
+          const userId = myInfo?.id;
+          if (userId && data.data[userId]) {
+            return {
+              data: {
+                ...data.data,
+                [userId]: data.data[userId].filter((recipe) => recipe.id !== item.id),
+              },
+            };
+          }
+          return data;
+        });
       });
     },
-    [displayData]
+    [displayData, myInfo?.id]
   );
 
   const onRefresh = useCallback(async () => {
@@ -139,7 +153,7 @@ export const FavoriteRecipeTab = memo<Props>(({ search }) => {
                         style={{ flex: 1 }}
                         onPress={() =>
                           router.push({
-                            pathname: `recipe/${item.id}`,
+                            pathname: `recipe_detail/${item.id}`,
                             params: {
                               ...item,
                               imageUrls: JSON.stringify(item.imageUrls),

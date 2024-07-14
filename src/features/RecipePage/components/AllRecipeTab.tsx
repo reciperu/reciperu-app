@@ -15,7 +15,8 @@ import { AppIcon } from '@/cores/components/icons';
 import { useFetchRecipes } from '@/features/Recipe/apis/getRecipes';
 import { RecipeItem } from '@/features/Recipe/components/RecipeItem';
 import { useRecipes } from '@/features/Recipe/hooks/useRecipes';
-import { SpaceRecipe } from '@/features/Recipe/types';
+import { RequestedRecipesResponse, SpaceRecipe } from '@/features/Recipe/types';
+import { useUser } from '@/features/User/hooks/useUser';
 import { useUpdateEffect } from '@/hooks/useUpdateEffect';
 import { sleep } from '@/utils/sleep';
 
@@ -28,6 +29,7 @@ export const AllRecipeTab = memo<Props>(({ search }) => {
   const queryClient = useQueryClient();
   const [refreshing, setRefreshing] = useState(false);
   const { getFavorite, addRequester, removeRequester } = useRecipes();
+  const { myInfo } = useUser();
   const [params, setParams] = useState<{
     cursor?: string;
     title?: string;
@@ -48,7 +50,6 @@ export const AllRecipeTab = memo<Props>(({ search }) => {
     isRefetching,
   } = useFetchRecipes({ params });
 
-  // 表示データ一覧
   const displayData = useMemo(() => {
     const arr = [];
     if (data?.pages) {
@@ -92,6 +93,21 @@ export const AllRecipeTab = memo<Props>(({ search }) => {
             pageParams: data.pageParams,
           })
         );
+        queryClient.setQueryData(['requested-recipes'], (data: RequestedRecipesResponse) => {
+          const userId = myInfo?.id;
+          if (userId && data.data[userId]) {
+            return {
+              data: {
+                ...data.data,
+                [userId]: data.data[userId].push({
+                  ...item,
+                  requesters: addRequester(item.requesters) || [],
+                }),
+              },
+            };
+          }
+          return data;
+        });
       };
       const handleSuccessRemove = () => {
         queryClient.setQueryData(
@@ -114,10 +130,22 @@ export const AllRecipeTab = memo<Props>(({ search }) => {
             pageParams: data.pageParams,
           })
         );
+        queryClient.setQueryData(['requested-recipes'], (data: RequestedRecipesResponse) => {
+          const userId = myInfo?.id;
+          if (userId && data.data[userId]) {
+            return {
+              data: {
+                ...data.data,
+                [userId]: data.data[userId].filter((recipe) => recipe.id !== item.id),
+              },
+            };
+          }
+          return data;
+        });
       };
       recipeRequestService.toggle(item, handleSuccessAdd, handleSuccessRemove);
     },
-    [recipeRequestService, addRequester, removeRequester, params.title, queryClient]
+    [recipeRequestService, addRequester, removeRequester, params.title, queryClient, myInfo?.id]
   );
   // リフレッシュ
   const onRefresh = useCallback(async () => {
@@ -162,7 +190,7 @@ export const AllRecipeTab = memo<Props>(({ search }) => {
                         style={{ flex: 1 }}
                         onPress={() =>
                           router.push({
-                            pathname: `recipe/${item.id}`,
+                            pathname: `recipe_detail/${item.id}`,
                             params: {
                               ...item,
                               imageUrls: JSON.stringify(item.imageUrls),

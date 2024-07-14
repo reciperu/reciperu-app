@@ -110,7 +110,7 @@ export const MenuList = memo(() => {
                         style={{ flex: 1 }}
                         onPress={() =>
                           router.push({
-                            pathname: `/recipe/${item.recipe.id}`,
+                            pathname: `/recipe_detail/${item.recipe.id}`,
                             params: {
                               ...item.recipe,
                               requesters: JSON.stringify(item.recipe.requesters),

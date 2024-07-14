@@ -78,7 +78,14 @@ const MainContent = memo(() => {
         }}
       />
       <Stack.Screen
-        name="recipe_webview"
+        name="recipe_detail/[slug]/index"
+        options={{
+          headerShown: true,
+          presentation: 'modal',
+        }}
+      />
+      <Stack.Screen
+        name="recipe_detail/[slug]/webview"
         options={{
           headerShown: true,
           presentation: 'modal',

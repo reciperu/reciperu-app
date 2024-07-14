@@ -102,7 +102,7 @@ export const UserEatingListSection = memo<Props>(({ avatar, name, recipes, isPar
                       <Pressable
                         onPress={() =>
                           router.push({
-                            pathname: `recipe/${item.id}`,
+                            pathname: `recipe_detail/${item.id}`,
                             params: {
                               ...item,
                               imageUrls: JSON.stringify(item.imageUrls),
@@ -120,12 +120,6 @@ export const UserEatingListSection = memo<Props>(({ avatar, name, recipes, isPar
                   style={{ position: 'absolute', top: 0, left: -16 }}
                 />
               </View>
-              {/* <Flex style={{ justifyContent: 'center', marginTop: 40 }}>
-              <LinkButton
-                onPress={() => router.push('(app)/(main)/(tabs)/recipe?route=FavoriteRecipe')}>
-                すべて見る
-              </LinkButton>
-            </Flex> */}
             </>
           )}
         </View>

@@ -12,8 +12,8 @@ export const RecipeWebviewLink = memo<PropsWithChildren<Props>>(
     return (
       <Link
         href={{
-          pathname: '(main)/recipe_webview',
-          params: { id, title, recipeUrl },
+          pathname: `/recipe_detail/${id}/webview`,
+          params: { title, recipeUrl },
         }}
         asChild>
         {children}
