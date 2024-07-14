@@ -7,7 +7,7 @@ import { Dimensions, Pressable, TouchableOpacity, View } from 'react-native';
 import ImageView from 'react-native-image-viewing';
 
 import { useRecipes } from '../../hooks/useRecipes';
-import { SpaceRecipe } from '../../types';
+import { RequestedRecipesResponse, SpaceRecipe } from '../../types';
 
 import { Constants } from '@/constants';
 import { Flex } from '@/cores/components/Flex';
@@ -15,6 +15,7 @@ import { Spacer } from '@/cores/components/Spacer';
 import { NotoText } from '@/cores/components/Text';
 import { AppIcon } from '@/cores/components/icons';
 import { useRecipeRequest } from '@/features/RecipePage/hooks/useRecipeRequest';
+import { useUser } from '@/features/User/hooks/useUser';
 
 interface Props {
   data: SpaceRecipe;
@@ -27,25 +28,52 @@ export const RecipeDetail = memo<Props>(({ data, showRecipeDetail = true }) => {
   const router = useRouter();
   const [visibleIndex, setIsVisibleIndex] = useState<null | number>(null);
   const queryClient = useQueryClient();
+  const { myInfo } = useUser();
   const [recipeData, setRecipeData] = useState<SpaceRecipe>(data);
   const { getFavorite, addRequester, removeRequester } = useRecipes();
   const recipeRequestService = useRecipeRequest();
   // 「食べたい」のステートを入れ替える
   const toggleRequest = useCallback(async () => {
     const handleSuccessAdd = () => {
-      setRecipeData((prev) => ({ ...prev, requesters: addRequester(prev.requesters) || [] }));
+      const newRequesters = addRequester(recipeData.requesters) || [];
+      setRecipeData((prev) => ({ ...prev, requesters: newRequesters }));
       queryClient.invalidateQueries({
         queryKey: ['recipes'],
+      });
+      queryClient.setQueryData(['requested-recipes'], (data: RequestedRecipesResponse) => {
+        const userId = myInfo?.id;
+        if (userId && data.data[userId]) {
+          return {
+            data: {
+              ...data.data,
+              [userId]: data.data[userId].push({ ...recipeData, requesters: newRequesters }),
+            },
+          };
+        }
+        return data;
       });
     };
     const handleSuccessRemove = () => {
-      setRecipeData((prev) => ({ ...prev, requesters: removeRequester(prev.requesters) || [] }));
+      const newRequesters = removeRequester(recipeData.requesters) || [];
+      setRecipeData((prev) => ({ ...prev, requesters: newRequesters }));
       queryClient.invalidateQueries({
         queryKey: ['recipes'],
       });
+      queryClient.setQueryData(['requested-recipes'], (data: RequestedRecipesResponse) => {
+        const userId = myInfo?.id;
+        if (userId && data.data[userId]) {
+          return {
+            data: {
+              ...data.data,
+              [userId]: data.data[userId].filter((item) => item.id !== recipeData.id),
+            },
+          };
+        }
+        return data;
+      });
     };
     recipeRequestService.toggle(recipeData, handleSuccessAdd, handleSuccessRemove);
-  }, [recipeData, recipeRequestService, addRequester, removeRequester, queryClient]);
+  }, [recipeData, recipeRequestService, addRequester, removeRequester, queryClient, myInfo]);
   return (
     <View>
       <Image
@@ -159,7 +187,7 @@ export const RecipeDetail = memo<Props>(({ data, showRecipeDetail = true }) => {
                 onPress={() => {
                   Haptics.selectionAsync();
                   router.push({
-                    pathname: `recipe/${data.id}/webview`,
+                    pathname: `/recipe_detail/${data.id}/webview`,
                     params: { title: data.title, recipeUrl: data.recipeUrl },
                   });
                 }}>

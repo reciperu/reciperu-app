@@ -1,11 +1,11 @@
 import { useQuery } from '@tanstack/react-query';
 
-import { SpaceRecipe } from '../types';
+import { SpaceRecipe, RequestedRecipesResponse } from '../types';
 
 import { client } from '@/lib/axios';
 import { ExtractFnReturnType, QueryConfig } from '@/lib/react-query';
 
-export const getRequestedRecipes = async (): Promise<Record<string, SpaceRecipe[]>> => {
+export const getRequestedRecipes = async (): Promise<RequestedRecipesResponse> => {
   return await client.get('/recipes/requests');
 };
 

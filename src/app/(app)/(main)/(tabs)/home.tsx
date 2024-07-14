@@ -25,25 +25,30 @@ export default function HomePage() {
   const [refreshing, setRefreshing] = useState(false);
   const [isEditSpaceNameModalVisible, setIsEditSpaceNameModalVisible] = useState(false);
   const { showActionSheetWithOptions } = useActionSheet();
-  const { myRequestedRecipes, partnerRequestedRecipes } = useRequestedRecipeByUser();
   const { myInfo, partnerInfo } = useUser();
   const { data: space } = useFetchSpace({
     id: myInfo?.spaceId,
   });
+  const { myRequestedRecipes, partnerRequestedRecipes } = useRequestedRecipeByUser();
   const queryClient = useQueryClient();
   const onRefresh = useCallback(async () => {
     setRefreshing(true);
-    await queryClient.invalidateQueries({
-      queryKey: ['profile'],
-    });
-    await queryClient.invalidateQueries({
-      queryKey: ['space'],
-    });
+    if (!refreshing) {
+      await queryClient.invalidateQueries({
+        queryKey: ['profile'],
+      });
+      await queryClient.invalidateQueries({
+        queryKey: ['space', myInfo?.spaceId],
+      });
+      await queryClient.invalidateQueries({
+        queryKey: ['requested-recipes'],
+      });
+    }
     // await queryClient.invalidateQueries({
     //   queryKey: ['menus'],
     // });
     setRefreshing(false);
-  }, [queryClient]);
+  }, [queryClient, refreshing, myInfo]);
   const imageHeight = (width / 390) * 103;
   const spaceName = useMemo(() => {
     return space?.name || '';

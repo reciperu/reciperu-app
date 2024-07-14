@@ -45,3 +45,7 @@ export interface RecipesResponse {
   recipes: SpaceRecipe[];
   nextCursor: string;
 }
+
+export interface RequestedRecipesResponse {
+  data: Record<string, SpaceRecipe[]>;
+}

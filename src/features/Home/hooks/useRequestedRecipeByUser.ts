@@ -11,18 +11,19 @@ type UseRequestedRecipeByUser = () => {
 
 export const useRequestedRecipeByUser: UseRequestedRecipeByUser = () => {
   const { data } = useFetchRequestedRecipes({});
+
   const { myInfo, partnerInfo } = useUser();
 
   const myRequestedRecipes = useMemo(() => {
     if (myInfo?.id) {
-      return data?.[myInfo.id] || [];
+      return data?.data[myInfo.id] || [];
     }
     return [];
   }, [data, myInfo]);
 
   const partnerRequestedRecipes = useMemo(() => {
     if (partnerInfo) {
-      return data?.[partnerInfo.id || ''] || [];
+      return data?.data[partnerInfo.id || ''] || [];
     }
     return [];
   }, [data, partnerInfo]);
