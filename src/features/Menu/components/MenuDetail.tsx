@@ -132,10 +132,13 @@ export const MenuDetail = memo<Props>(({ data, onClose }) => {
           return {
             data: {
               ...data.data,
-              [userId]: data.data[userId].push({
-                ...recipeData,
-                requesters: newRequesters,
-              }),
+              [userId]: [
+                {
+                  ...recipeData,
+                  requesters: newRequesters,
+                },
+                ...data.data[userId],
+              ],
             },
           };
         }

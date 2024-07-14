@@ -99,10 +99,13 @@ export const AllRecipeTab = memo<Props>(({ search }) => {
             return {
               data: {
                 ...data.data,
-                [userId]: data.data[userId].push({
-                  ...item,
-                  requesters: addRequester(item.requesters) || [],
-                }),
+                [userId]: [
+                  {
+                    ...item,
+                    requesters: addRequester(item.requesters) || [],
+                  },
+                  ...data.data[userId],
+                ],
               },
             };
           }

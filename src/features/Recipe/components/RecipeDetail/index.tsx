@@ -46,7 +46,13 @@ export const RecipeDetail = memo<Props>(({ data, showRecipeDetail = true }) => {
           return {
             data: {
               ...data.data,
-              [userId]: data.data[userId].push({ ...recipeData, requesters: newRequesters }),
+              [userId]: [
+                {
+                  ...recipeData,
+                  requesters: newRequesters,
+                },
+                ...data.data[userId],
+              ],
             },
           };
         }
