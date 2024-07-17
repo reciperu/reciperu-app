@@ -19,7 +19,8 @@ export default ({ config }: ConfigContext): ExpoConfig => {
     ios: {
       supportsTablet: false,
       // 環境変数からバンドル識別子を取得
-      bundleIdentifier: process.env.IOS_BUNDLE_IDENTIFIER || 'com.ryotanny.reciperu-app-develop',
+      bundleIdentifier:
+        process.env.EXPO_PUBLIC_IOS_BUNDLE_IDENTIFIER || 'com.ryotanny.sharely-app-dev',
       googleServicesFile: './GoogleService-Info.plist',
       usesAppleSignIn: true,
       infoPlist: {
@@ -34,7 +35,7 @@ export default ({ config }: ConfigContext): ExpoConfig => {
         foregroundImage: './assets/adaptive-icon.png',
       },
       googleServicesFile: './google-services.json',
-      package: process.env.ANDROID_PACKAGE || 'com.ryotanny.reciperu-dev',
+      package: process.env.ANDROID_PACKAGE || 'com.ryotanny.sharely-app-dev',
     },
     plugins: [
       'expo-router',
@@ -44,12 +45,6 @@ export default ({ config }: ConfigContext): ExpoConfig => {
         'expo-image-picker',
         {
           photosPermission: '$(PRODUCT_NAME)があなたの写真にアクセスすることを許可してください。',
-          cameraPermission: '$(PRODUCT_NAME)がカメラにアクセスすることを許可してください。',
-        },
-      ],
-      [
-        'expo-barcode-scanner',
-        {
           cameraPermission: '$(PRODUCT_NAME)がカメラにアクセスすることを許可してください。',
         },
       ],

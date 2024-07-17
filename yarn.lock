@@ -6825,17 +6825,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"expo-barcode-scanner@npm:~12.5.3":
-  version: 12.5.3
-  resolution: "expo-barcode-scanner@npm:12.5.3"
-  dependencies:
-    expo-image-loader: "npm:~4.3.0"
-  peerDependencies:
-    expo: "*"
-  checksum: 10c0/82affdd24f5304a9cb2b013c5e34e87007fe25195357d2b8d7434ea7239c0d54dd6b29b9ec4cfd118591bef5328c1529789a9154770b4367255b2226cde6e98c
-  languageName: node
-  linkType: hard
-
 "expo-constants@npm:~14.4.2":
   version: 14.4.2
   resolution: "expo-constants@npm:14.4.2"
@@ -11991,7 +11980,6 @@ __metadata:
     expo-apple-authentication: "npm:~6.1.0"
     expo-application: "npm:~5.3.0"
     expo-asset: "npm:~8.10.1"
-    expo-barcode-scanner: "npm:~12.5.3"
     expo-constants: "npm:~14.4.2"
     expo-crypto: "npm:~12.4.1"
     expo-device: "npm:~5.4.0"

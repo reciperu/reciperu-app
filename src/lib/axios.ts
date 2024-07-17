@@ -78,7 +78,7 @@ client.interceptors.response.use(
           text2: convertErrorMessage(error.response?.data?.message || error.message),
           visibilityTime: 3000,
           autoHide: true,
-          topOffset: 60,
+          position: 'bottom',
         });
       }
     }
