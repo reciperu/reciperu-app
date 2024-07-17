@@ -7,11 +7,11 @@ export enum MenuStatus {
 }
 
 export interface MenuItem {
-  id: string;
+  id: number;
   status: MenuStatus;
   scheduledAt: string;
-  userId: string;
-  recipeId: string;
+  userId: number;
+  recipeId: number;
   recipe: SpaceRecipe;
 }
 

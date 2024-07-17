@@ -1,7 +1,7 @@
 import { SpaceUser } from '@/features/User/types';
 
 export interface Space {
-  id: string;
+  id: number;
   name: string;
   users: SpaceUser[];
 }

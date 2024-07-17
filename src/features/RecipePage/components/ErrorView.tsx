@@ -10,12 +10,12 @@ interface Props {
 
 export const ErrorView = memo<Props>(({ value }) => {
   return (
-    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+    <View style={{ paddingVertical: 24 }}>
       <NotoText
         style={{
           fontSize: 14,
-          paddingTop: 40,
-          color: Constants.colors.primitive.gray[600],
+          color: Constants.colors.primitive.gray[400],
+          textAlign: 'center',
         }}>
         {`エラーが発生しました\n${value}`}
       </NotoText>

@@ -7,7 +7,7 @@ import { AppState } from 'react-native';
 
 import { usePutToken } from '@/features/User/apis/putToken';
 
-type UsePushNotificationToken = (userId?: string) => void;
+type UsePushNotificationToken = (userId?: number) => void;
 
 Notifications.setNotificationHandler({
   handleNotification: async () => ({

@@ -187,7 +187,14 @@ const useAuthProvider = () => {
       await AsyncStorage.save('last_login_method', 'apple');
       setAppleAuthPending(false);
       return true;
-    } catch {
+    } catch (e) {
+      if ((e as any).code === 'ERR_REQUEST_CANCELED') {
+        // handle that the user canceled the sign-in flow
+        console.log('User canceled the sign-in flow');
+      } else {
+        // handle other errors
+        console.log('error', e);
+      }
       setAppleAuthPending(false);
       return false;
     }

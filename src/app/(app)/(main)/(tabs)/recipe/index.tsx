@@ -61,9 +61,9 @@ export default function RecipePage() {
                 </Text>
               </Flex>
             ),
-          }}
-          component={() => <AllRecipeTab search={search} />}
-        />
+          }}>
+          {() => <AllRecipeTab search={search} />}
+        </Tab.Screen>
         <Tab.Screen
           name="FavoriteRecipe"
           options={{
@@ -84,9 +84,9 @@ export default function RecipePage() {
                 </Text>
               </Flex>
             ),
-          }}
-          component={() => <FavoriteRecipeTab search={search} />}
-        />
+          }}>
+          {() => <FavoriteRecipeTab search={search} />}
+        </Tab.Screen>
       </Tab.Navigator>
       <View style={{ position: 'absolute', top: height - 260, right: 24 }}>
         <FloatingButton onPress={() => router.push('/recipe/create')} />

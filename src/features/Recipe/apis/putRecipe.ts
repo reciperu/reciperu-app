@@ -5,7 +5,7 @@ import { RecipeRequestBody, SpaceRecipe } from '../types';
 import { client } from '@/lib/axios';
 
 interface Params {
-  id: string;
+  id: number;
   data: RecipeRequestBody;
 }
 

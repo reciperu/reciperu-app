@@ -3,7 +3,7 @@ import { useMutation, UseMutationOptions } from '@tanstack/react-query';
 import { client } from '@/lib/axios';
 
 interface RecipeRequestRequestBody {
-  recipeId: string;
+  recipeId: number;
 }
 
 interface RecipeRequestResponse {

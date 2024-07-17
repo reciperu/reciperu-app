@@ -5,7 +5,7 @@ import { Space } from '../types';
 import { client } from '@/lib/axios';
 import { ExtractFnReturnType, QueryConfig } from '@/lib/react-query';
 
-export const getSpaces = async (id?: string): Promise<Space | null> => {
+export const getSpaces = async (id?: number): Promise<Space | null> => {
   if (!id) return null;
   return await client.get(`/spaces/${id}`);
 };
@@ -13,7 +13,7 @@ export const getSpaces = async (id?: string): Promise<Space | null> => {
 type QueryFnType = typeof getSpaces;
 
 type UseGetSpacesOptions = {
-  id?: string;
+  id?: number;
   config?: QueryConfig<QueryFnType>;
 };
 

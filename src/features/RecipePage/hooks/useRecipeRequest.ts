@@ -9,8 +9,12 @@ import { SpaceRecipe } from '@/features/Recipe/types';
 export type UseRecipeRequest = () => {
   toggle: (
     item: SpaceRecipe,
+    onPrepareAddCallback: () => void,
+    onPrepareRemoveCallback: () => void,
     onSuccessAddCallback: () => void,
-    onSuccessRemoveCallback: () => void
+    onSuccessRemoveCallback: () => void,
+    onErrorAddCallback?: () => void,
+    onErrorRemoveCallback?: () => void
   ) => void;
   remove: (item: SpaceRecipe, onSuccessCallback?: () => void) => void;
   pending: boolean;
@@ -25,8 +29,12 @@ export const useRecipeRequest: UseRecipeRequest = () => {
   const toggle = useCallback(
     async (
       item: SpaceRecipe,
+      onPrepareAddCallback: () => void,
+      onPrepareRemoveCallback: () => void,
       onSuccessAddCallback: () => void,
-      onSuccessRemoveCallback: () => void
+      onSuccessRemoveCallback: () => void,
+      onErrorAddCallback?: () => void,
+      onErrorRemoveCallback?: () => void
     ) => {
       if (pending) return;
       try {
@@ -34,23 +42,42 @@ export const useRecipeRequest: UseRecipeRequest = () => {
         Haptics.selectionAsync();
         const isFavorite = getFavorite(item.requesters);
         if (isFavorite) {
-          const result = await deleteMutation.mutateAsync({
-            data: {
-              id: item.id,
-            },
-          });
-          if (result?.success && onSuccessRemoveCallback) {
-            onSuccessRemoveCallback();
-          }
+          onPrepareRemoveCallback();
         } else {
-          const result = await postMutation.mutateAsync({
-            data: {
-              recipeId: item.id,
+          onPrepareAddCallback();
+        }
+        if (isFavorite) {
+          await deleteMutation.mutateAsync(
+            {
+              data: {
+                id: item.id,
+              },
             },
-          });
-          if (result?.success && onSuccessAddCallback) {
-            onSuccessAddCallback();
-          }
+            {
+              onSuccess: () => {
+                onSuccessRemoveCallback();
+              },
+              onError: () => {
+                onErrorRemoveCallback?.();
+              },
+            }
+          );
+        } else {
+          await postMutation.mutateAsync(
+            {
+              data: {
+                recipeId: item.id,
+              },
+            },
+            {
+              onSuccess: () => {
+                onSuccessAddCallback();
+              },
+              onError: () => {
+                onErrorAddCallback?.();
+              },
+            }
+          );
         }
         setPending(false);
       } catch (err) {

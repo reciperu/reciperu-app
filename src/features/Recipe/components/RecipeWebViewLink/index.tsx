@@ -2,7 +2,7 @@ import { Link } from 'expo-router';
 import { PropsWithChildren, memo } from 'react';
 
 interface Props {
-  id: string;
+  id: number;
   title: string;
   recipeUrl: string;
 }

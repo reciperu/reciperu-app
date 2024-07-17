@@ -5,15 +5,16 @@ import { RecipesResponse } from '../types';
 import { client } from '@/lib/axios';
 
 interface Params {
-  cursor?: string;
+  cursor?: number;
   isRequested?: boolean;
   title?: string;
 }
 
 export const getRecipes = async ({ pageParam, queryKey }: any): Promise<RecipesResponse> => {
   const [_, params] = queryKey;
+  console.log(`pageParam: ${JSON.stringify(pageParam)}`);
   let url = '/recipes';
-  if (pageParam.length) {
+  if (pageParam !== undefined) {
     url += `?cursor=${pageParam}`;
   }
   if (params.isRequested) {
@@ -24,6 +25,7 @@ export const getRecipes = async ({ pageParam, queryKey }: any): Promise<RecipesR
     url += url.includes('cursor') ? '&' : '?';
     url += `title=${params.title}`;
   }
+  console.log(`url: ${url}`);
   return await client.get(url);
 };
 
@@ -35,7 +37,10 @@ export const useFetchRecipes = ({ params }: UseGetRecipesOptions) => {
   return useInfiniteQuery({
     queryKey: ['recipes', { isRequested: params.isRequested, title: params.title }],
     queryFn: getRecipes,
-    getNextPageParam: (lastPage, pages) => lastPage.nextCursor,
+    getNextPageParam: (lastPage, pages) => {
+      console.log(`lastPage: ${JSON.stringify(lastPage.nextCursor)}`);
+      return lastPage.nextCursor;
+    },
     getPreviousPageParam: (firstPage, pages) => firstPage.nextCursor,
     initialPageParam: '',
   });

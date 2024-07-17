@@ -1,3 +1,4 @@
+import * as Haptics from 'expo-haptics';
 import { memo, useCallback, useState } from 'react';
 import { Pressable, TextInput, View } from 'react-native';
 
@@ -18,6 +19,7 @@ export const SearchInput = memo<Props>(({ search, setSearch }) => {
   }, [text]);
 
   const clearText = useCallback(() => {
+    Haptics.selectionAsync();
     setSearch('');
     setText('');
   }, [text]);

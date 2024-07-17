@@ -12,7 +12,7 @@ interface Params {
 export const getMenus = async ({ pageParam, queryKey }: any): Promise<MenusResponse> => {
   const [_, params] = queryKey;
   let url = '/menus';
-  if (pageParam.length) {
+  if (pageParam !== undefined) {
     url += `?cursor=${pageParam}`;
   }
   if (params.statuses) {

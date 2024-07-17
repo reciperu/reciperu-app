@@ -1,7 +1,7 @@
 import { SpaceUser } from '@/features/User/types';
 
 export interface Recipe {
-  id: string;
+  id: number;
   title: string;
   thumbnailUrl: string;
   imageUrls: string[];
@@ -23,8 +23,8 @@ export interface MetaData {
 }
 
 export interface SpaceRecipe extends Recipe {
-  spaceId: string;
-  userId: string;
+  spaceId: number;
+  userId: number;
   isFavorite: boolean;
   createdAt: string;
   requesters: string[];

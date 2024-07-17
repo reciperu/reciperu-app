@@ -1,14 +1,14 @@
 export interface SpaceUser {
-  id: string;
+  id: number;
   name: string;
   imageUrl: string;
   activeStatus: UserStatus;
-  spaceId: string;
+  spaceId: number;
   spaceRole: 'OWNER' | 'PARTICIPANT';
 }
 
 export interface UserCheckResponse {
-  id: string;
+  id: number;
   name: string;
   imageUrl: string;
   activeStatus: UserStatus;
@@ -17,7 +17,7 @@ export interface UserCheckResponse {
 export enum UserStatus {
   ONBOARDING = 'ONBOARDING',
   JOINED_SPACE = 'JOINED_SPACE',
-  NOT_JOINED_SPACE = 'NOT_JOINED_SPACE',
+  RE_ONBOARDING = 'RE_ONBOARDING',
 }
 
 export interface UpdatedUserBody {

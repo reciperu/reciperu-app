@@ -26,9 +26,9 @@ export const PlannedMenuSection = memo(() => {
   const bottomSheetModalRef = useRef<BottomSheetModal>(null);
   const snapPoints = useMemo(() => ['80%'], []);
 
-  const [targetId, setTargetId] = useState<string | null>(null);
+  const [targetId, setTargetId] = useState<number | null>(null);
 
-  const handleOpenSheet = (id: string) => {
+  const handleOpenSheet = (id: number) => {
     if (bottomSheetModalRef.current) {
       bottomSheetModalRef.current.present();
       setTargetId(id);

@@ -5,7 +5,7 @@ import { MenuItem } from '../types';
 import { client } from '@/lib/axios';
 
 export interface PostMenuRequestBody {
-  recipeId: string;
+  recipeId: number;
   scheduledAt: string;
 }
 

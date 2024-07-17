@@ -1,12 +1,12 @@
 import { useQuery } from '@tanstack/react-query';
 
-import { SpaceRecipe, RequestedRecipesResponse } from '../types';
+import { RequestedRecipesResponse } from '../types';
 
 import { client } from '@/lib/axios';
 import { ExtractFnReturnType, QueryConfig } from '@/lib/react-query';
 
 export const getRequestedRecipes = async (): Promise<RequestedRecipesResponse> => {
-  return await client.get('/recipes/requests');
+  return await client.get('/recipes/user-group-requests');
 };
 
 type QueryFnType = typeof getRequestedRecipes;

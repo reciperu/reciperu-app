@@ -110,7 +110,7 @@ export default function MyPagePage() {
       setPending(true);
       mutation.mutate(
         {
-          id: data.id || '',
+          id: data.id,
           data: { ...data, imageUrl: tmpImage },
         },
         {

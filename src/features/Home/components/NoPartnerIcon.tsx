@@ -1,3 +1,4 @@
+import * as Haptics from 'expo-haptics';
 import { Image } from 'expo-image';
 import { memo } from 'react';
 import { Pressable } from 'react-native';
@@ -13,7 +14,11 @@ export const NoPartnerIcon = memo(() => {
   const { isVisible, closeModal, openModal } = useModal();
   return (
     <>
-      <Pressable onPress={openModal}>
+      <Pressable
+        onPress={() => {
+          Haptics.selectionAsync();
+          openModal();
+        }}>
         <Flex style={{ flexDirection: 'column', alignItems: 'center', gap: 4 }}>
           <Image
             source={require('assets/noUserIcon.png')}

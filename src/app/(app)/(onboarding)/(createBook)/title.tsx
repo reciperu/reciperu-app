@@ -58,10 +58,15 @@ export default function OnboardingCreateBookTitlePage() {
           maxLength={Validation.SPACE_NAME.MAX_LENGTH.VALUE}
         />
         <Spacer />
-        <Button disabled={spaceName.trim() === ''} onPress={handlePress}>
-          次に進む
-        </Button>
-        <Button variant="others" onPress={() => router.back()}>
+        <View style={{ marginBottom: 12 }}>
+          <Button
+            disabled={spaceName.trim() === ''}
+            loading={mutation.isPending}
+            onPress={handlePress}>
+            次に進む
+          </Button>
+        </View>
+        <Button variant="others" disabled={mutation.isPending} onPress={() => router.back()}>
           戻る
         </Button>
       </View>

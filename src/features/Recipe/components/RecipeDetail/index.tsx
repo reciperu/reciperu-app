@@ -34,12 +34,8 @@ export const RecipeDetail = memo<Props>(({ data, showRecipeDetail = true }) => {
   const recipeRequestService = useRecipeRequest();
   // 「食べたい」のステートを入れ替える
   const toggleRequest = useCallback(async () => {
-    const handleSuccessAdd = () => {
-      const newRequesters = addRequester(recipeData.requesters) || [];
-      setRecipeData((prev) => ({ ...prev, requesters: newRequesters }));
-      queryClient.invalidateQueries({
-        queryKey: ['recipes'],
-      });
+    const handlePrepareAdd = () => {
+      setRecipeData((prev) => ({ ...prev, requesters: addRequester(recipeData.requesters) || [] }));
       queryClient.setQueryData(['requested-recipes'], (data: RequestedRecipesResponse) => {
         const userId = myInfo?.id;
         if (userId && data.data[userId]) {
@@ -49,7 +45,7 @@ export const RecipeDetail = memo<Props>(({ data, showRecipeDetail = true }) => {
               [userId]: [
                 {
                   ...recipeData,
-                  requesters: newRequesters,
+                  requesters: addRequester(recipeData.requesters) || [],
                 },
                 ...data.data[userId],
               ],
@@ -59,12 +55,11 @@ export const RecipeDetail = memo<Props>(({ data, showRecipeDetail = true }) => {
         return data;
       });
     };
-    const handleSuccessRemove = () => {
-      const newRequesters = removeRequester(recipeData.requesters) || [];
-      setRecipeData((prev) => ({ ...prev, requesters: newRequesters }));
-      queryClient.invalidateQueries({
-        queryKey: ['recipes'],
-      });
+    const handlePrepareRemove = () => {
+      setRecipeData((prev) => ({
+        ...prev,
+        requesters: removeRequester(recipeData.requesters) || [],
+      }));
       queryClient.setQueryData(['requested-recipes'], (data: RequestedRecipesResponse) => {
         const userId = myInfo?.id;
         if (userId && data.data[userId]) {
@@ -78,8 +73,65 @@ export const RecipeDetail = memo<Props>(({ data, showRecipeDetail = true }) => {
         return data;
       });
     };
-    recipeRequestService.toggle(recipeData, handleSuccessAdd, handleSuccessRemove);
-  }, [recipeData, recipeRequestService, addRequester, removeRequester, queryClient, myInfo]);
+    const handleSuccessAdd = () => {
+      setRecipeData((prev) => ({ ...prev, requesters: addRequester(recipeData.requesters) || [] }));
+      queryClient.invalidateQueries({
+        queryKey: ['recipes'],
+      });
+    };
+    const handleErrorAdd = () => {
+      setRecipeData(data);
+      queryClient.setQueryData(['requested-recipes'], (data: RequestedRecipesResponse) => {
+        const userId = myInfo?.id;
+        if (userId && data.data[userId]) {
+          return {
+            data: {
+              ...data.data,
+              [userId]: data.data[userId].filter((recipe) => recipe.id !== recipeData.id),
+            },
+          };
+        }
+        return data;
+      });
+    };
+    const handleSuccessRemove = () => {
+      const newRequesters = removeRequester(recipeData.requesters) || [];
+      setRecipeData((prev) => ({ ...prev, requesters: newRequesters }));
+      queryClient.invalidateQueries({
+        queryKey: ['recipes'],
+      });
+    };
+    const handleErrorRemove = () => {
+      setRecipeData(data);
+      queryClient.setQueryData(['requested-recipes'], (data: RequestedRecipesResponse) => {
+        const userId = myInfo?.id;
+        if (userId && data.data[userId]) {
+          return {
+            data: {
+              ...data.data,
+              [userId]: [
+                {
+                  ...recipeData,
+                  requesters: addRequester(recipeData.requesters) || [],
+                },
+                ...data.data[userId],
+              ],
+            },
+          };
+        }
+        return data;
+      });
+    };
+    recipeRequestService.toggle(
+      recipeData,
+      handlePrepareAdd,
+      handlePrepareRemove,
+      handleSuccessAdd,
+      handleSuccessRemove,
+      handleErrorAdd,
+      handleErrorRemove
+    );
+  }, [recipeData, recipeRequestService, addRequester, removeRequester, queryClient, myInfo, data]);
   return (
     <View>
       <Image
@@ -94,7 +146,6 @@ export const RecipeDetail = memo<Props>(({ data, showRecipeDetail = true }) => {
       <Flex
         style={{
           marginTop: 4,
-          justifyContent: 'space-between',
         }}>
         <NotoText
           fw="bold"
@@ -106,13 +157,72 @@ export const RecipeDetail = memo<Props>(({ data, showRecipeDetail = true }) => {
           }}>
           {recipeData.title}
         </NotoText>
+      </Flex>
+      <Flex style={{ justifyContent: 'flex-end', gap: 8, marginTop: 8 }}>
+        {/* 登録者 */}
+        {recipeData.user && (
+          <Flex style={{ alignItems: 'center', gap: 4 }}>
+            <Image
+              source={{ uri: recipeData.user.imageUrl }}
+              style={{ width: 20, height: 20, borderRadius: 10 }}
+            />
+            <NotoText style={{ fontSize: 12, color: Constants.colors.primitive.gray[600] }}>
+              {data.user.name}
+            </NotoText>
+          </Flex>
+        )}
+        {/* レシピ（あれば） */}
+        {recipeData.recipeUrl.length > 0 && (
+          <Flex style={{ alignItems: 'center', gap: 4, marginLeft: 4 }}>
+            <Image
+              source={{ uri: recipeData.faviconUrl }}
+              style={{ width: 20, height: 20, borderRadius: 10 }}
+            />
+            <NotoText style={{ fontSize: 12, color: Constants.colors.primitive.gray[600] }}>
+              {recipeData.appName}
+            </NotoText>
+          </Flex>
+        )}
+        <Spacer />
+        {showRecipeDetail && (
+          <Pressable
+            onPress={() => {
+              Haptics.selectionAsync();
+              router.push({
+                pathname: `/recipe_detail/${data.id}/webview`,
+                params: { title: data.title, recipeUrl: data.recipeUrl },
+              });
+            }}>
+            <Flex
+              style={{
+                width: 40,
+                height: 40,
+                justifyContent: 'center',
+                alignItems: 'center',
+                backgroundColor: Constants.colors.primitive.gray[50],
+                borderRadius: 40,
+              }}>
+              <AppIcon
+                name="safari"
+                width={18}
+                height={18}
+                color={Constants.colors.primitive.gray[500]}
+              />
+            </Flex>
+          </Pressable>
+        )}
         <View>
           <TouchableOpacity onPress={toggleRequest}>
-            <View
+            <Flex
               style={{
-                padding: 8,
-                backgroundColor: 'white',
-                borderRadius: 24,
+                width: 40,
+                height: 40,
+                justifyContent: 'center',
+                alignItems: 'center',
+                backgroundColor: getFavorite(recipeData.requesters)
+                  ? Constants.colors.primitive.pink[50]
+                  : Constants.colors.primitive.gray[50],
+                borderRadius: 40,
               }}>
               <AppIcon
                 name="bookmark"
@@ -124,7 +234,7 @@ export const RecipeDetail = memo<Props>(({ data, showRecipeDetail = true }) => {
                     : Constants.colors.primitive.gray[300]
                 }
               />
-            </View>
+            </Flex>
           </TouchableOpacity>
         </View>
       </Flex>
@@ -133,27 +243,6 @@ export const RecipeDetail = memo<Props>(({ data, showRecipeDetail = true }) => {
           marginTop: 8,
           width: '100%',
         }}>
-        {/* 登録者 */}
-        {recipeData.user && (
-          <Flex
-            style={{
-              gap: 8,
-              height: 48,
-              alignItems: 'center',
-              paddingVertical: 12,
-              borderBottomWidth: 1,
-              borderBottomColor: Constants.colors.primitive.gray[200],
-            }}>
-            <NotoText style={{ fontSize: 12, width: 48 }}>登録者</NotoText>
-            <Flex style={{ alignItems: 'center', gap: 4 }}>
-              <Image
-                source={{ uri: recipeData.user.imageUrl }}
-                style={{ width: 20, height: 20, borderRadius: 10 }}
-              />
-              <NotoText style={{ fontSize: 12 }}>{data.user.name}</NotoText>
-            </Flex>
-          </Flex>
-        )}
         {/* 更新者（あれば） */}
         {/* <Flex
           style={{
@@ -168,59 +257,9 @@ export const RecipeDetail = memo<Props>(({ data, showRecipeDetail = true }) => {
             <NotoText style={{ fontSize: 12 }}>ハナコ</NotoText>
           </Flex>
         </Flex> */}
-        {/* レシピ（あれば） */}
-        {recipeData.recipeUrl.length > 0 && (
-          <Flex
-            style={{
-              gap: 8,
-              height: 48,
-              alignItems: 'center',
-              paddingVertical: 8,
-              borderBottomWidth: 1,
-              borderBottomColor: Constants.colors.primitive.gray[200],
-            }}>
-            <NotoText style={{ fontSize: 12, width: 48 }}>レシピ</NotoText>
-            <Flex style={{ alignItems: 'center', gap: 4 }}>
-              <Image
-                source={{ uri: recipeData.faviconUrl }}
-                style={{ width: 20, height: 20, borderRadius: 10 }}
-              />
-              <NotoText style={{ fontSize: 12 }}>{recipeData.appName}</NotoText>
-            </Flex>
-            <Spacer />
-            {showRecipeDetail && (
-              <Pressable
-                onPress={() => {
-                  Haptics.selectionAsync();
-                  router.push({
-                    pathname: `/recipe_detail/${data.id}/webview`,
-                    params: { title: data.title, recipeUrl: data.recipeUrl },
-                  });
-                }}>
-                <Flex
-                  style={{
-                    gap: 8,
-                    paddingHorizontal: 6,
-                    paddingVertical: 6,
-                    alignItems: 'center',
-                    backgroundColor: Constants.colors.primitive.gray[50],
-                    borderRadius: 24,
-                  }}>
-                  <AppIcon
-                    name="safari"
-                    width={22}
-                    height={22}
-                    color={Constants.colors.primitive.gray[500]}
-                  />
-                </Flex>
-              </Pressable>
-            )}
-          </Flex>
-        )}
         {!!data.imageUrls?.length && (
           <>
             <View style={{ paddingVertical: 12, flexDirection: 'row', gap: 12 }}>
-              {/* // TODO: クリックして詳細を確認できる  */}
               {data.imageUrls.map((url, index) => (
                 <Pressable
                   key={index}

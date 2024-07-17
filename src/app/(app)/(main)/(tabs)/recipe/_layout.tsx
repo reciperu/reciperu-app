@@ -14,21 +14,7 @@ export default function RecipeLayout() {
         }}
       />
       <Stack.Screen
-        name="[slug]/index"
-        options={{
-          presentation: 'modal',
-          headerShown: true,
-        }}
-      />
-      <Stack.Screen
         name="create"
-        options={{
-          presentation: 'modal',
-          headerShown: true,
-        }}
-      />
-      <Stack.Screen
-        name="[slug]/webview"
         options={{
           presentation: 'modal',
           headerShown: true,

@@ -165,7 +165,7 @@ export default function HomePage() {
       </ScrollView>
       <EditSpaceNameModal
         spaceName={spaceName}
-        spaceId={space?.id || ''}
+        spaceId={space?.id}
         isVisible={isEditSpaceNameModalVisible}
         onClose={() => setIsEditSpaceNameModalVisible(false)}
       />

@@ -120,12 +120,7 @@ export const MenuDetail = memo<Props>(({ data, onClose }) => {
   );
   // 「食べたい」のステートを入れ替える
   const toggleRequest = useCallback(async () => {
-    const handleSuccessAdd = () => {
-      const newRequesters = addRequester(recipeData.requesters) || [];
-      setRecipeData((prev) => ({ ...prev, requesters: newRequesters }));
-      queryClient.invalidateQueries({
-        queryKey: ['recipes'],
-      });
+    const handlePrepareAdd = () => {
       queryClient.setQueryData(['requested-recipes'], (data: RequestedRecipesResponse) => {
         const userId = myInfo?.id;
         if (userId && data.data[userId]) {
@@ -135,7 +130,7 @@ export const MenuDetail = memo<Props>(({ data, onClose }) => {
               [userId]: [
                 {
                   ...recipeData,
-                  requesters: newRequesters,
+                  requesters: addRequester(recipeData.requesters) || [],
                 },
                 ...data.data[userId],
               ],
@@ -145,12 +140,7 @@ export const MenuDetail = memo<Props>(({ data, onClose }) => {
         return data;
       });
     };
-    const handleSuccessRemove = () => {
-      const newRequesters = removeRequester(recipeData.requesters) || [];
-      setRecipeData((prev) => ({ ...prev, requesters: newRequesters }));
-      queryClient.invalidateQueries({
-        queryKey: ['recipes'],
-      });
+    const handlePrepareRemove = () => {
       queryClient.setQueryData(['requested-recipes'], (data: RequestedRecipesResponse) => {
         const userId = myInfo?.id;
         if (userId && data.data[userId]) {
@@ -164,7 +154,62 @@ export const MenuDetail = memo<Props>(({ data, onClose }) => {
         return data;
       });
     };
-    recipeRequestService.toggle(recipeData, handleSuccessAdd, handleSuccessRemove);
+    const handleSuccessAdd = () => {
+      setRecipeData((prev) => ({ ...prev, requesters: addRequester(recipeData.requesters) || [] }));
+      queryClient.invalidateQueries({
+        queryKey: ['recipes'],
+      });
+    };
+    const handleSuccessRemove = () => {
+      const newRequesters = removeRequester(recipeData.requesters) || [];
+      setRecipeData((prev) => ({ ...prev, requesters: newRequesters }));
+      queryClient.invalidateQueries({
+        queryKey: ['recipes'],
+      });
+    };
+    const handleErrorAdd = () => {
+      queryClient.setQueryData(['requested-recipes'], (data: RequestedRecipesResponse) => {
+        const userId = myInfo?.id;
+        if (userId && data.data[userId]) {
+          return {
+            data: {
+              ...data.data,
+              [userId]: data.data[userId].filter((recipe) => recipe.id !== recipeData.id),
+            },
+          };
+        }
+        return data;
+      });
+    };
+    const handleErrorRemove = () => {
+      queryClient.setQueryData(['requested-recipes'], (data: RequestedRecipesResponse) => {
+        const userId = myInfo?.id;
+        if (userId && data.data[userId]) {
+          return {
+            data: {
+              ...data.data,
+              [userId]: [
+                {
+                  ...recipeData,
+                  requesters: addRequester(recipeData.requesters) || [],
+                },
+                ...data.data[userId],
+              ],
+            },
+          };
+        }
+        return data;
+      });
+    };
+    recipeRequestService.toggle(
+      recipeData,
+      handlePrepareAdd,
+      handlePrepareRemove,
+      handleSuccessAdd,
+      handleSuccessRemove,
+      handleErrorAdd,
+      handleErrorRemove
+    );
   }, [recipeData, recipeRequestService, addRequester, removeRequester, queryClient, myInfo]);
   return (
     <>

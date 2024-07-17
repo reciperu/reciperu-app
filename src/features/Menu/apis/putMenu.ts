@@ -5,9 +5,9 @@ import { MenuItem } from '../types';
 import { client } from '@/lib/axios';
 
 export interface PutMenuRequestBody {
-  id: string;
+  id: number;
   data: {
-    recipeId: string;
+    recipeId: number;
     scheduledAt: string;
   };
 }

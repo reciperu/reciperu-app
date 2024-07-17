@@ -60,9 +60,11 @@ const MainContent = memo(() => {
   // オンボーディングにリダイレクト
   if (data?.activeStatus === UserStatus.ONBOARDING) {
     return <Redirect href="/(onboarding)" />;
+  } else if (data?.activeStatus === UserStatus.RE_ONBOARDING) {
+    return <Redirect href="/(onboarding)/createSpace" />;
   }
-  // エラーの場合
   if (error) {
+    // エラーの場合
     return <></>;
   }
   return (

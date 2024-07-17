@@ -9,7 +9,7 @@ interface PutSpaceRequestBody {
 }
 
 interface Params {
-  id: string;
+  id: number;
   data: PutSpaceRequestBody;
 }
 

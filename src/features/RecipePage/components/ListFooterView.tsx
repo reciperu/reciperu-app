@@ -11,11 +11,11 @@ interface Props {
 
 export const ListFooterView = memo<Props>(({ hasNextPage, isFetchingNextPage }) => {
   return (
-    <View style={{ paddingVertical: 12 }}>
+    <View style={{ paddingVertical: 24 }}>
       {!hasNextPage ? (
         <NotoText
           style={{
-            fontSize: 12,
+            fontSize: 14,
             color: Constants.colors.primitive.gray[400],
             textAlign: 'center',
           }}>

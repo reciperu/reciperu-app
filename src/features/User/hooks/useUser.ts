@@ -13,7 +13,7 @@ type UseUser = () => {
 export const useUser: UseUser = () => {
   const { data: profile } = useFetchMyProfile({});
   const { data } = useFetchSpace({
-    id: profile?.spaceId || '',
+    id: profile?.spaceId,
   });
 
   const myInfo = useMemo(() => {

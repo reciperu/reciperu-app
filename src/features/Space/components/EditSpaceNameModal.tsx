@@ -15,7 +15,7 @@ interface Props {
   isVisible: boolean;
   onClose: () => void;
   spaceName: string;
-  spaceId: string;
+  spaceId?: number;
 }
 
 export const EditSpaceNameModal = memo<Props>(
@@ -32,22 +32,24 @@ export const EditSpaceNameModal = memo<Props>(
     }, [isVisible]);
 
     const handlePress = useCallback(async () => {
-      mutation.mutate(
-        {
-          id: spaceId,
-          data: {
-            name: spaceName,
+      if (spaceId !== undefined) {
+        mutation.mutate(
+          {
+            id: spaceId,
+            data: {
+              name: spaceName,
+            },
           },
-        },
-        {
-          onSuccess: () => {
-            onClose();
-            queryClient.invalidateQueries({
-              queryKey: ['spaces', spaceId],
-            });
-          },
-        }
-      );
+          {
+            onSuccess: () => {
+              onClose();
+              queryClient.invalidateQueries({
+                queryKey: ['spaces', spaceId],
+              });
+            },
+          }
+        );
+      }
     }, [spaceName, mutation, spaceId, onClose, queryClient]);
 
     return (

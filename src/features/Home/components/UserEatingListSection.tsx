@@ -115,7 +115,7 @@ export const UserEatingListSection = memo<Props>(({ avatar, name, recipes, isPar
                       </Pressable>
                     </View>
                   )}
-                  keyExtractor={(item) => item.id}
+                  keyExtractor={(item) => String(item.id)}
                   contentContainerStyle={{ paddingBottom: 16, paddingRight: 16 }}
                   style={{ position: 'absolute', top: 0, left: -16 }}
                 />

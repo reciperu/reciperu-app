@@ -1,6 +1,6 @@
 import { useQueryClient } from '@tanstack/react-query';
 import { useRouter } from 'expo-router';
-import { memo, useCallback, useMemo, useState } from 'react';
+import { memo, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { Pressable, RefreshControl, TouchableOpacity, View, FlatList } from 'react-native';
 
 import { EmptyView } from './EmptyView';
@@ -17,7 +17,6 @@ import { RecipeItem } from '@/features/Recipe/components/RecipeItem';
 import { useRecipes } from '@/features/Recipe/hooks/useRecipes';
 import { RequestedRecipesResponse, SpaceRecipe } from '@/features/Recipe/types';
 import { useUser } from '@/features/User/hooks/useUser';
-import { useUpdateEffect } from '@/hooks/useUpdateEffect';
 import { sleep } from '@/utils/sleep';
 
 interface Props {
@@ -26,12 +25,13 @@ interface Props {
 
 export const AllRecipeTab = memo<Props>(({ search }) => {
   const router = useRouter();
+  const isFirst = useRef(true);
   const queryClient = useQueryClient();
   const [refreshing, setRefreshing] = useState(false);
   const { getFavorite, addRequester, removeRequester } = useRecipes();
   const { myInfo } = useUser();
   const [params, setParams] = useState<{
-    cursor?: string;
+    cursor?: number;
     title?: string;
   }>({
     cursor: undefined,
@@ -49,6 +49,8 @@ export const AllRecipeTab = memo<Props>(({ search }) => {
     refetch,
     isRefetching,
   } = useFetchRecipes({ params });
+
+  console.log(`params: ${JSON.stringify(params)}`);
 
   const displayData = useMemo(() => {
     const arr = [];
@@ -72,7 +74,25 @@ export const AllRecipeTab = memo<Props>(({ search }) => {
   // 「食べたい」のステートを入れ替える
   const toggleRequest = useCallback(
     async (item: SpaceRecipe) => {
-      const handleSuccessAdd = () => {
+      const handlePrepareAdd = () => {
+        queryClient.setQueryData(['requested-recipes'], (data: RequestedRecipesResponse) => {
+          const userId = myInfo?.id;
+          if (userId && data.data[userId]) {
+            return {
+              data: {
+                ...data.data,
+                [userId]: [
+                  {
+                    ...item,
+                    requesters: addRequester(item.requesters) || [],
+                  },
+                  ...data.data[userId],
+                ],
+              },
+            };
+          }
+          return data;
+        });
         queryClient.setQueryData(
           ['recipes', { isRequested: undefined, title: params.title }],
           (data: any) => ({
@@ -93,26 +113,20 @@ export const AllRecipeTab = memo<Props>(({ search }) => {
             pageParams: data.pageParams,
           })
         );
+      };
+      const handlePrepareRemove = () => {
         queryClient.setQueryData(['requested-recipes'], (data: RequestedRecipesResponse) => {
           const userId = myInfo?.id;
           if (userId && data.data[userId]) {
             return {
               data: {
                 ...data.data,
-                [userId]: [
-                  {
-                    ...item,
-                    requesters: addRequester(item.requesters) || [],
-                  },
-                  ...data.data[userId],
-                ],
+                [userId]: data.data[userId].filter((recipe) => recipe.id !== item.id),
               },
             };
           }
           return data;
         });
-      };
-      const handleSuccessRemove = () => {
         queryClient.setQueryData(
           ['recipes', { isRequested: undefined, title: params.title }],
           (data: any) => ({
@@ -133,6 +147,10 @@ export const AllRecipeTab = memo<Props>(({ search }) => {
             pageParams: data.pageParams,
           })
         );
+      };
+      const handleSuccessAdd = () => {};
+      const handleSuccessRemove = () => {};
+      const handleErrorAdd = () => {
         queryClient.setQueryData(['requested-recipes'], (data: RequestedRecipesResponse) => {
           const userId = myInfo?.id;
           if (userId && data.data[userId]) {
@@ -145,8 +163,76 @@ export const AllRecipeTab = memo<Props>(({ search }) => {
           }
           return data;
         });
+        queryClient.setQueryData(
+          ['recipes', { isRequested: undefined, title: params.title }],
+          (data: any) => ({
+            pages: data.pages.map((page: any) => {
+              return {
+                ...page,
+                recipes: page.recipes.map((recipe: any) => {
+                  if (recipe.id === item.id) {
+                    return {
+                      ...recipe,
+                      requesters: removeRequester(recipe.requesters),
+                    };
+                  }
+                  return recipe;
+                }),
+              };
+            }),
+            pageParams: data.pageParams,
+          })
+        );
       };
-      recipeRequestService.toggle(item, handleSuccessAdd, handleSuccessRemove);
+      const handleErrorRemove = () => {
+        queryClient.setQueryData(['requested-recipes'], (data: RequestedRecipesResponse) => {
+          const userId = myInfo?.id;
+          if (userId && data.data[userId]) {
+            return {
+              data: {
+                ...data.data,
+                [userId]: [
+                  {
+                    ...item,
+                    requesters: addRequester(item.requesters) || [],
+                  },
+                  ...data.data[userId],
+                ],
+              },
+            };
+          }
+          return data;
+        });
+        queryClient.setQueryData(
+          ['recipes', { isRequested: undefined, title: params.title }],
+          (data: any) => ({
+            pages: data.pages.map((page: any) => {
+              return {
+                ...page,
+                recipes: page.recipes.map((recipe: any) => {
+                  if (recipe.id === item.id) {
+                    return {
+                      ...recipe,
+                      requesters: addRequester(recipe.requesters),
+                    };
+                  }
+                  return recipe;
+                }),
+              };
+            }),
+            pageParams: data.pageParams,
+          })
+        );
+      };
+      recipeRequestService.toggle(
+        item,
+        handlePrepareAdd,
+        handlePrepareRemove,
+        handleSuccessAdd,
+        handleSuccessRemove,
+        handleErrorAdd,
+        handleErrorRemove
+      );
     },
     [recipeRequestService, addRequester, removeRequester, params.title, queryClient, myInfo?.id]
   );
@@ -160,8 +246,14 @@ export const AllRecipeTab = memo<Props>(({ search }) => {
     setRefreshing(false);
   }, [isRefetching, refetch]);
 
-  useUpdateEffect(() => {
+  console.log(`search: ${search}`);
+  useEffect(() => {
+    if (isFirst.current) {
+      isFirst.current = false;
+      return;
+    }
     if (params.title !== search) {
+      console.log(`search updated: ${search}`);
       setParams({ ...params, title: search });
     }
   }, [search]);
@@ -179,13 +271,13 @@ export const AllRecipeTab = memo<Props>(({ search }) => {
           ) : (
             <>
               {/* データがない場合 */}
-              {!data?.pages?.length ? (
+              {!displayData.length ? (
                 <EmptyView />
               ) : (
                 <FlatList
                   data={displayData}
                   contentContainerStyle={{ paddingHorizontal: 16, paddingVertical: 16 }}
-                  keyExtractor={(item) => `${item.id}-${item.requesters.join('-')}`}
+                  keyExtractor={(item, idx) => `${item.id}-${idx}-${item.requesters.join('-')}`}
                   refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />}
                   renderItem={({ item }) => (
                     <Flex style={{ paddingVertical: 8, gap: 4 }}>

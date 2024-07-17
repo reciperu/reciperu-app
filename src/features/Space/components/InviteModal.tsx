@@ -12,6 +12,7 @@ import { AppModal } from '@/cores/components/Modal';
 import { NotoText } from '@/cores/components/Text';
 import { AppIcon } from '@/cores/components/icons';
 import dayjs from '@/lib/dayjs';
+import { Spacer } from '@/cores/components/Spacer';
 
 interface Props {
   isVisible: boolean;
@@ -79,6 +80,11 @@ export const InviteModal = memo<Props>(({ isVisible, onClose, renderPrimaryButto
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isVisible, code]);
+  useEffect(() => {
+    if (!isVisible) {
+      Toast.hide();
+    }
+  }, [isVisible]);
   return (
     <>
       <AppModal
@@ -98,9 +104,15 @@ export const InviteModal = memo<Props>(({ isVisible, onClose, renderPrimaryButto
             height: 48,
             borderRadius: Constants.radius.xl,
           }}>
-          <NotoText fw="black" style={{ fontSize: 16 }}>
-            {code}
-          </NotoText>
+          {code.length === 0 && mutation.isPending ? (
+            <View style={{ alignItems: 'flex-start', display: 'flex' }}>
+              <ActivityIndicator color={Constants.colors.primitive.gray[400]} />
+            </View>
+          ) : (
+            <NotoText fw="black" style={{ fontSize: 16 }}>
+              {code}
+            </NotoText>
+          )}
           {code.length > 0 && (
             <View
               style={{

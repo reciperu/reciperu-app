@@ -1,4 +1,4 @@
-import { BarCodeEvent, BarCodeScanner } from 'expo-barcode-scanner';
+// import { BarCodeEvent, BarCodeScanner } from 'expo-barcode-scanner';
 import { Stack, router } from 'expo-router';
 import { useEffect, useState } from 'react';
 import { StyleSheet, View } from 'react-native';
@@ -9,20 +9,20 @@ import { NotoText } from '@/cores/components/Text';
 export default function OnboardingJoinBookReadQRPage() {
   const [hasPermission, setHasPermission] = useState(false);
 
-  useEffect(() => {
-    const getBarCodeScannerPermissions = async () => {
-      const { status } = await BarCodeScanner.requestPermissionsAsync();
-      setHasPermission(status === 'granted');
-    };
+  // useEffect(() => {
+  //   const getBarCodeScannerPermissions = async () => {
+  //     const { status } = await BarCodeScanner.requestPermissionsAsync();
+  //     setHasPermission(status === 'granted');
+  //   };
 
-    getBarCodeScannerPermissions();
-  }, []);
+  //   getBarCodeScannerPermissions();
+  // }, []);
 
-  const handleBarCodeScanned = ({ data }: BarCodeEvent) => {
-    console.log(data);
-    // TODO: QRコードのデータを取得して、それを元にレシピ集に参加する
-    router.push('/(onboarding)/(joinBook)/complete');
-  };
+  // const handleBarCodeScanned = ({ data }: BarCodeEvent) => {
+  //   console.log(data);
+  //   // TODO: QRコードのデータを取得して、それを元にレシピ集に参加する
+  //   router.push('/(onboarding)/(joinBook)/complete');
+  // };
 
   if (hasPermission === null) {
     return <PageWholeLoader />;
@@ -45,10 +45,10 @@ export default function OnboardingJoinBookReadQRPage() {
             headerShadowVisible: false,
           }}
         />
-        <BarCodeScanner
+        {/* <BarCodeScanner
           onBarCodeScanned={handleBarCodeScanned}
           style={StyleSheet.absoluteFillObject}
-        />
+        /> */}
       </View>
     </>
   );

@@ -1,6 +1,6 @@
 import { useQueryClient } from '@tanstack/react-query';
 import { useRouter } from 'expo-router';
-import { memo, useCallback, useMemo, useState } from 'react';
+import { memo, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { FlatList, Pressable, RefreshControl, TouchableOpacity, View } from 'react-native';
 
 import { EmptyView } from './EmptyView';
@@ -17,7 +17,6 @@ import { RecipeItem } from '@/features/Recipe/components/RecipeItem';
 import { useRecipes } from '@/features/Recipe/hooks/useRecipes';
 import { RequestedRecipesResponse, SpaceRecipe } from '@/features/Recipe/types';
 import { useUser } from '@/features/User/hooks/useUser';
-import { useUpdateEffect } from '@/hooks/useUpdateEffect';
 import { sleep } from '@/utils/sleep';
 
 interface Props {
@@ -26,12 +25,13 @@ interface Props {
 
 export const FavoriteRecipeTab = memo<Props>(({ search }) => {
   const router = useRouter();
+  const isFirst = useRef(true);
   const queryClient = useQueryClient();
   const { myInfo } = useUser();
   const [refreshing, setRefreshing] = useState(false);
   const { getFavorite, removeRequester } = useRecipes();
   const [params, setParams] = useState<{
-    cursor?: string;
+    cursor?: number;
     isRequested?: boolean;
     title?: string;
   }>({
@@ -122,7 +122,11 @@ export const FavoriteRecipeTab = memo<Props>(({ search }) => {
     setRefreshing(false);
   }, [isRefetching]);
 
-  useUpdateEffect(() => {
+  useEffect(() => {
+    if (isFirst.current) {
+      isFirst.current = false;
+      return;
+    }
     if (params.title !== search) {
       setParams({ ...params, title: search });
     }

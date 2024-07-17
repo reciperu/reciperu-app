@@ -54,6 +54,9 @@ export default function OnboardingRegisterRecipesCompletePage() {
                 activeStatus: UserStatus.JOINED_SPACE,
               };
             });
+            queryClient.invalidateQueries({
+              queryKey: ['spaces', data.spaceId],
+            });
             router.push('/(main)/(tabs)/home');
           },
           onSettled: () => {

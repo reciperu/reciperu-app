@@ -5,7 +5,7 @@ import { SpaceUser, UpdatedUserBody } from '../types';
 import { client } from '@/lib/axios';
 
 interface Params {
-  id: string;
+  id: number;
   data: UpdatedUserBody;
 }
 
