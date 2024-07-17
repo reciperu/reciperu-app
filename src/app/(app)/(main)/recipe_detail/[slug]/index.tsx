@@ -28,7 +28,7 @@ export default function Modal() {
   const navigation = useNavigation();
   const queryClient = useQueryClient();
   const [data, setData] = useState<SpaceRecipe>({
-    id: params.id,
+    id: Number(params.id),
     title: params.title,
     thumbnailUrl: params.thumbnailUrl,
     imageUrls: typeof params.imageUrls === 'string' ? JSON.parse(params.imageUrls) : [],
@@ -36,8 +36,8 @@ export default function Modal() {
     recipeUrl: params.recipeUrl,
     faviconUrl: params.faviconUrl,
     appName: params.appName,
-    spaceId: params.spaceId,
-    userId: params.userId,
+    spaceId: Number(params.spaceId),
+    userId: Number(params.userId),
     user: typeof params.user === 'string' ? JSON.parse(params.user) : undefined,
     requesters: typeof params.requesters === 'string' ? JSON.parse(params.requesters) : [],
   } as SpaceRecipe);
@@ -72,7 +72,7 @@ export default function Modal() {
           try {
             mutation.mutate(
               {
-                id: params.id,
+                id: Number(params.id),
                 data: updatedRecipe,
               },
               {
@@ -85,7 +85,7 @@ export default function Modal() {
                     text1: 'レシピを更新しました',
                     visibilityTime: 3000,
                     autoHide: true,
-                    topOffset: 0,
+                    position: 'bottom',
                   });
 
                   setData({
@@ -101,7 +101,7 @@ export default function Modal() {
                     text2: error instanceof AxiosError ? error.message : '',
                     visibilityTime: 3000,
                     autoHide: true,
-                    topOffset: 0,
+                    position: 'bottom',
                   });
                   console.error(error);
                 },

@@ -33,7 +33,7 @@ export const UserInfo = memo<Props>(({ data, openSheet }) => {
               text1: 'ユーザー名を変更しました',
               visibilityTime: 3000,
               autoHide: true,
-              topOffset: 60,
+              position: 'bottom',
             });
           },
         }

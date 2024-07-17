@@ -59,13 +59,15 @@ export default function HomePage() {
     let options: string[] = [];
     if (isOwner) {
       if (hasMultipleUsers) {
-        options = ['スペース名の変更', 'パートナーをスペースから削除', 'キャンセル'];
+        // options = ['スペース名の変更', 'パートナーをスペースから削除', 'キャンセル'];
+        options = ['スペース名の変更', 'キャンセル'];
       } else {
         options = ['スペース名の変更', 'キャンセル'];
       }
     } else {
       if (hasMultipleUsers) {
-        options = ['スペース名の変更', 'スペースから離脱', 'キャンセル'];
+        // options = ['スペース名の変更', 'スペースから離脱', 'キャンセル'];
+        options = ['スペース名の変更', 'キャンセル'];
       } else {
         options = ['スペース名の変更', 'キャンセル'];
       }

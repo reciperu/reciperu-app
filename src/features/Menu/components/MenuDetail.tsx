@@ -54,7 +54,7 @@ export const MenuDetail = memo<Props>(({ data, onClose }) => {
             text1: '献立を削除しました',
             visibilityTime: 3000,
             autoHide: true,
-            topOffset: 60,
+            position: 'bottom',
           });
           onClose();
           queryClient.invalidateQueries({
@@ -70,7 +70,7 @@ export const MenuDetail = memo<Props>(({ data, onClose }) => {
             text1: '献立の削除に失敗しました',
             visibilityTime: 3000,
             autoHide: true,
-            topOffset: 60,
+            position: 'bottom',
           });
         },
       }
@@ -95,7 +95,7 @@ export const MenuDetail = memo<Props>(({ data, onClose }) => {
               text1: '食べる日を更新しました',
               visibilityTime: 3000,
               autoHide: true,
-              topOffset: 60,
+              position: 'bottom',
             });
             queryClient.invalidateQueries({
               queryKey: ['pending-menus'],
@@ -110,7 +110,7 @@ export const MenuDetail = memo<Props>(({ data, onClose }) => {
               text1: '食べる日の更新に失敗しました',
               visibilityTime: 3000,
               autoHide: true,
-              topOffset: 60,
+              position: 'bottom',
             });
           },
         }

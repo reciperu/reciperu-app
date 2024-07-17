@@ -51,7 +51,7 @@ export default function ContactPage() {
               text1: '送信しました',
               visibilityTime: 3000,
               autoHide: true,
-              topOffset: 60,
+              position: 'bottom',
             });
           },
           onSettled: () => setPending(false),

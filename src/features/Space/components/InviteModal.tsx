@@ -12,7 +12,6 @@ import { AppModal } from '@/cores/components/Modal';
 import { NotoText } from '@/cores/components/Text';
 import { AppIcon } from '@/cores/components/icons';
 import dayjs from '@/lib/dayjs';
-import { Spacer } from '@/cores/components/Spacer';
 
 interface Props {
   isVisible: boolean;
@@ -33,7 +32,7 @@ export const InviteModal = memo<Props>(({ isVisible, onClose, renderPrimaryButto
         text1: 'コピーしました',
         visibilityTime: 3000,
         autoHide: true,
-        topOffset: 60,
+        position: 'bottom',
       });
     } catch (err) {
       Toast.show({
@@ -41,7 +40,7 @@ export const InviteModal = memo<Props>(({ isVisible, onClose, renderPrimaryButto
         text1: 'コピーに失敗しました',
         visibilityTime: 3000,
         autoHide: true,
-        topOffset: 60,
+        position: 'bottom',
       });
     }
   }, []);
@@ -57,7 +56,7 @@ export const InviteModal = memo<Props>(({ isVisible, onClose, renderPrimaryButto
               text1: '招待コードを更新しました',
               visibilityTime: 3000,
               autoHide: true,
-              topOffset: 60,
+              position: 'bottom',
             });
           }
         },
@@ -67,7 +66,7 @@ export const InviteModal = memo<Props>(({ isVisible, onClose, renderPrimaryButto
             text1: '招待コードの取得に失敗しました',
             visibilityTime: 3000,
             autoHide: true,
-            topOffset: 60,
+            position: 'bottom',
           });
         },
       });

@@ -23,22 +23,24 @@ export default function OnboardingCreateBookTitlePage() {
 
   const handlePress = useCallback(async () => {
     try {
-      mutation.mutate(
-        {
-          id: data?.spaceId || '',
-          data: {
-            name: spaceName,
+      if (data?.spaceId !== undefined) {
+        mutation.mutate(
+          {
+            id: data.spaceId,
+            data: {
+              name: spaceName,
+            },
           },
-        },
-        {
-          onSuccess: () => {
-            queryClient.invalidateQueries({
-              queryKey: ['spaces'],
-            });
-            router.push('/(onboarding)/(registerRecipes)/select');
-          },
-        }
-      );
+          {
+            onSuccess: () => {
+              queryClient.invalidateQueries({
+                queryKey: ['spaces'],
+              });
+              router.push('/(onboarding)/(registerRecipes)/select');
+            },
+          }
+        );
+      }
     } catch (error) {
       console.log(`error: ${error}`);
     }
