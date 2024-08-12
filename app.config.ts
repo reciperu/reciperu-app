@@ -1,10 +1,12 @@
 import 'dotenv/config';
 import { ExpoConfig, ConfigContext } from 'expo/config';
 
+import dayjs from './src/lib/dayjs';
+
 export default ({ config }: ConfigContext): ExpoConfig => {
   return {
     ...config,
-    name: process.env.EXPO_PUBLIC_APP_NAME || 'Sharely（dev）',
+    name: process.env.EXPO_PUBLIC_APP_NAME || 'Sharely',
     slug: process.env.EXPO_PUBLIC_SCHEME || 'sharely-app',
     version: '1.0.0',
     orientation: 'portrait',
@@ -19,10 +21,10 @@ export default ({ config }: ConfigContext): ExpoConfig => {
     ios: {
       supportsTablet: false,
       // 環境変数からバンドル識別子を取得
-      bundleIdentifier:
-        process.env.EXPO_PUBLIC_IOS_BUNDLE_IDENTIFIER || 'com.ryotanny.sharely-app-dev',
+      bundleIdentifier: process.env.EXPO_PUBLIC_IOS_BUNDLE_IDENTIFIER || 'com.ryotanny.sharely-app',
       googleServicesFile: './GoogleService-Info.plist',
       usesAppleSignIn: true,
+      buildNumber: dayjs().format('YYYYMMDDHHmm'),
       infoPlist: {
         CFBundleLocalizations: ['ja_JP'],
         CFBundleDevelopmentRegion: 'ja_JP',
@@ -35,7 +37,7 @@ export default ({ config }: ConfigContext): ExpoConfig => {
         foregroundImage: './assets/adaptive-icon.png',
       },
       googleServicesFile: './google-services.json',
-      package: process.env.ANDROID_PACKAGE || 'com.ryotanny.sharely-app-dev',
+      package: process.env.ANDROID_PACKAGE || 'com.ryotanny.sharely-app',
     },
     plugins: [
       'expo-router',
@@ -54,9 +56,9 @@ export default ({ config }: ConfigContext): ExpoConfig => {
     },
     extra: {
       eas: {
-        projectId: process.env.EXPO_PUBLIC_EAS_PROJECT_ID,
+        projectId: process.env.EXPO_PUBLIC_EAS_PROJECT_ID || '6f3dc8c2-c71e-4a23-98fc-287e3b3050df',
       },
     },
-    scheme: process.env.EXPO_PUBLIC_SCHEME,
+    scheme: process.env.EXPO_PUBLIC_SCHEME || 'sharely-app',
   };
 };
