@@ -24,6 +24,7 @@ import { useProtectedRoute } from '@/hooks/useProtectedRoute';
 import AsyncStorage from '@/lib/asyncStorage';
 import { auth } from '@/lib/firebase-config';
 import secureStoreService, { StoreKeyEnum } from '@/lib/secureStore';
+import { sleep } from '@/utils/sleep';
 
 type Auth = {
   user: User | null;
@@ -100,7 +101,7 @@ const useAuthProvider = () => {
       }
     }
     if (lastLoginMethod === 'apple') {
-      // TODO
+      // TODO: apple側にログインしているユーザーの情報を取得する
     }
   }, []);
 
@@ -125,6 +126,7 @@ const useAuthProvider = () => {
       } else {
         setUser(null);
       }
+      console.log('initialize');
       setInitialize(true);
     });
     return () => {
@@ -142,6 +144,7 @@ const useAuthProvider = () => {
         user = await handleCredentialResponseWithGoogle(userInfo.idToken);
       }
       await mutation.mutateAsync({});
+      await sleep(500);
       if (user) {
         setUser(user);
       }
