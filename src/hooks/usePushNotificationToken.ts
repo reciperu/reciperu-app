@@ -1,6 +1,6 @@
 import * as Application from 'expo-application';
 import Constants from 'expo-constants';
-import Device from 'expo-device';
+import * as Device from 'expo-device';
 import * as Notifications from 'expo-notifications';
 import { useCallback, useEffect } from 'react';
 import { AppState } from 'react-native';
@@ -32,7 +32,6 @@ export const usePushNotificationToken: UsePushNotificationToken = (userId) => {
       if (finalStatus !== 'granted') {
         return;
       }
-
       const projectId =
         Constants?.expoConfig?.extra?.eas?.projectId ?? Constants?.easConfig?.projectId;
       if (!projectId) {
@@ -67,7 +66,7 @@ export const usePushNotificationToken: UsePushNotificationToken = (userId) => {
     // }
   }, [mutation]);
   useEffect(() => {
-    if (userId) {
+    if (userId !== undefined) {
       registerForPushNotificationsAsync();
     }
 
