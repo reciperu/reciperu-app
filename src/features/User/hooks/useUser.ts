@@ -25,7 +25,7 @@ export const useUser: UseUser = () => {
 
   const partnerInfo = useMemo(() => {
     if (profile) {
-      const partner = data?.users.find((user) => user.id !== profile?.id);
+      const partner = data?.users?.find((user) => user.id !== profile?.id);
       if (partner) {
         return partner;
       }
