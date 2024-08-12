@@ -13,7 +13,7 @@ interface PutSpaceJoinResponse {
 export const putSpaceJoin = async (
   body: PutSpaceJoinRequestBody
 ): Promise<PutSpaceJoinResponse> => {
-  return await client.put(`/spaces/join`, body);
+  return await client.put(`/spaces/joins`, body);
 };
 
 type UsePutSpaceJoin = {
