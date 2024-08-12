@@ -2,6 +2,7 @@ import { Image } from 'expo-image';
 import { Tabs } from 'expo-router';
 import { memo } from 'react';
 import { Dimensions, View } from 'react-native';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { Constants } from '@/constants';
 import { AppIcon } from '@/cores/components/icons';
@@ -25,14 +26,16 @@ const HeaderLeftIcon = memo(() => (
 
 export default function TabLayout() {
   const { data } = useFetchMyProfile({});
+  const insets = useSafeAreaInsets();
   return (
     <View style={{ minHeight: windowHeight }}>
       <Tabs
         screenOptions={{
           tabBarStyle: {
             borderTopWidth: 0,
-            height: 82,
+            height: 72 + insets.bottom,
             paddingTop: 8,
+            paddingBottom: 8 + insets.bottom,
           },
           tabBarInactiveTintColor: Constants.colors.primitive.gray[600],
           tabBarActiveTintColor: Constants.colors.primitive.pink[400],
@@ -51,8 +54,8 @@ export default function TabLayout() {
             headerStyle: { backgroundColor: Constants.colors.primitive.pink['50'] },
             tabBarIcon: ({ color, focused }) => (
               <AppIcon
-                width={28}
-                height={28}
+                width={32}
+                height={32}
                 name="home"
                 color={color}
                 variant={focused ? 'filled' : 'outline'}
@@ -66,8 +69,8 @@ export default function TabLayout() {
             title: 'レシピ',
             tabBarIcon: ({ color, focused }) => (
               <AppIcon
-                width={28}
-                height={28}
+                width={32}
+                height={32}
                 name="recipe"
                 color={color}
                 variant={focused ? 'filled' : 'outline'}
@@ -100,8 +103,8 @@ export default function TabLayout() {
                 contentFit="cover"
                 source={{ uri: data?.imageUrl || '' }}
                 style={{
-                  width: 24,
-                  height: 24,
+                  width: 28,
+                  height: 28,
                   borderRadius: Constants.radius['full'],
                   borderWidth: focused ? 2 : undefined,
                   borderColor: focused ? '#BEE3F8' : undefined,

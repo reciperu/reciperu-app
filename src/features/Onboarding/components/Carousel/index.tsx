@@ -34,9 +34,7 @@ export const OnboardingCarousel = memo<Props>(({ data }) => {
     return (
       <View style={styles.slide}>
         <Image source={item.image} style={styles.image} />
-        <NotoText fw="bold" style={styles.title}>
-          {item.title}
-        </NotoText>
+        <NotoText style={styles.title}>{item.title}</NotoText>
       </View>
     );
   };

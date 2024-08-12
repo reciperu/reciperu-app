@@ -3,6 +3,7 @@ import { useRouter } from 'expo-router';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { Dimensions, ScrollView, StyleSheet, View } from 'react-native';
 import Confetti from 'react-native-confetti';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { APP_NAME } from '@/constants';
 import { Button } from '@/cores/components/Button';
@@ -23,6 +24,7 @@ export default function OnboardingRegisterRecipesCompletePage() {
   const [loading, setLoading] = useState(false);
   const confettiRef = useRef<Confetti>(null);
   const router = useRouter();
+  const insets = useSafeAreaInsets();
   const mutation = usePatchMyProfile({});
   const { data } = useFetchMyProfile({});
   const handleStart = useCallback(async () => {
@@ -81,7 +83,7 @@ export default function OnboardingRegisterRecipesCompletePage() {
   return (
     <>
       <ScrollView style={styles.container}>
-        <View style={{ minHeight: height - 144 }}>
+        <View style={{ minHeight: height - insets.bottom - insets.top - 44, paddingBottom: 24 }}>
           <View style={styles.titleWrapper}>
             <NotoText fw="bold" style={styles.pageTitle}>
               {APP_NAME}を利用する準備が完了しました！
@@ -90,7 +92,7 @@ export default function OnboardingRegisterRecipesCompletePage() {
           <SharingPromotionCard />
           <Spacer />
           <View style={styles.actionButtonWrapper}>
-            <Button onPress={openModal} loading={loading}>
+            <Button onPress={openModal} disabled={loading}>
               招待する
             </Button>
             <Button onPress={handleStart} scheme="text" loading={loading}>
@@ -123,7 +125,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     paddingHorizontal: 16,
-    paddingBottom: 50,
     display: 'flex',
     backgroundColor: 'white',
   },

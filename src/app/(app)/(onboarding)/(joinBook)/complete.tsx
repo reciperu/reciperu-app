@@ -43,55 +43,55 @@ export default function OnboardingJoinBookCompletePage() {
   }, []);
 
   if (!space) {
-    return <PageWholeLoader />;
+    return (
+      <View style={styles.container}>
+        <PageWholeLoader />;
+      </View>
+    );
   }
   return (
-    <>
-      <View style={styles.container}>
-        <NotoText fw="bold" style={styles.pageTitle}>
-          「{space?.name}」に参加しました！{'\n'}
-          {ownerInfo?.name}さんと一緒に献立を考えましょう🎉
-        </NotoText>
-        <Spacer />
-        <Flex style={{ justifyContent: 'center' }}>
-          <View style={{ position: 'relative', margin: 'auto' }}>
-            <HomeSvg />
-            <Flex
-              style={{
-                gap: 24,
-                position: 'absolute',
-                top: '35%',
-                left: 0,
-                width: '100%',
-                justifyContent: 'center',
-                alignItems: 'center',
-              }}>
-              <Flex style={styles.userIconWrapper}>
-                <Image source={profile?.imageUrl} style={styles.userIcon} />
-                <NotoText fw="bold" style={{ fontSize: 12, textAlign: 'center' }}>
-                  {profile?.name}
-                </NotoText>
-              </Flex>
-              <Flex style={styles.userIconWrapper}>
-                <Image source={ownerInfo?.imageUrl} style={styles.userIcon} />
-                <NotoText fw="bold" style={{ fontSize: 12, textAlign: 'center' }}>
-                  {ownerInfo?.name}
-                </NotoText>
-              </Flex>
+    <View style={styles.container}>
+      <NotoText fw="bold" style={styles.pageTitle}>
+        「{space?.name}」に参加しました！{'\n'}
+        {ownerInfo?.name}さんと一緒に献立を考えましょう🎉
+      </NotoText>
+      <Spacer />
+      <Flex style={{ justifyContent: 'center' }}>
+        <View style={{ position: 'relative', margin: 'auto' }}>
+          <HomeSvg />
+          <Flex
+            style={{
+              gap: 24,
+              position: 'absolute',
+              top: '35%',
+              left: 0,
+              width: '100%',
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}>
+            <Flex style={styles.userIconWrapper}>
+              <Image source={profile?.imageUrl} style={styles.userIcon} />
+              <NotoText fw="bold" style={{ fontSize: 12, textAlign: 'center' }}>
+                {profile?.name}
+              </NotoText>
             </Flex>
-          </View>
-        </Flex>
-        <Spacer />
-        <View style={styles.actionButtonWrapper}>
-          <Button onPress={() => router.push('/(main)/(tabs)/home')}>さっそく始める</Button>
+            <Flex style={styles.userIconWrapper}>
+              <Image source={ownerInfo?.imageUrl} style={styles.userIcon} />
+              <NotoText fw="bold" style={{ fontSize: 12, textAlign: 'center' }}>
+                {ownerInfo?.name}
+              </NotoText>
+            </Flex>
+          </Flex>
         </View>
-        <View
-          pointerEvents="none"
-          style={{ position: 'absolute', top: -40, left: 0, width, height }}>
-          <Confetti ref={confettiRef} />
-        </View>
+      </Flex>
+      <Spacer />
+      <View style={styles.actionButtonWrapper}>
+        <Button onPress={() => router.push('/(main)/(tabs)/home')}>さっそく始める</Button>
       </View>
-    </>
+      <View pointerEvents="none" style={{ position: 'absolute', top: -40, left: 0, width, height }}>
+        <Confetti ref={confettiRef} />
+      </View>
+    </View>
   );
 }
 
@@ -109,7 +109,7 @@ const HomeSvg = () => {
 };
 
 const styles = StyleSheet.create({
-  container: { flex: 1, backgroundColor: 'white', paddingHorizontal: 16, paddingBottom: 50 },
+  container: { flex: 1, backgroundColor: 'white', paddingHorizontal: 16, paddingBottom: 24 },
   pageTitle: {
     fontSize: 16,
     marginTop: 8,

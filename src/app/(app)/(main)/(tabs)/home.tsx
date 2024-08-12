@@ -3,8 +3,16 @@ import { useQueryClient } from '@tanstack/react-query';
 import { Image } from 'expo-image';
 import { Tabs } from 'expo-router';
 import { useCallback, useMemo, useState } from 'react';
-import { Dimensions, Pressable, RefreshControl, ScrollView, View } from 'react-native';
+import {
+  ActivityIndicator,
+  Dimensions,
+  Pressable,
+  RefreshControl,
+  ScrollView,
+  View,
+} from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { Constants } from '@/constants';
 import { Container } from '@/cores/components/Container';
@@ -23,10 +31,11 @@ const { width, height } = Dimensions.get('window');
 
 export default function HomePage() {
   const [refreshing, setRefreshing] = useState(false);
+  const insets = useSafeAreaInsets();
   const [isEditSpaceNameModalVisible, setIsEditSpaceNameModalVisible] = useState(false);
   const { showActionSheetWithOptions } = useActionSheet();
   const { myInfo, partnerInfo } = useUser();
-  const { data: space } = useFetchSpace({
+  const { data: space, isLoading } = useFetchSpace({
     id: myInfo?.spaceId,
   });
   const { myRequestedRecipes, partnerRequestedRecipes } = useRequestedRecipeByUser();
@@ -102,16 +111,20 @@ export default function HomePage() {
     return (
       <Pressable onPress={handlePressTitle}>
         <Flex style={{ alignItems: 'center', gap: 8, paddingLeft: 8 }}>
-          <NotoText fw="bold" numberOfLines={1} style={{ fontSize: 16, flexShrink: 1 }}>
-            {spaceName}
-          </NotoText>
+          {isLoading ? (
+            <ActivityIndicator />
+          ) : (
+            <NotoText fw="bold" numberOfLines={1} style={{ fontSize: 16, flexShrink: 1 }}>
+              {spaceName}
+            </NotoText>
+          )}
           <View style={{ transform: 'rotate(-90deg)', marginTop: 4 }}>
             <ArrowBack width={16} height={16} color={Constants.colors.primitive.blue[400]} />
           </View>
         </Flex>
       </Pressable>
     );
-  }, [handlePressTitle, spaceName]);
+  }, [handlePressTitle, spaceName, isLoading]);
   return (
     <>
       <Tabs.Screen
@@ -137,7 +150,9 @@ export default function HomePage() {
             <UserIconList myProfile={myInfo} partnerProfile={partnerInfo} />
           </View>
         </View>
-        <Container needBottomPadding style={{ minHeight: height - 376, paddingTop: 24 }}>
+        <Container
+          needBottomPadding
+          style={{ minHeight: height - insets.top - insets.bottom - 304, paddingTop: 24 }}>
           {/* 計画中の献立 */}
           {/* <View style={{ marginBottom: 72 }}>
             <PlannedMenuSection />

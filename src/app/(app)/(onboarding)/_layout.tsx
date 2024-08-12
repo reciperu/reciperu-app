@@ -4,6 +4,7 @@ import { useEffect } from 'react';
 import { View } from 'react-native';
 
 import { Constants } from '@/constants';
+import { PageWholeLoader } from '@/cores/components/PageWholeLoader';
 import { HeaderAppIcon } from '@/features/Header/AppIcon';
 import { useFetchMyProfile } from '@/features/User/apis/getMyProfile';
 import { UserStatus } from '@/features/User/types';
@@ -16,7 +17,7 @@ export default function OnboardingLayout() {
   useEffect(() => {
     if (axios.isAxiosError(error)) {
       const statusCode = error.response?.status;
-      if (statusCode === 403) {
+      if (statusCode === 403 || statusCode === 401) {
         handleSignOut();
       }
     }
@@ -26,7 +27,7 @@ export default function OnboardingLayout() {
   // プッシュ通知のトークン更新
   usePushNotificationToken(data?.id);
 
-  if (!data) return <></>;
+  if (!data) return <PageWholeLoader />;
   if (data?.activeStatus === UserStatus.JOINED_SPACE) {
     return <Redirect href="/(main)/(tabs)/home" />;
   }

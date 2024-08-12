@@ -1,7 +1,7 @@
 import { useQueryClient } from '@tanstack/react-query';
 import { useRouter } from 'expo-router';
 import { useCallback, useState } from 'react';
-import { StyleSheet, View } from 'react-native';
+import { SafeAreaView, StyleSheet, View } from 'react-native';
 
 import { Constants } from '@/constants';
 import { Validation } from '@/constants/validation';
@@ -47,20 +47,22 @@ export default function OnboardingCreateBookTitlePage() {
   }, [spaceName, mutation, router, data, queryClient]);
   return (
     <>
-      <View style={styles.container}>
+      <SafeAreaView style={styles.container}>
         <View style={styles.titleWrapper}>
           <NotoText style={styles.stepper}>3/4</NotoText>
           <NotoText fw="bold" style={styles.pageTitle}>
-            あなたのスペースの名前を教えてください
+            スペースの名前を教えてください
           </NotoText>
         </View>
-        <TextInput
-          value={spaceName}
-          onChange={(text) => setSpaceName(text)}
-          maxLength={Validation.SPACE_NAME.MAX_LENGTH.VALUE}
-        />
+        <View style={{ marginHorizontal: 16 }}>
+          <TextInput
+            value={spaceName}
+            onChange={(text) => setSpaceName(text)}
+            maxLength={Validation.SPACE_NAME.MAX_LENGTH.VALUE}
+          />
+        </View>
         <Spacer />
-        <View style={{ marginBottom: 12 }}>
+        <View style={{ marginBottom: 12, marginHorizontal: 16 }}>
           <Button
             disabled={spaceName.trim() === ''}
             loading={mutation.isPending}
@@ -68,19 +70,22 @@ export default function OnboardingCreateBookTitlePage() {
             次に進む
           </Button>
         </View>
-        <Button variant="others" disabled={mutation.isPending} onPress={() => router.back()}>
-          戻る
-        </Button>
-      </View>
+        <View style={{ marginBottom: 24, marginHorizontal: 16 }}>
+          <Button variant="others" disabled={mutation.isPending} onPress={() => router.back()}>
+            戻る
+          </Button>
+        </View>
+      </SafeAreaView>
     </>
   );
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1, backgroundColor: 'white', paddingHorizontal: 16, paddingBottom: 50 },
+  container: { flex: 1, backgroundColor: 'white', paddingBottom: 50 },
   titleWrapper: {
     marginTop: 8,
     marginBottom: 12,
+    marginHorizontal: 16,
   },
   stepper: {
     fontSize: 14,

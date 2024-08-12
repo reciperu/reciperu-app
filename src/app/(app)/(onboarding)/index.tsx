@@ -4,7 +4,7 @@ import { Image } from 'expo-image';
 import * as ImagePicker from 'expo-image-picker';
 import { Stack, router } from 'expo-router';
 import { useCallback, useEffect, useMemo, useState } from 'react';
-import { Dimensions, StyleSheet, View, Pressable, FlatList } from 'react-native';
+import { Dimensions, StyleSheet, View, Pressable, FlatList, SafeAreaView } from 'react-native';
 
 import { AVATAR_SIZE, Constants } from '@/constants';
 import { Validation } from '@/constants/validation';
@@ -122,12 +122,12 @@ export default function OnboardingTopPage() {
   useEffect(() => {
     if (data) {
       if (!image) setImage(data.imageUrl);
-      if (!username) setUsername(data.name);
+      if (!username && data.name !== 'AxiosError') setUsername(data.name);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [data]);
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       <Stack.Screen
         options={{
           title: '',
@@ -208,7 +208,7 @@ export default function OnboardingTopPage() {
           次に進む
         </Button>
       </View>
-    </View>
+    </SafeAreaView>
   );
 }
 
@@ -234,7 +234,7 @@ const styles = StyleSheet.create({
   bottomArea: {
     paddingHorizontal: 16,
     backgroundColor: '#fff',
-    paddingBottom: 50,
+    paddingBottom: 24,
   },
   imagePickerWrapper: {
     width: AVATAR_SIZE,

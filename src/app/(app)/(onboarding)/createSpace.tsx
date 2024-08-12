@@ -1,5 +1,5 @@
 import { router } from 'expo-router';
-import { StyleSheet, View } from 'react-native';
+import { SafeAreaView, StyleSheet, View } from 'react-native';
 
 import { Constants } from '@/constants';
 import { Button } from '@/cores/components/Button';
@@ -37,11 +37,11 @@ const CAROUSEL_DATA = [
 export default function OnboardingCreateSpacePage() {
   return (
     <>
-      <View style={styles.container}>
+      <SafeAreaView style={styles.container}>
         <View style={styles.titleWrapper}>
           <NotoText style={styles.stepper}>2/4</NotoText>
           <NotoText fw="bold" style={styles.pageTitle}>
-            次に、あなたのスペースを作成しましょう
+            次に、スペースを作成しましょう
           </NotoText>
         </View>
         <OnboardingCarousel data={CAROUSEL_DATA} />
@@ -56,13 +56,13 @@ export default function OnboardingCreateSpacePage() {
             別のスペースに参加する
           </Button>
         </View>
-      </View>
+      </SafeAreaView>
     </>
   );
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1, backgroundColor: 'white', paddingBottom: 50 },
+  container: { flex: 1, backgroundColor: 'white' },
   titleWrapper: {
     paddingHorizontal: 16,
     marginTop: 8,
@@ -85,5 +85,6 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     paddingHorizontal: 16,
     gap: 16,
+    paddingBottom: 24,
   },
 });

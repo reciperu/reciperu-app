@@ -2,7 +2,8 @@ import { createMaterialTopTabNavigator } from '@react-navigation/material-top-ta
 import { useNavigation } from '@react-navigation/native';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import { useEffect, useState } from 'react';
-import { Dimensions, Text, View } from 'react-native';
+import { Dimensions, SafeAreaView, Text, View } from 'react-native';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { Constants } from '@/constants';
 import { Flex } from '@/cores/components/Flex';
@@ -21,6 +22,7 @@ export default function RecipePage() {
   const router = useRouter();
   const params = useLocalSearchParams();
   const navigation = useNavigation();
+  const insets = useSafeAreaInsets();
   useEffect(() => {
     if (params.route) {
       // @ts-ignore
@@ -29,7 +31,7 @@ export default function RecipePage() {
   }, [params.route, navigation]);
 
   return (
-    <View style={{ flex: 1, position: 'relative', backgroundColor: 'white' }}>
+    <SafeAreaView style={{ flex: 1, position: 'relative', backgroundColor: 'white' }}>
       <NotoText fw="bold" style={{ fontSize: 20, paddingHorizontal: 16, paddingTop: 12 }}>
         レシピ一覧
       </NotoText>
@@ -88,9 +90,10 @@ export default function RecipePage() {
           {() => <FavoriteRecipeTab search={search} />}
         </Tab.Screen>
       </Tab.Navigator>
-      <View style={{ position: 'absolute', top: height - 260, right: 24 }}>
+      <View
+        style={{ position: 'absolute', top: height - 190 - insets.bottom - insets.top, right: 24 }}>
         <FloatingButton onPress={() => router.push('/recipe/create')} />
       </View>
-    </View>
+    </SafeAreaView>
   );
 }

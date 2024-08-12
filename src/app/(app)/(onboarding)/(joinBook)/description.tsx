@@ -26,9 +26,6 @@ export default function OnboardingJoinBookTopPage() {
             });
             router.push('/(onboarding)/(joinBook)/complete');
           },
-          onSettled: () => {
-            router.push('/(onboarding)/(joinBook)/complete');
-          },
         }
       );
     }
@@ -59,7 +56,7 @@ export default function OnboardingJoinBookTopPage() {
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1, backgroundColor: 'white', paddingHorizontal: 16, paddingBottom: 50 },
+  container: { flex: 1, backgroundColor: 'white', paddingHorizontal: 16, paddingBottom: 24 },
   titleWrapper: {
     marginTop: 8,
   },

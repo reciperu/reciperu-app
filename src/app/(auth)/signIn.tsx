@@ -40,7 +40,7 @@ export default function SignInPage() {
           </Flex>
           <NotoText style={{ textAlign: 'center' }}>
             {`作ったレシピを保存して
-パートナーとシェアしましょう`}
+パートナーとシェアしましょう！`}
           </NotoText>
           <Spacer />
           <Flex
@@ -53,7 +53,6 @@ export default function SignInPage() {
               このサービスを利用することで、
               <Link href="terms">
                 <NotoText
-                  fw="bold"
                   style={{
                     color: Constants.colors.primitive.blue[400],
                     textDecorationStyle: 'solid',
@@ -67,7 +66,6 @@ export default function SignInPage() {
               および
               <Link href="privacyPolicy">
                 <NotoText
-                  fw="bold"
                   style={{
                     color: Constants.colors.primitive.blue[400],
                     textDecorationStyle: 'solid',
@@ -85,7 +83,7 @@ export default function SignInPage() {
             buttonType={AppleAuthentication.AppleAuthenticationButtonType.SIGN_IN}
             buttonStyle={AppleAuthentication.AppleAuthenticationButtonStyle.BLACK}
             cornerRadius={40}
-            style={{ height: 48 }}
+            style={{ height: 48, opacity: authContext.appleAuthPending ? 0.4 : 1 }}
             onPress={() => authContext.signInWithApple()}
           />
           <View style={{ marginTop: 16 }}>

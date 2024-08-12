@@ -2,6 +2,7 @@ import { useQueryClient } from '@tanstack/react-query';
 import { useRouter } from 'expo-router';
 import { useCallback, useState } from 'react';
 import { Pressable, ScrollView, StyleSheet, View, useWindowDimensions } from 'react-native';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { Constants } from '@/constants';
 import { Button } from '@/cores/components/Button';
@@ -17,6 +18,7 @@ export default function OnboardingRegisterRecipesConfirmPage() {
   const selectedRecipes = useStore((state) => state.onboardingSelectedRecipeList);
   const [pending, setPending] = useState(false);
   const { height } = useWindowDimensions();
+  const insets = useSafeAreaInsets();
   const mutation = usePostRecipeBulk({});
   const router = useRouter();
   const handlePress = useCallback(async () => {
@@ -45,17 +47,17 @@ export default function OnboardingRegisterRecipesConfirmPage() {
   );
   return (
     <ScrollView style={styles.container}>
-      <View style={{ minHeight: height - 144 }}>
+      <View style={{ minHeight: height - insets.bottom - insets.top - 44 }}>
         <View style={styles.titleWrapper}>
           <NotoText style={styles.stepper}>4/4</NotoText>
           <NotoText fw="bold" style={styles.pageTitle}>
             以下の料理を登録します
           </NotoText>
-          <NotoText style={{ color: Constants.colors.primitive['black alpha'][700] }}>
+          <NotoText style={{ color: Constants.colors.primitive['black alpha'][700], marginTop: 4 }}>
             レシピ情報は後から変更することができます
           </NotoText>
         </View>
-        <View style={{ marginVertical: 20 }}>
+        <View style={{ marginVertical: 20, flex: 1 }}>
           {selectedRecipes.map((recipe) => (
             <View style={{ paddingVertical: 4, marginVertical: 2 }} key={recipe.idx}>
               <Flex
@@ -93,8 +95,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     paddingHorizontal: 16,
-    paddingBottom: 50,
-    display: 'flex',
     backgroundColor: 'white',
   },
   titleWrapper: {
@@ -113,6 +113,7 @@ const styles = StyleSheet.create({
     display: 'flex',
     flexDirection: 'column',
     gap: 16,
+    paddingBottom: 24,
   },
   editButtonWrapper: {
     backgroundColor: Constants.colors.primitive.pink[400],
