@@ -10,9 +10,9 @@
     "ts:check": "tsc",
     "android:dev": "NODE_ENV=development expo run:android",
     "android": "NODE_ENV=production expo run:android",
-    "ios:dev": "NODE_ENV=development npx expo run:ios",
-    "ios:device": "NODE_ENV=development npx expo run:ios --device",
-    "ios": "NODE_ENV=production npx expo run:ios",
+    "ios:dev": "cp config/development/GoogleService-Info.plist ./ && NODE_ENV=development npx expo run:ios",
+    "ios:device": "cp config/production/GoogleService-Info.plist ./ && NODE_ENV=production npx expo run:ios --device",
+    "ios": "cp config/production/GoogleService-Info.plist ./ && NODE_ENV=production npx expo run:ios",
     "web": "expo start --web",
     "lint": "yarn lint:prettier && yarn lint:es",
     "format": "yarn format:prettier && yarn format:es",
@@ -91,6 +91,5 @@
   "eslintConfig": {
     "extends": "universe/native"
   },
-  "private": true,
-  "packageManager": "yarn@4.1.1"
+  "private": true
 }
