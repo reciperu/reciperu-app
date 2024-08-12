@@ -20,7 +20,7 @@ const client = Axios.create(config);
 
 client.interceptors.request.use(
   async (config) => {
-    if (!config.headers['token']) {
+    if (!config.headers['Authorization']) {
       const token = await secureStoreService.getValueFor(StoreKeyEnum.TOKEN);
       if (!token) {
         // note: 今のところ認証必須
@@ -36,16 +36,16 @@ client.interceptors.request.use(
 
 client.interceptors.response.use(
   (response) => {
+    // console.log(JSON.stringify(response.data));
     return response.data;
   },
   async (error) => {
+    // console.log(JSON.stringify(error.response));
     if (error.response?.status === 401) {
       // リトライ処理
       if (!error.config.retry) {
         // tokenの更新
         try {
-          // TODO: トークンをrefreshする場合は以下を参照して実装する
-          // https://qiita.com/spre55/items/0753e993548c16d35530
           const refreshToken = await secureStoreService.getValueFor(StoreKeyEnum.REFRESH_TOKEN);
 
           const response = await fetch(
@@ -59,15 +59,22 @@ client.interceptors.response.use(
             }
           );
           const json = await response.json();
-          await secureStoreService.save(StoreKeyEnum.TOKEN, json.access_token);
-          await secureStoreService.save(StoreKeyEnum.REFRESH_TOKEN, json.refresh_token);
+          if (json?.stsTokenManager?.accessToken) {
+            await secureStoreService.save(StoreKeyEnum.TOKEN, json.stsTokenManager.accessToken);
+          }
+          if (json?.stsTokenManager?.refreshToken) {
+            await secureStoreService.save(
+              StoreKeyEnum.REFRESH_TOKEN,
+              json.stsTokenManager.refreshToken
+            );
+          }
         } catch (error) {
           console.log(error);
         }
         error.config.retry = true;
         return client.request(error.config);
       } else {
-        return error;
+        return Promise.reject(error);
       }
     } else {
       const message = error.response?.data?.message || error.message;
