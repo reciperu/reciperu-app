@@ -1,8 +1,6 @@
 import 'dotenv/config';
 import { ExpoConfig, ConfigContext } from 'expo/config';
 
-import dayjs from './src/lib/dayjs';
-
 export default ({ config }: ConfigContext): ExpoConfig => {
   return {
     ...config,
@@ -24,7 +22,7 @@ export default ({ config }: ConfigContext): ExpoConfig => {
       bundleIdentifier: process.env.EXPO_PUBLIC_IOS_BUNDLE_IDENTIFIER || 'com.ryotanny.sharely-app',
       googleServicesFile: './GoogleService-Info.plist',
       usesAppleSignIn: true,
-      buildNumber: dayjs().format('YYYYMMDDHHmm'),
+      buildNumber: new Date().getTime().toString(),
       infoPlist: {
         CFBundleLocalizations: ['ja_JP'],
         CFBundleDevelopmentRegion: 'ja_JP',
