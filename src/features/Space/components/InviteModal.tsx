@@ -25,7 +25,7 @@ export const InviteModal = memo<Props>(({ isVisible, onClose, renderPrimaryButto
   const mutation = usePostSpaceInvitation({});
   const copyToClipboard = useCallback(() => {
     try {
-      Clipboard.setString('code');
+      Clipboard.setString(code);
       Haptics.selectionAsync();
       Toast.show({
         type: 'successToast',
@@ -43,7 +43,7 @@ export const InviteModal = memo<Props>(({ isVisible, onClose, renderPrimaryButto
         position: 'bottom',
       });
     }
-  }, []);
+  }, [code]);
   const fetchInvitationCode = useCallback(
     (showToast?: boolean) => {
       mutation.mutate(undefined, {
@@ -108,9 +108,7 @@ export const InviteModal = memo<Props>(({ isVisible, onClose, renderPrimaryButto
               <ActivityIndicator color={Constants.colors.primitive.gray[400]} />
             </View>
           ) : (
-            <NotoText fw="black" style={{ fontSize: 16 }}>
-              {code}
-            </NotoText>
+            <NotoText style={{ fontSize: 14 }}>{code}</NotoText>
           )}
           {code.length > 0 && (
             <View
