@@ -12,6 +12,7 @@ import { Flex } from '@/cores/components/Flex';
 import { ImageUploadArea } from '@/cores/components/ImageUploadArea';
 import { CompactImageUploadArea } from '@/cores/components/ImageUploadArea/compact';
 import { InputLabel } from '@/cores/components/InputLabel';
+import { PageDialogLoader } from '@/cores/components/PageDialogLoader';
 import { NotoText } from '@/cores/components/Text';
 import { TextInput } from '@/cores/components/TextInput';
 import { HeaderLeftBackButton } from '@/cores/components/icons/components/HeaderLeftBackButton';
@@ -93,8 +94,12 @@ export default function RecipeCreatePage() {
     setIsFocused(true);
   }, []);
   const fetchRecipeDataFromMetaData = useCallback(async () => {
+    console.log('call fetchRecipeDataFromMetaData');
     if (!isFocused && isValidUrl(recipeUrl)) {
+      console.log('fetchRecipeDataFromMetaData　start');
       const result = await mutation.mutateAsync(recipeUrl);
+      console.log('fetchRecipeDataFromMetaData　end');
+      console.log(result);
       if (result) {
         const { title, thumbnailUrl, appName, faviconUrl } = result;
         if (title) setRecipeName(title);
@@ -264,6 +269,7 @@ export default function RecipeCreatePage() {
         </View>
       </ScrollView>
       <Toast config={toastConfig} />
+      <PageDialogLoader visible={mutation.isPending} label={`レシピ情報を\n取得中`} />
     </>
   );
 }

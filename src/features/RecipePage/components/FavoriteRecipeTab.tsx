@@ -149,7 +149,7 @@ export const FavoriteRecipeTab = memo<Props>(({ search }) => {
                 <FlatList
                   data={displayData}
                   contentContainerStyle={{ paddingHorizontal: 16, paddingVertical: 16 }}
-                  keyExtractor={(item) => item.id}
+                  keyExtractor={(item) => `flat-${item.id}`}
                   refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />}
                   renderItem={({ item }) => (
                     <Flex style={{ paddingVertical: 8, gap: 4 }}>

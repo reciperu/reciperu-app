@@ -10,6 +10,7 @@ import { Flex } from '@/cores/components/Flex';
 import { ImageUploadArea } from '@/cores/components/ImageUploadArea';
 import { CompactImageUploadArea } from '@/cores/components/ImageUploadArea/compact';
 import { InputLabel } from '@/cores/components/InputLabel';
+import { PageDialogLoader } from '@/cores/components/PageDialogLoader';
 import { TextInput } from '@/cores/components/TextInput';
 import { convertImageToBase64FromUri } from '@/utils/image';
 import { isValidUrl } from '@/utils/validation';
@@ -147,6 +148,7 @@ export const EditRecipe = memo<Props>(
             />
           </View>
         </View>
+        <PageDialogLoader visible={mutation.isPending} label={`レシピ情報を\n取得中`} />
       </>
     );
   }
