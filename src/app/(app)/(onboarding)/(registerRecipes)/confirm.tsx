@@ -113,7 +113,7 @@ const styles = StyleSheet.create({
     display: 'flex',
     flexDirection: 'column',
     gap: 16,
-    paddingBottom: 24,
+    paddingBottom: 12,
   },
   editButtonWrapper: {
     backgroundColor: Constants.colors.primitive.pink[400],

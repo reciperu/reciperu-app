@@ -1,7 +1,7 @@
 import { useQueryClient } from '@tanstack/react-query';
 import { router } from 'expo-router';
 import { useCallback, useState } from 'react';
-import { StyleSheet, View } from 'react-native';
+import { SafeAreaView, StyleSheet, View } from 'react-native';
 
 import { Constants } from '@/constants';
 import { Button } from '@/cores/components/Button';
@@ -32,33 +32,36 @@ export default function OnboardingJoinBookTopPage() {
   }, [code, mutation, queryClient]);
   return (
     <>
-      <View style={styles.container}>
+      <SafeAreaView style={styles.container}>
         <View style={styles.titleWrapper}>
           <NotoText style={styles.stepper}>3/3</NotoText>
           <NotoText fw="bold" style={styles.pageTitle}>
             別のスペースに参加する
           </NotoText>
         </View>
-        <NotoText style={[styles.descriptionText]}>
+        <NotoText style={styles.descriptionText}>
           パートナーから教えてもらった招待コードを入力してください
         </NotoText>
-        <InputLabel required>招待コード</InputLabel>
-        <TextInput value={code} onChange={(text) => setCode(text)} />
+        <View style={{ paddingHorizontal: 16 }}>
+          <InputLabel required>招待コード</InputLabel>
+          <TextInput value={code} onChange={(text) => setCode(text)} />
+        </View>
         <Spacer />
         <View style={styles.actionButtonWrapper}>
           <Button loading={mutation.isPending} disabled={!code.length} onPress={handlePress}>
             次に進む
           </Button>
         </View>
-      </View>
+      </SafeAreaView>
     </>
   );
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1, backgroundColor: 'white', paddingHorizontal: 16, paddingBottom: 24 },
+  container: { flex: 1, backgroundColor: 'white', paddingBottom: 24 },
   titleWrapper: {
     marginTop: 8,
+    paddingHorizontal: 16,
   },
   stepper: {
     fontSize: 14,
@@ -72,6 +75,8 @@ const styles = StyleSheet.create({
     display: 'flex',
     flexDirection: 'column',
     gap: 16,
+    marginBottom: 12,
+    paddingHorizontal: 16,
   },
-  descriptionText: { fontSize: 16, marginVertical: 24 },
+  descriptionText: { fontSize: 16, marginVertical: 24, paddingHorizontal: 16 },
 });

@@ -83,7 +83,10 @@ export default function OnboardingRegisterRecipesCompletePage() {
   return (
     <>
       <ScrollView style={styles.container}>
-        <View style={{ minHeight: height - insets.bottom - insets.top - 44, paddingBottom: 24 }}>
+        <View
+          style={{
+            minHeight: height - insets.bottom - insets.top - 44,
+          }}>
           <View style={styles.titleWrapper}>
             <NotoText fw="bold" style={styles.pageTitle}>
               {APP_NAME}を利用する準備が完了しました！

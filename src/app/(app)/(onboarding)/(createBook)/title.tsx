@@ -70,7 +70,7 @@ export default function OnboardingCreateBookTitlePage() {
             次に進む
           </Button>
         </View>
-        <View style={{ marginBottom: 24, marginHorizontal: 16 }}>
+        <View style={{ marginBottom: 12, marginHorizontal: 16 }}>
           <Button variant="others" disabled={mutation.isPending} onPress={() => router.back()}>
             戻る
           </Button>

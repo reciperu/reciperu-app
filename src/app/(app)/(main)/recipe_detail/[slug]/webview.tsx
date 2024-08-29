@@ -1,8 +1,6 @@
 import { Stack, router, useLocalSearchParams } from 'expo-router';
-import { StyleSheet } from 'react-native';
 import WebView from 'react-native-webview';
 
-import { Constants } from '@/constants';
 import { HeaderLeftBackButton } from '@/cores/components/icons/components/HeaderLeftBackButton';
 
 export default function Modal() {
@@ -27,11 +25,3 @@ export default function Modal() {
     </>
   );
 }
-
-const styles = StyleSheet.create({
-  headerUpdateButton: { color: Constants.colors.primitive.blue[400], fontSize: 16 },
-  container: {
-    flex: 1,
-    backgroundColor: 'green',
-  },
-});
